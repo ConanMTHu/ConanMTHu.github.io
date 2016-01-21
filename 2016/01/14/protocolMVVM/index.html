@@ -16,7 +16,7 @@ WWDC:Prot">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png">
-<meta property="og:updated_time" content="2016-01-21T10:33:46.000Z">
+<meta property="og:updated_time" content="2016-01-21T10:35:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
 <meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)  
@@ -327,88 +327,140 @@ class SuperFishMan: SuperMan {
 </li>
 </ul>
 <p>有句话是咋说的:我们区分鸟和鱼,不是因为它们的名字是鸟/鱼,而是通过它们表现的行为,有点乱,^_^.把所有的行为拆分出来,通过搭积木的形式组合出来,你具备什么就拿什么,那么你的身份也就随之浮现了.<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png" alt="">  </p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Property</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</span><br><span class="line">    <span class="keyword">var</span> type: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Property</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"超人"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> type: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"外星类"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Speaker</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Flyer</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Swimer</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SuperMan</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SuperMan</span>: <span class="title">Property</span>,<span class="title">Flyer</span>,<span class="title">Speaker</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also fly"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also speak"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SuperFishMan</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SuperFishMan</span>: <span class="title">Property</span>,<span class="title">Flyer</span>,<span class="title">Speaker</span>,<span class="title">Swimer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"超水人"</span><span class="comment">// 好蠢的名字...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"..."</span>)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"...."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"> + objc中,还是可以定义一个父类<span class="type">Animal</span>的,<span class="type">LZ</span>现在基本都是写<span class="type">Swift</span>了,就直接定义了一个<span class="class"><span class="keyword">protocol</span>:`<span class="title">Property</span>`,在扩展中写好默认实现  </span><br><span class="line"> + 消灭了`上帝类`,全部都定义为<span class="title">protocol</span>,用到什么就拼接什么,真的就够搭积木一样便捷...  </span><br><span class="line">  </span><br><span class="line">## &lt;<span class="title">font</span> <span class="title">color</span>="<span class="title">IndianRed</span>"&gt;组合(<span class="title">Composition</span>),哎哟不错&lt;/<span class="title">font</span>&gt;  </span><br><span class="line">第一个例子属于对于`<span class="title">model</span>`定义,接下来看一个`<span class="title">view</span>`层所表现出的问题.  </span><br><span class="line">手机<span class="title">QQ</span>底部<span class="title">tabbar</span>的三个标签首页都带有一个头像控件,最开始我们采取继承的形式来实现一个`<span class="title">baseVC</span>`</span></span><br></pre></td></tr></table></figure>
-<p>class KQUserAvatarView: UIView {<br>}</p>
-<p>class KQBaseViewController: UIViewController {<br>    var userAvatarView: KQUserAvatarView!</p>
-<pre><code>func setupUserAvatarView() {
+<pre><code>protocol Property {
+    var name: String {get}
+    var type: String {get}
 }
 
-func clickOnAvatarView() {
-}
-</code></pre><p>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> + 新需求,希望第一、第二个标签页的头像加上大V的标志,第三页保持不变,此刻高耦合,父类改动牵动三个子类/甚至更多子类的变化.或许你直接在父类中添加改变样式的方法,那么那些不需要改变的子类也就直接继承了无用的方法...  </span><br><span class="line"> + 又来个需求,我需要一个父类是<span class="escape">`U</span>ITableViewController<span class="escape">`的</span>新<span class="escape">`K</span>QUserAvatarView<span class="escape">`,</span>瞬间傻眼...只能复制代码再创造一个上帝了  </span><br><span class="line"> + 这种情况还只是一个view的创建,如果是好几个组合view的组成,那么VC中的代码简直就是灾难...</span><br><span class="line">  </span><br><span class="line">在objc/Swift1.<span class="number">2</span>之前的,我们用<span class="escape">`组</span>合来代替继承<span class="escape">`,</span>这是非常常见的一种做法.借助中间件,解耦+转移逻辑代码,减轻VC的负担.</span><br></pre></td></tr></table></figure></p>
-<p>class KQUserAvatarView: UIView {<br>    var btn: UIButton!</p>
-<pre><code>override init(frame: CGRect) {
-    super.init(frame: frame)
-}
-
-required init?(coder aDecoder: NSCoder) {
-    fatalError(&quot;init(coder:) has not been implemented&quot;)
-}
-</code></pre><p>}</p>
-<p>typealias ClickButtonAction = () -&gt; ()<br>class KQUserAvatarViewManager {<br>    var userAvatarView: KQUserAvatarView!<br>    var tapHandle: ClickButtonAction?</p>
-<pre><code>func setupUserAvatarViewAtContainView(view: UIView,tapHandle: ClickButtonAction?) {
-    userAvatarView = KQUserAvatarView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-    userAvatarView.backgroundColor = UIColor.orangeColor()
-    view.addSubview(userAvatarView)
-    self.tapHandle = tapHandle
-    userAvatarView.btn.addTarget(self, action: &quot;clickOnAvatarView&quot;, forControlEvents: .TouchUpInside)
-}
-
-func clickOnAvatarView() {
-    if let block = self.tapHandle {
-        block()
+extension Property {
+    var name: String {
+        return &quot;超人&quot;
     }
-}
-</code></pre><p>}</p>
-<p>class ViewController: UIViewController {<br>    var manager: KQUserAvatarViewManager!</p>
-<pre><code>override func viewDidLoad() {
-    super.viewDidLoad()
-    manager.setupUserAvatarViewAtContainView(self.view) {
-        print(&quot;点击了按钮&quot;)
-    }
-
-}
-
-override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-}
-</code></pre><p>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> + 哪个页面需要头像控件,直接创建一个<span class="code">`KQUserAvatarViewManager`</span>对象进行引用就行,实现了解耦    </span><br><span class="line"> + 多个view对应对个manager,很好的给VC进行了瘦身  </span><br><span class="line"> + 题外话:前端时间看了阳神的[<span class="link_label">iOS 开发中的 Self-Manager 模式</span>](<span class="link_url">http://blog.sunnyxx.com/2015/12/19/self-manager-pattern-in-ios/</span>),评论也看了...对于文章所诉的观点,LZ我也是赞同评论中提议的创建一个<span class="code">`ViewManager`</span>,在它里面处理点击事件或者delegate/block回调给VC来处理...至于<span class="code">`这个 Avatar View 在 App 的各个地方都可能粗线，而且行为一致，那就意味着事件处理的 block，要散落在各个页面中，同时也带来了很多“只是为向上一层级转发事件”的 “Middle Man”`</span>这句话,我认为,除非block中的处理事件完全一致(都是加载同一个model,都是push/modal推出视图),否则做不到逻辑代码只有一份的情况,它还是得分散在各个VC中做对应的跳转...(个人观点,不喜勿喷)  </span><br><span class="line"><span class="code">    </span></span><br><span class="line"><span class="header">## &lt;font color="IndianRed"&gt;POP的实现(Protocol)&lt;/font&gt;  </span></span><br><span class="line">如果说组合的缺点,调用时必须通过中间变量,管理它的创建和释放,多了一层构造(缺点是相对的,在POP之前都这样用..优点都是对比出来的)</span><br></pre></td></tr></table></figure></p>
-<p>typealias ClickButtonAction = () -&gt; ()<br>class KQUserAvatarView: UIView {<br>    var btn: UIButton!<br>    var tapBlock: ClickButtonAction?</p>
-<pre><code>override init(frame: CGRect) {
-    super.init(frame: frame)
-    btn = UIButton(type: .ContactAdd)
-    btn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-    self.addSubview(btn)
-
-    btn.addTarget(self, action: &quot;clickOnAvatarView&quot;, forControlEvents: .TouchUpInside)
-}
-
-func clickOnAvatarView() {
-    if let blcok = tapBlock {
-        blcok()
+    var type: String {
+        return &quot;外星类&quot;
     }
 }
 
-required init?(coder aDecoder: NSCoder) {
-    fatalError(&quot;init(coder:) has not been implemented&quot;)
+protocol Speaker {
+    func speak()
 }
-</code></pre><p>}</p>
-<p>protocol UserAvatarViewAble: class {<br>    var userAvatarView: KQUserAvatarView! {get set}<br>    func setupUserAvatarView(tapHandle: ClickButtonAction?)<br>}</p>
-<p>extension UserAvatarViewAble where Self: UIViewController {<br>    //  扩展不能实现储存属性<br>    func setupUserAvatarView(tapHandle: ClickButtonAction?) {<br>        userAvatarView = KQUserAvatarView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))<br>        userAvatarView.backgroundColor = UIColor.orangeColor()<br>        self.view.addSubview(userAvatarView)<br>        userAvatarView.tapBlock = tapHandle<br>    }<br>}</p>
-<p>class ViewController: UIViewController, UserAvatarViewAble {<br>    var userAvatarView: KQUserAvatarView!</p>
-<pre><code>override func viewDidLoad() {
-    super.viewDidLoad()
-    setupUserAvatarView {
-        print(&quot;点击了按钮&quot;)
+
+protocol Flyer {
+    func fly()
+}
+
+protocol Swimer {
+    func swimming()
+}
+
+struct SuperMan {
+}
+
+extension SuperMan: Property,Flyer,Speaker {
+    func fly() {
+        print(&quot;superman also fly&quot;)
+    }
+    func speak() {
+        print(&quot;superman also speak&quot;)
     }
 }
 
-override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+struct SuperFishMan {
 }
-</code></pre><p>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> + 定义protocol,通过extension来实现协议,消除了中间变量  </span><br><span class="line"> + <span class="code">`where Self: UIViewController`</span>用来规定<span class="code">`只有采纳协议的类型满足这些限制条件时，才能获得协议扩展提供的默认实现`</span>.这个协议设计的就是作为VC的子视图控件,因此可以用<span class="code">`UIViewController`</span>来直接限定,so<span class="code">`self.view.addSubview(xxx)`</span>可以直接在协议的扩展中完成.  </span><br><span class="line"> + <span class="code">`UIViewController`</span>属于类类型,因此协议<span class="code">`UserAvatarViewAble`</span>必须用<span class="code">`class`</span>关键字来修饰只能被类类型使用.还有就是在<span class="code">`setupUserAvatarView`</span>方法中对属性变量进行了修改,如果是结构体/枚举采用了协议,必须用<span class="code">`mutating`</span>关键字来修饰方法,否则就会报错...可以看看这个错误[<span class="link_label">Protocol Extension, Mutating Function</span>](<span class="link_url">http://stackoverflow.com/questions/32488726/protocol-extension-mutating-function</span>)  </span><br><span class="line">  </span><br><span class="line">这样看上去是不是很简洁易用?在Swift中很多场景都能通过它来实现.比如:检查手机号码,用户名的正则表达式判断..../颜色,图片的转换...等一系列的逻辑方法.  </span><br><span class="line">LZ之前objc项目中就存在各种:<span class="code">`WCXxxUtil`</span>,<span class="code">`WCXxxHandle`</span>,<span class="code">`WCRegularUtil`</span>...  </span><br><span class="line">迁移到Swift中就类似[<span class="link_label">Mixins and Traits in Swift 2.0</span>](<span class="link_url">http://matthijshollemans.com/2015/07/22/mixins-and-traits-in-swift-2/</span>)写到的:</span><br></pre></td></tr></table></figure></p>
+
+extension SuperFishMan: Property,Flyer,Speaker,Swimer {
+    var name: String {
+        return &quot;超水人&quot;// 好蠢的名字...
+    }
+    func fly() {
+        print(&quot;...&quot;)
+    }
+    func speak() {
+        print(&quot;...&quot;)
+
+    }
+    func swimming() {
+        print(&quot;....&quot;)
+    }
+}
+</code></pre><ul>
+<li>objc中,还是可以定义一个父类Animal的,LZ现在基本都是写Swift了,就直接定义了一个protocol:<code>Property</code>,在扩展中写好默认实现  </li>
+<li>消灭了<code>上帝类</code>,全部都定义为protocol,用到什么就拼接什么,真的就够搭积木一样便捷…  </li>
+</ul>
+<h2 id="u7EC4_u5408_28Composition_29_2C_u54CE_u54DF_u4E0D_u9519"><a href="#u7EC4_u5408_28Composition_29_2C_u54CE_u54DF_u4E0D_u9519" class="headerlink" title="组合(Composition),哎哟不错"></a><font color="IndianRed">组合(Composition),哎哟不错</font></h2><p>第一个例子属于对于<code>model</code>定义,接下来看一个<code>view</code>层所表现出的问题.<br>手机QQ底部tabbar的三个标签首页都带有一个头像控件,最开始我们采取继承的形式来实现一个<code>baseVC</code>  </p>
+<pre><code>class KQUserAvatarView: UIView {
+}
+
+class KQBaseViewController: UIViewController {
+    var userAvatarView: KQUserAvatarView!
+
+    func setupUserAvatarView() {
+    }
+
+    func clickOnAvatarView() {
+    }
+}  
+</code></pre><ul>
+<li>新需求,希望第一、第二个标签页的头像加上大V的标志,第三页保持不变,此刻高耦合,父类改动牵动三个子类/甚至更多子类的变化.或许你直接在父类中添加改变样式的方法,那么那些不需要改变的子类也就直接继承了无用的方法…  </li>
+<li>又来个需求,我需要一个父类是<code>UITableViewController</code>的新<code>KQUserAvatarView</code>,瞬间傻眼…只能复制代码再创造一个上帝了  </li>
+<li>这种情况还只是一个view的创建,如果是好几个组合view的组成,那么VC中的代码简直就是灾难…</li>
+</ul>
+<p>在objc/Swift1.2之前的,我们用<code>组合来代替继承</code>,这是非常常见的一种做法.借助中间件,解耦+转移逻辑代码,减轻VC的负担.  </p>
+<pre><code>class KQUserAvatarView: UIView {
+    var btn: UIButton!
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+}
+
+typealias ClickButtonAction = () -&gt; ()
+class KQUserAvatarViewManager {
+    var userAvatarView: KQUserAvatarView!
+    var tapHandle: ClickButtonAction?
+
+    func setupUserAvatarViewAtContainView(view: UIView,tapHandle: ClickButtonAction?) {
+        userAvatarView = KQUserAvatarView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+        userAvatarView.backgroundColor = UIColor.orangeColor()
+        view.addSubview(userAvatarView)
+        self.tapHandle = tapHandle
+        userAvatarView.btn.addTarget(self, action: &quot;clickOnAvatarView&quot;, forControlEvents: .TouchUpInside)
+    }
+
+    func clickOnAvatarView() {
+        if let block = self.tapHandle {
+            block()
+        }
+    }
+}
+
+class ViewController: UIViewController {
+    var manager: KQUserAvatarViewManager!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        manager.setupUserAvatarViewAtContainView(self.view) {
+            print(&quot;点击了按钮&quot;)
+        }
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}
+</code></pre><ul>
+<li>哪个页面需要头像控件,直接创建一个<code>KQUserAvatarViewManager</code>对象进行引用就行,实现了解耦    </li>
+<li>多个view对应对个manager,很好的给VC进行了瘦身  </li>
+<li>题外话:前端时间看了阳神的<a href="http://blog.sunnyxx.com/2015/12/19/self-manager-pattern-in-ios/" target="_blank" rel="external">iOS 开发中的 Self-Manager 模式</a>,评论也看了…对于文章所诉的观点,LZ我也是赞同评论中提议的创建一个<code>ViewManager</code>,在它里面处理点击事件或者delegate/block回调给VC来处理…至于<code>这个 Avatar View 在 App 的各个地方都可能粗线，而且行为一致，那就意味着事件处理的 block，要散落在各个页面中，同时也带来了很多“只是为向上一层级转发事件”的 “Middle Man”</code>这句话,我认为,除非block中的处理事件完全一致(都是加载同一个model,都是push/modal推出视图),否则做不到逻辑代码只有一份的情况,它还是得分散在各个VC中做对应的跳转…(个人观点,不喜勿喷)  </li>
+</ul>
+<h2 id="POP_u7684_u5B9E_u73B0_28Protocol_29"><a href="#POP_u7684_u5B9E_u73B0_28Protocol_29" class="headerlink" title="POP的实现(Protocol)"></a><font color="IndianRed">POP的实现(Protocol)</font></h2><p>如果说组合的缺点,调用时必须通过中间变量,管理它的创建和释放,多了一层构造(缺点是相对的,在POP之前都这样用..优点都是对比出来的)  </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">ClickButtonAction</span> = () -&gt; ()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KQUserAvatarView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> btn: <span class="type">UIButton</span>!</span><br><span class="line">    <span class="keyword">var</span> tapBlock: <span class="type">ClickButtonAction</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</span><br><span class="line">        btn = <span class="type">UIButton</span>(type: .<span class="type">ContactAdd</span>)</span><br><span class="line">        btn.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">40</span>, height: <span class="number">40</span>)</span><br><span class="line">        <span class="keyword">self</span>.addSubview(btn)</span><br><span class="line">        </span><br><span class="line">        btn.addTarget(<span class="keyword">self</span>, action: <span class="string">"clickOnAvatarView"</span>, forControlEvents: .<span class="type">TouchUpInside</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">clickOnAvatarView</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> blcok = tapBlock &#123;</span><br><span class="line">            blcok()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">UserAvatarViewAble</span>: <span class="title">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> userAvatarView: <span class="type">KQUserAvatarView</span>! &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">setupUserAvatarView</span><span class="params">(tapHandle: ClickButtonAction?)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UserAvatarViewAble</span> <span class="title">where</span> <span class="title">Self</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//  扩展不能实现储存属性</span></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">setupUserAvatarView</span><span class="params">(tapHandle: ClickButtonAction?)</span></span> &#123;</span><br><span class="line">        userAvatarView = <span class="type">KQUserAvatarView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">100</span>, height: <span class="number">100</span>))</span><br><span class="line">        userAvatarView.backgroundColor = <span class="type">UIColor</span>.orangeColor()</span><br><span class="line">        <span class="keyword">self</span>.view.addSubview(userAvatarView)</span><br><span class="line">        userAvatarView.tapBlock = tapHandle</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UserAvatarViewAble</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> userAvatarView: <span class="type">KQUserAvatarView</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        setupUserAvatarView &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"点击了按钮"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</span><br><span class="line">        <span class="comment">// Dispose of any resources that can be recreated.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"> + 定义<span class="class"><span class="keyword">protocol</span>,通过<span class="title">extension</span>来实现协议,消除了中间变量  </span><br><span class="line"> + `<span class="title">where</span> <span class="title">Self</span>: <span class="title">UIViewController</span>`用来规定`只有采纳协议的类型满足这些限制条件时，才能获得协议扩展提供的默认实现`.这个协议设计的就是作为<span class="title">VC</span>的子视图控件,因此可以用`<span class="title">UIViewController</span>`来直接限定,<span class="title">so</span>`<span class="title">self</span>.<span class="title">view</span>.<span class="title">addSubview</span>(<span class="title">xxx</span>)`可以直接在协议的扩展中完成.  </span><br><span class="line"> + `<span class="title">UIViewController</span>`属于类类型,因此协议`<span class="title">UserAvatarViewAble</span>`必须用`<span class="title">class</span>`关键字来修饰只能被类类型使用.还有就是在`<span class="title">setupUserAvatarView</span>`方法中对属性变量进行了修改,如果是结构体/枚举采用了协议,必须用`<span class="title">mutating</span>`关键字来修饰方法,否则就会报错...可以看看这个错误[<span class="title">Protocol</span> <span class="title">Extension</span>, <span class="title">Mutating</span> <span class="title">Function</span>](<span class="title">http</span>://<span class="title">stackoverflow</span>.<span class="title">com</span>/<span class="title">questions</span>/32488726/<span class="title">protocol</span>-<span class="title">extension</span>-<span class="title">mutating</span>-<span class="title">function</span>)  </span><br><span class="line">  </span><br><span class="line">这样看上去是不是很简洁易用?在<span class="title">Swift</span>中很多场景都能通过它来实现.比如:检查手机号码,用户名的正则表达式判断..../颜色,图片的转换...等一系列的逻辑方法.  </span><br><span class="line"><span class="title">LZ</span>之前<span class="title">objc</span>项目中就存在各种:`<span class="title">WCXxxUtil</span>`,`<span class="title">WCXxxHandle</span>`,`<span class="title">WCRegularUtil</span>`...  </span><br><span class="line">迁移到<span class="title">Swift</span>中就类似[<span class="title">Mixins</span> <span class="title">and</span> <span class="title">Traits</span> <span class="title">in</span> <span class="title">Swift</span> 2.0](<span class="title">http</span>://<span class="title">matthijshollemans</span>.<span class="title">com</span>/2015/07/22/<span class="title">mixins</span>-<span class="title">and</span>-<span class="title">traits</span>-<span class="title">in</span>-<span class="title">swift</span>-2/)写到的:</span></span><br></pre></td></tr></table></figure>
 <p>protocol ValidatesUsername {<br>    func isUsernameValid(password: String) -&gt; Bool<br>}</p>
 <p>extension ValidatesUsername {<br>    func isUsernameValid(username: String) -&gt; Bool {<br>        if /<em> username too short </em>/ {<br>            return false<br>        } else if /<em> username has invalid characters </em>/ {<br>            return false<br>        } else {<br>            return true<br>        }<br>    }<br>}</p>
 <p>class LoginViewController: UIViewController, ValidatesUsername, ValidatesPassword {<br>    @IBAction func loginButtonPressed() {<br>        if isUsernameValid(usernameTextField.text!) &amp;&amp;<br>            isPasswordValid(passwordTextField.text!) {<br>                // proceed with login<br>        } else {<br>            // show alert<br>        }<br>    }<br>}<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">protocol拆分了各种工具,extension实现默认设定,拿来即用,方便`无污染`.  </span><br><span class="line">  </span><br><span class="line"><span class="comment">## &lt;font color="IndianRed"&gt;POP在ViewModel中的体现&lt;/font&gt;  </span></span><br><span class="line">实现这样一个功能,写一个通讯录,要有头像和姓名-电话号码...  </span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>protocol层(不记得在哪里看到,对于协议的命令用形容词,果然IT最难的是命名...)<span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure></p>
@@ -462,7 +514,7 @@ func tapAction() {
         <p><span>本文标题:</span><a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2016年01月14日 - 10时03分</p>
-        <p><span>最后更新:</span>2016年01月21日 - 18时33分</p>
+        <p><span>最后更新:</span>2016年01月21日 - 18时35分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/01/14/protocolMVVM/" title="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">http://hmttommy.com/2016/01/14/protocolMVVM/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/14/protocolMVVM/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -492,7 +544,7 @@ func tapAction() {
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F15"><span class="toc-number">1.</span> <span class="toc-text">引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29"><span class="toc-number">2.</span> <span class="toc-text">讨厌的”上帝”(Inheritence)</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F15"><span class="toc-number">1.</span> <span class="toc-text">引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29"><span class="toc-number">2.</span> <span class="toc-text">讨厌的”上帝”(Inheritence)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7EC4_u5408_28Composition_29_2C_u54CE_u54DF_u4E0D_u9519"><span class="toc-number">3.</span> <span class="toc-text">组合(Composition),哎哟不错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POP_u7684_u5B9E_u73B0_28Protocol_29"><span class="toc-number">4.</span> <span class="toc-text">POP的实现(Protocol)</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
