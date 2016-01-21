@@ -1,202 +1,171 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>胡明涛的技术博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: UIScrollView汇总(持续更新)date: 2014-12-12 15:47:19categories: UI
-tags: UIScrollViewUIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="胡明涛的技术博客">
-<meta property="og:url" content="http://hmttommy.com/2015/03/03/UIScrollView汇总-持续更新/index.html">
-<meta property="og:site_name" content="胡明涛的技术博客">
-<meta property="og:description" content="title: UIScrollView汇总(持续更新)date: 2014-12-12 15:47:19categories: UI
-tags: UIScrollViewUIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
-<meta property="og:image" content="http://hmtphoto.qiniudn.com/UIScrollView.png">
-<meta property="og:updated_time" content="2015-04-14T07:08:25.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="胡明涛的技术博客">
-<meta name="twitter:description" content="title: UIScrollView汇总(持续更新)date: 2014-12-12 15:47:19categories: UI
-tags: UIScrollViewUIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
-  
-    <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="http://7qn7zn.com1.z0.glb.clouddn.com/海贼2.jpg">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>胡明涛的技术博客 | 迷糊小书童</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="爱好电影、音乐和书籍，尤其喜爱许巍、李健及王小波。擅长Java，JavaScript，喜欢用NodeJs编写一些有趣的应用。关注互联网、科技、敏捷开发以及JavaNIO。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="胡明涛的技术博客 | 迷糊小书童">
+    <meta name="twitter:description" content="爱好电影、音乐和书籍，尤其喜爱许巍、李健及王小波。擅长Java，JavaScript，喜欢用NodeJs编写一些有趣的应用。关注互联网、科技、敏捷开发以及JavaNIO。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="胡明涛的技术博客 | 迷糊小书童">
+    <meta property="og:description" content="爱好电影、音乐和书籍，尤其喜爱许巍、李健及王小波。擅长Java，JavaScript，喜欢用NodeJs编写一些有趣的应用。关注互联网、科技、敏捷开发以及JavaNIO。">
+
+    
+    <meta name="author" content="Tommy@胡明涛">
+    
+    <link rel="stylesheet" href="/css/vno.css" type="text/css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="胡明涛的技术博客" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://hmttommy.com/2015/03/03/UIScrollView汇总-持续更新/"/>
+
+    
+    <link rel="author" href="https://www.google.com/+LenboMa"/>
+    
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			<img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
-		</a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Tommy@胡明涛</a></h1>
-		</hgroup>
+<body class="home-template no-js">
 
-		
-		<p class="header-subtitle">迷糊小书童</p>
-		
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/ConanMTHu" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo">weibo</a>
-					        
-								<a class="mail" target="_blank" href="http://mail.163.com/js6/main.jsp?sid=VBgcRKBLaeggsBJOqgLLpzUOQmXrFqGU&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D" title="mail">mail</a>
-					        
-								<a class="google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="google">google</a>
-					        
-								<a class="twitter" target="_blank" href="https://twitter.com/" title="twitter">twitter</a>
-					        
-								<a class="linkedin" target="_blank" href="http://blog.csdn.net/hmt20130412" title="linkedin">linkedin</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
-					</div>
-				</section>
-				
-				
-				
+        <a href="/" title="前往 胡明涛的技术博客 的主页"><img src="/images/logo2.jpg" width="80" alt="胡明涛的技术博客 logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for 胡明涛的技术博客">胡明涛的技术博客</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">迷糊小书童</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">Tommy blog iOS Swift</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
 
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">iOS爱好者，还想学习更多，C++ Python PHP Java JS...</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Tommy@胡明涛</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author">Tommy@胡明涛</h1>
-			</hgroup>
-			
-			<p class="header-subtitle">迷糊小书童</p>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/ConanMTHu" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo">weibo</a>
-			        
-						<a class="mail" target="_blank" href="http://mail.163.com/js6/main.jsp?sid=VBgcRKBLaeggsBJOqgLLpzUOQmXrFqGU&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D" title="mail">mail</a>
-			        
-						<a class="google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="google">google</a>
-			        
-						<a class="twitter" target="_blank" href="https://twitter.com/" title="twitter">twitter</a>
-			        
-						<a class="linkedin" target="_blank" href="http://blog.csdn.net/hmt20130412" title="linkedin">linkedin</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/lenbo-ma" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://www.google.com/+LenboMa" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+
+<!-- Facebook -->
+
+  <li class="navigation__item">
+    <a href="http://www.facebook.com/yang.desheng.me" title="上Facebook找我" target="_blank">
+      <i class='social fa fa-facebook'></i>
+      <span class="label">Facebook</span>
+    </a>
+  </li>
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/lenbo_" title="上Twitter找我" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
 </nav>
-      <div class="body-wrap"><article id="post-UIScrollView汇总-持续更新" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/03/03/UIScrollView汇总-持续更新/" class="article-date">
-  	<time datetime="2015-03-03T02:20:41.000Z" itemprop="datePublished">2015-03-03</time>
-</a>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>title: UIScrollView汇总(持续更新)<br>date: 2014-12-12 15:47:19<br>categories: UI</p>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-03-03T02:20:41.000Z" class="post-list__meta--date date">2015-03-03</time> &#8226; <span class="post-meta__tags tags">于&nbsp;</span>
+    </div>
+    <h1 class="post-title"></h1>
+  </header>
+
+  <section class="post">
+    <p>title: UIScrollView汇总(持续更新)<br>date: 2014-12-12 15:47:19<br>categories: UI</p>
 <h2 id="tags_3A_UIScrollView"><a href="#tags_3A_UIScrollView" class="headerlink" title="tags: UIScrollView"></a>tags: UIScrollView</h2><p><code>UIScrollView</code>是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)<br><img src="http://hmtphoto.qiniudn.com/UIScrollView.png" alt=""><br><a id="more"></a>  </p>
 <h3 id="u57FA_u672C_u7528_u6CD5"><a href="#u57FA_u672C_u7528_u6CD5" class="headerlink" title="基本用法"></a><font color="IndianRed">基本用法</font></h3><p><a href="http://blog.csdn.net/hmt20130412/article/details/21546551" target="_blank" rel="external">可直接参考我CSDN的博文(我就不搬过来了)</a>  </p>
 <h3 id="u6211_u9047_u5230_u7684_u95EE_u9898"><a href="#u6211_u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="我遇到的问题"></a><font color="IndianRed">我遇到的问题</font></h3><ul>
@@ -209,136 +178,42 @@ tags: UIScrollViewUIScrollView是iOS开发中可谓是最常用的UI控件(它�
 </ul>
 <h3 id="u5176_u4ED6_u95EE_u9898"><a href="#u5176_u4ED6_u95EE_u9898" class="headerlink" title="其他问题"></a><font color="IndianRed">其他问题</font></h3><p><a href="/wing.com/cn/practice-in-uiscrollview/">UIScrollView代理方法详解以及lay load </a><br><a href="http://lijianfei.sinaapp.com/?p=215" target="_blank" rel="external">iOS8 – button在scrollView上，scrollView滑动不灵敏</a><br><a href="http://objclub.com/?p=52" target="_blank" rel="external">UIScrollView中使用AutoLayout的问题</a><br><a href="http://www.thinkcart.net/ios-uiscrollview-autolayout-408.html" target="_blank" rel="external">关于uiscrollview的autolayout自动布局的问题</a></p>
 
-      
-    </div>
-    
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Swift AVFoundation 二维码扫描和生成
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Swift 宏替换与代码标识</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+  </section>
 
-  
 </article>
 
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
 
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="UIScrollView汇总-持续更新" data-title="" data-url="http://hmttommy.com/2015/03/03/UIScrollView汇总-持续更新/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"humingtao"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 Tommy@胡明涛
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
-    </div>
-  </div>
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 本站由 <a href="/">@Longbo Ma</a> 创建,
+        使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题,
+        修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>
+    </span>
 </footer>
+
+        </div>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
 
-<script src="/js/mobile.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-72551550-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-
-<! -- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+	ga('create', 'UA-42596364-1', 'auto');
+	ga('send', 'pageview');
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-
-  </div>
 </body>
 </html>
