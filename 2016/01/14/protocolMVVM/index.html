@@ -14,8 +14,7 @@
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png">
-<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocolppt.png">
-<meta property="og:updated_time" content="2016-01-21T11:30:40.000Z">
+<meta property="og:updated_time" content="2016-01-21T11:36:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
 <meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)WWDC:Protoco">
@@ -296,238 +295,57 @@
 <li>这种情况还只是一个view的创建,如果是好几个组合view的组成,那么VC中的代码简直就是灾难…</li>
 </ul>
 <p>在objc/Swift1.2之前的,我们用<code>组合来代替继承</code>,这是非常常见的一种做法.借助中间件,解耦+转移逻辑代码,减轻VC的负担.  </p>
-<pre><code>class KQUserAvatarView: UIView {
-    var btn: UIButton!
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError(&quot;init(coder:) has not been implemented&quot;)
-    }
-}
-
-typealias ClickButtonAction = () -&gt; ()
-class KQUserAvatarViewManager {
-    var userAvatarView: KQUserAvatarView!
-    var tapHandle: ClickButtonAction?
-
-    func setupUserAvatarViewAtContainView(view: UIView,tapHandle: ClickButtonAction?) {
-        userAvatarView = KQUserAvatarView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        userAvatarView.backgroundColor = UIColor.orangeColor()
-        view.addSubview(userAvatarView)
-        self.tapHandle = tapHandle
-        userAvatarView.btn.addTarget(self, action: &quot;clickOnAvatarView&quot;, forControlEvents: .TouchUpInside)
-    }
-
-    func clickOnAvatarView() {
-        if let block = self.tapHandle {
-            block()
-        }
-    }
-}
-
-class ViewController: UIViewController {
-    var manager: KQUserAvatarViewManager!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        manager.setupUserAvatarViewAtContainView(self.view) {
-            print(&quot;点击了按钮&quot;)
-        }
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
-</code></pre><ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KQUserAvatarView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> btn: <span class="type">UIButton</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typealias</span> <span class="type">ClickButtonAction</span> = () -&gt; ()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KQUserAvatarViewManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> userAvatarView: <span class="type">KQUserAvatarView</span>!</span><br><span class="line">    <span class="keyword">var</span> tapHandle: <span class="type">ClickButtonAction</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">setupUserAvatarViewAtContainView</span><span class="params">(view: UIView,tapHandle: ClickButtonAction?)</span></span> &#123;</span><br><span class="line">        userAvatarView = <span class="type">KQUserAvatarView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">100</span>, height: <span class="number">100</span>))</span><br><span class="line">        userAvatarView.backgroundColor = <span class="type">UIColor</span>.orangeColor()</span><br><span class="line">        view.addSubview(userAvatarView)</span><br><span class="line">        <span class="keyword">self</span>.tapHandle = tapHandle</span><br><span class="line">        userAvatarView.btn.addTarget(<span class="keyword">self</span>, action: <span class="string">"clickOnAvatarView"</span>, forControlEvents: .<span class="type">TouchUpInside</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">clickOnAvatarView</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> block = <span class="keyword">self</span>.tapHandle &#123;</span><br><span class="line">            block()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> manager: <span class="type">KQUserAvatarViewManager</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        manager.setupUserAvatarViewAtContainView(<span class="keyword">self</span>.view) &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"点击了按钮"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</span><br><span class="line">        <span class="comment">// Dispose of any resources that can be recreated.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
 <li>哪个页面需要头像控件,直接创建一个<code>KQUserAvatarViewManager</code>对象进行引用就行,实现了解耦    </li>
 <li>多个view对应对个manager,很好的给VC进行了瘦身  </li>
 <li>题外话:前端时间看了阳神的<a href="http://blog.sunnyxx.com/2015/12/19/self-manager-pattern-in-ios/" target="_blank" rel="external">iOS 开发中的 Self-Manager 模式</a>,评论也看了…对于文章所诉的观点,LZ我也是赞同评论中提议的创建一个<code>ViewManager</code>,在它里面处理点击事件或者delegate/block回调给VC来处理…至于<code>这个 Avatar View 在 App 的各个地方都可能粗线，而且行为一致，那就意味着事件处理的 block，要散落在各个页面中，同时也带来了很多“只是为向上一层级转发事件”的 “Middle Man”</code>这句话,我认为,除非block中的处理事件完全一致(都是加载同一个model,都是push/modal推出视图),否则做不到逻辑代码只有一份的情况,它还是得分散在各个VC中做对应的跳转…(个人观点,不喜勿喷)  </li>
 </ul>
 <h2 id="POP_u7684_u5B9E_u73B0_28Protocol_29"><a href="#POP_u7684_u5B9E_u73B0_28Protocol_29" class="headerlink" title="POP的实现(Protocol)"></a><font color="IndianRed">POP的实现(Protocol)</font></h2><p>如果说组合的缺点,调用时必须通过中间变量,管理它的创建和释放,多了一层构造(缺点是相对的,在POP之前都这样用..优点都是对比出来的)  </p>
-<pre><code>typealias ClickButtonAction = () -&gt; ()
-class KQUserAvatarView: UIView {
-    var btn: UIButton!
-    var tapBlock: ClickButtonAction?
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        btn = UIButton(type: .ContactAdd)
-        btn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        self.addSubview(btn)
-
-        btn.addTarget(self, action: &quot;clickOnAvatarView&quot;, forControlEvents: .TouchUpInside)
-    }
-
-    func clickOnAvatarView() {
-        if let blcok = tapBlock {
-            blcok()
-        }
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError(&quot;init(coder:) has not been implemented&quot;)
-    }
-}
-
-protocol UserAvatarViewAble: class {
-    var userAvatarView: KQUserAvatarView! {get set}
-    func setupUserAvatarView(tapHandle: ClickButtonAction?)
-}
-
-extension UserAvatarViewAble where Self: UIViewController {
-    //  扩展不能实现储存属性
-    func setupUserAvatarView(tapHandle: ClickButtonAction?) {
-        userAvatarView = KQUserAvatarView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        userAvatarView.backgroundColor = UIColor.orangeColor()
-        self.view.addSubview(userAvatarView)
-        userAvatarView.tapBlock = tapHandle
-    }
-}
-
-class ViewController: UIViewController, UserAvatarViewAble {
-    var userAvatarView: KQUserAvatarView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUserAvatarView {
-            print(&quot;点击了按钮&quot;)
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
-</code></pre><ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">ClickButtonAction</span> = () -&gt; ()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KQUserAvatarView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> btn: <span class="type">UIButton</span>!</span><br><span class="line">    <span class="keyword">var</span> tapBlock: <span class="type">ClickButtonAction</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</span><br><span class="line">        btn = <span class="type">UIButton</span>(type: .<span class="type">ContactAdd</span>)</span><br><span class="line">        btn.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">40</span>, height: <span class="number">40</span>)</span><br><span class="line">        <span class="keyword">self</span>.addSubview(btn)</span><br><span class="line">        </span><br><span class="line">        btn.addTarget(<span class="keyword">self</span>, action: <span class="string">"clickOnAvatarView"</span>, forControlEvents: .<span class="type">TouchUpInside</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">clickOnAvatarView</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> blcok = tapBlock &#123;</span><br><span class="line">            blcok()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">UserAvatarViewAble</span>: <span class="title">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> userAvatarView: <span class="type">KQUserAvatarView</span>! &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">setupUserAvatarView</span><span class="params">(tapHandle: ClickButtonAction?)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UserAvatarViewAble</span> <span class="title">where</span> <span class="title">Self</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//  扩展不能实现储存属性</span></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">setupUserAvatarView</span><span class="params">(tapHandle: ClickButtonAction?)</span></span> &#123;</span><br><span class="line">        userAvatarView = <span class="type">KQUserAvatarView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">100</span>, height: <span class="number">100</span>))</span><br><span class="line">        userAvatarView.backgroundColor = <span class="type">UIColor</span>.orangeColor()</span><br><span class="line">        <span class="keyword">self</span>.view.addSubview(userAvatarView)</span><br><span class="line">        userAvatarView.tapBlock = tapHandle</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UserAvatarViewAble</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> userAvatarView: <span class="type">KQUserAvatarView</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        setupUserAvatarView &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"点击了按钮"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</span><br><span class="line">        <span class="comment">// Dispose of any resources that can be recreated.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
 <li>定义protocol,通过extension来实现协议,消除了中间变量  </li>
 <li><code>where Self: UIViewController</code>用来规定<code>只有采纳协议的类型满足这些限制条件时，才能获得协议扩展提供的默认实现</code>.这个协议设计的就是作为VC的子视图控件,因此可以用<code>UIViewController</code>来直接限定,so<code>self.view.addSubview(xxx)</code>可以直接在协议的扩展中完成.  </li>
 <li><code>UIViewController</code>属于类类型,因此协议<code>UserAvatarViewAble</code>必须用<code>class</code>关键字来修饰只能被类类型使用.还有就是在<code>setupUserAvatarView</code>方法中对属性变量进行了修改,如果是结构体/枚举采用了协议,必须用<code>mutating</code>关键字来修饰方法,否则就会报错…可以看看这个错误<a href="http://stackoverflow.com/questions/32488726/protocol-extension-mutating-function" target="_blank" rel="external">Protocol Extension, Mutating Function</a>  </li>
 </ul>
-<p>这样看上去是不是很简洁易用?在Swift中很多场景都能通过它来实现.比如:检查手机号码,用户名的正则表达式判断…./颜色,图片的转换…等一系列的逻辑方法.<br>LZ之前objc项目中就存在各种:<code>WCXxxUtil</code>,<code>WCXxxHandle</code>,<code>WCRegularUtil</code>…<br>迁移到Swift中就类似<a href="http://matthijshollemans.com/2015/07/22/mixins-and-traits-in-swift-2/" target="_blank" rel="external">Mixins and Traits in Swift 2.0</a>写到的:<br>        protocol ValidatesUsername {<br>            func isUsernameValid(password: String) -&gt; Bool<br>        }</p>
-<pre><code>extension ValidatesUsername {
-    func isUsernameValid(username: String) -&gt; Bool {
-        if /* username too short */ {
-            return false
-        } else if /* username has invalid characters */ {
-            return false
-        } else {
-            return true
-        }
-    }
-}
-
-class LoginViewController: UIViewController, ValidatesUsername, ValidatesPassword {
-    @IBAction func loginButtonPressed() {
-        if isUsernameValid(usernameTextField.text!) &amp;&amp;
-            isPasswordValid(passwordTextField.text!) {
-                // proceed with login
-        } else {
-            // show alert
-        }
-    }
-}
-</code></pre><p>protocol拆分了各种工具,extension实现默认设定,拿来即用,方便<code>无污染</code>.  </p>
+<p>这样看上去是不是很简洁易用?在Swift中很多场景都能通过它来实现.比如:检查手机号码,用户名的正则表达式判断…./颜色,图片的转换…等一系列的逻辑方法.<br>LZ之前objc项目中就存在各种:<code>WCXxxUtil</code>,<code>WCXxxHandle</code>,<code>WCRegularUtil</code>…<br>迁移到Swift中就类似<a href="http://matthijshollemans.com/2015/07/22/mixins-and-traits-in-swift-2/" target="_blank" rel="external">Mixins and Traits in Swift 2.0</a>写到的:    </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ValidatesUsername</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">isUsernameValid</span><span class="params">(password: String)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ValidatesUsername</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">isUsernameValid</span><span class="params">(username: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="comment">/* username too short */</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="comment">/* username has invalid characters */</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginViewController</span>: <span class="title">UIViewController</span>, <span class="title">ValidatesUsername</span>, <span class="title">ValidatesPassword</span> </span>&#123;</span><br><span class="line">    <span class="preprocessor">@IBAction</span> <span class="func"><span class="keyword">func</span> <span class="title">loginButtonPressed</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> isUsernameValid(usernameTextField.text!) &amp;&amp;</span><br><span class="line">            isPasswordValid(passwordTextField.text!) &#123;</span><br><span class="line">                <span class="comment">// proceed with login</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// show alert</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>protocol拆分了各种工具,extension实现默认设定,拿来即用,方便<code>无污染</code>.  </p>
 <h2 id="POP_u5728ViewModel_u4E2D_u7684_u4F53_u73B0"><a href="#POP_u5728ViewModel_u4E2D_u7684_u4F53_u73B0" class="headerlink" title="POP在ViewModel中的体现"></a><font color="IndianRed">POP在ViewModel中的体现</font></h2><p>实现这样一个功能,写一个通讯录,要有头像和姓名-电话号码…<br><strong>protocol层(不记得在哪里看到,对于协议的命令用形容词,果然IT最难的是命名…)</strong>  </p>
-<pre><code>protocol PersonPresentAble {
-    var nameTelText: String {get}
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">PersonPresentAble</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> nameTelText: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以通过扩展提供默认实现...可用可不用</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PersonPresentAble</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> nameTelText: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hehe"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typealias</span> <span class="type">TapImageViewAction</span> = () -&gt; ()</span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ImagePresentAble</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> showImage: <span class="type">UIImage</span>? &#123;<span class="keyword">get</span>&#125;</span><br><span class="line">    <span class="keyword">var</span> tapHandle: <span class="type">TapImageViewAction</span>? &#123;<span class="keyword">get</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">**<span class="type">ViewModel</span>层**</span><br></pre></td></tr></table></figure>
+<p>struct PersonModel {<br>    var firstName: String<br>    var lastName: String<br>    var fullName: String {<br>        return lastName + firstName<br>    }<br>    var telPhone: String<br>    var avatarImageUrl: String?<br>}</p>
+<p>typealias TelPersonViewModelAble = protocol<personpresentable,imagepresentable><br>struct TelPersonViewModel: TelPersonViewModelAble {<br>    var telPerson: PersonModel<br>    var nameTelText: String<br>    var showImage: UIImage?<br>    var tapHandle: TapImageViewAction?</personpresentable,imagepresentable></p>
+<pre><code>init(model:PersonModel,tapHandle: TapImageViewAction?) {
+    self.telPerson = model
+    self.nameTelText = model.fullName + &quot;  &quot; + model.telPhone
+    self.showImage = UIImage(named: model.avatarImageUrl!) // 暂时这样,按道理是加载url,否则没必要写到viewmodel中
+    self.tapHandle = tapHandle
+}
+</code></pre><p>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ `fullName`直接写成计算属性比较方便,当然你也可以在viewmodel中拼接  </span><br><span class="line">+ 保留一个model属性`telPerson`,因为有些赋值你不需要进行加工处理,比如年龄/身高  </span><br><span class="line">+ 虽然在`PersonPresentAble`中`nameTelText`是<span class="keyword">get</span>只读的,但是实现起来仍能可写.参见`If a protocol requires a <span class="keyword">property</span> <span class="keyword">to</span> be gettable <span class="keyword">and</span> settable, <span class="keyword">that</span> <span class="keyword">property</span> requirement cannot be fulfilled <span class="keyword">by</span> a <span class="type">constant</span> stored <span class="keyword">property</span> <span class="keyword">or</span> a <span class="command">read</span>-only computed <span class="keyword">property</span>. If <span class="keyword">the</span> protocol only requires a <span class="keyword">property</span> <span class="keyword">to</span> be gettable, <span class="keyword">the</span> requirement can be satisfied <span class="keyword">by</span> any kind <span class="keyword">of</span> <span class="keyword">property</span>, <span class="keyword">and</span> <span class="keyword">it</span> <span class="keyword">is</span> valid <span class="keyword">for</span> <span class="keyword">the</span> <span class="keyword">property</span> <span class="keyword">to</span> be also settable <span class="keyword">if</span> this <span class="keyword">is</span> useful <span class="keyword">for</span> your own code.`  </span><br><span class="line">  </span><br><span class="line">`View层和ViewController层`</span><br></pre></td></tr></table></figure></p>
+<p>class ContactTableViewCell: UITableViewCell {<br>    @IBOutlet weak var telTextLabel: UILabel!<br>    @IBOutlet weak var avatarImageView: UIImageView!</p>
+<pre><code>var tapHandle: TapImageViewAction?
+
+override func awakeFromNib() {
+    super.awakeFromNib()
+    let tapGesture = UITapGestureRecognizer(target: self, action: &quot;tapAction&quot;)
+    avatarImageView.addGestureRecognizer(tapGesture)
 }
 
-// 可以通过扩展提供默认实现...可用可不用
-extension PersonPresentAble {
-    var nameTelText: String {
-        return &quot;hehe&quot;
+func configureDataWithViewModel(viewModel: TelPersonViewModelAble) {
+    telTextLabel.text = viewModel.nameTelText
+    avatarImageView.image = viewModel.showImage
+    tapHandle = viewModel.tapHandle
+}
+
+func tapAction() {
+    if let block = tapHandle {
+        block()
     }
 }
-
-typealias TapImageViewAction = () -&gt; ()
-protocol ImagePresentAble {
-    var showImage: UIImage? {get}
-    var tapHandle: TapImageViewAction? {get}
-}
-</code></pre><p><strong>ViewModel层</strong>  </p>
-<pre><code>struct PersonModel {
-    var firstName: String
-    var lastName: String
-    var fullName: String {
-        return lastName + firstName
-    }
-    var telPhone: String
-    var avatarImageUrl: String?
-}
-
-typealias TelPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresentAble&gt;
-struct TelPersonViewModel: TelPersonViewModelAble {
-    var telPerson: PersonModel
-    var nameTelText: String
-    var showImage: UIImage?
-    var tapHandle: TapImageViewAction?
-
-    init(model:PersonModel,tapHandle: TapImageViewAction?) {
-        self.telPerson = model
-        self.nameTelText = model.fullName + &quot;  &quot; + model.telPhone
-        self.showImage = UIImage(named: model.avatarImageUrl!) // 暂时这样,按道理是加载url,否则没必要写到viewmodel中
-        self.tapHandle = tapHandle
-    }
-}
-</code></pre><ul>
-<li><code>fullName</code>直接写成计算属性比较方便,当然你也可以在viewmodel中拼接  </li>
-<li>保留一个model属性<code>telPerson</code>,因为有些赋值你不需要进行加工处理,比如年龄/身高  </li>
-<li>虽然在<code>PersonPresentAble</code>中<code>nameTelText</code>是get只读的,但是实现起来仍能可写.参见<code>If a protocol requires a property to be gettable and settable, that property requirement cannot be fulfilled by a constant stored property or a read-only computed property. If the protocol only requires a property to be gettable, the requirement can be satisfied by any kind of property, and it is valid for the property to be also settable if this is useful for your own code.</code>  </li>
-</ul>
-<p><code>View层和ViewController层</code>  </p>
-<pre><code>class ContactTableViewCell: UITableViewCell {
-    @IBOutlet weak var telTextLabel: UILabel!
-    @IBOutlet weak var avatarImageView: UIImageView!
-
-    var tapHandle: TapImageViewAction?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        let tapGesture = UITapGestureRecognizer(target: self, action: &quot;tapAction&quot;)
-        avatarImageView.addGestureRecognizer(tapGesture)
-    }
-
-    func configureDataWithViewModel(viewModel: TelPersonViewModelAble) {
-        telTextLabel.text = viewModel.nameTelText
-        avatarImageView.image = viewModel.showImage
-        tapHandle = viewModel.tapHandle
-    }
-
-    func tapAction() {
-        if let block = tapHandle {
-            block()
-        }
-    }
-}
-
-// VC
-override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(&quot;hehe&quot;, forIndexPath: indexPath) as! ContactTableViewCell
-    let testModel = PersonModel(firstName: &quot;明涛&quot;, lastName: &quot;胡&quot;, telPhone: &quot;15279107716&quot;, avatarImageUrl: &quot;麒麟星.jpg&quot;)
-    let testViewModel = TelPersonViewModel(model: testModel) {
-        print(&quot;我点击了头像&quot;)
-    }
-    cell.configureDataWithViewModel(testViewModel)
-    return cell
-}
-</code></pre><ul>
-<li>通过合成协议<code>typealias TelPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresentAble&gt;</code>来定义viewmodel的类型,代码复用性高  </li>
-<li><p>在objc中,viewmodel的类型常常容易被定死,存在共同属性的时候又走上了继承的老路了…比如:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/protocolppt.png" alt=""><br>这时只需要另定义个protocol,无须写父类弄继承,依旧那句话,让写功能跟搭积木一样:    </p>
-<pre><code>protocol CompanyPresentAble {
-    var positionText: String {get}
-}
-
-typealias InvestPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresentAble,CompanyPresentAble&gt;
-...剩下的,你懂怎么写的^_^
-</code></pre></li>
-</ul>
+</code></pre><p>}</p>
+<p>// VC<br>override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {<br>    let cell = tableView.dequeueReusableCellWithIdentifier(“hehe”, forIndexPath: indexPath) as! ContactTableViewCell<br>    let testModel = PersonModel(firstName: “明涛”, lastName: “胡”, telPhone: “15279107716”, avatarImageUrl: “麒麟星.jpg”)<br>    let testViewModel = TelPersonViewModel(model: testModel) {<br>        print(“我点击了头像”)<br>    }<br>    cell.configureDataWithViewModel(testViewModel)<br>    return cell<br>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">+ </span>通过合成协议<span class="code">`typealias TelPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresentAble&gt;`</span>来定义viewmodel的类型,代码复用性高  </span><br><span class="line"><span class="bullet">+ </span>在objc中,viewmodel的类型常常容易被定死,存在共同属性的时候又走上了继承的老路了...比如:  </span><br><span class="line">![](http://7qn7zn.com1.z0.glb.clouddn.com/protocolppt.png)  </span><br><span class="line">这时只需要另定义个protocol,无须写父类弄继承,依旧那句话,让写功能跟搭积木一样:</span><br></pre></td></tr></table></figure></p>
+<p>protocol CompanyPresentAble {<br>    var positionText: String {get}<br>}</p>
+<p>typealias InvestPersonViewModelAble = protocol<personpresentable,imagepresentable,companypresentable><br>…剩下的,你懂怎么写的^_^<br>```</personpresentable,imagepresentable,companypresentable></p>
 <blockquote>
 <p><strong>参考资料:</strong><br><a href="http://swift.gg/2015/12/15/mixins-over-inheritance/" target="_blank" rel="external">Mixins 比继承更好</a><br><a href="https://github.com/atConf/atswift-2016-resources/blob/master/keynotes/%E6%9D%8E%E6%B4%81%E4%BF%A1_Pop%20in%20Swift.pdf" target="_blank" rel="external">Swift中的协议编程</a><br><a href="http://www.raywenderlich.com/109156/introducing-protocol-oriented-programming-in-swift-2" target="_blank" rel="external">Introducing Protocol-Oriented Programming in Swift 2</a><br><a href="https://www.natashatherobot.com/updated-protocol-oriented-mvvm-in-swift-2-0/" target="_blank" rel="external">Updated: Protocol-Oriented MVVM in Swift 2.0</a><br><a href="http://matthijshollemans.com/2015/07/22/mixins-and-traits-in-swift-2/" target="_blank" rel="external">Mixins and Traits in Swift 2.0</a><br><a href="http://casatwy.com/iosying-yong-jia-gou-tan-viewceng-de-zu-zhi-he-diao-yong-fang-an.html" target="_blank" rel="external">iOS应用架构谈 view层的组织和调用方案</a></p>
 </blockquote>
@@ -542,7 +360,7 @@ typealias InvestPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresent
         <p><span>本文标题:</span><a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2016年01月14日 - 10时03分</p>
-        <p><span>最后更新:</span>2016年01月21日 - 19时30分</p>
+        <p><span>最后更新:</span>2016年01月21日 - 19时36分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/01/14/protocolMVVM/" title="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">http://hmttommy.com/2016/01/14/protocolMVVM/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/14/protocolMVVM/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
