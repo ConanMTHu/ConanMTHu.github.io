@@ -123,10 +123,6 @@ tags: Basic KeyFrameCAPropertyAnimation作为属性动画的基类,并不能直�
                         
                             <li><a href="/archives/">所有文章</a></li>
                         
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
                         </ul>
                     </nav>
                     <nav class="header-nav">
@@ -174,7 +170,7 @@ tags: Basic KeyFrameCAPropertyAnimation作为属性动画的基类,并不能直�
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">true</div>
+                    <div id="js-aboutme">相信coding能够改变世界的IT爱好者</div>
                 </section>
                 
             </div>
@@ -205,10 +201,6 @@ tags: Basic KeyFrameCAPropertyAnimation作为属性动画的基类,并不能直�
                     <li><a href="/">主页</a></li>
                 
                     <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
                 
                 <div class="clearfix"></div>
                 </ul>
@@ -514,30 +506,21 @@ redView.layer.addAnimation(animationTest, forKey: nil)
     <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
-    <style>
-        body {
-          background: lightgray;
-        }
-        #container .left-col {
-          background: white;
-        }
-        .article-inner {
-          background: white;
-          margin-bottom: 1em;
-        }
-        .post-nav-button {
-          background: #ececec;
-        }
-        #header .header-nav .social #GitHub {
-          background-color: #bfd3ec;
-        }
-        #post-nav-button a {
-          background: rgba(215, 216, 215, .2);
-        }
-        .post-list {
-          background: white;
-        }
-    </style>
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 6;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
 
 <!-- Google Analytics -->
