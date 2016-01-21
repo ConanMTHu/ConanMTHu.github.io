@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[胡明涛的技术博客]]></title>
-  <subtitle><![CDATA[迷糊小书童]]></subtitle>
+  <title><![CDATA[Tommy'Blog]]></title>
+  <subtitle><![CDATA[Tommy]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://hmttommy.com/"/>
   <updated>2016-01-21T05:52:15.000Z</updated>
   <id>http://hmttommy.com/</id>
   
   <author>
-    <name><![CDATA[Tommy@胡明涛]]></name>
+    <name><![CDATA[Tommy]]></name>
     
   </author>
   
