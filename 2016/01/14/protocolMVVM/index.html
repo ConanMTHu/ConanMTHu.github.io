@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocolppt.png">
-<meta property="og:updated_time" content="2016-01-21T11:30:19.000Z">
+<meta property="og:updated_time" content="2016-01-21T11:30:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
 <meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)WWDC:Protoco">
@@ -288,7 +288,7 @@
 <li>objc中,还是可以定义一个父类Animal的,LZ现在基本都是写Swift了,就直接定义了一个protocol:<code>Property</code>,在扩展中写好默认实现  </li>
 <li>消灭了<code>上帝类</code>,全部都定义为protocol,用到什么就拼接什么,真的就够搭积木一样便捷…  </li>
 </ul>
-<h2 id="u7EC4_u5408_28Composition_29_2C_u54CE_u54DF_u4E0D_u9519"><a href="#u7EC4_u5408_28Composition_29_2C_u54CE_u54DF_u4E0D_u9519" class="headerlink" title="组合(Composition),哎哟不错"></a><font color="IndianRed">组合(Composition),哎哟不错</font></h2><p>第一个例子属于对于<code>model</code>定义,接下来看一个<code>view</code>层所表现出的问题.<br>手机QQ底部tabbar的三个标签首页都带有一个头像控件,最开始我们采取继承的形式来实现一个<code>baseVC</code></p>
+<h2 id="u7EC4_u5408_28Composition_29_2C_u54CE_u54DF_u4E0D_u9519"><a href="#u7EC4_u5408_28Composition_29_2C_u54CE_u54DF_u4E0D_u9519" class="headerlink" title="组合(Composition),哎哟不错"></a><font color="IndianRed">组合(Composition),哎哟不错</font></h2><p>第一个例子属于对于<code>model</code>定义,接下来看一个<code>view</code>层所表现出的问题.<br>手机QQ底部tabbar的三个标签首页都带有一个头像控件,最开始我们采取继承的形式来实现一个<code>baseVC</code>  </p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KQUserAvatarView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KQBaseViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> userAvatarView: <span class="type">KQUserAvatarView</span>!</span><br><span class="line"></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">setupUserAvatarView</span><span class="params">()</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">clickOnAvatarView</span><span class="params">()</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>新需求,希望第一、第二个标签页的头像加上大V的标志,第三页保持不变,此刻高耦合,父类改动牵动三个子类/甚至更多子类的变化.或许你直接在父类中添加改变样式的方法,那么那些不需要改变的子类也就直接继承了无用的方法…  </li>
