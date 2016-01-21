@@ -17,7 +17,7 @@ WWDC:Prot">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocolppt.png">
-<meta property="og:updated_time" content="2016-01-21T11:20:40.000Z">
+<meta property="og:updated_time" content="2016-01-21T11:22:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
 <meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)  
@@ -288,63 +288,8 @@ WWDC:Prot">
 </li>
 </ul>
 <p>有句话是咋说的:我们区分鸟和鱼,不是因为它们的名字是鸟/鱼,而是通过它们表现的行为,有点乱,^_^.把所有的行为拆分出来,通过搭积木的形式组合出来,你具备什么就拿什么,那么你的身份也就随之浮现了.<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png" alt="">  </p>
-<pre><code>protocol Property {
-    var name: String {get}
-    var type: String {get}
-}
-
-extension Property {
-    var name: String {
-        return &quot;超人&quot;
-    }
-    var type: String {
-        return &quot;外星类&quot;
-    }
-}
-
-protocol Speaker {
-    func speak()
-}
-
-protocol Flyer {
-    func fly()
-}
-
-protocol Swimer {
-    func swimming()
-}
-
-struct SuperMan {
-}
-
-extension SuperMan: Property,Flyer,Speaker {
-    func fly() {
-        print(&quot;superman also fly&quot;)
-    }
-    func speak() {
-        print(&quot;superman also speak&quot;)
-    }
-}
-
-struct SuperFishMan {
-}
-
-extension SuperFishMan: Property,Flyer,Speaker,Swimer {
-    var name: String {
-        return &quot;超水人&quot;// 好蠢的名字...
-    }
-    func fly() {
-        print(&quot;...&quot;)
-    }
-    func speak() {
-        print(&quot;...&quot;)
-
-    }
-    func swimming() {
-        print(&quot;....&quot;)
-    }
-}
-</code></pre><ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Property</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</span><br><span class="line">    <span class="keyword">var</span> type: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Property</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"超人"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> type: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"外星类"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Speaker</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Flyer</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Swimer</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SuperMan</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SuperMan</span>: <span class="title">Property</span>,<span class="title">Flyer</span>,<span class="title">Speaker</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also fly"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also speak"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SuperFishMan</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SuperFishMan</span>: <span class="title">Property</span>,<span class="title">Flyer</span>,<span class="title">Speaker</span>,<span class="title">Swimer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"超水人"</span><span class="comment">// 好蠢的名字...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"..."</span>)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"...."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
 <li>objc中,还是可以定义一个父类Animal的,LZ现在基本都是写Swift了,就直接定义了一个protocol:<code>Property</code>,在扩展中写好默认实现  </li>
 <li>消灭了<code>上帝类</code>,全部都定义为protocol,用到什么就拼接什么,真的就够搭积木一样便捷…  </li>
 </ul>
@@ -613,7 +558,7 @@ typealias InvestPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresent
         <p><span>本文标题:</span><a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2016年01月14日 - 10时03分</p>
-        <p><span>最后更新:</span>2016年01月21日 - 19时20分</p>
+        <p><span>最后更新:</span>2016年01月21日 - 19时22分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/01/14/protocolMVVM/" title="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">http://hmttommy.com/2016/01/14/protocolMVVM/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/14/protocolMVVM/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
