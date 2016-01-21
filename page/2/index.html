@@ -20,215 +20,161 @@
   
     <link rel="icon" href="http://7qn7zn.com1.z0.glb.clouddn.com/海贼2.jpg">
   
-  
-  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
-  
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  
-    
-    
-  
-  
-      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  
-  <script>
-      var yiliaConfig = {
-          fancybox: true,
-          animate: true,
-          isHome: true,
-          isPost: false,
-          isArchive: false,
-          isTag: false,
-          isCategory: false,
-          open_in_new: false
-      }
-  </script>
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
 <body>
   <div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            
-            <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
-            
-        </a>
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+		</a>
 
-        <hgroup>
-          <h1 class="header-author"><a href="/">Tommy@胡明涛</a></h1>
-        </hgroup>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tommy@胡明涛</a></h1>
+		</hgroup>
 
-        
-        <p class="header-subtitle">迷糊小书童</p>
-        
-                
+		
+		<p class="header-subtitle">迷糊小书童</p>
+		
 
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
 
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/ConanMTHu" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="http://mail.163.com/js6/main.jsp?sid=VBgcRKBLaeggsBJOqgLLpzUOQmXrFqGU&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="google">google</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://blog.csdn.net/hmt20130412" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
 
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
-                            
-                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
-                            
-                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
-                            
-                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
-                            
-                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
-                            
-                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-                    
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">iOS爱好者，还想学习更多，C++ Python PHP Java JS...</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">iOS爱好者，还想学习更多，C++ Python PHP Java JS...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
 </div>
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
-            </hgroup>
-            
-            <p class="header-subtitle">迷糊小书童</p>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
-                            
-                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
-                            
-                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
-                            
-                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
-                            
-                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
-                            
-                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
-                            
-                        </ul>
-            </nav>
-        </header>                
-    </div>
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Tommy@胡明涛</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Tommy@胡明涛</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">迷糊小书童</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/ConanMTHu" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="http://mail.163.com/js6/main.jsp?sid=VBgcRKBLaeggsBJOqgLLpzUOQmXrFqGU&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="google">google</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://blog.csdn.net/hmt20130412" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
 </nav>
       <div class="body-wrap">
   
@@ -236,7 +182,7 @@
   
     <div class="article-meta">
       <a href="/2015/10/22/iOS开发过程中的知识点总结-续/" class="article-date">
-      <time datetime="2015-10-22T03:24:15.000Z" itemprop="datePublished">2015-10-22</time>
+  	<time datetime="2015-10-22T03:24:15.000Z" itemprop="datePublished">2015-10-22</time>
 </a>
     </div>
   
@@ -258,7 +204,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          
         <p>之前在做项目的时候经常会遇到一些细小的知识点,不影响做项目的大方向,但确影响了很多细小的点..比如公式转换,汉字拼音,颜色转换等等,什么都涉及…上次写的还是在<code>CSDN</code>写blog时记录的:<a href="http://blog.csdn.net/hmt20130412/article/details/23975535" target="_blank" rel="external">iOS开发 容易犯错的知识点和不错的细小知识点(持续更新)</a>,现在换地方了,就不在接着原来的写了,重开一个,依旧持续更新,持续记录.  </p>
 <h3 id="35-_u5F53_u4F60_u5411_u9879_u76EE_u4E2D_u6DFB_u52A0_u4E00_u4E2A_u6587_u4EF6_u5939_u65F6_2C_u5F80_u5F80_u4F1A_u9762_u5BF9Create_groups_u548CCreate_folder_references_u7684_u9009_u62E9"><a href="#35-_u5F53_u4F60_u5411_u9879_u76EE_u4E2D_u6DFB_u52A0_u4E00_u4E2A_u6587_u4EF6_u5939_u65F6_2C_u5F80_u5F80_u4F1A_u9762_u5BF9Create_groups_u548CCreate_folder_references_u7684_u9009_u62E9" class="headerlink" title="35.当你向项目中添加一个文件夹时,往往会面对Create groups和Create folder references的选择"></a><font color="#ce1f48">35.当你向项目中添加一个文件夹时,往往会面对<code>Create groups</code>和<code>Create folder references</code>的选择</font></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">前者Create groups <span class="keyword">for</span> any added folders  : 给任一你添加的文件创建一个组groups</span><br><span class="line">后者Create folder references <span class="keyword">for</span> any added folders  :给任一你添加的文件创建一个文件夹folder</span><br><span class="line">两的区别是：前者的文件夹是黄色的；后者的文件夹是蓝色的</span><br><span class="line">如果有一个info.h文件需要引用：前者直接导入import <span class="string">"info.h"</span>就可能使用；后者你需要import <span class="string">"文件夹名字/info.h"</span>才可能使用，否则编译时找不到文件info.h。</span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;<span class="number">36.</span>Pointer is missing a nullability type specifier (__nonnull or __nullable)的解决方法:&lt;/font&gt;    </span></span><br><span class="line">首尾加入`NS_ASSUME_NONNULL_BEGIN`和`NS_ASSUME_NONNULL_END`  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;<span class="number">37.U</span>IButton文本对齐问题&lt;/font&gt;    </span></span><br><span class="line">这里使用`button.titleLabel.textAlignment = NSTextAlignmentLeft;` 这行代码是没有效果的，这只是让标签中的文本左对齐，但</span><br><span class="line">并没有改变标签在按钮中的对齐方式。  </span><br><span class="line">所以，我们首先要使用`button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;` 这行代码，把按钮的内容（控件）</span><br><span class="line">的对齐方式修改为水平左对齐，但是这们会紧紧靠着左边，不好看...  </span><br><span class="line">所以我们还可以修改属性：`button.titleEdgeInsets = UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>);`这行代码可以让按钮的内容（控件）距离左边<span class="number">10</span>个像素，这样就OK了  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;<span class="number">38.</span>获取window的方法之前都是直接`[UIApplication sharedApplication].keyWindow;`&lt;/font&gt;    </span></span><br><span class="line">之后导入bug tags的时候提醒用比较严谨的获取方法：</span><br></pre></td></tr></table></figure>
 <ul>
@@ -423,16 +368,15 @@ if (different &lt; 86400) {
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/资料/">资料</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小技巧/">小技巧</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小技巧/">小技巧</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/资料/">资料</a>
+	</div>
+
 
       
       <div class="clearfix"></div>
@@ -447,14 +391,12 @@ if (different &lt; 86400) {
 
 
 
-
-
   
     <article id="post-xctool-xcodebuild自动打包傻瓜式教程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/" class="article-date">
-      <time datetime="2015-10-16T10:08:59.000Z" itemprop="datePublished">2015-10-16</time>
+  	<time datetime="2015-10-16T10:08:59.000Z" itemprop="datePublished">2015-10-16</time>
 </a>
     </div>
   
@@ -465,7 +407,6 @@ if (different &lt; 86400) {
     
     <div class="article-entry" itemprop="articleBody">
       
-          
         <p>title: xctool+xcodebuild自动打包傻瓜式教程<br>date: 2015-10-16 16:20:54<br>categories: 工具 </p>
 <h2 id="tags_3A_xctool"><a href="#tags_3A_xctool" class="headerlink" title="tags: xctool"></a>tags: xctool </h2><p>以前打包提测觉得没什么,<code>选证书-选profile-选xxx-选xxxxx</code>,但一天打N次包后就有那么点厌烦了…俗话说:不会”偷懒”的攻城狮不是好的攻城狮,我知道很久之前就已经有自动打包(貌似略土,那就自动化的持续集成?随意了…),那时是坏的懒性主导,正好昨天逛微博有篇文章讲<code>XCToool自动打包</code>的,就决定亲自做一下,折腾了1小时后,总算OK了…在此记录一下.<br>(PS:为什么叫傻瓜教程呢?因为LZ略蠢,shell命令也不太懂,查了很多资料+波波的教导,一步一步的才调好)    </p>
 <h2 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a><font color="IndianRed">安装</font></h2><p>xctool的<a href="https://github.com/facebook/xctool" target="_blank" rel="external">Github地址</a>,当然最好是通过<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">Homebrew</a>来安装,简单方便.<br><code>brew update</code><br><code>brew install xctool</code><br>等等就OK了.  </p>
@@ -508,7 +449,6 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
       
 
       
-      
       <div class="clearfix"></div>
     </div>
     
@@ -521,14 +461,12 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
 
 
 
-
-
   
     <article id="post-Star-Github-share" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/10/12/Star-Github-share/" class="article-date">
-      <time datetime="2015-10-12T09:11:02.000Z" itemprop="datePublished">2015-10-12</time>
+  	<time datetime="2015-10-12T09:11:02.000Z" itemprop="datePublished">2015-10-12</time>
 </a>
     </div>
   
@@ -550,8 +488,7 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
     
     <div class="article-entry" itemprop="articleBody">
       
-          
-              <h2 id="u76EE_u5F55"><a href="#u76EE_u5F55" class="headerlink" title="目录"></a><font color="IndianRed">目录</font></h2><ul>
+        <h2 id="u76EE_u5F55"><a href="#u76EE_u5F55" class="headerlink" title="目录"></a><font color="IndianRed">目录</font></h2><ul>
 <li><a href="/#foreword">前言</a>  </li>
 <li><a href="/#all">总览/大集合</a>  </li>
 <li><a href="/#network">网络请求Network</a>  </li>
@@ -599,22 +536,20 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
 <li><a href="/#otherCompany">他人推荐</a>  </li>
 </ul>
 <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a><a id="foreword"></a><font color="IndianRed">前言</font></h2><p> Github可说是全球最大的IT”交友约会”网站,各种各样牛逼的<code>open source code</code>,star!star!star!LZ逛github也有些时候了,经常会出现一个困惑,就是star了新的,很多以前star的一想不起名字,就很难找到,要一页一页的翻…想想,如果你star超过了50多页,每一次不得找死…之前我是用<code>Chrome</code>的收藏夹功能来区分,一段时间努力后,就成了下面这个样子:<br> <img src="http://7qn7zn.com1.z0.glb.clouddn.com/chrome%20github.png" alt=""><br> 还是比较方便的,起码完成了分类,只是没能加上自己收藏时对链接的注释(这样查找更快了),昨天朋友推荐了<a href="https://app.astralapp.com/">Astral</a>,通过加标签的方式来实现分类,也很直观明了…那为什么LZ还要做这个整理呢?一是,能够分享出来;二是:可以自己无限的加入自己解释,更快的<code>天下Code,唯快不破</code>查找^_^!<br>
-          
       
     </div>
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/资料/">资料</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/资料/">资料</a>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -633,14 +568,12 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
 
 
 
-
-
   
     <article id="post-iOS-CoreAnimation-02" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/05/29/iOS-CoreAnimation-02/" class="article-date">
-      <time datetime="2015-05-29T02:36:41.000Z" itemprop="datePublished">2015-05-29</time>
+  	<time datetime="2015-05-29T02:36:41.000Z" itemprop="datePublished">2015-05-29</time>
 </a>
     </div>
   
@@ -662,25 +595,22 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
     
     <div class="article-entry" itemprop="articleBody">
       
-          
-              <p>这一章开始,来讲一下<code>CAAnimation</code>.我们做显式动画主要就是靠它/它的子类了.官方对它的描述是:CAAnimation is an abstract animation class. It provides the basic support for the CAMediaTiming and CAAction protocols. To animate Core Animation layers or Scene Kit objects, create instances of the concrete subclasses CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, or CATransition.<br>@结构图如下:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_004.png" alt="">  </p>
+        <p>这一章开始,来讲一下<code>CAAnimation</code>.我们做显式动画主要就是靠它/它的子类了.官方对它的描述是:CAAnimation is an abstract animation class. It provides the basic support for the CAMediaTiming and CAAction protocols. To animate Core Animation layers or Scene Kit objects, create instances of the concrete subclasses CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, or CATransition.<br>@结构图如下:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_004.png" alt="">  </p>
 <p>标题是<code>CATransition</code>,为什么先写它呢?因为我觉得它有点特殊,主要用来做VC页面切换之间的过渡动画,之前在code4app上一个展示什么立方体-水滴-镜头开关效果等动画就是拿它做的(当时觉得,哇,好炫,不过据说是私有的api,审核不一定能过)…个人感觉用它用的最少,而且iOS7之后苹果提供了自定义VC转场动画的API,已经能够很好的实现各种需求的动画效果.可以参照我之前的文章:<br><a href="http://blog.csdn.net/hmt20130412/article/details/39079905">iOS7新特性 ViewController转场切换(一) 以前总结和关键API介绍</a><br><a href="http://blog.csdn.net/hmt20130412/article/details/39080445">iOS7新特性 ViewController转场切换(二) 系统视图控制器容器的切换动画—push pop present dismis</a><br><a href="http://blog.csdn.net/hmt20130412/article/details/39119917"> iOS7新特性 ViewController转场切换(三) 自定义视图控制器容器的切换—非交互式</a><br>
-          
       
     </div>
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CATransition/">CATransition</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CATransition/">CATransition</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -699,14 +629,12 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
 
 
 
-
-
   
     <article id="post-iOS-CoreAnimation-01" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/05/27/iOS-CoreAnimation-01/" class="article-date">
-      <time datetime="2015-05-27T03:00:10.000Z" itemprop="datePublished">2015-05-27</time>
+  	<time datetime="2015-05-27T03:00:10.000Z" itemprop="datePublished">2015-05-27</time>
 </a>
     </div>
   
@@ -728,28 +656,25 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
     
     <div class="article-entry" itemprop="articleBody">
       
-          
-              <h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a><font color="IndianRed">Start</font></h1><p>我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于<code>动画-Core Animation</code>相关的知识做个梳理与总结.  </p>
+        <h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a><font color="IndianRed">Start</font></h1><p>我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于<code>动画-Core Animation</code>相关的知识做个梳理与总结.  </p>
 <p><code>Core Animation</code>最大好处是可以帮助Mac或者iPhone的开发者减少代码量。因为如果你想用Core Image或者Open GL实现界面的动画特效，其实也是可以的，主要是非常麻烦。而用Core Animation可以极大简化开发难度和减少代码量。</p>
 <p><strong>PS:只是对于基础用法和概念进行整理与说明,各种酷炫效果的Demo就靠大家自己去实现了^_^</strong>  </p>
 <p>整体的框架结构大致是:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_0000.jpeg" alt=""></p>
 <p><font color="red">第一章</font>先不介绍关键图层<code>CALayer</code>的知识,先来说说<code>UIKit</code>集成在UIView类中的动画API,在我们日常的开发中,UIKit动画API使用起来十分简单与方便,能满足大部分的基本的动画需求.(其实UIKit动画API的底层使用的也是Core Animation,有的时候在你面试的时候,面试官会问你,<code>UIView+animationBlock</code>的方式,是如何实现动画效果的)<br>
-          
       
     </div>
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -768,14 +693,12 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
 
 
 
-
-
   
     <article id="post-iOS-hitTest" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/05/25/iOS-hitTest/" class="article-date">
-      <time datetime="2015-05-25T08:24:51.000Z" itemprop="datePublished">2015-05-25</time>
+  	<time datetime="2015-05-25T08:24:51.000Z" itemprop="datePublished">2015-05-25</time>
 </a>
     </div>
   
@@ -797,24 +720,21 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
     
     <div class="article-entry" itemprop="articleBody">
       
-          
-              <p>最近朋友问了我个点击事件处理的问题,自己从前也没怎么仔细想过,查过资料才明白是怎么一回事,遂做个小结.<br>写了个小Demo,地址是:<a href="https://github.com/ConanMTHu/HitTestDemo">点这里</a><br>先来看一张图:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_01.png" alt=""><br><code>0-1-2</code>代表了他们的层级关系,可见<code>button_1</code>被<code>view_1</code>盖住了,如何透过<code>view_1</code>实现对<code>button_1</code>的点击呢?<br>当时想的就是改<code>userInteractionEnabled = NO</code>(这个属性大家肯定不陌生,<code>UILabel</code>和<code>UIImageView</code>无法接收点击事件就是因为这个属性默认设置为了<code>NO</code>),类似还有<code>Hidden＝YES/alpha&lt;0.01等</code>,虽然可以实现预期点击,但是这样也影响了<code>view_1和他的子视图button_2(无法被点击)</code>.那改怎么做呢?搜了一下,<code>userInteractionEnabled = NO</code>等价于<code>使当前的hitTest：withEvent返回nil</code>,这是个啥?
-          
+        <p>最近朋友问了我个点击事件处理的问题,自己从前也没怎么仔细想过,查过资料才明白是怎么一回事,遂做个小结.<br>写了个小Demo,地址是:<a href="https://github.com/ConanMTHu/HitTestDemo">点这里</a><br>先来看一张图:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_01.png" alt=""><br><code>0-1-2</code>代表了他们的层级关系,可见<code>button_1</code>被<code>view_1</code>盖住了,如何透过<code>view_1</code>实现对<code>button_1</code>的点击呢?<br>当时想的就是改<code>userInteractionEnabled = NO</code>(这个属性大家肯定不陌生,<code>UILabel</code>和<code>UIImageView</code>无法接收点击事件就是因为这个属性默认设置为了<code>NO</code>),类似还有<code>Hidden＝YES/alpha&lt;0.01等</code>,虽然可以实现预期点击,但是这样也影响了<code>view_1和他的子视图button_2(无法被点击)</code>.那改怎么做呢?搜了一下,<code>userInteractionEnabled = NO</code>等价于<code>使当前的hitTest：withEvent返回nil</code>,这是个啥?
       
     </div>
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/事件传递/">事件传递</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hit-test/">hit-test</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hit-test/">hit-test</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/事件传递/">事件传递</a>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -833,14 +753,12 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
 
 
 
-
-
   
     <article id="post-AutolayoutDetail" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/04/14/AutolayoutDetail/" class="article-date">
-      <time datetime="2015-04-14T08:20:21.000Z" itemprop="datePublished">2015-04-14</time>
+  	<time datetime="2015-04-14T08:20:21.000Z" itemprop="datePublished">2015-04-14</time>
 </a>
     </div>
   
@@ -862,7 +780,6 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
     
     <div class="article-entry" itemprop="articleBody">
       
-          
         <p>最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于<code>sb好还是纯代码好的争论</code>,可以参考下<a href="http://blog.devtang.com/blog/2015/03/22/ios-dev-controversy-2/" target="_blank" rel="external">巧大大的分析</a>.<br>说到UI适配布局,一般有两种方法:  </p>
 <ul>
 <li>frame,利用<code>[UIScreen mainScreen].bounds.size.width/height</code>,一个一个的算出对应frame,结果肯定是OK的,只是过程异常的痛苦,尤其像我这种语文老师教的数学的小学生.囧.  </li>
@@ -929,16 +846,15 @@ view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/第三方库/">第三方库</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AutoLayout/">AutoLayout</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AutoLayout/">AutoLayout</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/第三方库/">第三方库</a>
+	</div>
+
 
       
       <div class="clearfix"></div>
@@ -953,14 +869,12 @@ view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
 
 
 
-
-
   
     <article id="post-设计模式-二-之策略模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/04/01/设计模式-二-之策略模式/" class="article-date">
-      <time datetime="2015-04-01T00:41:23.000Z" itemprop="datePublished">2015-04-01</time>
+  	<time datetime="2015-04-01T00:41:23.000Z" itemprop="datePublished">2015-04-01</time>
 </a>
     </div>
   
@@ -982,7 +896,6 @@ view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
     
     <div class="article-entry" itemprop="articleBody">
       
-          
         <h1 id="u521D_u5165_u6C5F_u6E56"><a href="#u521D_u5165_u6C5F_u6E56" class="headerlink" title="初入江湖"></a><font color="IndianRed">初入江湖</font></h1><p><strong>策略模式</strong>：定义一系列的算法,把每一个算法封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化.<br>0.0好吧,基本上所有介绍策略模式的基本都是这样的开头,详情概念可见<a href="http://baike.baidu.com/link?url=K31Rsj_er4saTaz4l0L69f6YxCMbVTnR9KO007RcP4ymkNGqhvABAtWb3o038qrgLOmVJJOxV08HZVh3HfRTGK" target="_blank" rel="external">策略模式百度百科</a>!博主最初用它,除了善用设计模式优化代码结构之外,最主要的就是消除万恶的<code>if else</code>或<code>switch case</code>(很讨厌<code>if else</code>…在写代码的时候能够用<code>? :</code>就用)<br>话不多说,先来张图(盗的,勿喷,^_^):<br><img src="http://hmtphoto.qiniudn.com/strategy_001.jpg" alt="">  </p>
 <h1 id="u5C0F_u8BD5_u624B_u5200"><a href="#u5C0F_u8BD5_u624B_u5200" class="headerlink" title="小试手刀"></a><font color="IndianRed">小试手刀</font></h1><p>我举得栗子概念是<a href="http://casatwy.com/iosying-yong-jia-gou-tan-viewceng-de-zu-zhi-he-diao-yong-fang-an.html" target="_blank" rel="external">iOS应用架构谈 view层的组织和调用方案</a>(<strong>强烈推荐此文,很长但是涉及到了很多知识点</strong>)中谈到的文件<code>聊天应用的消息发送模块</code>  </p>
 <ul>
@@ -1061,16 +974,15 @@ return &quot;URL&quot;
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/策略/">策略</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/策略/">策略</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+	</div>
+
 
       
       <div class="clearfix"></div>
@@ -1085,14 +997,12 @@ return &quot;URL&quot;
 
 
 
-
-
   
     <article id="post-iOS面试题总结与感想" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/03/21/iOS面试题总结与感想/" class="article-date">
-      <time datetime="2015-03-21T10:15:21.000Z" itemprop="datePublished">2015-03-21</time>
+  	<time datetime="2015-03-21T10:15:21.000Z" itemprop="datePublished">2015-03-21</time>
 </a>
     </div>
   
@@ -1114,8 +1024,7 @@ return &quot;URL&quot;
     
     <div class="article-entry" itemprop="articleBody">
       
-          
-              <h3 id="u9898"><a href="#u9898" class="headerlink" title="题"></a><font color="IndianRed">题</font></h3><p>必须先吐槽一下,找工作面试确实是个累人的活呀,所以—&gt;<code>跳槽有风险,选择需谨慎</code>.LZ我为什么要换工作呢?就不在这里说明了…直接进入正题,这周的面试基本每天从早面到晚,面试表都填吐了…大小公司都有,列举下这段时间常见的面试题和一些个人理解.PS:LZ我水平有限,不好的地方,大家轻喷^_^!(因为完全是靠记忆,列举顺序纯凭感觉0.0)  </p>
+        <h3 id="u9898"><a href="#u9898" class="headerlink" title="题"></a><font color="IndianRed">题</font></h3><p>必须先吐槽一下,找工作面试确实是个累人的活呀,所以—&gt;<code>跳槽有风险,选择需谨慎</code>.LZ我为什么要换工作呢?就不在这里说明了…直接进入正题,这周的面试基本每天从早面到晚,面试表都填吐了…大小公司都有,列举下这段时间常见的面试题和一些个人理解.PS:LZ我水平有限,不好的地方,大家轻喷^_^!(因为完全是靠记忆,列举顺序纯凭感觉0.0)  </p>
 <ol>
 <li><code>@property</code>中的assign,retain,copy,nonatomic的意思分别是什么? (解释略…你懂的)</li>
 <li><code>weak</code>和<code>assign</code>的区别,<code>strong</code>和<code>retain</code>的区别,<code>copy</code>和<code>retain</code>的区别?<br><code>assign</code>适用于非对象类型,<code>weak</code>弱引用在引用计数为0的时候会将对象置为nil.<br>其实从这个也可以引申到内存管理的一系列问题.面试官会让你讲讲<code>MRC</code>和<code>ARC</code>的理解,随即也引申出<code>Block</code>的内存机制,为啥推荐<code>Block</code>用<code>copy</code>,<code>Block</code>会存在哪些内存问题?循环引用?<br>推荐一个文章,讲的蛮不错的,里面也有对<code>Block</code>的链接引用-&gt;<a href="http://www.cocoachina.com/ios/20150206/11121.html#0-qzone-1-7097-d020d2d2a4e8d1a374a433f596ad1440">传送门,请点击我</a></li>
@@ -1124,22 +1033,20 @@ return &quot;URL&quot;
 <li>使用过<code>Core Graphic</code> <code>Core Animation</code> <code>Quartz Core</code>等常用框架吗?在什么条件下会用到?能够实现什么功能?一般这种问题,都是涉及到你自定义UI控件的能力,以及能够实现炫丽动画效果的能力.(含义很广,大家自行找资料,还是推荐个0.0-&gt;<a href="http://zsisme.gitbooks.io/ios-/content/index.html">讲Core Animation的</a>)</li>
 <li>iOS中多线程有哪几种?各自之间有什么区别?这个问题,毋庸置疑,必问!!!<br><code>NSThread</code>:貌似基本没到过…囧….可以去了解下….<br><code>NSOperation</code>:据说是用在处理复杂的情况下…经常被问到与<code>GCD</code>的不同,LZ略纠结每次都不知道怎么回答,只能说一个处理复杂情况一个处理简单情况…也没用到过…不过你研究下<code>AFNetworking</code>的源码,可以发现,它的核心类是继承<code>NSOperation</code>的…<br><code>GCD</code>:常用…这个可以看看我的博客,里面很多它的介绍! <a href="http://blog.csdn.net/hmt20130412/article/category/2206439">点这里</a></li>
 <li>数据存储这一块,你常用哪一种?什么是<code>序列化</code>?<code>sqlite</code>是直接用它还是用封装了它的第三方库?<code>sqlite</code>和<code>core data</code>的区别?<br>LZ碰到的基本都是问<code>sqlite</code>和<code>core data</code>的区别…从什么方面来决定一个项目采用哪种方式来做存储…个人觉得没有必要区分谁好谁坏…都去了解掌握肯定是有好处的…网上有很多讲两个之间的区别,但是就算你知道区别,如果两个都用不好也是白搭.唯有一解-&gt;<code>学!学!学</code>
-          
       
     </div>
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/随笔/">随笔</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/随笔/">随笔</a>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -1158,14 +1065,12 @@ return &quot;URL&quot;
 
 
 
-
-
   
     <article id="post-Swift-AVFoundation-二维码扫描和生成" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/" class="article-date">
-      <time datetime="2015-03-16T00:46:28.000Z" itemprop="datePublished">2015-03-16</time>
+  	<time datetime="2015-03-16T00:46:28.000Z" itemprop="datePublished">2015-03-16</time>
 </a>
     </div>
   
@@ -1187,7 +1092,6 @@ return &quot;URL&quot;
     
     <div class="article-entry" itemprop="articleBody">
       
-          
         <p>项目终于不需要支持iOS6了(泪崩),在二维码扫描这一块,能够完全的放弃<code>ZXing</code>库,改用系统的<code>AVFoundation</code>了,拿<code>swift</code>写了个Demo,效果如下:<br><strong>github地址:<a href="https://github.com/ConanMTHu/QRCodeByAVFoundation" target="_blank" rel="external">点这里</a></strong><br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/qrcode_1.PNG" alt="">  </p>
 <p>有关<code>AVFoundation</code>和<code>Core Image</code>(滤镜等),可以先看看<strong>objc.io</strong>第21期和第23期的有关介绍.  </p>
 <p>#<font color="IndianRed">初始化视频捕捉</font><br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 初始化视频捕获</span></span><br><span class="line">    private func initCapture() &#123;</span><br><span class="line">        <span class="comment">// 代表抽象的硬件设备,这里传入video</span></span><br><span class="line">        let captureDevice = <span class="built_in">AVCaptureDevice</span><span class="variable">.defaultDeviceWithMediaType</span>(<span class="built_in">AVMediaTypeVideo</span>)</span><br><span class="line">        var error: <span class="built_in">NSError</span>?</span><br><span class="line">        <span class="comment">// 输入流</span></span><br><span class="line">        var captureInput = <span class="built_in">AVCaptureDeviceInput</span><span class="variable">.deviceInputWithDevice</span>(captureDevice, error: &amp;error) as? <span class="built_in">AVCaptureDeviceInput</span></span><br><span class="line">        <span class="keyword">if</span> (error != <span class="literal">nil</span> &amp;&amp; captureInput == <span class="literal">nil</span>) &#123;</span><br><span class="line">            let errorAlert = <span class="built_in">UIAlertController</span>(title: <span class="string">"提醒"</span>, message: <span class="string">"请在iPhone的\"设置-隐私-相机\"选项中,允许XXX访问您的相机"</span>, preferredStyle: <span class="variable">.Alert</span>)</span><br><span class="line">            errorAlert<span class="variable">.addAction</span>(<span class="built_in">UIAlertAction</span>(title: <span class="string">"确定"</span>, style: <span class="built_in">UIAlertActionStyle</span><span class="variable">.Default</span>, handler: <span class="literal">nil</span>))</span><br><span class="line">            <span class="keyword">self</span><span class="variable">.presentViewController</span>(errorAlert, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// input和output的桥梁,它协调着intput到output的数据传输.(见字意,session-会话)</span></span><br><span class="line">            captureSession = <span class="built_in">AVCaptureSession</span>()</span><br><span class="line">            captureSession!<span class="variable">.addInput</span>(captureInput)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 输出流</span></span><br><span class="line">            let captureMetadataOutput = <span class="built_in">AVCaptureMetadataOutput</span>()</span><br><span class="line">            <span class="comment">// 限制扫描区域http://blog.csdn.net/lc_obj/article/details/41549469</span></span><br><span class="line">            captureMetadataOutput<span class="variable">.rectOfInterest</span> = <span class="built_in">CGRectMake</span>(<span class="number">128.0</span>/ScreenWH<span class="variable">.screenHeight</span>, (ScreenWH<span class="variable">.screenWidth</span> - <span class="number">280.0</span>)/ScreenWH<span class="variable">.screenWidth</span> * <span class="number">2.0</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenHeight</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenWidth</span>)</span><br><span class="line">            captureSession!<span class="variable">.addOutput</span>(captureMetadataOutput)</span><br><span class="line">            <span class="comment">// 添加的队列按规定必须是串行</span></span><br><span class="line">            captureMetadataOutput<span class="variable">.setMetadataObjectsDelegate</span>(<span class="keyword">self</span>, queue: dispatch_get_main_queue())</span><br><span class="line">            <span class="comment">// 指定信息类型,QRCode,你懂的</span></span><br><span class="line">            captureMetadataOutput<span class="variable">.metadataObjectTypes</span> = [<span class="built_in">AVMetadataObjectTypeQRCode</span>]</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 用这个预览图层和图像信息捕获会话(session)来显示视频</span></span><br><span class="line">            videoPreviewLayer = <span class="built_in">AVCaptureVideoPreviewLayer</span>(session: captureSession!)</span><br><span class="line">            videoPreviewLayer!<span class="variable">.videoGravity</span> = <span class="built_in">AVLayerVideoGravityResizeAspectFill</span></span><br><span class="line">            videoPreviewLayer!<span class="variable">.frame</span> = view<span class="variable">.bounds</span></span><br><span class="line">            view<span class="variable">.layer</span><span class="variable">.addSublayer</span>(videoPreviewLayer!)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line">**PS:LZ用了下微信和新浪微博的扫一扫,发现那个扫描框是忽悠人的,也就是你没拿它对准二维码,只要二维码进入手机摄像头范围,就能够解码成功....囧**  </span><br><span class="line">所以LZ在代码中做了一个扫描区域的限制(感觉蛮无聊的)  </span><br><span class="line">&lt;!--more--&gt;   </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">#<span class="title">&lt;font color="IndianRed"&gt;</span>实现代理解码<span class="title">&lt;/font&gt;</span></span></span><br></pre></td></tr></table></figure></p>
@@ -1267,16 +1171,15 @@ private func createQRForString(qrString: String?, qrImageName: String?) -&gt; UI
     
     <div class="article-info article-info-index">
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Swift/">Swift</a>
-    </div>
-
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a></li></ul>
+	</div>
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a></li></ul>
-    </div>
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	</div>
+
 
       
       <div class="clearfix"></div>
@@ -1291,8 +1194,6 @@ private func createQRForString(qrString: String?, qrImageName: String?) -&gt; UI
 
 
 
-
-
   
   
     <nav id="page-nav">
@@ -1301,48 +1202,25 @@ private func createQRForString(qrString: String?, qrImageName: String?) -&gt; UI
   
 </div>
       <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                &copy; 2016 Tommy@胡明涛
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
-            </div>
-        </div>
-        <div class="visit">
-            <span id="busuanzi_container_site_pv" style='display:none'>
-                <span id="site-visit" >本站到访数: 
-                    <span id="busuanzi_value_site_uv"></span>
-                </span>
-            </span>
-            <span id="busuanzi_container_page_pv" style='display:none'>
-                <span id="page-visit">, 本页阅读量: 
-                    <span id="busuanzi_value_page_pv"></span>
-                </span>
-            </span>
-        </div>
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Tommy@胡明涛
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
     </div>
+  </div>
 </footer>
     </div>
-    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 
 
 <!-- Google Analytics -->
@@ -1360,22 +1238,31 @@ private func createQRForString(qrString: String?, qrImageName: String?) -&gt; UI
 
 
 
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
 
-<script>
-    $(document).ready(function() {
-        if ($("#comments").length < 1) {
-            $("#scroll > a:nth-child(2)").hide();
-        };
-    })
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
 </script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
+
+
+
   </div>
 </body>
 </html>
