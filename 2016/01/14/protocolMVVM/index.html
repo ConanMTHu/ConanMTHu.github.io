@@ -16,7 +16,7 @@ WWDC:Prot">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png">
-<meta property="og:updated_time" content="2016-01-21T09:51:36.000Z">
+<meta property="og:updated_time" content="2016-01-21T09:58:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
 <meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)  
@@ -285,21 +285,62 @@ WWDC:Prot">
 <li>这时来了一个外星生物,它不属于Animal,但是拥有Animal及其子类所有的属性和行为(方法),怎么办?<code>上帝类</code>都帮不了你了,又走上了重复复制之路!<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif" alt="">  </li>
 </ul>
 <p>有句话是咋说的:我们区分鸟和鱼,不是因为它们的名字是鸟/鱼,而是通过它们表现的行为,有点乱,^_^.把所有的行为拆分出来,通过搭积木的形式组合出来,你具备什么就拿什么,那么你的身份也就随之浮现了.<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png" alt="">  </p>
-<p>`protocol Property {<br>    var name: String {get}<br>    var type: String {get}<br>}</p>
-<p>extension Property {<br>    var name: String {<br>        return “超人”<br>    }<br>    var type: String {<br>        return “外星类”<br>    }<br>}</p>
-<p>protocol Speaker {<br>    func speak()<br>}</p>
-<p>protocol Flyer {<br>    func fly()<br>}</p>
-<p>protocol Swimer {<br>    func swimming()<br>}</p>
-<p>struct SuperMan {<br>}</p>
-<p>extension SuperMan: Property,Flyer,Speaker {<br>    func fly() {<br>        print(“superman also fly”)<br>    }<br>    func speak() {<br>        print(“superman also speak”)<br>    }<br>}</p>
-<p>struct SuperFishMan {<br>}</p>
-<p>extension SuperFishMan: Property,Flyer,Speaker,Swimer {<br>    var name: String {<br>        return “超水人”// 好蠢的名字…<br>    }<br>    func fly() {<br>        print(“…”)<br>    }<br>    func speak() {<br>        print(“…”)</p>
-<pre><code>}
-func swimming() {
-    print(&quot;....&quot;)
+<pre><code>protocol Property {
+    var name: String {get}
+    var type: String {get}
 }
-</code></pre><p>}`      </p>
-<ul>
+
+extension Property {
+    var name: String {
+        return &quot;超人&quot;
+    }
+    var type: String {
+        return &quot;外星类&quot;
+    }
+}
+
+protocol Speaker {
+    func speak()
+}
+
+protocol Flyer {
+    func fly()
+}
+
+protocol Swimer {
+    func swimming()
+}
+
+struct SuperMan {
+}
+
+extension SuperMan: Property,Flyer,Speaker {
+    func fly() {
+        print(&quot;superman also fly&quot;)
+    }
+    func speak() {
+        print(&quot;superman also speak&quot;)
+    }
+}
+
+struct SuperFishMan {
+}
+
+extension SuperFishMan: Property,Flyer,Speaker,Swimer {
+    var name: String {
+        return &quot;超水人&quot;// 好蠢的名字...
+    }
+    func fly() {
+        print(&quot;...&quot;)
+    }
+    func speak() {
+        print(&quot;...&quot;)
+    }
+    func swimming() {
+        print(&quot;....&quot;)
+    }
+}
+</code></pre><ul>
 <li>objc中,还是可以定义一个父类Animal的,LZ现在基本都是写Swift了,就直接定义了一个protocol:<code>Property</code>,在扩展中写好默认实现  </li>
 <li>消灭了<code>上帝类</code>,全部都定义为protocol,用到什么就拼接什么,真的就够搭积木一样便捷…  </li>
 </ul>
@@ -431,7 +472,7 @@ func tapAction() {
         <p><span>本文标题:</span><a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2016年01月14日 - 10时03分</p>
-        <p><span>最后更新:</span>2016年01月21日 - 17时51分</p>
+        <p><span>最后更新:</span>2016年01月21日 - 17时58分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/01/14/protocolMVVM/" title="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">http://hmttommy.com/2016/01/14/protocolMVVM/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/14/protocolMVVM/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
