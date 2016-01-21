@@ -1,15 +1,501 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>胡明涛的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
+tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="胡明涛的技术博客">
+<meta property="og:url" content="http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/index.html">
+<meta property="og:site_name" content="胡明涛的技术博客">
+<meta property="og:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
+tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+<meta property="og:updated_time" content="2015-10-30T10:00:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="胡明涛的技术博客">
+<meta name="twitter:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
+tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+  
+    <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7qn7zn.com1.z0.glb.clouddn.com/海贼2.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tommy@胡明涛</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">迷糊小书童</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOS爱好者，还想学习更多，C++ Python PHP Java JS...</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">迷糊小书童</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-iOS-CoreAnimation-三-之CAAnimation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" class="article-date">
+      <time datetime="2015-10-30T10:00:23.000Z" itemprop="datePublished">2015-10-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>title: iOS CoreAnimation(三)之CAAnimation<br>date: 2015-6-03 15:39:33<br>categories: CoreAnimation </p>
+<h2 id="tags_3A_CAAnimation_CAMediaTiming"><a href="#tags_3A_CAAnimation_CAMediaTiming" class="headerlink" title="tags: CAAnimation CAMediaTiming"></a>tags: CAAnimation CAMediaTiming</h2><p>原定第三篇直接介绍<code>CAPropertyAnimation</code>的两个子类,想想还是回过头来梳理一下<font color="#ce1f48"><code>CAAnimation</code></font>这个父类,比如<code>CABasicAnimation</code>属于他自己的只有3个property,其他都是继承来的.不过就算是<code>CAAnimation</code>,它自身的property还是用的不多,像我们定义动画常常设置的时间property<code>duration</code>,<code>beginTime</code>,<code>repeatCount</code>等都在协议<font color="#ce1f48"><code>CAMediaTiming</code></font>&gt;中…  </p>
+<h3 id="CAAnimation_Property"><a href="#CAAnimation_Property" class="headerlink" title="CAAnimation Property"></a><font color="#ce1f48">CAAnimation Property</font></h3><p><code>removedOnCompletion</code>:设置是否动画完成后，动画效果从设置的layer上移除。默认为YES<br><code>timingFunction</code>:用于变化起点和终点之间的插值计算,形象点说它决定了动画运行的节奏,比如是均匀变化(相同时间变化量相同)还是先快后慢,先慢后快还是先慢再快再慢.(类似于第一章最后介绍的那些枚举)LZ数学略渣,这里引用一段话(<a href="http://geeklu.com/2012/09/animation-in-ios/" target="_blank" rel="external">http://geeklu.com/2012/09/animation-in-ios/</a>)<br><strong>时间函数是使用的一段函数来描述的,横座标是时间t取值范围是0.0-1.0,纵座标是变化量x(t)也是取值范围也是0.0-1.0 假设有一个动画,duration是8秒,变化值的起点是a终点是b(假设是透明度),那么在4秒处的值是多少呢？ 可以通过计算为 a + x(4/8) <em> (b-a), 为什么这么计算呢？讲实现的时间映射到单位值的时候4秒相对于总时间8秒就是0.5然后可以得到0.5的时候单位变化量是 x(0.5), x(0.5)/1 = 实际变化量/(b-a), 其中b-a为总变化量,所以实际变化量就是x(0.5) </em> (b-a) ,最后4秒时的值就是 a + x(0.5) * (b-a),所以计算的本质是映射.<br>Timing Function对应的类是<font color="#ce1f48"><code>CAMediaTimingFunction</code></font>,它提供了两种获得时间函数的方式,一种是使用预定义的五种时间函数,一种是通过给点两个控制点得到一个时间函数</strong><br>系统给的最熟悉的就是<code>Linear</code>了,匀速…<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kCAMediaTimingFunctionLinear, </span><br><span class="line">kCAMediaTimingFunctionEaseIn, </span><br><span class="line">kCAMediaTimingFunctionEaseOut, </span><br><span class="line">kCAMediaTimingFunctionEaseInEaseOut, </span><br><span class="line">kCAMediaTimingFunctionDefault. </span><br><span class="line">```    </span><br><span class="line">自定义的则是下面2个方法:(贝塞尔曲线什么的,不太懂...)  </span><br><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>/* Creates a timing function modelled on a cubic Bezier curve. The end
+ * points of the curve are at (0,0) and (1,1), the two points &apos;c1&apos; and
+ * &apos;c2&apos; defined by the class instance are the control points. Thus the
+ * points defining the Bezier curve are: &apos;[(0,0), c1, c2, (1,1)]&apos; */
+
+public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
+
+/* &apos;idx&apos; is a value from 0 to 3 inclusive. */
+ public func getControlPointAtIndex(idx: Int, values ptr: UnsafeMutablePointer&lt;Float&gt;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;/br&gt;  </span><br><span class="line">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;CAMediaTiming Property&lt;/font&gt;    </span><br><span class="line"><span class="escape">`d</span>uration<span class="escape">`:</span>动画持续时间(最熟悉没有之一...),默认是<span class="number">0</span>,但这不意味着动画时长为<span class="number">0</span>秒,为<span class="number">0.25</span>  </span><br><span class="line"><span class="escape">`b</span>eginTime<span class="escape">`:</span>指定动画开始时间。从开始指定延迟几秒执行的话，请设置为「CACurrentMediaTime() + 秒数」的形式.  </span><br><span class="line"><span class="escape">`t</span>imeOffset<span class="escape">`:</span>我理解为时间的偏移量,比如一个duration为<span class="number">5</span>秒的动画,将timeOffset设置为<span class="number">2</span>,那么动画的运行是<span class="number">2</span>s-&gt;<span class="number">5</span>s-&gt;<span class="number">0</span>s-&gt;<span class="number">2</span>s  </span><br><span class="line"><span class="escape">`s</span>peed<span class="escape">`:</span>时间加速..设置duration为<span class="number">3</span>秒，但是speed为<span class="number">2</span>，动画快速的执行了<span class="number">1.5</span>秒,speed越大则说明时间流逝速度越快,动画也越快  </span><br><span class="line"><span class="escape">`r</span>epeatCount<span class="escape">`:</span>代表动画重复的迭代次数,默认为<span class="number">0</span>,也并不意味为<span class="number">0</span>次,而是<span class="number">1</span>次  </span><br><span class="line"><span class="escape">`r</span>epeatDuration<span class="escape">`:</span>动画的重复时间(间隔),如果它小于动画的duration，那么动画就会提前结束  </span><br><span class="line"><span class="escape">`a</span>utoreverses(Bool)<span class="escape">`:</span>动画结束时是否执行逆动画,可以产生从初始值到最终值，并反过来回到初始值的动画,也就是这意味着动画发生了两次  </span><br><span class="line"><span class="escape">`f</span>illMode<span class="escape">`:</span>一般与<span class="escape">`r</span>emovedOnCompletion<span class="escape">`(</span>必须设置为<span class="literal">false</span>)一起用</span><br></pre></td></tr></table></figure>
+<p>kCAFillModeRemoved  // 这个是默认值,也就是说当动画开始前和动画结束后,动画对layer都没有影响,动画结束后,layer会恢复到之前的状态<br>kCAFillModeForwards // 当动画结束后,layer会一直保持着动画最后的状态<br>kCAFillModeBackwards // 这个和kCAFillModeForwards是相对的,就是在动画开始前,你只要将动画加入了一个layer,layer便立即进入动画的初始状态并等待动画开始.你可以这样设定测试代码,将一个动画加入一个layer的时候延迟5秒执行.然后就会发现在动画没有开始的时候,只要动画被加入了layer,layer便处于动画初始状态<br>kCAFillModeBoth  // 理解了上面两个,这个就很好理解了,这个其实就是上面两个的合成.动画加入后开始之前,layer便处于动画初始状态,动画结束后layer保持动画最后的状态.<br>```  </p>
+<p><strong>参考链接:</strong><br><a href="http://ronnqvi.st/controlling-animation-timing/" target="_blank" rel="external">Controlling Animation Timing</a><br><a href="https://zsisme.gitbooks.io/ios-/content/chapter9/the-cAMediaTiming-protocol.html" target="_blank" rel="external">CAMediaTiming</a>  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/"></a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Tommy@胡明涛 的个人博客">Tommy@胡明涛</a></p>
+        <p><span>发布时间:</span>2015年10月30日 - 18时00分</p>
+        <p><span>最后更新:</span>2015年10月30日 - 18时00分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" title="">http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/　　作者: Tommy@胡明涛" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/">
+                    
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/10/22/iOS开发过程中的知识点总结-续/">
+                    iOS开发过程中的知识点总结(续)
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags_3A_CAAnimation_CAMediaTiming"><span class="toc-number">1.</span> <span class="toc-text">tags: CAAnimation CAMediaTiming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAAnimation_Property"><span class="toc-number">1.1.</span> <span class="toc-text">CAAnimation Property</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/" title="上一篇: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/10/22/iOS开发过程中的知识点总结-续/" title="下一篇: iOS开发过程中的知识点总结(续)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/21/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/28/iOS-CoreAnimation-04/">iOS-CoreAnimation-04</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的蛋疼</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Tommy@胡明涛
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        <div class="visit">
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_value_site_uv"></span>
+                </span>
+            </span>
+            <span id="busuanzi_container_page_pv" style='display:none'>
+                <span id="page-visit">, 本页阅读量: 
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+            </span>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72551550-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>

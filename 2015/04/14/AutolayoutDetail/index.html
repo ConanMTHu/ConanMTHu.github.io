@@ -1,15 +1,577 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Autolayout优秀的第三方开源库 | 胡明涛的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于sb好还是纯代码好的争论,可以参考下巧大大的分析.说到UI适配布局,一般有两种方法:  
+
+frame,利用[UIScreen mainScreen].bounds.size.width/height,一个一个的算出对应frame,结果肯定是OK的,只是过程异常的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autolayout优秀的第三方开源库">
+<meta property="og:url" content="http://hmttommy.com/2015/04/14/AutolayoutDetail/index.html">
+<meta property="og:site_name" content="胡明涛的技术博客">
+<meta property="og:description" content="最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于sb好还是纯代码好的争论,可以参考下巧大大的分析.说到UI适配布局,一般有两种方法:  
+
+frame,利用[UIScreen mainScreen].bounds.size.width/height,一个一个的算出对应frame,结果肯定是OK的,只是过程异常的">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/338E3FB7-40B3-40C3-9208-BD6554E61960.png">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/AUTOLAYOUTdeTAIL.png">
+<meta property="og:updated_time" content="2015-08-15T13:07:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Autolayout优秀的第三方开源库">
+<meta name="twitter:description" content="最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于sb好还是纯代码好的争论,可以参考下巧大大的分析.说到UI适配布局,一般有两种方法:  
+
+frame,利用[UIScreen mainScreen].bounds.size.width/height,一个一个的算出对应frame,结果肯定是OK的,只是过程异常的">
+  
+    <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7qn7zn.com1.z0.glb.clouddn.com/海贼2.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tommy@胡明涛</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">迷糊小书童</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOS爱好者，还想学习更多，C++ Python PHP Java JS...</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">迷糊小书童</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-AutolayoutDetail" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/14/AutolayoutDetail/" class="article-date">
+      <time datetime="2015-04-14T08:20:21.000Z" itemprop="datePublished">2015-04-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Autolayout优秀的第三方开源库
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/第三方库/">第三方库</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AutoLayout/">AutoLayout</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于<code>sb好还是纯代码好的争论</code>,可以参考下<a href="http://blog.devtang.com/blog/2015/03/22/ios-dev-controversy-2/" target="_blank" rel="external">巧大大的分析</a>.<br>说到UI适配布局,一般有两种方法:  </p>
+<ul>
+<li>frame,利用<code>[UIScreen mainScreen].bounds.size.width/height</code>,一个一个的算出对应frame,结果肯定是OK的,只是过程异常的痛苦,尤其像我这种语文老师教的数学的小学生.囧.  </li>
+<li>autolayout,相信肯定是主流布局,而且对于UI设计师给我的效果图,也是很方便我们直接拿来进行约束设值,无须其他任何计算.    </li>
+</ul>
+<p>这里主要介绍手写autolayout约束,由于系统提供的api写起来<code>又臭又长</code>,推荐一个不错的第三方.<br>OC版本对应的是<code>Masonry</code>,Swift版本对应的是<code>SnapKit</code>.当然还有其他优秀的autolayout相关第三方,会在结尾给出,感兴趣的朋友可以去研究下,LZ主要用<code>Masonry</code>(大爱这种链式语法)^_^!  </p>
+<p>#<font color="IndianRed">Masonry</font><br>Github地址是:<a href="https://github.com/SnapKit/Masonry" target="_blank" rel="external">Masonry</a><br>具体用法github上已经讲的很清楚了,可以下载Demo看看栗子的实现,总结一下我在使用过程中了解.  </p>
+<ul>
+<li><code>mas_makeConstraints</code>使用最多,做初始约束,只负责新增约束</li>
+<li><code>mas_updateConstraints</code>针对<code>make</code>中的约束做更新,一般不添加新约束,只是对于原约束数值的修改.  </li>
+<li><code>mas_remakeConstraints</code>清除之前所有的约束,采用里面设置的最新约束,常用于动画之后新位置的约束设定  </li>
+<li>优先级高<code>.priorityHigh</code>,优先级低<code>.priorityLow</code>,通常用于根据条件判断来设定优先响应哪种约束  </li>
+<li><code>multipliedBy(x)</code>= *x,<code>dividedBy(x)</code> = /x  </li>
+<li><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">        make.edges.mas_equalTo(UIEdgeInsetsMake(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="comment">// edges就是相当于top-left-bottom-right</span></span><br><span class="line">        <span class="comment">// top和left里的offset为正数</span></span><br><span class="line">        <span class="comment">// 那么为什么bottom和right里的offset是负数呢? 因为这里计算的是绝对的数值 计算的bottom需要小于sv的底部高度 所以要-10 同理用于right</span></span><br><span class="line">        <span class="comment">// 有意思的地方是and和with 其实这两个函数什么事情都没做,可以省略的</span></span><br><span class="line">        </span><br><span class="line">        /* 等价于</span><br><span class="line">         make.top.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(<span class="number">10</span>);</span><br><span class="line">         make.left.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(<span class="number">10</span>);</span><br><span class="line">         make.bottom.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(-<span class="number">10</span>);</span><br><span class="line">         make.right.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(-<span class="number">10</span>);</span><br><span class="line">         */</span><br><span class="line">```  </span><br><span class="line">&lt;!--more--&gt;  </span><br><span class="line">* `UIScrollView`是一个有点特殊的<span class="built_in">view</span>,对于在里面放其他<span class="built_in">view</span>,最好的做法是先放一个`containerView`设置`edges`相等,然后在此<span class="built_in">view</span>上添加subview.  </span><br><span class="line">* 模仿系统的UITabBarController的底部View,可以设定个数和间隔:</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>(void)simulateSystemTabBarWithButtonCount:(NSInteger)count withSpace:(CGFloat)space {<br>[self.view showPlaceHolder];<br>self.view.backgroundColor = [UIColor grayColor];<br>NSMutableArray *viewArray = [NSMutableArray arrayWithCapacity:10];</p>
+<p>for (int i = 0; i &lt; count; i++) {</p>
+<pre><code>UIView *view = [UIView new];
+view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
+                                  saturation:( arc4random() % 128 / 256.0 ) + 0.5
+                                  brightness:( arc4random() % 128 / 256.0 ) + 0.5
+                                       alpha:1];;
+[view showPlaceHolder];
+[self.view addSubview:view];
+[viewArray addObject:view];
+</code></pre><p>}<br>UIView *lastView = viewArray.lastObject;<br>for (int i = 0; i &lt; count; i++) {</p>
+<pre><code>UIView *view = (UIView *)viewArray[i];
+[view mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.bottom.equalTo(view.superview);
+    make.height.equalTo(@49);
+    make.width.equalTo(lastView);
+    if (i == 0) {
+        make.left.mas_equalTo(view.superview).offset(space);
+    } else {
+        UIView *frontView = (UIView *)viewArray[i-1];
+        make.left.equalTo(frontView.mas_right).offset(space);
+        (i == viewArray.count - 1) ? make.right.mas_equalTo(view.superview).offset(-space) : nil;
+    }
+}];
+</code></pre><p>}<br>}<br>```<br>以count = 4 和 space =0  为例子<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/338E3FB7-40B3-40C3-9208-BD6554E61960.png" alt="">  </p>
+</li>
+</ul>
+</li>
+<li>实现动画时,更新约束后调用<code>layoutIfNeeded</code>  </li>
+<li>最后,再次强调真的非常好用!!!  </li>
+</ul>
+<p>#<font color="IndianRed">SnapKit</font><br>Github地址:<a href="https://github.com/SnapKit/SnapKit" target="_blank" rel="external">SnapKit</a><br><strong>PS:目前只支持swift1.2版本,在最新的xcode7-swift2.0中会报错,我在推特上问了作者,他说最近略忙,暂时没空…囧…有兴趣的朋友可以自己改下让它支持2.0然后pull…我?还在研究中.</strong><br>这个就不过多举例了,基本就是跟<code>Masonry</code>一样,而且我在后面的Demo基本都是用了<code>Snapkit</code>来写(xcode7上我是拖控件…没办法,谁让还不支持2.0)<br>举个栗子-&gt;最常见的上下两个button:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/AUTOLAYOUTdeTAIL.png" alt="">  </p>
+<p>#<font color="IndianRed">其他资料</font>  </p>
+<ul>
+<li>autolayout其他第三方开源库  <blockquote>
+<p><a href="https://github.com/smileyborg/PureLayout" target="_blank" rel="external">PureLayout</a><br><a href="https://github.com/smileyborg/UIView-AutoLayout" target="_blank" rel="external">UIView-AutoLayout</a><br><a href="https://github.com/adad184/MMPlaceHolder" target="_blank" rel="external">MMPlaceHolder 这个是辅助工具 一个显示宽*高的插件</a><br><a href="https://github.com/robb/Cartography" target="_blank" rel="external">Cartography for swift</a>  </p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>博文  <blockquote>
+<p><a href="http://www.cocoachina.com/industry/20131012/7148.html" target="_blank" rel="external">先进的自动布局工具箱</a><br><a href="http://www.vienta.me/2014/12/07/AutoLayout-%E5%BF%98%E6%8E%89Frame-%E6%8B%A5%E6%8A%B1Constraint%EF%BC%88I%EF%BC%89/" target="_blank" rel="external">AutoLayout:忘掉Frame,拥抱Constraint</a><br><a href="https://www.zybuluo.com/MicroCai/note/73867#autolayout-基础" target="_blank" rel="external">Autolayout 基础</a><br><a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Introduction/Introduction.html" target="_blank" rel="external">Auto Layout Guide 官方</a><br><a href="http://adad184.com/2014/09/28/use-masonry-to-quick-solve-autolayout/" target="_blank" rel="external">Masonry介绍与使用实践(快速上手Autolayout)</a><br><a href="http://tutuge.me/2015/05/23/autolayout-example-with-masonry/" target="_blank" rel="external">有趣的Autolayout示例-Masonry实现</a><br><a href="http://onevcat.com/2012/09/autoayout/" target="_blank" rel="external">喵神的Autolayout介绍</a><br><a href="http://www.cocoachina.com/ios/20150104/10817.html" target="_blank" rel="external">如何在Objective-C中实现链式语法？</a>  </p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Tommy@胡明涛 的个人博客">Tommy@胡明涛</a></p>
+        <p><span>发布时间:</span>2015年04月14日 - 16时20分</p>
+        <p><span>最后更新:</span>2015年08月15日 - 21时07分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/04/14/AutolayoutDetail/" title="Autolayout优秀的第三方开源库">http://hmttommy.com/2015/04/14/AutolayoutDetail/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/04/14/AutolayoutDetail/　　作者: Tommy@胡明涛" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/05/25/iOS-hitTest/">
+                    iOS hitTest-点击事件分发分析
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/04/01/设计模式-二-之策略模式/">
+                    设计模式(二)之策略模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/05/25/iOS-hitTest/" title="上一篇: iOS hitTest-点击事件分发分析">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/04/01/设计模式-二-之策略模式/" title="下一篇: 设计模式(二)之策略模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/21/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/28/iOS-CoreAnimation-04/">iOS-CoreAnimation-04</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的蛋疼</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Tommy@胡明涛
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        <div class="visit">
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_value_site_uv"></span>
+                </span>
+            </span>
+            <span id="busuanzi_container_page_pv" style='display:none'>
+                <span id="page-visit">, 本页阅读量: 
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+            </span>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72551550-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>

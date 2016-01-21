@@ -1,15 +1,661 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol | 胡明涛的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)  
+WWDC:Prot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
+<meta property="og:url" content="http://hmttommy.com/2016/01/14/protocolMVVM/index.html">
+<meta property="og:site_name" content="胡明涛的技术博客">
+<meta property="og:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)  
+WWDC:Prot">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png">
+<meta property="og:updated_time" content="2016-01-19T10:10:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
+<meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)  
+WWDC:Prot">
+  
+    <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7qn7zn.com1.z0.glb.clouddn.com/海贼2.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tommy@胡明涛</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">迷糊小书童</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOS爱好者，还想学习更多，C++ Python PHP Java JS...</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">迷糊小书童</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-protocolMVVM" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/14/protocolMVVM/" class="article-date">
+      <time datetime="2016-01-14T02:03:22.000Z" itemprop="datePublished">2016-01-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Swift/">Swift</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="u5F15"><a href="#u5F15" class="headerlink" title="引"></a><font color="IndianRed">引</font></h2><p>记得从大学学编程开始,对于软件编程听的最多的就是<code>面向对象编程(Object Oriented Programming，OOP)</code>了,它的三大特征:封装,继承,多态.而Swift倡导的<code>面向协议编程(Protocol-oriented programming,POP)</code>是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个<code>protocol</code>)  </p>
+<p><a href="https://developer.apple.com/videos/play/wwdc2015-408/" target="_blank" rel="external">WWDC:Protocol-Oriented Programming in Swift</a>开头<code>Classess Are Awesome</code>,指出OOP中的<code>Classes</code>提供了:数据的封装、访问控制、抽象化、命名空间等,但这些都是<code>Classes</code>才特有的属性吗?事实上,这些都是<code>类型(Type)</code>的所有属性,<code>Classes</code>只是<code>Type</code>的一种实现方法,在Swift中<code>I can do all that with structs and enums</code>(Swift的标准库组成:55个Protocols和102个Structs),这一点可以理解为封装性.而继承和多态,是<code>struct</code>和<code>enum</code>不具备的,它则是通过遵守<code>protocol</code>来实现.  </p>
+<p>但,这些是为了说明让我们放弃<code>OOP</code>吗?这是不可能的….想想<code>UIKit</code>….记得刚开始用Swift写项目时,总是告诫自己,不能只是机械的把<code>objc 翻译成 swift</code>.<font color="IndianRed">实际开发项目中,<code>ViewControl</code>和<code>View</code>基本都是使用系统的框架,通过继承来实现,无论如何的自定义,都是要围绕苹果的那一套来,OC与swift在这一块保持一致;但在<code>model</code>和<code>handle/viewModel/manager</code>这一块,更多的通过POP实现,后面会通过一个例子来说明.</font>(PS:在oc中,我们体会的是OOP/FRP(参考一下<code>RAC</code>),那Swift就是OOP/FRP(参考一下<code>RxSwift</code>)/POP;在oc中对于Protocols的理解更多的是<code>UIAppplicationDelegate,UITableViewDelegete,NSCopying,UITextFieldDelegate....</code>,而Swift中Protocols则被赋予了更多的功能和意义:”可定义属性,可组合,可继承,可扩展,支持泛型,支持类/结构体/枚举”).在<a href="http://www.cocoachina.com/swift/20150729/12824.html" target="_blank" rel="external">Swift面向协议编程初探</a>中,bz总结的一句话,非常nice:<br><code>面向对象编程和面向协议编程最明显的区别在于程序设计过程中对数据类型的抽取(抽象)上，面向对象编程使用类和继承的手段，数据类型是引用类型</code><br><code>面向协议编程使用的是遵守协议的手段，数据类型是值类型（Swift中的结构体或枚举)</code><br>PS:<code>值类型</code>和<code>引用类型</code>的区别这里不作详叙,可参考<a href="http://swift.gg/2015/08/14/friday-qa-2015-07-17-when-to-use-swift-structs-and-classes/" target="_blank" rel="external">Swift：什么时候使用结构体和类</a>  </p>
+<h2 id="u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29"><a href="#u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29" class="headerlink" title="讨厌的”上帝”(Inheritence)"></a><font color="IndianRed">讨厌的”上帝”(Inheritence)</font></h2><p><code>继承</code>带给我们最大的问题,可能就是常常会构造出所谓的<code>God类/super类</code>,带来的坏处也随之可见:</p>
+<ul>
+<li>一层一层一层的传递下去,它的任何行为都会影响它的所有小弟;  </li>
+<li>有的小弟继承了无用的属性和方法;  </li>
+<li>不方便扩展,差别不大的同类上帝,直接拷贝一遍代码?<br>特别喜欢<a href="http://casatwy.com/tiao-chu-mian-xiang-dui-xiang-si-xiang-yi-ji-cheng.html" target="_blank" rel="external">田伟宇博客:跳出面向对象思想(一) 继承</a>中提到关于<code>继承</code>的要点之一:父类的所有变化，都需要在子类中体现，也就是说此时耦合已经成为需求.(他的文章非常nice,在架构这一块的写的系列文章值得深读)so,LZ的观点也是<code>万不得已不要用继承,优先考虑组合</code>!<br>注:在objc中,更多的是用<code>组合(Composition)</code>,在Swift中则是<code>协议&gt;组合&gt;继承</code>.后面会举例说明.<br>再注:全文的Demo在<a href="https://github.com/ConanMTHu/SwiftProtocol" target="_blank" rel="external">这里</a><br>我们通过两张图对比一下:引用自<a href="http://www.kancloud.cn/luofei614/programmer_talk_life/107498" target="_blank" rel="external">程序员聊人生</a>  <a id="more"></a>
+<img src="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png" alt="">  <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> type: <span class="type">String</span> = <span class="string">""</span></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">eat</span><span class="params">()</span></span>&#123;&#125; </span><br><span class="line"><span class="comment">//    func fly()&#123;&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span>: <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Bird can fly"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Preson</span>: <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"person can speak"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fish</span>: <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"fish can swimming"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设超人会飞不会游泳,复制飞的方法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperMan</span>: <span class="title">Preson</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also speak"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also fly"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperFishMan</span>: <span class="title">SuperMan</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superfishman can swimming"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"> + objc/<span class="type">Swift</span>都不存在多继承,会游泳的超人,这时要复制游的方法,到这里已经是第四层了...高耦合    </span><br><span class="line"> + 也不好直接把fly()定义到父类<span class="type">Animal</span>中,等于强加限制.因为通过继承,抽象出共同的性质,<span class="type">Bird</span>/<span class="type">Preson</span>/<span class="type">Fish</span>都是动物(人是高级动物),它们都有属性name和type,都具有eat()的行为,但fly()不是所有动物共有的      </span><br><span class="line"> + 这时来了一个外星生物,它不属于<span class="type">Animal</span>,但是拥有<span class="type">Animal</span>及其子类所有的属性和行为(方法),怎么办?`上帝类`都帮不了你了,又走上了重复复制之路!&lt;div align=<span class="string">"center"</span>&gt;![](http:<span class="comment">//7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif)&lt;/div&gt;  </span></span><br><span class="line">    </span><br><span class="line">有句话是咋说的:我们区分鸟和鱼,不是因为它们的名字是鸟/鱼,而是通过它们表现的行为,有点乱,^<span class="number">_</span>^.把所有的行为拆分出来,通过搭积木的形式组合出来,你具备什么就拿什么,那么你的身份也就随之浮现了.  </span><br><span class="line">![](http:<span class="comment">//7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>protocol Property {<br>    var name: String {get}<br>    var type: String {get}<br>}</p>
+<p>extension Property {<br>    var name: String {<br>        return “超人”<br>    }<br>    var type: String {<br>        return “外星类”<br>    }<br>}</p>
+<p>protocol Speaker {<br>    func speak()<br>}</p>
+<p>protocol Flyer {<br>    func fly()<br>}</p>
+<p>protocol Swimer {<br>    func swimming()<br>}</p>
+<p>struct SuperMan {<br>}</p>
+<p>extension SuperMan: Property,Flyer,Speaker {<br>    func fly() {<br>        print(“superman also fly”)<br>    }<br>    func speak() {<br>        print(“superman also speak”)<br>    }<br>}</p>
+<p>struct SuperFishMan {<br>}</p>
+<p>extension SuperFishMan: Property,Flyer,Speaker,Swimer {<br>    var name: String {<br>        return “超水人”// 好蠢的名字…<br>    }<br>    func fly() {<br>        print(“…”)<br>    }<br>    func speak() {<br>        print(“…”)</p>
+<pre><code>}
+func swimming() {
+    print(&quot;....&quot;)
+}
+</code></pre><p>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label"> + objc中,还是可以定义一个父类Animal的,LZ现在基本都是写Swift了,就直接定义了一个protocol:<span class="escape">`P</span></span>roperty<span class="escape">`,</span>在扩展中写好默认实现  </span><br><span class="line"> + 消灭了<span class="escape">`上</span>帝类<span class="escape">`,</span>全部都定义为protocol,用到什么就拼接什么,真的就够搭积木一样便捷...  </span><br><span class="line">  </span><br><span class="line">## &lt;font color=<span class="string">"IndianRed"</span>&gt;组合(Composition),哎哟不错&lt;/font&gt;  </span><br><span class="line">第一个例子属于对于<span class="escape">`m</span>odel<span class="escape">`定</span>义,接下来看一个<span class="escape">`v</span>iew<span class="escape">`层</span>所表现出的问题.  </span><br><span class="line">手机QQ底部tabbar的三个标签首页都带有一个头像控件,最开始我们采取继承的形式来实现一个<span class="escape">`b</span>aseVC`</span><br></pre></td></tr></table></figure></p>
+<p>class KQUserAvatarView: UIView {<br>}</p>
+<p>class KQBaseViewController: UIViewController {<br>    var userAvatarView: KQUserAvatarView!</p>
+<pre><code>func setupUserAvatarView() {
+}
+
+func clickOnAvatarView() {
+}
+</code></pre><p>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> + 新需求,希望第一、第二个标签页的头像加上大V的标志,第三页保持不变,此刻高耦合,父类改动牵动三个子类/甚至更多子类的变化.或许你直接在父类中添加改变样式的方法,那么那些不需要改变的子类也就直接继承了无用的方法...  </span><br><span class="line"> + 又来个需求,我需要一个父类是<span class="escape">`U</span>ITableViewController<span class="escape">`的</span>新<span class="escape">`K</span>QUserAvatarView<span class="escape">`,</span>瞬间傻眼...只能复制代码再创造一个上帝了  </span><br><span class="line"> + 这种情况还只是一个view的创建,如果是好几个组合view的组成,那么VC中的代码简直就是灾难...</span><br><span class="line">  </span><br><span class="line">在objc/Swift1.<span class="number">2</span>之前的,我们用<span class="escape">`组</span>合来代替继承<span class="escape">`,</span>这是非常常见的一种做法.借助中间件,解耦+转移逻辑代码,减轻VC的负担.</span><br></pre></td></tr></table></figure></p>
+<p>class KQUserAvatarView: UIView {<br>    var btn: UIButton!</p>
+<pre><code>override init(frame: CGRect) {
+    super.init(frame: frame)
+}
+
+required init?(coder aDecoder: NSCoder) {
+    fatalError(&quot;init(coder:) has not been implemented&quot;)
+}
+</code></pre><p>}</p>
+<p>typealias ClickButtonAction = () -&gt; ()<br>class KQUserAvatarViewManager {<br>    var userAvatarView: KQUserAvatarView!<br>    var tapHandle: ClickButtonAction?</p>
+<pre><code>func setupUserAvatarViewAtContainView(view: UIView,tapHandle: ClickButtonAction?) {
+    userAvatarView = KQUserAvatarView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+    userAvatarView.backgroundColor = UIColor.orangeColor()
+    view.addSubview(userAvatarView)
+    self.tapHandle = tapHandle
+    userAvatarView.btn.addTarget(self, action: &quot;clickOnAvatarView&quot;, forControlEvents: .TouchUpInside)
+}
+
+func clickOnAvatarView() {
+    if let block = self.tapHandle {
+        block()
+    }
+}
+</code></pre><p>}</p>
+<p>class ViewController: UIViewController {<br>    var manager: KQUserAvatarViewManager!</p>
+<pre><code>override func viewDidLoad() {
+    super.viewDidLoad()
+    manager.setupUserAvatarViewAtContainView(self.view) {
+        print(&quot;点击了按钮&quot;)
+    }
+
+}
+
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+}
+</code></pre><p>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> + 哪个页面需要头像控件,直接创建一个<span class="code">`KQUserAvatarViewManager`</span>对象进行引用就行,实现了解耦    </span><br><span class="line"> + 多个view对应对个manager,很好的给VC进行了瘦身  </span><br><span class="line"> + 题外话:前端时间看了阳神的[<span class="link_label">iOS 开发中的 Self-Manager 模式</span>](<span class="link_url">http://blog.sunnyxx.com/2015/12/19/self-manager-pattern-in-ios/</span>),评论也看了...对于文章所诉的观点,LZ我也是赞同评论中提议的创建一个<span class="code">`ViewManager`</span>,在它里面处理点击事件或者delegate/block回调给VC来处理...至于<span class="code">`这个 Avatar View 在 App 的各个地方都可能粗线，而且行为一致，那就意味着事件处理的 block，要散落在各个页面中，同时也带来了很多“只是为向上一层级转发事件”的 “Middle Man”`</span>这句话,我认为,除非block中的处理事件完全一致(都是加载同一个model,都是push/modal推出视图),否则做不到逻辑代码只有一份的情况,它还是得分散在各个VC中做对应的跳转...(个人观点,不喜勿喷)  </span><br><span class="line"><span class="code">    </span></span><br><span class="line"><span class="header">## &lt;font color="IndianRed"&gt;POP的实现(Protocol)&lt;/font&gt;  </span></span><br><span class="line">如果说组合的缺点,调用时必须通过中间变量,管理它的创建和释放,多了一层构造(缺点是相对的,在POP之前都这样用..优点都是对比出来的)</span><br></pre></td></tr></table></figure></p>
+<p>typealias ClickButtonAction = () -&gt; ()<br>class KQUserAvatarView: UIView {<br>    var btn: UIButton!<br>    var tapBlock: ClickButtonAction?</p>
+<pre><code>override init(frame: CGRect) {
+    super.init(frame: frame)
+    btn = UIButton(type: .ContactAdd)
+    btn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+    self.addSubview(btn)
+
+    btn.addTarget(self, action: &quot;clickOnAvatarView&quot;, forControlEvents: .TouchUpInside)
+}
+
+func clickOnAvatarView() {
+    if let blcok = tapBlock {
+        blcok()
+    }
+}
+
+required init?(coder aDecoder: NSCoder) {
+    fatalError(&quot;init(coder:) has not been implemented&quot;)
+}
+</code></pre><p>}</p>
+<p>protocol UserAvatarViewAble: class {<br>    var userAvatarView: KQUserAvatarView! {get set}<br>    func setupUserAvatarView(tapHandle: ClickButtonAction?)<br>}</p>
+<p>extension UserAvatarViewAble where Self: UIViewController {<br>    //  扩展不能实现储存属性<br>    func setupUserAvatarView(tapHandle: ClickButtonAction?) {<br>        userAvatarView = KQUserAvatarView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))<br>        userAvatarView.backgroundColor = UIColor.orangeColor()<br>        self.view.addSubview(userAvatarView)<br>        userAvatarView.tapBlock = tapHandle<br>    }<br>}</p>
+<p>class ViewController: UIViewController, UserAvatarViewAble {<br>    var userAvatarView: KQUserAvatarView!</p>
+<pre><code>override func viewDidLoad() {
+    super.viewDidLoad()
+    setupUserAvatarView {
+        print(&quot;点击了按钮&quot;)
+    }
+}
+
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+}
+</code></pre><p>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> + 定义protocol,通过extension来实现协议,消除了中间变量  </span><br><span class="line"> + <span class="code">`where Self: UIViewController`</span>用来规定<span class="code">`只有采纳协议的类型满足这些限制条件时，才能获得协议扩展提供的默认实现`</span>.这个协议设计的就是作为VC的子视图控件,因此可以用<span class="code">`UIViewController`</span>来直接限定,so<span class="code">`self.view.addSubview(xxx)`</span>可以直接在协议的扩展中完成.  </span><br><span class="line"> + <span class="code">`UIViewController`</span>属于类类型,因此协议<span class="code">`UserAvatarViewAble`</span>必须用<span class="code">`class`</span>关键字来修饰只能被类类型使用.还有就是在<span class="code">`setupUserAvatarView`</span>方法中对属性变量进行了修改,如果是结构体/枚举采用了协议,必须用<span class="code">`mutating`</span>关键字来修饰方法,否则就会报错...可以看看这个错误[<span class="link_label">Protocol Extension, Mutating Function</span>](<span class="link_url">http://stackoverflow.com/questions/32488726/protocol-extension-mutating-function</span>)  </span><br><span class="line">  </span><br><span class="line">这样看上去是不是很简洁易用?在Swift中很多场景都能通过它来实现.比如:检查手机号码,用户名的正则表达式判断..../颜色,图片的转换...等一系列的逻辑方法.  </span><br><span class="line">LZ之前objc项目中就存在各种:<span class="code">`WCXxxUtil`</span>,<span class="code">`WCXxxHandle`</span>,<span class="code">`WCRegularUtil`</span>...  </span><br><span class="line">迁移到Swift中就类似[<span class="link_label">Mixins and Traits in Swift 2.0</span>](<span class="link_url">http://matthijshollemans.com/2015/07/22/mixins-and-traits-in-swift-2/</span>)写到的:</span><br></pre></td></tr></table></figure></p>
+<p>protocol ValidatesUsername {<br>    func isUsernameValid(password: String) -&gt; Bool<br>}</p>
+<p>extension ValidatesUsername {<br>    func isUsernameValid(username: String) -&gt; Bool {<br>        if /<em> username too short </em>/ {<br>            return false<br>        } else if /<em> username has invalid characters </em>/ {<br>            return false<br>        } else {<br>            return true<br>        }<br>    }<br>}</p>
+<p>class LoginViewController: UIViewController, ValidatesUsername, ValidatesPassword {<br>    @IBAction func loginButtonPressed() {<br>        if isUsernameValid(usernameTextField.text!) &amp;&amp;<br>            isPasswordValid(passwordTextField.text!) {<br>                // proceed with login<br>        } else {<br>            // show alert<br>        }<br>    }<br>}<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">protocol拆分了各种工具,extension实现默认设定,拿来即用,方便`无污染`.  </span><br><span class="line">  </span><br><span class="line"><span class="comment">## &lt;font color="IndianRed"&gt;POP在ViewModel中的体现&lt;/font&gt;  </span></span><br><span class="line">实现这样一个功能,写一个通讯录,要有头像和姓名-电话号码...  </span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>protocol层(不记得在哪里看到,对于协议的命令用形容词,果然IT最难的是命名...)<span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure></p>
+<p>protocol PersonPresentAble {<br>    var nameTelText: String {get}<br>}</p>
+<p>// 可以通过扩展提供默认实现…可用可不用<br>extension PersonPresentAble {<br>    var nameTelText: String {<br>        return “hehe”<br>    }<br>}</p>
+<p>typealias TapImageViewAction = () -&gt; ()<br>protocol ImagePresentAble {<br>    var showImage: UIImage? {get}<br>    var tapHandle: TapImageViewAction? {get}<br>}<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>ViewModel层<span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure></p>
+<p>struct PersonModel {<br>    var firstName: String<br>    var lastName: String<br>    var fullName: String {<br>        return lastName + firstName<br>    }<br>    var telPhone: String<br>    var avatarImageUrl: String?<br>}</p>
+<p>typealias TelPersonViewModelAble = protocol<personpresentable,imagepresentable><br>struct TelPersonViewModel: TelPersonViewModelAble {<br>    var telPerson: PersonModel<br>    var nameTelText: String<br>    var showImage: UIImage?<br>    var tapHandle: TapImageViewAction?</personpresentable,imagepresentable></p>
+<pre><code>init(model:PersonModel,tapHandle: TapImageViewAction?) {
+    self.telPerson = model
+    self.nameTelText = model.fullName + &quot;  &quot; + model.telPhone
+    self.showImage = UIImage(named: model.avatarImageUrl!) // 暂时这样,按道理是加载url,否则没必要写到viewmodel中
+    self.tapHandle = tapHandle
+}
+</code></pre><p>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> + `fullName`直接写成计算属性比较方便,当然你也可以在viewmodel中拼接  </span><br><span class="line"> + 保留一个model属性`telPerson`,因为有些赋值你不需要进行加工处理,比如年龄/身高  </span><br><span class="line"> + 虽然在`PersonPresentAble`中`nameTelText`是<span class="keyword">get</span>只读的,但是实现起来仍能可写.参见`If a protocol requires a <span class="keyword">property</span> <span class="keyword">to</span> be gettable <span class="keyword">and</span> settable, <span class="keyword">that</span> <span class="keyword">property</span> requirement cannot be fulfilled <span class="keyword">by</span> a <span class="type">constant</span> stored <span class="keyword">property</span> <span class="keyword">or</span> a <span class="command">read</span>-only computed <span class="keyword">property</span>. If <span class="keyword">the</span> protocol only requires a <span class="keyword">property</span> <span class="keyword">to</span> be gettable, <span class="keyword">the</span> requirement can be satisfied <span class="keyword">by</span> any kind <span class="keyword">of</span> <span class="keyword">property</span>, <span class="keyword">and</span> <span class="keyword">it</span> <span class="keyword">is</span> valid <span class="keyword">for</span> <span class="keyword">the</span> <span class="keyword">property</span> <span class="keyword">to</span> be also settable <span class="keyword">if</span> this <span class="keyword">is</span> useful <span class="keyword">for</span> your own code.`  </span><br><span class="line">  </span><br><span class="line">`View层和ViewController层`</span><br></pre></td></tr></table></figure></p>
+<p>class ContactTableViewCell: UITableViewCell {<br>    @IBOutlet weak var telTextLabel: UILabel!<br>    @IBOutlet weak var avatarImageView: UIImageView!</p>
+<pre><code>var tapHandle: TapImageViewAction?
+
+override func awakeFromNib() {
+    super.awakeFromNib()
+    let tapGesture = UITapGestureRecognizer(target: self, action: &quot;tapAction&quot;)
+    avatarImageView.addGestureRecognizer(tapGesture)
+}
+
+func configureDataWithViewModel(viewModel: TelPersonViewModelAble) {
+    telTextLabel.text = viewModel.nameTelText
+    avatarImageView.image = viewModel.showImage
+    tapHandle = viewModel.tapHandle
+}
+
+func tapAction() {
+    if let block = tapHandle {
+        block()
+    }
+}
+</code></pre><p>}</p>
+<p>// VC<br>override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {<br>    let cell = tableView.dequeueReusableCellWithIdentifier(“hehe”, forIndexPath: indexPath) as! ContactTableViewCell<br>    let testModel = PersonModel(firstName: “明涛”, lastName: “胡”, telPhone: “15279107716”, avatarImageUrl: “麒麟星.jpg”)<br>    let testViewModel = TelPersonViewModel(model: testModel) {<br>        print(“我点击了头像”)<br>    }<br>    cell.configureDataWithViewModel(testViewModel)<br>    return cell<br>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> + 通过合成协议<span class="escape">`t</span>ypealias TelPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresentAble&gt;<span class="escape">`来</span>定义viewmodel的类型,代码复用性高  </span><br><span class="line"><span class="label"> + 在objc中,viewmodel的类型常常容易被定死,存在共同属性的时候又走上了继承的老路了...比如:</span>  </span><br><span class="line"><span class="label">![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/protocolppt.png)  </span><br><span class="line"><span class="label">这时只需要另定义个protocol,无须写父类弄继承,依旧那句话,让写功能跟搭积木一样:</span></span><br></pre></td></tr></table></figure></p>
+<p>protocol CompanyPresentAble {<br>    var positionText: String {get}<br>}</p>
+<p>typealias InvestPersonViewModelAble = protocol<personpresentable,imagepresentable,companypresentable><br>…剩下的,你懂怎么写的^_^<br>```  </personpresentable,imagepresentable,companypresentable></p>
+<blockquote>
+<p><strong>参考资料:</strong><br><a href="http://swift.gg/2015/12/15/mixins-over-inheritance/" target="_blank" rel="external">Mixins 比继承更好</a><br><a href="https://github.com/atConf/atswift-2016-resources/blob/master/keynotes/%E6%9D%8E%E6%B4%81%E4%BF%A1_Pop%20in%20Swift.pdf" target="_blank" rel="external">Swift中的协议编程</a><br><a href="http://www.raywenderlich.com/109156/introducing-protocol-oriented-programming-in-swift-2" target="_blank" rel="external">Introducing Protocol-Oriented Programming in Swift 2</a><br><a href="https://www.natashatherobot.com/updated-protocol-oriented-mvvm-in-swift-2-0/" target="_blank" rel="external">Updated: Protocol-Oriented MVVM in Swift 2.0</a><br><a href="http://matthijshollemans.com/2015/07/22/mixins-and-traits-in-swift-2/" target="_blank" rel="external">Mixins and Traits in Swift 2.0</a><br><a href="http://casatwy.com/iosying-yong-jia-gou-tan-viewceng-de-zu-zhi-he-diao-yong-fang-an.html" target="_blank" rel="external">iOS应用架构谈 view层的组织和调用方案</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Tommy@胡明涛 的个人博客">Tommy@胡明涛</a></p>
+        <p><span>发布时间:</span>2016年01月14日 - 10时03分</p>
+        <p><span>最后更新:</span>2016年01月19日 - 18时10分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/01/14/protocolMVVM/" title="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">http://hmttommy.com/2016/01/14/protocolMVVM/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/14/protocolMVVM/　　作者: Tommy@胡明涛" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/01/21/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/12/21/UIScrollViewAndUIImageView/">
+                    UIScrollView展示图片的三次升级
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F15"><span class="toc-number">1.</span> <span class="toc-text">引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29"><span class="toc-number">2.</span> <span class="toc-text">讨厌的”上帝”(Inheritence)</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/01/21/hello-world/" title="上一篇: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/12/21/UIScrollViewAndUIImageView/" title="下一篇: UIScrollView展示图片的三次升级">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/21/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/28/iOS-CoreAnimation-04/">iOS-CoreAnimation-04</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的蛋疼</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Tommy@胡明涛
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        <div class="visit">
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_value_site_uv"></span>
+                </span>
+            </span>
+            <span id="busuanzi_container_page_pv" style='display:none'>
+                <span id="page-visit">, 本页阅读量: 
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+            </span>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72551550-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>

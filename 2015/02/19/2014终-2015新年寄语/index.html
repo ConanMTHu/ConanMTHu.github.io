@@ -1,15 +1,547 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014终,2015新年寄语 | 胡明涛的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先祝大家,新年快乐!2015新年刚刚来到,2014已经远去,新的一年,希望我的爱人,亲人,死党,同学,同事等所有人,事事顺心,吉祥如意!  
+我自己,在此时,也有想过未来应该做点啥…但更多是,对以前事情的回想吧.借自己目前有写博客的习惯,把一些所想所有所得所思记录下来,以后回过头来看到时候,能够更加的让自己体会以前走的路!  
+(大P神ID镇楼!喜欢SF,喜欢Pis,喜欢他一路走来的历程)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2014终,2015新年寄语">
+<meta property="og:url" content="http://hmttommy.com/2015/02/19/2014终-2015新年寄语/index.html">
+<meta property="og:site_name" content="胡明涛的技术博客">
+<meta property="og:description" content="先祝大家,新年快乐!2015新年刚刚来到,2014已经远去,新的一年,希望我的爱人,亲人,死党,同学,同事等所有人,事事顺心,吉祥如意!  
+我自己,在此时,也有想过未来应该做点啥…但更多是,对以前事情的回想吧.借自己目前有写博客的习惯,把一些所想所有所得所思记录下来,以后回过头来看到时候,能够更加的让自己体会以前走的路!  
+(大P神ID镇楼!喜欢SF,喜欢Pis,喜欢他一路走来的历程)">
+<meta property="og:image" content="http://hmtphoto.qiniudn.com/SF.jpg">
+<meta property="og:image" content="http://hmtphoto.qiniudn.com/明天会更好.jpg">
+<meta property="og:updated_time" content="2015-03-06T09:11:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2014终,2015新年寄语">
+<meta name="twitter:description" content="先祝大家,新年快乐!2015新年刚刚来到,2014已经远去,新的一年,希望我的爱人,亲人,死党,同学,同事等所有人,事事顺心,吉祥如意!  
+我自己,在此时,也有想过未来应该做点啥…但更多是,对以前事情的回想吧.借自己目前有写博客的习惯,把一些所想所有所得所思记录下来,以后回过头来看到时候,能够更加的让自己体会以前走的路!  
+(大P神ID镇楼!喜欢SF,喜欢Pis,喜欢他一路走来的历程)">
+  
+    <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7qn7zn.com1.z0.glb.clouddn.com/海贼2.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tommy@胡明涛</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">迷糊小书童</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOS爱好者，还想学习更多，C++ Python PHP Java JS...</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tommy@胡明涛</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">迷糊小书童</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-2014终-2015新年寄语" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/19/2014终-2015新年寄语/" class="article-date">
+      <time datetime="2015-02-18T16:00:00.000Z" itemprop="datePublished">2015-02-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2014终,2015新年寄语
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/new-origin/">new origin</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="u5148_u795D_u5927_u5BB6_2C_u65B0_u5E74_u5FEB_u4E50_21"><a href="#u5148_u795D_u5927_u5BB6_2C_u65B0_u5E74_u5FEB_u4E50_21" class="headerlink" title="先祝大家,新年快乐!"></a><font color="IndianRed">先祝大家,新年快乐!</font></h3><p>2015新年刚刚来到,2014已经远去,新的一年,希望我的爱人,亲人,死党,同学,同事等所有人,事事顺心,吉祥如意!  </p>
+<p>我自己,在此时,也有想过未来应该做点啥…但更多是,对以前事情的回想吧.借自己目前有写博客的习惯,把一些所想所有所得所思记录下来,以后回过头来看到时候,能够更加的让自己体会以前走的路!  </p>
+<p>(大P神ID镇楼!喜欢SF,喜欢Pis,喜欢他一路走来的历程)<br><img src="http://hmtphoto.qiniudn.com/SF.jpg" alt=""><br><a id="more"></a>  </p>
+<h3 id="2014"><a href="#2014" class="headerlink" title="2014"></a><font color="IndianRed">2014</font></h3><p>2014,自己的本命年,不说很红红火火,但是确实是对我的整个人生道路影响很大.14年初,那个时候我还在北京(目前在深圳),接触iOS开发也已经过了一段时间…对于自己所从事的工作,我还是很喜欢的.以前大学时期的浑浑噩噩,对编程的概念也只停留在知晓那几种编程语言—“啊,C++,C,java,嗯,我知道呀,会写个hello world,会写个排序”…其它?没有其它了,对于未来没想法,对工作没方向…  </p>
+<p>直到接触OC,从事iOS开发(那个时候,也应该正是Apple走向火热之时吧),iPhone带给我的体验简直就是惊呆了…原谅我的土鳖…以前只听过Apple的Mac很贵很贵,是装富象征,并不了解Apple这家公司…自己成为App开发者后,就不断去搜集有关Apple的一切,慢慢的了解了它的背景和发展,以及自己所从事工作的平台…哟,不错噢!  </p>
+<p><code>3月份</code>应该是一个转折点!那之前,我对于开发,只是简单的机械的完成任务…我要一个效果,嗯,谷歌,找来,引用,实现,OK!从来不会去思考为什么-不会去探究其原理-不会去想别人是如何实现的-不会反问自己为什么别人就能实现自己为什么不能,就算不能实现,起码要看懂大致的思想呀…不会的,那个时候的自己,完全没有这样的概念,做完该做的事情,就玩游戏去了…….无意中,听到老大说了个叫<code>唐巧</code>的人,做iOS开发的,很牛,有博客,推荐大家去看看!好吧,去看看,然后我就去看了下,略震撼…下面两点:    </p>
+<ul>
+<li>我以为自己已经差不多掌握了iOS的开发,其实差的太远太远,仍旧只是广大鱼塘里面的一只小鱼,坐井观天!  </li>
+<li>博主的学习方式,记录自己工作中的所想所得,点点滴滴汇聚成册,是个很好提升自己技术的方法.比如,自己所了解的可能存在缺陷,写出来,其他人看到,他可能也遇到过类似的问题,有着自己的见解,然后留言指出来,这样,又多学到了东西,而且这些不是书本或文档能教的,而是来自广大开发者的实践经验;比如,自己以后遇到以前所记录问题的深化版,这样,可以在以前的基础上,深化知识!  </li>
+</ul>
+<p>接着,从<code>唐巧</code>开头,慢慢的了解更多的iOS大牛的博客(<code>喵神</code>,<code>龙龙</code>等),真的真的是很宝贵的学习资料,看着他们的学习热情和分享精神,很受启发…引用&lt;灌篮高手&gt;中<code>樱木花道</code>在对山王比赛中说的<code>这次不是说谎,我是真的喜欢打篮球</code>,我也想说<code>这次不是随性,我是真的喜欢研究技术(iOS)</code>!  </p>
+<p>然后,我决定,也开始写博客,额,虽然文章的技术内涵还是不能比拟各大神,但是我会不断的努力改进,分享我在实际开发中的问题,也希望大家能够多多的提意见,相互敦促自己不断的学习iOS技术!大家现在看到的是我然后搭建的博客,域名也是在最近买的换上的.之前是在CSDN上写博客(感觉其他地方的排版都好丑,就CSDN的能看看).新搭建的博客,基于Github和Hexo,是用markdown来写(最初真的好不适应呀…)如果我有喜欢这种风格的博客,我会在下面给出实现的技术链接,大家照着文章去搭,完全没有问题.<br><a href="http://hexo.io/" target="_blank" rel="external">Hexo官网</a><br><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">Hexo你的博客</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-1/" target="_blank" rel="external">Hexo教程</a><br><a href="http://www.net.cn/?spm=5334.3047821.2.1.DX35SU" target="_blank" rel="external">万网(买域名)</a><br><a href="http://jingyan.baidu.com/article/dca1fa6fa1e403f1a5405262.html" target="_blank" rel="external">如何替换域名</a><br><a href="http://www.qiniu.com/" target="_blank" rel="external">博客图片的图床,七牛不错</a>  </p>
+<p><code>7月份</code>,我离开了北京,来到了深圳,准备以后就到深圳开展我的iOS开发工作了…毕竟是个南方人,实在是不习惯北京的气候和伙食…好多面食,旁边的朋友又很多北方的,吃馒头或者火烧就能满足一餐饭的习惯,我实在是不能适应呀…面食吃的我,这辈子都不想吃面了(方便面除外)…还是深圳比较适合我,空气也nice!(啥?问我为什么不回家?家更适应…不是不想,但是做IT,尤其移动开发,不得不说就是北上广深了)  </p>
+<p>来到深圳,自我感觉,iOS的气氛和环境,相比北京来言,应该是没有北京好吧!不过,不过,就算这样,对于我这个迷糊小书童来说,深圳这边比我牛逼的大神多了去了,还是很值得学习的,来的时候很希望,加入一个有激情有氛围有活力的团队,有大牛,有兴趣相投的小伙伴,大家一起学习,一起钻研技术!额,目前所工作的公司,还好吧,只能说,还好吧!  </p>
+<p>噢,忘记说下Apple的最新语言<code>Swift</code>了…<code>6月份</code>Apple的WWDC大会,新一代iPhone也就那样…对于屌丝来说…有了5,我就是要成为iPhone8男人的人…影响最大的应该就是苹果发布的新语言—<code>Swift</code>!当时的第一反应就是,我了个去,又要学一门新语言了…我相信,Apple发布这玩意绝对不是玩玩而已,它肯定会成为日后iOS开发的主语言…对于我们已经在从事iOS开发的人员来说,我认为<code>Swift</code>是一定要实时学习的,当然也不是要你放弃OC,<code>Swift</code>毕竟刚是出的语言,很多库都不成熟,(如果你还是个大二大三的学生,那你可以直接学<code>swift</code>,前提这个时候你已经知悉iOS开发了,前天看到个94年博主…不得不说时代啊,个人意识啊!!!别人大三已经开发自己的App了,我大三还在玩泥巴),网上很多大牛也阐述了自己对<code>Swift</code>的看法,起码还得过上个1-2年吧…但这不是你不学习的理由,学了总比没学好,早起步总比不起步好…  </p>
+<p>大概<code>12月</code>,公司出了点状况…具体就不透露了…差不多那时就开始处于休假模式…然后略…过年前一段日子,请假直接回去了,因为身体原因,需要回家做手术-休养(耗时间),到目前整天都是躺着不能走动,啥也不能吃…咋一个苦逼了的  </p>
+<p><code>14年结尾</code>,差不多就是这些了,感慨时间真的过的很快—<code>我还没过够,时间就趴下了</code>,最后特别的要感谢3个人:  </p>
+<ul>
+<li><code>包子</code>(我的女友,我是<code>油条</code>),可以说,我人生的前22年最关键的是父母的照顾,那近几年最关键的人就是她了,很多重要的抉择,在老妈不理解的情况下,都是<code>包子</code>在身边默默的支持我,而且从现在来看,那些决定都是极其对的,很感谢<code>包子</code>,在我忙于工作的时候理解我,体贴我!  </li>
+<li><code>云妈</code>,给了我开发iOS的秘籍和人生思想指导,在北京的时候多亏了<code>她</code>的照顾!</li>
+<li><code>阳叔叔</code>,名为<code>师</code>实为<code>友</code>,永远的<code>阳老大</code>,也是技术上永远的<code>小伙伴</code>,不过人也是很<code>骚骚</code>,各种无节操…感觉自己就是被他带坏的!  </li>
+</ul>
+<h3 id="2015"><a href="#2015" class="headerlink" title="2015"></a><font color="IndianRed">2015</font></h3><p>15年刚开始…新的一年,怎么都要有点憧憬和期待吧!  </p>
+<ul>
+<li>近期,速度养好身体,多研究技术,源码,国外优秀文章,恢复博客更新!  </li>
+<li>跳槽换工作(0.0,公司出状况,没办法),进入到一个好的团队,踏实做事,提升技术,起码待个1.5年+…如果可以的话,真心不想换工作,感觉略烦!  </li>
+<li>开始实际运用<code>Swift</code>,以前只是看了下,过了几个月,完全不写就忘的一干二净了,最近看了下,真心完全不记得了…囧…争取,博客的文章能用<code>Swift</code>写就用<code>Swift</code>写(最近想研究动画,<code>Core Animation</code> 我连OC都只是调用那几个常用的,更别说Swift了,整体的深刻的去把握下Apple的这些动画库,形成个系统的知识),先完成一个<code>OC</code>-<code>Swift</code>的单纯翻转过渡…至于<code>Swift</code>的高级用法和特性,边写边学吧.或者可以试试写小项目,自勉!  </li>
+<li>希望爸爸妈妈身体健康,事事顺心!希望我和<code>包子</code>感情越来越好!  </li>
+</ul>
+<p>  <strong>大家一起努力吧!</strong><br><img src="http://hmtphoto.qiniudn.com/明天会更好.jpg" alt=""></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Tommy@胡明涛 的个人博客">Tommy@胡明涛</a></p>
+        <p><span>发布时间:</span>2015年02月19日 - 00时00分</p>
+        <p><span>最后更新:</span>2015年03月06日 - 17时11分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/02/19/2014终-2015新年寄语/" title="2014终,2015新年寄语">http://hmttommy.com/2015/02/19/2014终-2015新年寄语/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/02/19/2014终-2015新年寄语/　　作者: Tommy@胡明涛" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">
+                    Swift 官方文档读书笔记
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/01/06/Swift和Objective-C的互用/">
+                    Swift和Objective-C的互用
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5148_u795D_u5927_u5BB6_2C_u65B0_u5E74_u5FEB_u4E50_21"><span class="toc-number">1.</span> <span class="toc-text">先祝大家,新年快乐!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2014"><span class="toc-number">2.</span> <span class="toc-text">2014</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2015"><span class="toc-number">3.</span> <span class="toc-text">2015</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/" title="上一篇: Swift 官方文档读书笔记">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/01/06/Swift和Objective-C的互用/" title="下一篇: Swift和Objective-C的互用">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/21/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/28/iOS-CoreAnimation-04/">iOS-CoreAnimation-04</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的蛋疼</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Tommy@胡明涛
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        <div class="visit">
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_value_site_uv"></span>
+                </span>
+            </span>
+            <span id="busuanzi_container_page_pv" style='display:none'>
+                <span id="page-visit">, 本页阅读量: 
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+            </span>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72551550-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>
