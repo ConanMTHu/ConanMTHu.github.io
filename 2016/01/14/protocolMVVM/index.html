@@ -17,7 +17,7 @@ WWDC:Prot">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocolppt.png">
-<meta property="og:updated_time" content="2016-01-21T10:38:36.000Z">
+<meta property="og:updated_time" content="2016-01-21T11:20:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
 <meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)  
@@ -277,50 +277,10 @@ WWDC:Prot">
 <li>一层一层一层的传递下去,它的任何行为都会影响它的所有小弟;  </li>
 <li>有的小弟继承了无用的属性和方法;  </li>
 <li>不方便扩展,差别不大的同类上帝,直接拷贝一遍代码?<br>特别喜欢<a href="http://casatwy.com/tiao-chu-mian-xiang-dui-xiang-si-xiang-yi-ji-cheng.html" target="_blank" rel="external">田伟宇博客:跳出面向对象思想(一) 继承</a>中提到关于<code>继承</code>的要点之一:父类的所有变化，都需要在子类中体现，也就是说此时耦合已经成为需求.(他的文章非常nice,在架构这一块的写的系列文章值得深读)so,LZ的观点也是<code>万不得已不要用继承,优先考虑组合</code>!<br>注:在objc中,更多的是用<code>组合(Composition)</code>,在Swift中则是<code>协议&gt;组合&gt;继承</code>.后面会举例说明.<br>再注:全文的Demo在<a href="https://github.com/ConanMTHu/SwiftProtocol" target="_blank" rel="external">这里</a><br>我们通过两张图对比一下:引用自<a href="http://www.kancloud.cn/luofei614/programmer_talk_life/107498" target="_blank" rel="external">程序员聊人生</a>  <a id="more"></a>
-<img src="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png" alt="">  </li>
+<img src="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png" alt="">  <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> type: <span class="type">String</span> = <span class="string">""</span></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">eat</span><span class="params">()</span></span>&#123;&#125; </span><br><span class="line"><span class="comment">//    func fly()&#123;&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span>: <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Bird can fly"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Preson</span>: <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"person can speak"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fish</span>: <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"fish can swimming"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设超人会飞不会游泳,复制飞的方法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperMan</span>: <span class="title">Preson</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also speak"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superman also fly"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperFishMan</span>: <span class="title">SuperMan</span> </span>&#123;</span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">swimming</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"superfishman can swimming"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>// 父类
-class Animal {
-    var name: String = &quot;&quot;
-    var type: String = &quot;&quot;
-    func eat(){} 
-//    func fly(){}
-}
-
-class Bird: Animal {
-    func fly(){
-        print(&quot;Bird can fly&quot;)
-    }
-}
-
-class Preson: Animal {
-    func speak(){
-        print(&quot;person can speak&quot;)
-    }
-}
-
-class Fish: Animal {
-    func swimming() {
-        print(&quot;fish can swimming&quot;)
-    }
-}
-
-// 假设超人会飞不会游泳,复制飞的方法
-class SuperMan: Preson {
-    override func speak() {
-        print(&quot;superman also speak&quot;)
-    }
-    func fly(){
-        print(&quot;superman also fly&quot;)
-    }
-}
-
-class SuperFishMan: SuperMan {
-    func swimming() {
-        print(&quot;superfishman can swimming&quot;)
-    }
-}
-</code></pre><ul>
+<ul>
 <li>objc/Swift都不存在多继承,会游泳的超人,这时要复制游的方法,到这里已经是第四层了…高耦合    </li>
 <li>也不好直接把fly()定义到父类Animal中,等于强加限制.因为通过继承,抽象出共同的性质,Bird/Preson/Fish都是动物(人是高级动物),它们都有属性name和type,都具有eat()的行为,但fly()不是所有动物共有的      </li>
 <li>这时来了一个外星生物,它不属于Animal,但是拥有Animal及其子类所有的属性和行为(方法),怎么办?<code>上帝类</code>都帮不了你了,又走上了重复复制之路!  <center><img src="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif" alt=""></center>  
@@ -653,7 +613,7 @@ typealias InvestPersonViewModelAble = protocol&lt;PersonPresentAble,ImagePresent
         <p><span>本文标题:</span><a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2016年01月14日 - 10时03分</p>
-        <p><span>最后更新:</span>2016年01月21日 - 18时38分</p>
+        <p><span>最后更新:</span>2016年01月21日 - 19时20分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/01/14/protocolMVVM/" title="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">http://hmttommy.com/2016/01/14/protocolMVVM/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/14/protocolMVVM/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
