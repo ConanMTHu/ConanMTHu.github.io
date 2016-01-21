@@ -1,15 +1,258 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Facebook POP使用介绍 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="契机项目最近加了个需求,统计所得收益的金额(LZ做的app金融属性很强)要像余额宝一样带跳动效果.网上找到篇文章可以实现这里,不过感觉很麻烦,再查了一下说POP可以实现,顺便来介绍下,虽然已经出来很久了…so-&amp;gt;上Demo12345678910111213141516171819202122        let numberJumpAnimation = POPBasicAnimation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Facebook POP使用介绍">
+<meta property="og:url" content="http://yoursite.com/2015/11/26/facebookpop/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="契机项目最近加了个需求,统计所得收益的金额(LZ做的app金融属性很强)要像余额宝一样带跳动效果.网上找到篇文章可以实现这里,不过感觉很麻烦,再查了一下说POP可以实现,顺便来介绍下,虽然已经出来很久了…so-&amp;gt;上Demo12345678910111213141516171819202122        let numberJumpAnimation = POPBasicAnimation">
+<meta property="og:updated_time" content="2015-11-27T04:16:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Facebook POP使用介绍">
+<meta name="twitter:description" content="契机项目最近加了个需求,统计所得收益的金额(LZ做的app金融属性很强)要像余额宝一样带跳动效果.网上找到篇文章可以实现这里,不过感觉很麻烦,再查了一下说POP可以实现,顺便来介绍下,虽然已经出来很久了…so-&amp;gt;上Demo12345678910111213141516171819202122        let numberJumpAnimation = POPBasicAnimation">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
 <body>
   <div id="container">
-    <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-    <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
-    <%- partial('_partial/after-footer') %>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-facebookpop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/26/facebookpop/" class="article-date">
+  <time datetime="2015-11-26T03:14:23.000Z" itemprop="datePublished">2015-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Animation/">Animation</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Facebook POP使用介绍
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u5951_u673A"><a href="#u5951_u673A" class="headerlink" title="契机"></a><font color="IndianRed">契机</font></h3><p>项目最近加了个需求,统计所得收益的金额(LZ做的app金融属性很强)要像余额宝一样带跳动效果.网上找到篇文章可以实现<a href="http://www.tuicool.com/articles/uARRrq" target="_blank" rel="external">这里</a>,不过感觉很麻烦,再查了一下说<a href="https://github.com/facebook/pop" target="_blank" rel="external">POP</a>可以实现,顺便来介绍下,虽然已经出来很久了…so-&gt;上Demo<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">        let numberJumpAnimation = POPBasicAnimation()</span><br><span class="line">        numberJumpAnimation.fromValue = <span class="number">0</span></span><br><span class="line">        numberJumpAnimation.toValue = <span class="number">267493.32</span></span><br><span class="line">        numberJumpAnimation.duration = <span class="number">2.0</span></span><br><span class="line"><span class="label">        numberLabel.pop_addAnimation(numberJumpAnimation, forKey:</span> <span class="string">"numberJumpAnimation"</span>)</span><br><span class="line">        </span><br><span class="line">        let prop = POPMutableAnimatableProperty()</span><br><span class="line">        prop.name = <span class="string">"jump number"</span></span><br><span class="line"><span class="label">        prop.writeBlock = &#123; (obj:AnyObject!,values:</span>UnsafePointer&lt;CGFloat&gt;) -&gt; Void in</span><br><span class="line">            let label = obj as! UILabel</span><br><span class="line">            label.text = String(round(values[<span class="number">0</span>]*<span class="number">100</span>)/<span class="number">100</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        prop.threshold = <span class="number">0.01</span><span class="comment">;</span></span><br><span class="line">        numberJumpAnimation.property = prop</span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"><span class="label">效果如下:</span>  </span><br><span class="line"><span class="label">&lt;center&gt;![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/numberjump.gif)&lt;/center&gt;    </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">### &lt;font color=<span class="string">"IndianRed"</span>&gt;Facebook出品 必属精品&lt;/font&gt;  </span><br><span class="line"><span class="escape">`F</span>acebook POP<span class="escape">`是</span>基于<span class="escape">`C</span>ADisplayLink<span class="escape">`实</span>现的独立于Core Animation之外的动画引擎.<span class="escape">`P</span>OP<span class="escape">`在</span>使用上和Core Animation很相似,都涉及Animation对象以及Animation的载体的概念,&lt;font color=<span class="string">"#ce1f48"</span>&gt;不同的是Core Animation的载体只能是<span class="escape">`C</span>ALayer<span class="escape">`,</span>而<span class="escape">`P</span>OP<span class="escape">` </span>可以是任意基于<span class="escape">`N</span>SObject<span class="escape">`的</span>对象.&lt;/font&gt;  </span><br><span class="line"><span class="escape">`P</span>OP<span class="escape">`支</span>持<span class="number">4</span>种类型:</span><br></pre></td></tr></table></figure></p>
+<p>POPBasicAnimation<br>POPSpringAnimation<br>POPDecayAnimation<br>POPCustomAnimation<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></span><br><span class="line">PS:对于<span class="code">`CADisplayLink`</span>,LZ也不了解,搜了几遍文章附上链接,有兴趣的可以去看看  </span><br><span class="line"> + [<span class="link_label">CADisplayLink</span>](<span class="link_url">http://www.jianshu.com/p/c35a81c3b9eb</span>)  </span><br><span class="line"> + [<span class="link_label">使用CADisplayLink实现果冻效果动画</span>](<span class="link_url">http://www.cocoachina.com/ios/20150320/11382.html</span>)  </span><br><span class="line"> + [<span class="link_label">CADisplayLink结合UIBezierPath的神奇妙用</span>](<span class="link_url">http://kittenyang.com/cadisplaylinkanduibezierpath/</span>)  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="header">### &lt;font color="IndianRed"&gt;POPBasicAnimation&lt;/font&gt;  </span></span><br><span class="line">基本动画,接口方面和<span class="code">`CABasicAniamtion`</span>很相似，有<span class="code">`fromValue toValue duration timingFunction`</span>等属性..(也可以参照我[<span class="link_label">前面的文章</span>](<span class="link_url">http://www.hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/</span>),详细介绍了<span class="code">`timingFunction`</span>)  </span><br><span class="line"><span class="strong">**&lt;font color="orange"&gt;举个栗子&lt;/font&gt;**</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>let moveYAnimation = POPBasicAnimation(propertyNamed: kPOPLayerPositionY)
+moveYAnimation.toValue = 500
+moveYAnimation.duration = 3.0
+// 先慢-&gt;快-&gt;再慢
+moveYAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+numberLabel.pop_addAnimation(moveYAnimation, forKey: &quot;MovePositionY&quot;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">效果如下:</span>  </span><br><span class="line"><span class="label">&lt;center&gt;![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/basePop.gif)&lt;/center&gt;  </span><br><span class="line">对于参数<span class="escape">`p</span>ropertyNamed<span class="escape">`,</span>可以参照<span class="escape">`P</span>OPAnimatableProperty.h<span class="escape">`文</span>件,都是<span class="escape">`P</span>OP<span class="escape">`默</span>认支持属性的动画</span><br></pre></td></tr></table></figure>
+<p>// Common CALayer property names.</p>
+<p>extern NSString <em> const kPOPLayerBackgroundColor;<br>extern NSString </em> const kPOPLayerBounds;<br>extern NSString <em> const kPOPLayerCornerRadius;<br>extern NSString </em> const kPOPLayerBorderWidth;<br>extern NSString <em> const kPOPLayerBorderColor;<br>extern NSString </em> const kPOPLayerOpacity;<br>extern NSString <em> const kPOPLayerPosition;<br>extern NSString </em> const kPOPLayerPositionX;<br>extern NSString * const kPOPLayerPositionY;<br>//………..太多了,不一一列举  ……………//<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"IndianRed"</span>&gt;POPSpringAnimation&lt;/font&gt;  </span></span><br><span class="line">弹簧动画,iOS7后系统也出了个`public class <span class="function"><span class="keyword">func</span> <span class="title">animateWithDuration</span><span class="params">(duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIViewAnimationOptions, animations: ()</span> -&gt; <span class="title">Void</span>, <span class="title">completion</span>: <span class="params">((Bool)</span> -&gt; <span class="title">Void</span>)?)`.我最初了解到`<span class="title">POP</span>`就是因为它能很好很方便的实现弹簧动画.先来看下一它专属的几个属性:  </span></span><br><span class="line">&lt;font color=<span class="string">"red"</span>&gt;PS:POPSpringAnimation是没有`duration`字段的,动画持续时间由以下几个参数决定&lt;/font&gt;</span><br></pre></td></tr></table></figure></p>
+<p>CGFloat springBounciness;// 弹簧弹力,值越大震动幅度越大 范围为[0, 20]，默认值为4<br>CGFloat springSpeed;// 弹簧速度,速度越快动画时间越短 范围为[0, 20]，默认为12<br>//  上面两个属性一起决定着弹簧动画的效果<br>CGFloat dynamicsTension;// 弹簧的张力<br>CGFloat dynamicsFriction;// 弹簧的摩擦力<br>CGFloat dynamicsMass;// 弹簧的质量<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;font color="orange"&gt;</span>举个栗子<span class="variable">&lt;/font&gt;</span><span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>let springAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+springAnimation.toValue = 500
+springAnimation.springBounciness = 16
+springAnimation.springSpeed = 1
+numberLabel.pop_addAnimation(springAnimation, forKey: &quot;springAnimation&quot;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">效果如下:</span>  </span><br><span class="line"><span class="label">&lt;center&gt;![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/SpingPop.gif)&lt;/center&gt;  </span><br><span class="line">更多栗子就不举了...    </span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">### &lt;font color=<span class="string">"IndianRed"</span>&gt;POPDecayAnimation&lt;/font&gt;  </span><br><span class="line">我称它为滑动衰减动画.UIKit中最常见这种状态的就是<span class="escape">`U</span>IScrollView<span class="escape">`了</span>.对<span class="escape">`P</span>OPDecayAnimation<span class="escape">`设</span>置toValue是没有意义的 会被忽略,因为目的状态是动态计算得到的,&lt;font color=<span class="string">"red"</span>&gt;它也是没有<span class="escape">`d</span>uration<span class="escape">`字</span>段的 其动画持续时间由<span class="escape">`v</span>elocity与deceleration<span class="escape">`决</span>定&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<p>velocity // 速率,必须和你操作的属性有相同的结构<br>deceleration // 衰减系数(负加速度),越小则衰减得越快,默认是0.998,一般不去修改<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;font color="orange"&gt;</span>举个栗子<span class="variable">&lt;/font&gt;</span><span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>有种刹车的感觉
+let decayAnimation = POPDecayAnimation(propertyNamed: kPOPLayerPositionY)
+decayAnimation.velocity = 3600
+decayAnimation.deceleration = 0.998
+numberLabel.pop_addAnimation(decayAnimation, forKey: &quot;decayAnimation&quot;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line">### &lt;font color=<span class="string">"IndianRed"</span>&gt;POPCustomAnimation&lt;/font&gt;  </span><br><span class="line">自定义动画,我们开头举的例子就是属于这一类.主要是通过<span class="escape">`P</span>OPAnimatableProperty<span class="escape">`定</span>义属性,然后设定<span class="escape">`r</span>eadBlock<span class="escape">`和</span><span class="escape">`w</span>riteBlock<span class="escape">`.</span>  </span><br><span class="line"><span class="label">针对文章开头例子分析:</span></span><br></pre></td></tr></table></figure>
+<p>readBlock // 当前的属性值<br>writeBlock // 修改变化后的属性值<br>threashold // 值越大writeBlock的调用次数越少,默认不去设定<br><code>`` </code>obj<code>就是我们的Label,</code>values<code>这个是动画作用的属性数组,这里我们只需要操作Label上显示的文字，所以只需要一个参数为</code>values[0]<code>,如果是多个比如CGRectMake(x,x,x,x),则是</code>values[0] values[1] values[2] values[3]<code>了.  
+是不是非常的简单!</code>PNChat<code>里面使用的是一个</code>UICountingLabel`的第三方,也能实现这个效果.<br>更多的自定义动画就等大家去探讨了,LZ工作过程中有新的动画也会继续加进来  </p>
+<h3 id="u53C2_u8003_u94FE_u63A5"><a href="#u53C2_u8003_u94FE_u63A5" class="headerlink" title="参考链接"></a><font color="IndianRed">参考链接</font></h3><blockquote>
+<p><a href="https://github.com/facebook/pop" target="_blank" rel="external">pop</a><br><a href="https://www.youtube.com/watch?v=gmNhs052nfY" target="_blank" rel="external">pop_youtube</a>(请自备梯子)<br><a href="http://www.cocoachina.com/ios/20140704/9034.html" target="_blank" rel="external">Facebook POP 进阶指南</a><br><a href="http://www.cocoachina.com/industry/20140527/8565.html" target="_blank" rel="external">Facebook Pop 使用指南</a>  </p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/26/facebookpop/" data-id="cijnyi37v001ktvyo0c556q2c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pop/">pop</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/28/iOS-CoreAnimation-04/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/15/TheSinInSingleton/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">设计模式(三)之单例模式(译)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Animation/">Animation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CoreAnimation/">CoreAnimation</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Extension/">Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/">Swift</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/事件传递/">事件传递</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/第三方库/">第三方库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资料/">资料</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/About-Me/">About Me</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AutoLayout/">AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CATransition/">CATransition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Category-closure-objc-set-get/">Category closure objc_set/get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift和OC互调用/">Swift和OC互调用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Today/">Today</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hit-test/">hit-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imageView-性能优化/">imageView 性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-model/">json model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-request/">network request</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new-origin/">new origin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pop/">pop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tableview-cell/">tableview cell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基本概念/">基本概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宏-小技巧/">宏 小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略/">策略</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配-AutoLayout/">适配 AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-blog/">链接 blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/01/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/15/Moya/">Swift Moya</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

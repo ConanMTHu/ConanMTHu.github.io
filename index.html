@@ -1,15 +1,937 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
 <body>
   <div id="container">
-    <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-    <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
-    <%- partial('_partial/after-footer') %>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/21/hello-world/" class="article-date">
+  <time datetime="2016-01-21T07:45:43.000Z" itemprop="datePublished">2016-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/21/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/21/hello-world/" data-id="cijnyi37t001jtvyomohdyqzs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-protocolMVVM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/14/protocolMVVM/" class="article-date">
+  <time datetime="2016-01-14T02:03:22.000Z" itemprop="datePublished">2016-01-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="u5F15"><a href="#u5F15" class="headerlink" title="引"></a><font color="IndianRed">引</font></h2><p>记得从大学学编程开始,对于软件编程听的最多的就是<code>面向对象编程(Object Oriented Programming，OOP)</code>了,它的三大特征:封装,继承,多态.而Swift倡导的<code>面向协议编程(Protocol-oriented programming,POP)</code>是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个<code>protocol</code>)  </p>
+<p><a href="https://developer.apple.com/videos/play/wwdc2015-408/">WWDC:Protocol-Oriented Programming in Swift</a>开头<code>Classess Are Awesome</code>,指出OOP中的<code>Classes</code>提供了:数据的封装、访问控制、抽象化、命名空间等,但这些都是<code>Classes</code>才特有的属性吗?事实上,这些都是<code>类型(Type)</code>的所有属性,<code>Classes</code>只是<code>Type</code>的一种实现方法,在Swift中<code>I can do all that with structs and enums</code>(Swift的标准库组成:55个Protocols和102个Structs),这一点可以理解为封装性.而继承和多态,是<code>struct</code>和<code>enum</code>不具备的,它则是通过遵守<code>protocol</code>来实现.  </p>
+<p>但,这些是为了说明让我们放弃<code>OOP</code>吗?这是不可能的….想想<code>UIKit</code>….记得刚开始用Swift写项目时,总是告诫自己,不能只是机械的把<code>objc 翻译成 swift</code>.<font color="IndianRed">实际开发项目中,<code>ViewControl</code>和<code>View</code>基本都是使用系统的框架,通过继承来实现,无论如何的自定义,都是要围绕苹果的那一套来,OC与swift在这一块保持一致;但在<code>model</code>和<code>handle/viewModel/manager</code>这一块,更多的通过POP实现,后面会通过一个例子来说明.</font>(PS:在oc中,我们体会的是OOP/FRP(参考一下<code>RAC</code>),那Swift就是OOP/FRP(参考一下<code>RxSwift</code>)/POP;在oc中对于Protocols的理解更多的是<code>UIAppplicationDelegate,UITableViewDelegete,NSCopying,UITextFieldDelegate....</code>,而Swift中Protocols则被赋予了更多的功能和意义:”可定义属性,可组合,可继承,可扩展,支持泛型,支持类/结构体/枚举”).在<a href="http://www.cocoachina.com/swift/20150729/12824.html">Swift面向协议编程初探</a>中,bz总结的一句话,非常nice:<br><code>面向对象编程和面向协议编程最明显的区别在于程序设计过程中对数据类型的抽取(抽象)上，面向对象编程使用类和继承的手段，数据类型是引用类型</code><br><code>面向协议编程使用的是遵守协议的手段，数据类型是值类型（Swift中的结构体或枚举)</code><br>PS:<code>值类型</code>和<code>引用类型</code>的区别这里不作详叙,可参考<a href="http://swift.gg/2015/08/14/friday-qa-2015-07-17-when-to-use-swift-structs-and-classes/">Swift：什么时候使用结构体和类</a>  </p>
+<h2 id="u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29"><a href="#u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29" class="headerlink" title="讨厌的”上帝”(Inheritence)"></a><font color="IndianRed">讨厌的”上帝”(Inheritence)</font></h2><p><code>继承</code>带给我们最大的问题,可能就是常常会构造出所谓的<code>God类/super类</code>,带来的坏处也随之可见:</p>
+<ul>
+<li>一层一层一层的传递下去,它的任何行为都会影响它的所有小弟;  </li>
+<li>有的小弟继承了无用的属性和方法;  </li>
+<li>不方便扩展,差别不大的同类上帝,直接拷贝一遍代码?<br>特别喜欢<a href="http://casatwy.com/tiao-chu-mian-xiang-dui-xiang-si-xiang-yi-ji-cheng.html">田伟宇博客:跳出面向对象思想(一) 继承</a>中提到关于<code>继承</code>的要点之一:父类的所有变化，都需要在子类中体现，也就是说此时耦合已经成为需求.(他的文章非常nice,在架构这一块的写的系列文章值得深读)so,LZ的观点也是<code>万不得已不要用继承,优先考虑组合</code>!<br>注:在objc中,更多的是用<code>组合(Composition)</code>,在Swift中则是<code>协议&gt;组合&gt;继承</code>.后面会举例说明.<br>再注:全文的Demo在<a href="https://github.com/ConanMTHu/SwiftProtocol">这里</a><br>我们通过两张图对比一下:引用自<a href="http://www.kancloud.cn/luofei614/programmer_talk_life/107498">程序员聊人生</a>
+        
+          <p class="article-more-link">
+            <a href="/2016/01/14/protocolMVVM/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/14/protocolMVVM/" data-id="cijnyi377000mtvyo7l2tupor" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-UIScrollViewAndUIImageView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/21/UIScrollViewAndUIImageView/" class="article-date">
+  <time datetime="2015-12-21T10:50:45.000Z" itemprop="datePublished">2015-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>特殊情况来需求了,还在填坑中!…….</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/21/UIScrollViewAndUIImageView/" data-id="cijnyi381001utvyo9pidjypb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imageView-性能优化/">imageView 性能优化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Moya" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/15/Moya/" class="article-date">
+  <time datetime="2015-12-15T06:42:49.000Z" itemprop="datePublished">2015-12-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/15/Moya/">Swift Moya</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网络层这一块用<a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="external">Alamofire</a>,如同于在oc中用<a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">AFNetworking</a>.但是,如果你直接使用的话,会使得各种网络请求操作分布很凌乱,所以我选择了巧神封装的<a href="https://github.com/yuantiku/YTKNetwork" target="_blank" rel="external">YTKNetwork</a>,很好用,有兴趣的可以看一下.当然你也可以自己组织封装.<br>这段代码就是LZ项目中的网络请求:<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">NSDictionary *parameterDic = @&#123;kPageSizeKey:</span>@<span class="string">"10"</span>,kCurPageKey:@<span class="string">"1"</span>,kLastIDKey:@<span class="string">"0"</span>&#125;<span class="comment">;</span></span><br><span class="line"><span class="label">[[WCRequestDataManager sharedRequestDataManager] requestDataForNetWorkWithDataHandleType:</span>WCProductListDataHandleType</span><br><span class="line"><span class="label">    parameterDic:</span>parameterDic</span><br><span class="line"><span class="label">    completed:</span>^(WCProductResultModel *resultModel) &#123;&#125;</span><br><span class="line"><span class="label">    failure:</span>^(NSString *msg) &#123;&#125;</span><br><span class="line">]<span class="comment">;</span></span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"> + <span class="escape">`p</span>arameterDic<span class="escape">`就</span>是请求所需的参数,如果没有直接传入<span class="escape">`n</span>il<span class="escape">` </span> </span><br><span class="line"> + <span class="escape">`W</span>CProductListDataHandleType<span class="escape">`是</span>枚举类型,你可以理解为它对应了<span class="escape">`产</span>品列表<span class="escape">`网</span>络请求的<span class="escape">`m</span>ethod(GET/POST)<span class="escape">`,</span><span class="escape">`U</span>RL<span class="escape">`等</span>等  </span><br><span class="line"> + <span class="escape">`c</span>ompleted<span class="escape">`和</span><span class="escape">`f</span>ailure<span class="escape">`2</span>个block分别对应请求<span class="escape">`成</span>功<span class="escape">`和</span><span class="escape">`失</span>败<span class="escape">`两</span>种情况,并返回页面需要的model和失败的信息  </span><br><span class="line"> + 数据解析直接在对应的<span class="escape">`R</span>equestHandle<span class="escape">`中</span>,保证返回对应的model-&gt;<span class="escape">`W</span>CProductResultModel<span class="escape">` </span> </span><br><span class="line">  </span><br><span class="line"><span class="label">那么Swift中推荐一下[Moya](https:</span>//github.com/Moya/Moya),这是一个基于<span class="escape">`A</span>lamofire<span class="escape">`的</span>更高层网络请求封装抽象层.  </span><br><span class="line"><span class="label">**整个Demo可以在这里下载到:[MoyaTest](https:</span>//github.com/ConanMTHu/MoyaTest)**  </span><br><span class="line"><span class="label">可以对比一下直接用`Alamofire`和用`Moya`请求样式:</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>Alamofire.request(.GET, kRequestServerKey + &quot;services/creditor/product/list/page/2/0/0&quot;).responseJSON {
+    response in
+    if let value = response.result.value {
+        let result = Mapper&lt;CommonInfo&gt;().map(value)
+        let dataList = Mapper&lt;ProductModel&gt;().mapArray(result?.data?[&quot;result&quot;])
+        print(&quot;Alamofire = \(dataList?[0].productDesc)&quot;) // Alamofire = Optional(&quot;gfhgfgfhgshgdsfdshgfshfgh&quot;)
+    }
+}
+
+MoyaTest.sharedInstance.requestDataWithTarget(.productList(pageSize: 2, curpage: 0, lastID: 0), type: ProductModel.self, successClosure: { result in
+        let dataList = Mapper&lt;ProductModel&gt;().mapArray(result[&quot;result&quot;])
+        print(&quot;Moya = \(dataList?[0].productDesc)&quot;) // Moya = Optional(&quot;gfhgfgfhgshgdsfdshgfshfgh&quot;)
+    }) { errorMsg in
+        print(errorMsg)
+}
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">可见,第二种隐藏了<span class="escape">`u</span>rl<span class="escape">`,</span><span class="escape">`m</span>ethod<span class="escape">`,</span><span class="escape">`j</span>son解析<span class="escape">`等</span>参数/操作,抽象出了一层通用的请求方法.(按理说<span class="escape">`M</span>apper&lt;ProductModel&gt;().mapArray(result[<span class="string">"result"</span>])<span class="escape">`不</span>应该出现在回调的闭包中,返回的就应该是<span class="escape">`p</span>roductList<span class="escape">`请</span>求对应的model,否则<span class="escape">`t</span>ype<span class="escape">`这</span>个参数就没有意义了,这个梗会在下面说到)  </span><br><span class="line">  </span><br><span class="line">&lt;!--more--&gt;  </span><br><span class="line"><span class="label">看一下文档说明:</span>  </span><br><span class="line"><span class="label">![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/屏幕快照<span class="var_expand">%202015-12-16%</span><span class="number">2020.33</span>.<span class="number">28</span>.png)  </span><br><span class="line"></span><br><span class="line">**&lt;font size=<span class="string">"5"</span> color=<span class="string">"IndianRed"</span>&gt;[Targets](https://github.com/Moya/Moya/blob/master/docs/Targets.md)&lt;/font&gt;**  </span><br><span class="line">---  </span><br><span class="line"><span class="label"> 使用`Moya`的第一步就是定义一个`Target`:</span>通常是指一些符合<span class="escape">`T</span>argetType protocol<span class="escape">`的</span><span class="escape">`e</span>num<span class="escape">`.</span>然,你请求的其余部分都只根据这个<span class="escape">`T</span>arget<span class="escape">`而</span>来.这个枚举用来定义你的<span class="escape">`网</span>络请求API<span class="escape">`的</span>行为<span class="escape">`a</span>ction<span class="escape">`.</span></span><br></pre></td></tr></table></figure>
+<p> public enum RequestApi {<br>    //  UserApi<br>    case login(loginName: String, password: String)<br>    case register //(userMobile: String, password: String, inviteCode: String, verifyCode: String)<br>    //case accountInfo</p>
+<pre><code>//  ProductApi
+case productList(pageSize: Int, curpage: Int, lastID: Int)
+</code></pre><p>//    case productDetail(id: Int)<br>}<br> <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+ </span>强烈推荐[<span class="link_label">Swift 中枚举高级用法及实践</span>](<span class="link_url">http://swift.gg/2015/11/20/advanced-practical-enum-examples/</span>)这篇文章,涵盖了枚举几乎所有的知识点.<span class="code">`enum`</span>在Swift中的作用,简直不要太牛!  </span><br><span class="line"><span class="bullet">+ </span>再推荐一个[<span class="link_label">用模式匹配解析 URL</span>](<span class="link_url">http://swift.gg/2015/09/15/urls-and-pattern-matching/#qrcode</span>),通过<span class="code">`关联值(Associated Value)`</span>来定义请求所需的参数(loginName和password也可以省略掉,但为了直观的说明,还是保留一下)</span><br></pre></td></tr></table></figure></p>
+<p> extension RequestApi: TargetType {<br>    public var baseURL: NSURL {<br>        return NSURL(string: “<a href="http://apptest.wecube.com:8080/taojinjia/&quot;)!" target="_blank" rel="external">http://apptest.wecube.com:8080/taojinjia/&quot;)!</a><br>    }</p>
+<pre><code>public var path: String {
+    switch self {
+        case .login(_,_):
+            return &quot;services/crane/sso/login/doLogin&quot;
+        case .register:
+            return &quot;services/crane/sso/login/register&quot;
+        case let .productList(pageSize, curpage, lastID):
+            return &quot;services/creditor/product/list/page/&quot;+String(pageSize)+&quot;/&quot;+String(curpage)+&quot;/&quot;+String(lastID)
+    }
+}
+
+public var method: Moya.Method {
+    switch self {
+        case .login(_,_), .register:
+            return .POST
+        case .productList(_,_,_):
+            return .GET
+    }
+}
+
+public var parameters: [String: AnyObject]? {
+    switch self {
+        case let .login(loginName, password):
+            return [&quot;loginName&quot;: loginName, &quot;userPassword&quot;: password]
+        default :
+            return nil
+    }
+}
+
+//  单元测试用
+public var sampleData: NSData {
+    return &quot;{}&quot;.dataUsingEncoding(NSUTF8StringEncoding)!
+}
+</code></pre><p>}<br> <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">定义的<span class="class"><span class="keyword">enum</span>实现`<span class="title">TargetType</span>`协议,完成一系列初始化设置:  </span></span><br><span class="line"> + &lt;font color=<span class="string">"IndianRed"</span>&gt;<span class="string">`baseURL`</span>&lt;<span class="regexp">/font&gt;:统一设置服务器地址,测试切换非常的方便,`YTKNetwork`中也是这样配置的.  </span><br><span class="line"> + &lt;font color="IndianRed"&gt;`path`&lt;/font</span>&gt;:每个请求需求对应的各自的请求路径</span><br></pre></td></tr></table></figure></p>
+<pre><code>参见源码,最终的url就是由baseURL和path拼接而来
+public final class func DefaultEndpointMapping(target: Target) -&gt; Endpoint&lt;Target&gt; {
+    let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
+    return Endpoint(URL: url, sampleResponseClosure: {.NetworkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
+}
+</code></pre> <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> + &lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;`method`&lt;/<span class="attribute">font</span>&gt;:不解释...请求方式  </span><br><span class="line"> + &lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;`parameters`&lt;/<span class="attribute">font</span>&gt;:需要的参数  </span><br><span class="line"> + &lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;`sampleData`&lt;/<span class="attribute">font</span>&gt;:方便于单元测试...暂时忽略  </span><br><span class="line">  </span><br><span class="line">**&lt;<span class="attribute">font</span> size=<span class="string">"5"</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;[Providers](https:<span class="comment">//github.com/Moya/Moya/blob/master/docs/Providers.md)和[Endpoints](https://github.com/Moya/Moya/blob/master/docs/Endpoints.md)&lt;/font&gt;**  </span></span><br><span class="line">---  </span><br><span class="line">`provider`和`endpoints`是紧密相关的,放在一起讲更好点(名字都怪怪的,果然国外开发者取名都是讲究哇)</span><br></pre></td></tr></table></figure>
+<p>let requestProvider = RxMoyaProvider<requestapi>()<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最终的请求发起对象就是<span class="escape">`r</span>equestProvider<span class="escape">`,</span><span class="escape">`R</span>xMoyaProvider<span class="escape">`是</span><span class="escape">`M</span>oyaProvider<span class="escape">`的</span>子类,你需要在podfile中导入<span class="escape">`M</span>oya/RxSwift<span class="escape">`,</span>当然你也可以直接用<span class="escape">`M</span>oyaProvider<span class="escape">`来</span>完成初始化,<span class="escape">`R</span>xSwift<span class="escape">`目</span>前只是简单的了解了一下,具体用法这里暂时忽略,不影响请求的完成.  </span><br><span class="line"><span class="label">你可能发现,这跟`endpoints`并没什么关系,但是,看下源码:</span></span><br></pre></td></tr></table></figure></requestapi></p>
+<pre><code>/// Initializes a provider.
+public init(endpointClosure: EndpointClosure = MoyaProvider.DefaultEndpointMapping,
+    requestClosure: RequestClosure = MoyaProvider.DefaultRequestMapping,
+    stubClosure: StubClosure = MoyaProvider.NeverStub,
+    manager: Manager = Alamofire.Manager.sharedInstance,
+    plugins: [PluginType] = []) {
+
+        self.endpointClosure = endpointClosure
+        self.requestClosure = requestClosure
+        self.stubClosure = stubClosure
+        self.manager = manager
+        self.plugins = plugins
+}
+
+/// Mark: Defaults
+</code></pre><p>public extension MoyaProvider {</p>
+<pre><code>// These functions are default mappings to endpoings and requests.
+
+public final class func DefaultEndpointMapping(target: Target) -&gt; Endpoint&lt;Target&gt; {
+    let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
+    return Endpoint(URL: url, sampleResponseClosure: {.NetworkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
+}
+
+public final class func DefaultRequestMapping(endpoint: Endpoint&lt;Target&gt;, closure: NSURLRequest -&gt; Void) {
+    return closure(endpoint.urlRequest)
+}
+</code></pre><p>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> + <span class="escape">`i</span>nit<span class="escape">`的</span><span class="number">4</span>个参数都给了默认参数,且默认的endpoint<span class="escape">`D</span>efaultEndpointMapping<span class="escape">`如</span>同它的名字一样,<span class="string">"终结点"</span>匹配了网络请求要的因素.  </span><br><span class="line"> + 如果你的请求需要添加请求头,你也能够通过<span class="escape">`e</span>ndpointByAddingHTTPHeaderFields<span class="escape">`方</span>法来实现.  </span><br><span class="line"> + <span class="escape">`T</span>arget<span class="escape">`贯</span>穿了全局,在endpoint的配置中,也可以通过刷选不同的枚举值来设置不同情况.  </span><br><span class="line"> + 还有一些高级用法就自己去研究文档,LZ的英文实在是渣的可怕...  </span><br><span class="line">在上面的栗子中,选择了默认的初始化方法.  </span><br><span class="line">  </span><br><span class="line">**&lt;font size=<span class="string">"5"</span> color=<span class="string">"IndianRed"</span>&gt;Request&lt;/font&gt;**  </span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<p>import Foundation<br>import Moya<br>import RxSwift<br>import ObjectMapper<br>import SwiftyJSON</p>
+<p>typealias SuccessClosure = (result: AnyObject) -&gt; Void<br>//typealias SuccessClosure = (result: Mappable) -&gt; Void<br>typealias FailClosure = (errorMsg: String?) -&gt; Void</p>
+<p>enum RequestCode: String {<br>    case failError = “0”<br>    case success = “1”<br>}</p>
+<p>class MoyaTest {<br>    static let sharedInstance = MoyaTest()<br>    private init(){}</p>
+<pre><code>let requestProvider = RxMoyaProvider&lt;RequestApi&gt;()
+
+func requestDataWithTarget&lt;T: Mappable&gt;(target: RequestApi, type: T.Type , successClosure: SuccessClosure, failClosure: FailClosure) {
+    let _ = requestProvider.request(target).subscribe { (event) -&gt; Void in
+        switch event {
+        case .Next(let response):
+            let info = Mapper&lt;CommonInfo&gt;().map(JSON(data: response.data,options: .AllowFragments).object)
+            guard info?.code == RequestCode.success.rawValue else {
+                failClosure(errorMsg: info?.msg)
+                return
+            }
+            guard let data = info?.data else {
+                failClosure(errorMsg: &quot;数据为空&quot;)
+                return
+            }
+            successClosure(result: data)
+        case .Error(let error):
+            print(&quot;网络请求失败...\(error)&quot;)
+        default:
+            break
+        }
+    }
+}
+</code></pre><p>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最后的请求方法封装,如上面的栗子:  </span><br><span class="line"> + json的解析我用的<span class="code">`SwiftyJson`</span>和<span class="code">`ObjectMapper`</span>.<span class="code">`SwiftyJson`</span>主要是用来把data转为object(这里如果调用<span class="code">`JSON(response.data)`</span>会无法解析,要显式的加上参数<span class="code">`options`</span>,但其实<span class="code">`JSON(xxx)`</span>内部是默认实现了的,实在不明白为什么会解析失败...参数的解释参见[<span class="link_label">hit me</span>](<span class="link_url">http://www.cocoachina.com/bbs/read.php?tid=110907</span>)和[<span class="link_label">hit me too</span>](<span class="link_url">http://stackoverflow.com/questions/16961025/nsjsonserialization-nsjsonreadingallowfragments-reading</span>)),后面的转model用的就是<span class="code">`ObjectMapper`</span>.<span class="xml"><span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"red"</span>&gt;</span></span>这里补上前面提到的:为什么没能够做到返回直接是请求数据对应的model,而多做了一步<span class="code">`let dataList = Mapper&lt;ProductModel&gt;().mapArray(result["result"])`</span><span class="xml"><span class="tag">&lt;/<span class="title">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p> // 服务器给的数据格式统一为<br>{<br>    “code” = “”,<br>    “data” =  {} 或 ({}),<br>    “msg” = “”<br>}<br> <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`data`对应的就是请求url返回的`model`或`[model]`,那么就是不是调用`successClosure(<span class="literal">result</span>: data)`了,而是</span><br></pre></td></tr></table></figure></p>
+<pre><code> //typealias SuccessClosure = (result: Mappable) -&gt; Void
+ let model = Mapper&lt;T&gt;().map(data)
+successClosure(result: model)
+</code></pre><p> <code>``  
+ 有的接口</code>data<code>对应的是包含了多个dic的数组,感觉解决方法就是再单独开一个数组的请求方法,调用</code>mapArray<code>,这里就不多加描述了,反正都一样的流程.  
+ 而</code>productList<code>的url返回的</code>data<code>里面还包了一层</code>result<code>和</code>pageVO`,so…这就是一个特殊情况^_^!  </p>
+<ul>
+<li><code>RxSwift</code>…学习中  </li>
+</ul>
+<p>ok!差不多<code>Moya</code>的基本使用就是这样啦,感觉还是非常方便实用的.  </p>
+<blockquote>
+<p><strong>参考资料</strong><br><a href="http://blog.callmewhy.com/2015/11/01/moya-rxswift-argo-lets-go/" target="_blank" rel="external">通过 Moya+RxSwift+Argo 完成网络请求</a><br><a href="https://github.com/ReactiveX/RxSwift" target="_blank" rel="external">RxSwift</a>  </p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/15/Moya/" data-id="cijnyi38f002mtvyoha2cald6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network-request/">network request</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AddCategoryProperty" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/11/AddCategoryProperty/" class="article-date">
+  <time datetime="2015-12-11T10:10:14.000Z" itemprop="datePublished">2015-12-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LZ个人很喜欢用<code>blcok</code>,<code>RAC</code>中也是各种的block调用,比如对UIButton的点击事件<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">xxxButton</span>.<span class="atom">rac_command</span> = [[<span class="name">RACCommand</span> <span class="atom">alloc</span>] <span class="atom">initWithSignalBlock</span>:^<span class="name">RACSignal</span> *(<span class="name">UIButton</span> *<span class="atom">button</span>) &#123;</span><br><span class="line">                // 事件处理</span><br><span class="line">                <span class="atom">return</span> [<span class="name">RACSignal</span> <span class="atom">empty</span>];</span><br><span class="line">            &#125;];</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">`  </span><br><span class="line">block的形式能够让代码更加的紧凑,让事件的响应处理紧跟属性对象的设置.  </span><br><span class="line"></span><br><span class="line">不用RAC的话,我们通常采取`</span><span class="name">Category</span><span class="string">`的方式来实现:</span></span><br></pre></td></tr></table></figure></p>
+<p>#import <objc runtime.h=""></objc></p>
+<p>//唯一静态变量key<br>static const char blockKey;</p>
+<p>@implementation UIButton (Block)</p>
+<ul>
+<li><p>(void)handleControlEvent:(UIControlEvents)event withBlock:(ActionBlock)block {<br>  objc_setAssociatedObject(self, &amp;blockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);<br>  [self addTarget:self action:@selector(callActionBlock:) forControlEvents:event];<br>}</p>
+</li>
+<li><p>(void)callActionBlock:(id)sender {<br>  ActionBlock block = (ActionBlock)objc_getAssociatedObject(self, &amp;blockKey);<br>  if (block) {</p>
+<pre><code>block();
+</code></pre><p>  }<br>}</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**因为`Category`中并不能添加实例属性,所以要通过`runtime`的关联性来实现.**</span>  </span><br><span class="line">  </span><br><span class="line">同理,在Swift中也是一样的,<span class="code">`Extension`</span>中不能添加存储属性(但是可以添加计算属性),也要通过运行时的<span class="code">`get和set Associated Object`</span>来实现.  </span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"red"</span>&gt;</span></span>不过,在Swift中,<span class="code">`Closure(闭包)`</span>并不属于<span class="code">`AnyObject`</span>,不像oc中block可以作为id对象!因此,需要做一个相互转换<span class="xml"><span class="tag">&lt;/<span class="title">font</span>&gt;</span></span>.转换的方法在万能的<span class="code">`stackoverflow`</span>中找到了,[<span class="link_label">点我</span>](<span class="link_url">http://stackoverflow.com/questions/24586293/cast-closures-blocks</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>private var closureKey: Void?<br>typealias ActionClosure = @convention(block) () -&gt; ()<br>extension UIButton {<br>    func handleControlEvent(event: UIControlEvents,closure: ActionClosure) {<br>        let dealObject: AnyObject = unsafeBitCast(closure, AnyObject.self)<br>        objc_setAssociatedObject(self, &amp;closureKey, dealObject, .OBJC_ASSOCIATION_COPY_NONATOMIC)<br>        self.addTarget(self, action: “callActionClosure:”, forControlEvents: event)<br>    }</p>
+<pre><code>func callActionClosure(btn: UIButton) {
+    let closureObject: AnyObject = objc_getAssociatedObject(self, &amp;closureKey)
+    let closure = unsafeBitCast(closureObject, ActionClosure.self)
+    closure()
+}
+</code></pre><p>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> + 如何添加计算属性,参照喵大大的<span class="escape">`S</span>WIFTER<span class="escape">`的</span><span class="escape">`A</span>ssociated Object<span class="escape">`章</span>节.  </span><br><span class="line"> + <span class="escape">`&amp;</span>closureKey<span class="escape">`,</span>参照喵大大的<span class="escape">`S</span>WIFTER<span class="escape">`的</span><span class="escape">`U</span>nsafePointer<span class="escape">`章</span>节.  </span><br><span class="line">  </span><br><span class="line"><span class="label">如上,我们就这样的调用了:</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>let btn = UIButton(type: .ContactAdd)
+btn.frame = CGRect(x: 100,y: 100,width: 30,height: 30)
+self.view.addSubview(btn)
+btn.handleControlEvent(.TouchUpInside) {
+    print(&quot;hello world&quot;)
+}
+</code></pre><p>```</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/11/AddCategoryProperty/" data-id="cijnyi38n0030tvyo6v0rjxox" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Category-closure-objc-set-get/">Category closure objc_set/get</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-swiftjson" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/29/swiftjson/" class="article-date">
+  <time datetime="2015-11-28T17:27:37.000Z" itemprop="datePublished">2015-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习Swift一段时间后,接下来的方法就是找个项目来练手了,于是LZ就决定空余时间用Swift重写目前的整个项目.鉴于UI需求变幻莫测,1.0后没多久又来的2.0…还是先从稳定的<code>数据层</code>和<code>网络层</code>着手.^_^<br><code>json &lt;-&gt; model</code>这一块选了3个第三方库,如标题,分析一下它们各自的用法和总结.    </p>
+<h2 id="SwiftyJson"><a href="#SwiftyJson" class="headerlink" title="SwiftyJson"></a><font color="IndianRed">SwiftyJson</font></h2><p><a href="https://github.com/SwiftyJSON/SwiftyJSON" target="_blank" rel="external">SwiftyJson</a>算是最早听过的Swift第三方库了,不过一直都没用过..囧..用起来还是很简单的:<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">        Alamofire.request(.GET, kRequestServerKey + <span class="string">"services/wecube/user/msg/shareItem/INVEST_SHARE_ITEM"</span>).responseJSON &#123;</span><br><span class="line">            response in</span><br><span class="line">            <span class="keyword">if</span> let value = response.result.value &#123;</span><br><span class="line">                let json = JSON(value)</span><br><span class="line">                print(json)</span><br><span class="line">                print(json[<span class="string">"data"</span>].dictionaryObject)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"><span class="label">![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/jsonmodel.png)  </span><br><span class="line"><span class="label">具体的用法可以参加它的github地址,列举的很详细了,来谈谈几点:</span>  </span><br><span class="line"> + 我们oc项目中用<span class="escape">`M</span>JExtension<span class="escape">`或</span>者<span class="escape">`Y</span>YModel<span class="escape">`可</span>以做到定义好model属性,自动完成赋值.<span class="escape">`S</span>wiftyJson<span class="escape">`没</span>有提供跟model的映射,而是需要我们手动去赋值,比如例子中的<span class="escape">`j</span>son[<span class="string">"data"</span>]<span class="escape">`,</span>如果层级有<span class="number">3</span>层以后,就会这样<span class="escape">`j</span>son[xxx][xxx][xxx][<span class="string">"name"</span>]<span class="escape">`,</span>其实取值貌似也就是这样的...只是如果我不小心写错了key,这应该是我不选择它的主要原因.      </span><br><span class="line"> + 由于Swift是一种严格的类型安全语言.虽然这样有利于我们减少错误,但是对于json这种天生就是隐式类型的数据结构,就很蛋疼了.<span class="escape">`S</span>wiftyJson<span class="escape">`很</span>好的解决了,json解析过程中容易出现的<span class="escape">`i</span>f-let<span class="escape">`*</span>*金字塔**(如下)或可选用链.</span><br></pre></td></tr></table></figure></p>
+<p> if let statusesArray = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [[String: AnyObject]],<br>    let user = statusesArray[0][“user”] as? [String: AnyObject] {<br>      let username = user[“name”] as? String {<br>        let xxx = xxxx[“xxxx”] as? String {<br>        //   好恶心啊……..<br>       }<br>    }<br>   }<br>}<br> <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+ </span>针对第二点,为什么<span class="code">`SwiftyJson`</span>的解析不需要担心可选的crash?看个栗子:</span><br></pre></td></tr></table></figure></p>
+<pre><code>if let imageUrl = json[&quot;data&quot;][&quot;imageUrl_test&quot;].string{
+    // 调用不存在的[&quot;imageUrl_test&quot;]也不会crash,.string最终能安全的返回一个字符串或nil
+}
+</code></pre> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span>  </span><br><span class="line">  </span><br><span class="line">我们可以看一下源码:(就一个文件)</span><br></pre></td></tr></table></figure>
+<pre><code> /// If `type` is `.Dictionary`, return json which&apos;s object is `dictionary[key]` , otherwise return null json with error.
+private subscript(key key: String) -&gt; JSON {
+    get {
+        var r = JSON.null
+        if self.type == .Dictionary {
+            if let o = self.rawDictionary[key] {
+                r = JSON(o)
+            } else {
+                r._error = NSError(domain: ErrorDomain, code: ErrorNotExist, userInfo: [NSLocalizedDescriptionKey: &quot;Dictionary[\&quot;\(key)\&quot;] does not exist&quot;])
+            }
+        } else {
+            r._error = self._error ?? NSError(domain: ErrorDomain, code: ErrorWrongType, userInfo: [NSLocalizedDescriptionKey: &quot;Dictionary[\&quot;\(key)\&quot;] failure, It is not an dictionary&quot;])
+        }
+        return r
+    }
+    set {
+        if self.type == .Dictionary &amp;&amp; newValue.error == nil {
+            self.rawDictionary[key] = newValue.object
+        }
+    }
+}
+</code></pre> <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> 可见,始终都会返回一个<span class="code">`JSON`</span>类型的对象r,<span class="code">`.null`</span>其实也是<span class="code">`JSON`</span>类型,这样即使报错返回的都是跟解析时一样的<span class="code">`JSON`</span>类型,那就不用写一个个的<span class="code">`?`</span>了,也不用担心数组取值越界或者字典的key不存在等情况.直到你调用<span class="code">`.string .number .arrayObject`</span>等才会返回对应的类型或nil了.(<span class="code">`.stringValue`</span>不会返回nil,而是"",空字符串...依旧见源码)  </span><br><span class="line">  + 话说<span class="code">`SwiftyJson`</span>和LZ暂时在看的<span class="code">`Moya`</span>都对枚举<span class="code">`enum`</span>运用的很溜,很强大(感觉enum在Swift中作用很大却也复杂很多),这里推荐一篇SwiftGG的文章[<span class="link_label">Swift 中枚举高级用法及实践</span>](<span class="link_url">http://swift.gg/2015/11/20/advanced-practical-enum-examples/</span>)  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="header">## &lt;font color="IndianRed"&gt;ObjectMapper&lt;/font&gt;  </span></span><br><span class="line">[<span class="link_label">ObjectMapper</span>](<span class="link_url">https://github.com/Hearst-DD/ObjectMapper</span>)是朋友推荐的,他们之前也是用了<span class="code">`SwiftyJson`</span>,最近开始引入的.试了一下,还是很好操作的,举个栗子:  </span><br><span class="line">测试的Json数据</span><br></pre></td></tr></table></figure>
+<p>data = {<br>    pageVO =     {<br>    };<br>    result =     (<br>                {<br>            activityCode = “”;<br>            activityType = 2;<br>            alreadyAmount = 1601;<br>            alreadyUserCount = 1;<br>            amountUse = “\U6d88\U8d39”;<br>            amountUseType = 1;<br>            productCode = “SZSB–2015-88”;<br>            productDesc = “\U9a8c\U8bc1\U65b0\U91d1\U9886\U901a”;<br>            productPublisher =             {<br>                age = 22;<br>                userCode = “411329<strong>**</strong>12”;<br>                userEmailApprove = 0;<br>                userId = “3489”;<br>                userMobile = “1<strong><strong>*</strong></strong>1”;<br>            };<br>        }<br>    );<br>}<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Model</span>层设计</span><br></pre></td></tr></table></figure></p>
+<p>import ObjectMapper</p>
+<p>class CommonInfo: Mappable {<br>    var data: Any?<br>    var code: String!<br>    var msg: String?<br>    required init?(_ map: Map) {<br>    }<br>    func mapping(map: Map) {<br>        data      &lt;-    map[“data”]<br>        code      &lt;-    map[“code”]<br>        msg       &lt;-    map[“mgs”]<br>    }<br>}</p>
+<p>class ProductModel: Mappable {<br>    var activityType: Int?<br>    var amountUse: String?<br>    var productDesc: String?<br>    var productPublisher: PublisherModel!<br>    required init?(_ map: Map) {<br>    }<br>    func mapping(map: Map) {<br>        activityType            &lt;-    map[“activityType”]<br>        amountUse               &lt;-    map[“amountUse”]<br>        productDesc             &lt;-    map[“productDesc”]<br>        productPublisher        &lt;-    map[“productPublisher”]<br>    }<br>}</p>
+<p>class PublisherModel: Mappable {<br>    var age: Int?<br>    var userCode: String?<br>    var userMobile: String?<br>    var userId: String!<br>    required init?(_ map: Map) {<br>    }<br>    func mapping(map: Map) {<br>        age            &lt;-    map[“age”]<br>        userCode       &lt;-    map[“userCode”]<br>        userMobile     &lt;-    map[“userMobile”]<br>        userId         &lt;-    map[“userId”]<br>    }<br>}<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`<span class="javascript"></span>``<span class="javascript"></span><br><span class="line">        Alamofire.request(.GET, kRequestServerKey + <span class="string">"services/creditor/product/list/page/1/0/0"</span>).responseJSON &#123;</span><br><span class="line">            response <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> value = response.result.value &#123;</span><br><span class="line">                <span class="keyword">let</span> info = Mapper&lt;CommonInfo&gt;().map(value)</span><br><span class="line">                print(info?.data)</span><br><span class="line">                <span class="keyword">let</span> productList = Mapper&lt;ProductModel&gt;().mapArray(info?.data?[<span class="string">"result"</span>])</span><br><span class="line">                print(productList?[<span class="number">0</span>].productPublisher.userId) <span class="comment">// 3489</span></span><br><span class="line">                print(productList?[<span class="number">0</span>].productPublisher.userCode) <span class="comment">// 411329******12</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span>``<span class="javascript"></span>`  </span><br><span class="line"> + 首先需要实现`<span class="javascript">Mappable</span>`这个protocol,它有<span class="number">2</span>个方法`<span class="javascript">init?(_ map: <span class="built_in">Map</span>)</span>`和`<span class="javascript">func mapping(map: <span class="built_in">Map</span>)</span>`,通过操作符`<span class="javascript">&lt;-</span>`来进行字段与json的映射.  </span><br><span class="line"> + Model的设置基本都为可选?类型,当然你也可以通过和服务端的约定设置一些字段为隐式!解析,如上:项目Model的发起者字段为!,也就是一个项目肯定是存在一个对应的发起者,它一定不为空,那么它也就一定会有userId,至于code和mobile则不一定了,可能为空...这个看项目情况,当然你也可以全部设置为可选?.看了一下源码,它解析后返回的基本都是`<span class="javascript">N?</span>`可选类型.  </span><br><span class="line"> + `<span class="javascript">ObjectMapper</span>`返回的基本都是?,所以也就不可避免的出现了可选链,见`<span class="javascript">info?.data?[<span class="string">"result"</span>]</span>`,如果层级再高二级,那么就是`<span class="javascript">xxx?.xxx?.xxx?...</span>`,相比`<span class="javascript">SwiftyJson</span>`就不太好了...不过与属性的映射能够自动一一对应,我想我会用它.  </span><br><span class="line"> + 那`<span class="javascript">ObjectMapper</span>`是如何实现的呢?粗略的看了一下源码:</span><br></pre></td></tr></table></figure></p>
+<pre><code> public func mapArray(JSON: AnyObject?) -&gt; [N]? {
+    if let JSONArray = JSON as? [[String : AnyObject]] {
+        return mapArray(JSONArray)
+    }
+
+    return nil
+}
+
+/// Maps an array of JSON dictionary to an array of Mappable objects
+public func mapArray(JSONArray: [[String : AnyObject]]) -&gt; [N]? {
+    // map every element in JSON array to type N
+    let result = JSONArray.flatMap(map)
+    return result
+}
+</code></pre> <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">可见,就是对于<span class="code">`map`</span>和<span class="code">`flatMap`</span>的调用(map和flapMap函数能够很轻易地将数组转换成另外一个新数组),其中<span class="code">`N`</span>就是那些实现了<span class="code">`Mappable`</span>的类型(运用了泛型嘛),这也就是你传入了一个json结构(一般为dic)的数组转换出来为你自定义model的数组,参见<span class="code">`let productList = Mapper&lt;ProductModel&gt;().mapArray(info?.data?["result"])`</span>,<span class="code">`productList`</span>就是装载了<span class="code">`ProductModel`</span>的数组.  </span><br><span class="line">PS:<span class="code">`map`</span>和<span class="code">`flatMap`</span>的知识可以多了解下,推荐[<span class="link_label">点我哇</span>](<span class="link_url">http://appventure.me/2015/11/30/reduce-all-the-things/</span>)和[<span class="link_label">SwiftGG</span>](<span class="link_url">http://swift.gg/2015/11/26/swift-map-and-flatmap/</span>)  </span><br><span class="line">其他详细用法参见github的doc,它还提供了了一个<span class="code">`AlamofireObjectMapper`</span>的Extension,专门配合<span class="code">`Alamofire`</span>用.  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="header">## &lt;font color="IndianRed"&gt;Argo&lt;/font&gt;  </span></span><br><span class="line">[<span class="link_label">Argo</span>](<span class="link_url">https://github.com/thoughtbot/Argo</span>)用起来就没有前两者舒服了(LZ能力问题),目前LZ还没试验出来...暂缓在这里,如果有那位童鞋<span class="code">`Argo`</span>用的溜的求留言.</span><br></pre></td></tr></table></figure>
+<p> struct ShareInfo {<br>    let rowIdx: Int<br>    let imagePath: String?<br>    let content: String?<br>}</p>
+<p>extension ShareInfo:Decodable {<br>    static func decode(json: JSON) -&gt; Decoded<shareinfo> {<br>        return curry(ShareInfo.init)<br>            &lt;^&gt; json &lt;|  “rowIdx”<br>            &lt;<em>&gt; json &lt;|?  “imagePath”<br>            &lt;</em>&gt; json &lt;|? “content”<br>    }<br>}</shareinfo></p>
+<pre><code>Alamofire.request(.GET, kRequestServerKey + &quot;services/wecube/user/msg/shareItem/INVEST_SHARE_ITEM&quot;).responseJSON {
+    response in
+    if let value = response.result.value {
+        print(&quot;value = \(value)&quot;)
+        let info: ShareInfo? = decodeWithRootKey(&quot;data&quot;, value)
+        print(info?.imagePath) // Optional(&quot;http://service.taojinjia.com/Tpl/H5/style/images/fenxiangtupian.png&quot;)
+    }
+}
+</code></pre><p> ```  </p>
+<ul>
+<li>所有的Model必须声明为<code>struct</code>,且类型设置为<code>AnyObject</code>会报错(暂时不知道为何,只好将json格式的dic提前设定为你的Model),或者声明为<code>NSURL</code>需参照<a href="https://github.com/thoughtbot/Argo/issues/294" target="_blank" rel="external">decode for NSURL</a>  </li>
+<li><code>return curry(ShareInfo.init)</code>后面的参数对应,第一个必须是<code>&lt;^&gt;</code>,<a href="https://github.com/thoughtbot/Argo/issues/278" target="_blank" rel="external">原因看这个解释</a>  </li>
+<li>试验得知:所有的结构体属性,必须指定为明确的类型,比如<code>let info: Dictionary</code>必须写为<code>let info: Info</code>,其中<code>Info</code>对应的就是包含字典属性的结构体    </li>
+<li>因此,使用<code>Argo</code>不能创建<code>CommonInfo</code>这个对象,因为它的<code>data</code>是不确定的,做不到统一接口<br>放几篇链接在此:<br><a href="https://robots.thoughtbot.com/functional-swift-for-dealing-with-optional-values" target="_blank" rel="external">Functional Swift for Dealing with Optional Values</a> (解释了<code>&lt;^&gt;</code>和<code>&lt;*&gt;</code>的含义)<br><a href="https://robots.thoughtbot.com/introduction-to-function-currying-in-swift" target="_blank" rel="external">Introduction to Function Currying in Swift</a><br><a href="https://robots.thoughtbot.com/parsing-embedded-json-and-arrays-in-swift" target="_blank" rel="external">Parsing Embedded JSON and Arrays in Swift</a><br><a href="/Efficient JSON in Swift with Functional Concepts and Generics">Efficient JSON in Swift with Functional Concepts and Generics</a><br><a href="http://www.cocoachina.com/ios/20140921/9703.html" target="_blank" rel="external">使用 Swift 解析 JSON</a>  </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/29/swiftjson/" data-id="cijnyi374000htvyoe2lsoufj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json-model/">json model</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS-CoreAnimation-04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/28/iOS-CoreAnimation-04/" class="article-date">
+  <time datetime="2015-11-28T03:41:08.000Z" itemprop="datePublished">2015-11-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: iOS CoreAnimation(四)之CAPropertyAnimation<br>date: 2015-11-04 14:31:26<br>categories: CoreAnimation </p>
+<h2 id="tags_3A_Basic_KeyFrame"><a href="#tags_3A_Basic_KeyFrame" class="headerlink" title="tags: Basic KeyFrame"></a>tags: Basic KeyFrame</h2><p><code>CAPropertyAnimation</code>作为属性动画的基类,并不能直接使用.通常我们操作的是它的两个子类<code>CABasicAnimation</code>和<code>CAKeyframeAnimation</code>.    </p>
+<h3 id="CABasicAnimation"><a href="#CABasicAnimation" class="headerlink" title="CABasicAnimation"></a><font color="#ce1f48">CABasicAnimation</font></h3><ul>
+<li>基础动画,通过属性修改进行动画参数控制,只有初始状态和结束状态。它只有3个属性:<code>fromValue</code> <code>toValue</code> <code>ByValue</code>,其他全是继承的(参考上一篇).对于它这3个属性可以参考:<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CABasicAnimation_class/index.html#//apple_ref/doc/uid/TP40004496-CH1-SW4" target="_blank" rel="external">官方文档</a>  <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从<span class="built_in">from</span>到<span class="built_in">to</span></span><br><span class="line">Both fromValue <span class="operator">and</span> toValue are non-nil. Interpolates between fromValue <span class="operator">and</span> toValue.<span class="comment"></span><br><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从from到from+by(可见byValue是相对值概念)</span></span><br><span class="line">fromValue <span class="operator">and</span> byValue are non-nil. Interpolates between fromValue <span class="operator">and</span> (fromValue + byValue).<span class="comment"></span><br><span class="line">// 剩下的大致相同...就不多解释了</span></span><br><span class="line">byValue <span class="operator">and</span> toValue are non-nil. Interpolates between (toValue - byValue) <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">fromValue is non-nil. Interpolates between fromValue <span class="operator">and</span> <span class="operator">the</span> current presentation <span class="built_in">value</span> <span class="operator">of</span> <span class="operator">the</span> property.</span><br><span class="line"></span><br><span class="line">toValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">byValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> that <span class="built_in">value</span> plus byValue.</span><br><span class="line"></span><br><span class="line">All properties are nil. Interpolates between <span class="operator">the</span> previous <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer.</span><br><span class="line">```  </span><br><span class="line">+ 使用`animationWithKeyPath:`方法进行实例化，并指定Layer(后面篇幅解释)的属性作为keyPath(关键路径)来注册.  </span><br><span class="line">&lt;font color=<span class="string">"red"</span>&gt;对于这个`keyPath`,[Core Animation Programming Guide](<span class="keyword">https</span>://developer.apple.com/library/prerelease/tvos/documentation/Cocoa/Conceptual/CoreAnimation_guide/Key-ValueCodingExtensions/Key-ValueCodingExtensions.html)中给出了一些常见的,你还可以写入path(xxx.fromValue = yyy.CGPath xxx.toValue = yyy.CGPath),layer的属性以及其子类的比如:strokeStart,locations(CAGradientLayer)...&lt;/font&gt;    </span><br><span class="line">&lt;!<span class="comment">--more--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>rotation.x Set to an NSNumber object whose value is the rotation, in radians, in the x axis.<br>rotation.y Set to an NSNumber object whose value is the rotation, in radians, in the y axis.<br>rotation.z Set to an NSNumber object whose value is the rotation, in radians, in the z axis.<br>rotation Set to an NSNumber object whose value is the rotation, in radians, in the z axis. This field is identical to setting the rotation.z field.<br>scale.x Set to an NSNumber object whose value is the scale factor for the x axis.<br>scale.y Set to an NSNumber object whose value is the scale factor for the y axis.<br>scale.z Set to an NSNumber object whose value is the scale factor for the z axis.<br>scale Set to an NSNumber object whose value is the average of all three scale factors.<br>translation.x Set to an NSNumber object whose value is the translation factor along the x axis.<br>translation.y Set to an NSNumber object whose value is the translation factor along the y axis.<br>translation.z Set to an NSNumber object whose value is the translation factor along the z axis.<br>translation Set to an NSValue object containing an NSSize or CGSize data type. That data type indicates the amount to translate in the x and y axis<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对比这些keyPath不难发现,等价于第一章中<span class="type">UIView</span>封装的<span class="keyword">block</span>动画,不过要配以下方法:</span><br></pre></td></tr></table></figure></p>
+<p>public func CGAffineTransformMakeTranslation(tx: CGFloat, _ ty: CGFloat) -&gt; CGAffineTransform</p>
+<p>/<em> Return a transform which scales by `(sx, sy)’:<br>     t’ = [ sx 0 0 sy 0 0 ] </em>/</p>
+<p>public func CGAffineTransformMakeScale(sx: CGFloat, _ sy: CGFloat) -&gt; CGAffineTransform</p>
+<p>/<em> Return a transform which rotates by `angle’ radians:<br>     t’ = [ cos(angle) sin(angle) -sin(angle) cos(angle) 0 0 ] </em>/</p>
+<p>public func CGAffineTransformMakeRotation(angle: CGFloat) -&gt; CGAffineTransform</p>
+<p>/<em> Return true if `t’ is the identity transform, false otherwise. </em>/</p>
+<p>public func CGAffineTransformIsIdentity(t: CGAffineTransform) -&gt; Bool</p>
+<p>/<em> Translate <code>t&#39; by</code>(tx, ty)’ and return the result:<br>     t’ = [ 1 0 0 1 tx ty ] </em> t */</p>
+<p>public func CGAffineTransformTranslate(t: CGAffineTransform, <em> tx: CGFloat, </em> ty: CGFloat) -&gt; CGAffineTransform</p>
+<p>/<em> Scale <code>t&#39; by</code>(sx, sy)’ and return the result:<br>     t’ = [ sx 0 0 sy 0 0 ] </em> t */</p>
+<p>public func CGAffineTransformScale(t: CGAffineTransform, <em> sx: CGFloat, </em> sy: CGFloat) -&gt; CGAffineTransform</p>
+<p>/<em> Rotate <code>t&#39; by</code>angle’ radians and return the result:<br>     t’ =  [ cos(angle) sin(angle) -sin(angle) cos(angle) 0 0 ] </em> t */</p>
+<p>public func CGAffineTransformRotate(t: CGAffineTransform, _ angle: CGFloat) -&gt; CGAffineTransform<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="escape">`t</span>ranslation<span class="escape">`对</span>应<span class="escape">`平</span>行移动<span class="escape">`;</span><span class="escape">`s</span>cale<span class="escape">`对</span>应<span class="escape">`缩</span>放<span class="escape">`;</span><span class="escape">`r</span>otation<span class="escape">`对</span>应<span class="escape">`旋</span>转<span class="escape">`.</span>  </span><br><span class="line">&lt;font color=<span class="string">"#ce1f48"</span>&gt;至于<span class="escape">`C</span>GAffineTransformMakeTranslation<span class="escape">`和</span><span class="escape">`C</span>GAffineTransformTranslate<span class="escape">`的</span>区别:前者每次都是以最初位置的中心点为起始参照,每次都是以传入的transform为起始参照&lt;/font&gt;    </span><br><span class="line">**&lt;font color=<span class="string">"orange"</span>&gt;举个栗子&lt;/font&gt;**</span><br></pre></td></tr></table></figure></p>
+<pre><code>// 1.keyPath-translation
+let basicAnimation = CABasicAnimation(keyPath: &quot;transform.translation.x&quot;)
+basicAnimation.toValue = 200
+basicAnimation.duration = 2.0
+basicAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+basicAnimation.removedOnCompletion = false
+basicAnimation.fillMode = kCAFillModeForwards
+redView.layer.addAnimation(basicAnimation, forKey: nil)
+// 1.block
+UIView.animateWithDuration(2.0) { () -&gt; Void in
+    self.blueView.transform = CGAffineTransformMakeTranslation(200.0, 0.0)
+}
+
+// 2.keyPath-rotation
+let rotateAnimation = CABasicAnimation(keyPath: &quot;transform.rotation.y&quot;)// 绕y轴旋转
+rotateAnimation.duration = 5.0
+rotateAnimation.fromValue = 0.0
+rotateAnimation.toValue = M_PI
+redView.layer.addAnimation(rotateAnimation, forKey: nil)
+// 2.block
+UIView.animateWithDuration(5.0) { () -&gt; Void in
+    // 必须用带3D的方法,这样处于立体坐标系
+    self.blueView.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 0.0, -1.0, 0.0)
+    //CGAffineTransformMakeRotation(CGFloat(M_PI)) 平面旋转
+}
+
+// 3.keyPath-scale
+let scaleAnimation = CABasicAnimation(keyPath: &quot;transform.scale&quot;)
+scaleAnimation.duration = 1.0
+scaleAnimation.autoreverses = true
+scaleAnimation.fromValue = 1.0
+scaleAnimation.toValue = 2.0
+redView.layer.addAnimation(scaleAnimation, forKey: nil)
+// 3.block
+UIView.animateWithDuration(1.0, animations: { () -&gt; Void in
+    self.blueView.transform = CGAffineTransformMakeScale(2.0, 2.0)
+    }) { (_) -&gt; Void in
+        UIView.animateWithDuration(1.0, animations: { () -&gt; Void in
+            self.blueView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+        })
+}
+</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span></span><span class="code">`CGAffineTransform是作用于View的主要为2D变换，而CATransform3D主要作用于Layer，为3D变换使用`</span><span class="xml"><span class="tag">&lt;/<span class="title">font</span>&gt;</span></span></span><br><span class="line">如图可见,是等价的,不过blcok形式虽然方便,功能却没keyPath形式强大,如果你操作复杂动画,还是用第一种方式比较好!    </span><br><span class="line">![<span class="link_label"></span>](<span class="link_url">http://7qn7zn.com1.z0.glb.clouddn.com/move_x.gif</span>)![<span class="link_label"></span>](<span class="link_url">http://7qn7zn.com1.z0.glb.clouddn.com/rotate_y.gif</span>)![](http://7qn7zn.com1.z0.glb.clouddn.com/scale.gif)  </span><br><span class="line">  </span><br><span class="line">这里提一下<span class="code">`CAAnimationGroup`</span>,它只有一个属性<span class="code">`public var animations: [CAAnimation]?`</span>,意思已经非常明了了,如果你想同时旋转+移动+缩放,就把上面3个animation放到这个数组中就可以了,就不加篇幅去具体介绍了...  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="header">### &lt;font color="#ce1f48"&gt;CAKeyframeAnimation&lt;/font&gt;  </span></span><br><span class="line">CABasicAnimation算是CAKeyFrameAnimation的特殊情况，即不考虑中间变换过程，只考虑起始点与目标点就可以了。而CAKeyFrameAnimation则更复杂一些，允许我们在起点与终点间自定义更多内容来达到我们的实际应用需求.最常见的就是虾米音乐点击音乐抛出一个🎵和淘宝点击一个物品自动抛入到购物车等(当初觉得好叼..知道真相的我眼泪掉下来).KeyFrame的意思是关键帧,举栗子可以理解为北斗七星之间连线,一共8个帧(指连成循环,第七星又连回第一星),改变每一帧对应状态,这样就不是单一的直线运动.  </span><br><span class="line">它的一些重要属性:  </span><br><span class="line"><span class="code">`values`</span>:存放整个动画过程中的关键帧点的数组,也就是动画路径    </span><br><span class="line"><span class="code">`path`</span>:同样是用于指定整个动画所经过的路径的,需要注意的是,values与path是互斥的,当values与path同时指定时,path会覆盖values,即values属性将被忽略(CGPath类型,可以去研究下CoreGraphics)  </span><br><span class="line"><span class="code">`keyTimes`</span>:动画时间数组,存放的是每一帧对应的时间,你没有显式地对keyTimes进行设置,则系统会默认每条子路径的时间为：ti=duration/(5-1)，即每条子路径的duration相等，都为duration的1\4.[0,0.1,0.5,1]对应的就是1-&gt;2:0.1 2-&gt;3:0.4 3-&gt;4:0.5  </span><br><span class="line"><span class="code">`timingFunctions`</span>:老熟人了,参见前面文章  </span><br><span class="line"><span class="code">`calculationMode`</span>:来设定关键帧中间的值是怎么被计算的(不太懂,参考下:[<span class="link_label">这里</span>](<span class="link_url">http://blog.csdn.net/smking/article/details/8424851</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>kCAAnimationLinear // 默认值,表示当关键帧为座标点的时候,关键帧之间直接直线相连进行插值计算;
+kCAAnimationDiscrete // 离散的,就是不进行插值计算,所有关键帧直接逐个进行显示;
+kCAAnimationPaced // 使得动画均匀进行,而不是按keyTimes设置的或者按关键帧平分时间,此时keyTimes和timingFunctions无效;
+kCAAnimationCubic // 对关键帧为座标点的关键帧进行圆滑曲线相连后插值计算,对于曲线的形状还可以通过tensionValues,continuityValues,biasValues来进行调整自定义,这里的数学原理是Kochanek–Bartels spline,这里的主要目的是使得运行的轨迹变得圆滑;
+kCAAnimationCubicPaced // 看这个名字就知道和kCAAnimationCubic有一定联系,其实就是在kCAAnimationCubic的基础上使得动画运行变得均匀,就是系统时间内运动的距离相同,此时keyTimes以及timingFunctions也是无效的.
+</code></pre><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">`rotationMode`:Possible values are <span class="keyword">*</span>auto<span class="keyword">*</span> and <span class="keyword">*</span>autoReverse<span class="keyword">*</span>. Defaults to nil.我是这样理解,飞机按路径飞行(方向从左往右),如果你不设置rotationMode,那么飞机只会是永远和X轴平行,反之设置了,那么飞机头就会随路径变化而变化  </span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;font color="orange"&gt;</span>再举个栗子<span class="variable">&lt;/font&gt;</span><span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+<pre><code>let animationTest = CAKeyframeAnimation(keyPath: &quot;position&quot;)
+let pathTest = CGPathCreateMutable()
+CGPathMoveToPoint(pathTest, nil, 20, 20)
+CGPathAddCurveToPoint(pathTest, nil, 160, 30, 220, 220, 240, 380) // 贝塞尔曲线,起始点+控制点
+animationTest.path = pathTest
+animationTest.duration = 10.0
+animationTest.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+animationTest.rotationMode = &quot;auto&quot;
+redView.layer.addAnimation(animationTest, forKey: nil)
+</code></pre><p><code>``  
+两种结果来说明</code>rotationMode<code>的效果.第一张为</code>auto`,第二张默认为nil<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/keyframe_auto.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/keyframe_no_auto.gif" alt=""><br>更多的动画效果就不一一展示了,大家去随便试验玩起来吧.  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/28/iOS-CoreAnimation-04/" data-id="cijnyi37n0019tvyocrfhkexk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-facebookpop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/26/facebookpop/" class="article-date">
+  <time datetime="2015-11-26T03:14:23.000Z" itemprop="datePublished">2015-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Animation/">Animation</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u5951_u673A"><a href="#u5951_u673A" class="headerlink" title="契机"></a><font color="IndianRed">契机</font></h3><p>项目最近加了个需求,统计所得收益的金额(LZ做的app金融属性很强)要像余额宝一样带跳动效果.网上找到篇文章可以实现<a href="http://www.tuicool.com/articles/uARRrq" target="_blank" rel="external">这里</a>,不过感觉很麻烦,再查了一下说<a href="https://github.com/facebook/pop" target="_blank" rel="external">POP</a>可以实现,顺便来介绍下,虽然已经出来很久了…so-&gt;上Demo<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">        let numberJumpAnimation = POPBasicAnimation()</span><br><span class="line">        numberJumpAnimation.fromValue = <span class="number">0</span></span><br><span class="line">        numberJumpAnimation.toValue = <span class="number">267493.32</span></span><br><span class="line">        numberJumpAnimation.duration = <span class="number">2.0</span></span><br><span class="line"><span class="label">        numberLabel.pop_addAnimation(numberJumpAnimation, forKey:</span> <span class="string">"numberJumpAnimation"</span>)</span><br><span class="line">        </span><br><span class="line">        let prop = POPMutableAnimatableProperty()</span><br><span class="line">        prop.name = <span class="string">"jump number"</span></span><br><span class="line"><span class="label">        prop.writeBlock = &#123; (obj:AnyObject!,values:</span>UnsafePointer&lt;CGFloat&gt;) -&gt; Void in</span><br><span class="line">            let label = obj as! UILabel</span><br><span class="line">            label.text = String(round(values[<span class="number">0</span>]*<span class="number">100</span>)/<span class="number">100</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        prop.threshold = <span class="number">0.01</span><span class="comment">;</span></span><br><span class="line">        numberJumpAnimation.property = prop</span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"><span class="label">效果如下:</span>  </span><br><span class="line"><span class="label">&lt;center&gt;![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/numberjump.gif)&lt;/center&gt;    </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">### &lt;font color=<span class="string">"IndianRed"</span>&gt;Facebook出品 必属精品&lt;/font&gt;  </span><br><span class="line"><span class="escape">`F</span>acebook POP<span class="escape">`是</span>基于<span class="escape">`C</span>ADisplayLink<span class="escape">`实</span>现的独立于Core Animation之外的动画引擎.<span class="escape">`P</span>OP<span class="escape">`在</span>使用上和Core Animation很相似,都涉及Animation对象以及Animation的载体的概念,&lt;font color=<span class="string">"#ce1f48"</span>&gt;不同的是Core Animation的载体只能是<span class="escape">`C</span>ALayer<span class="escape">`,</span>而<span class="escape">`P</span>OP<span class="escape">` </span>可以是任意基于<span class="escape">`N</span>SObject<span class="escape">`的</span>对象.&lt;/font&gt;  </span><br><span class="line"><span class="escape">`P</span>OP<span class="escape">`支</span>持<span class="number">4</span>种类型:</span><br></pre></td></tr></table></figure></p>
+<p>POPBasicAnimation<br>POPSpringAnimation<br>POPDecayAnimation<br>POPCustomAnimation<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></span><br><span class="line">PS:对于<span class="code">`CADisplayLink`</span>,LZ也不了解,搜了几遍文章附上链接,有兴趣的可以去看看  </span><br><span class="line"> + [<span class="link_label">CADisplayLink</span>](<span class="link_url">http://www.jianshu.com/p/c35a81c3b9eb</span>)  </span><br><span class="line"> + [<span class="link_label">使用CADisplayLink实现果冻效果动画</span>](<span class="link_url">http://www.cocoachina.com/ios/20150320/11382.html</span>)  </span><br><span class="line"> + [<span class="link_label">CADisplayLink结合UIBezierPath的神奇妙用</span>](<span class="link_url">http://kittenyang.com/cadisplaylinkanduibezierpath/</span>)  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="header">### &lt;font color="IndianRed"&gt;POPBasicAnimation&lt;/font&gt;  </span></span><br><span class="line">基本动画,接口方面和<span class="code">`CABasicAniamtion`</span>很相似，有<span class="code">`fromValue toValue duration timingFunction`</span>等属性..(也可以参照我[<span class="link_label">前面的文章</span>](<span class="link_url">http://www.hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/</span>),详细介绍了<span class="code">`timingFunction`</span>)  </span><br><span class="line"><span class="strong">**&lt;font color="orange"&gt;举个栗子&lt;/font&gt;**</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>let moveYAnimation = POPBasicAnimation(propertyNamed: kPOPLayerPositionY)
+moveYAnimation.toValue = 500
+moveYAnimation.duration = 3.0
+// 先慢-&gt;快-&gt;再慢
+moveYAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+numberLabel.pop_addAnimation(moveYAnimation, forKey: &quot;MovePositionY&quot;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">效果如下:</span>  </span><br><span class="line"><span class="label">&lt;center&gt;![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/basePop.gif)&lt;/center&gt;  </span><br><span class="line">对于参数<span class="escape">`p</span>ropertyNamed<span class="escape">`,</span>可以参照<span class="escape">`P</span>OPAnimatableProperty.h<span class="escape">`文</span>件,都是<span class="escape">`P</span>OP<span class="escape">`默</span>认支持属性的动画</span><br></pre></td></tr></table></figure>
+<p>// Common CALayer property names.</p>
+<p>extern NSString <em> const kPOPLayerBackgroundColor;<br>extern NSString </em> const kPOPLayerBounds;<br>extern NSString <em> const kPOPLayerCornerRadius;<br>extern NSString </em> const kPOPLayerBorderWidth;<br>extern NSString <em> const kPOPLayerBorderColor;<br>extern NSString </em> const kPOPLayerOpacity;<br>extern NSString <em> const kPOPLayerPosition;<br>extern NSString </em> const kPOPLayerPositionX;<br>extern NSString * const kPOPLayerPositionY;<br>//………..太多了,不一一列举  ……………//<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"IndianRed"</span>&gt;POPSpringAnimation&lt;/font&gt;  </span></span><br><span class="line">弹簧动画,iOS7后系统也出了个`public class <span class="function"><span class="keyword">func</span> <span class="title">animateWithDuration</span><span class="params">(duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIViewAnimationOptions, animations: ()</span> -&gt; <span class="title">Void</span>, <span class="title">completion</span>: <span class="params">((Bool)</span> -&gt; <span class="title">Void</span>)?)`.我最初了解到`<span class="title">POP</span>`就是因为它能很好很方便的实现弹簧动画.先来看下一它专属的几个属性:  </span></span><br><span class="line">&lt;font color=<span class="string">"red"</span>&gt;PS:POPSpringAnimation是没有`duration`字段的,动画持续时间由以下几个参数决定&lt;/font&gt;</span><br></pre></td></tr></table></figure></p>
+<p>CGFloat springBounciness;// 弹簧弹力,值越大震动幅度越大 范围为[0, 20]，默认值为4<br>CGFloat springSpeed;// 弹簧速度,速度越快动画时间越短 范围为[0, 20]，默认为12<br>//  上面两个属性一起决定着弹簧动画的效果<br>CGFloat dynamicsTension;// 弹簧的张力<br>CGFloat dynamicsFriction;// 弹簧的摩擦力<br>CGFloat dynamicsMass;// 弹簧的质量<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;font color="orange"&gt;</span>举个栗子<span class="variable">&lt;/font&gt;</span><span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>let springAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+springAnimation.toValue = 500
+springAnimation.springBounciness = 16
+springAnimation.springSpeed = 1
+numberLabel.pop_addAnimation(springAnimation, forKey: &quot;springAnimation&quot;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">效果如下:</span>  </span><br><span class="line"><span class="label">&lt;center&gt;![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/SpingPop.gif)&lt;/center&gt;  </span><br><span class="line">更多栗子就不举了...    </span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">### &lt;font color=<span class="string">"IndianRed"</span>&gt;POPDecayAnimation&lt;/font&gt;  </span><br><span class="line">我称它为滑动衰减动画.UIKit中最常见这种状态的就是<span class="escape">`U</span>IScrollView<span class="escape">`了</span>.对<span class="escape">`P</span>OPDecayAnimation<span class="escape">`设</span>置toValue是没有意义的 会被忽略,因为目的状态是动态计算得到的,&lt;font color=<span class="string">"red"</span>&gt;它也是没有<span class="escape">`d</span>uration<span class="escape">`字</span>段的 其动画持续时间由<span class="escape">`v</span>elocity与deceleration<span class="escape">`决</span>定&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<p>velocity // 速率,必须和你操作的属性有相同的结构<br>deceleration // 衰减系数(负加速度),越小则衰减得越快,默认是0.998,一般不去修改<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;font color="orange"&gt;</span>举个栗子<span class="variable">&lt;/font&gt;</span><span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>有种刹车的感觉
+let decayAnimation = POPDecayAnimation(propertyNamed: kPOPLayerPositionY)
+decayAnimation.velocity = 3600
+decayAnimation.deceleration = 0.998
+numberLabel.pop_addAnimation(decayAnimation, forKey: &quot;decayAnimation&quot;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line">### &lt;font color=<span class="string">"IndianRed"</span>&gt;POPCustomAnimation&lt;/font&gt;  </span><br><span class="line">自定义动画,我们开头举的例子就是属于这一类.主要是通过<span class="escape">`P</span>OPAnimatableProperty<span class="escape">`定</span>义属性,然后设定<span class="escape">`r</span>eadBlock<span class="escape">`和</span><span class="escape">`w</span>riteBlock<span class="escape">`.</span>  </span><br><span class="line"><span class="label">针对文章开头例子分析:</span></span><br></pre></td></tr></table></figure>
+<p>readBlock // 当前的属性值<br>writeBlock // 修改变化后的属性值<br>threashold // 值越大writeBlock的调用次数越少,默认不去设定<br><code>`` </code>obj<code>就是我们的Label,</code>values<code>这个是动画作用的属性数组,这里我们只需要操作Label上显示的文字，所以只需要一个参数为</code>values[0]<code>,如果是多个比如CGRectMake(x,x,x,x),则是</code>values[0] values[1] values[2] values[3]<code>了.  
+是不是非常的简单!</code>PNChat<code>里面使用的是一个</code>UICountingLabel`的第三方,也能实现这个效果.<br>更多的自定义动画就等大家去探讨了,LZ工作过程中有新的动画也会继续加进来  </p>
+<h3 id="u53C2_u8003_u94FE_u63A5"><a href="#u53C2_u8003_u94FE_u63A5" class="headerlink" title="参考链接"></a><font color="IndianRed">参考链接</font></h3><blockquote>
+<p><a href="https://github.com/facebook/pop" target="_blank" rel="external">pop</a><br><a href="https://www.youtube.com/watch?v=gmNhs052nfY" target="_blank" rel="external">pop_youtube</a>(请自备梯子)<br><a href="http://www.cocoachina.com/ios/20140704/9034.html" target="_blank" rel="external">Facebook POP 进阶指南</a><br><a href="http://www.cocoachina.com/industry/20140527/8565.html" target="_blank" rel="external">Facebook Pop 使用指南</a>  </p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/26/facebookpop/" data-id="cijnyi37v001ktvyo0c556q2c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pop/">pop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TheSinInSingleton" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/15/TheSinInSingleton/" class="article-date">
+  <time datetime="2015-11-15T06:59:53.000Z" itemprop="datePublished">2015-11-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>想来总结单例模式,但它可能是我们最早接触却也是随知识增长而变得最嫌弃的设计模式了.(据说去面试的时候,面试官问你用到过什么设计模式,如果你只答单例,会被鄙视)<br>看到一遍文章,讲的很不错,就拿来翻译一下(个人英语略挫,不要嫌弃…)<br>@列出单例的写法:<br>oc版<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+ (instancetype)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> once;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">id</span> sharedInstance;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;once, ^&#123;</span><br><span class="line">        sharedInstance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> sharedInstance;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line">Swift版</span><br></pre></td></tr></table></figure></p>
+<p>class SharedInstance  {<br>    private static let signleModel = SharedInstance()<br>    class var sharedInstance : SharedInstance {<br>        return signleModel<br>    }<br>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">原文:[<span class="link_label">The Sin in Singleton</span>](<span class="link_url">https://sandofsky.com/blog/singletons.html#161c:fn:1</span>)  </span><br><span class="line">再推荐一篇objc.io的文章:[<span class="link_label">避免滥用单例</span>](<span class="link_url">http://objccn.io/issue-13-2/</span>)  </span><br><span class="line">  </span><br><span class="line">单例并不是一种"反模式",但它却是一种"被滥用"的模式.它的方便性使得它很受初学者的欢迎.但它们增加了复杂性的下线,并且带来了令人抓狂的bug.  </span><br><span class="line">  </span><br><span class="line">让我们从它的正面性开始讲起.有时,你需要保持一个对象有一个且仅有一个实例来表示.比如<span class="code">`UIApplication:`</span></span><br></pre></td></tr></table></figure></p>
+<p>UIApplication.sharedApplication.applicationIconBadgeNumber = 0<br>UIApplication.sharedApplication.applicationIconBadgeNumber = 1<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这样可能能够更加说明:  </span><br><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>let firstInstance = UIApplication()<br>firstInstance.applicationIconBadgeNumber = 0</p>
+<p>let secondInstance = UIApplication()<br>secondInstance.applicationIconBadgeNumber = 1<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="escape">`f</span>irstInstance == secondInstance<span class="escape">`总</span>是返回ture吗?当更改其中一个的值,另一个的值是也会更新吗?  </span><br><span class="line">  </span><br><span class="line"><span class="label">当单例代表了一个无所不在(全局)的对象,一个永远不会被改变的对象,那么这可能是一个恰当的比喻:</span>像当前的应用程序/设备的加速度计或者你的上帝^_^.  </span><br><span class="line">  </span><br><span class="line">少数情况下,你需要在你的app共享一个服务.<span class="escape">`N</span>SNotificationCenter<span class="escape">`仅</span>仅工作在一个单一的广播在所有的边界情况下,这也是为什么	<span class="escape">`c</span>enter<span class="escape">`这</span>个词出现在它的命名中.  </span><br><span class="line">  </span><br><span class="line">但在其他情况下,不使用单例模式.  </span><br><span class="line">  </span><br><span class="line">有时我看到<span class="escape">`U</span>ser.currentUser<span class="escape">`或</span><span class="escape">`A</span>ccount.sharedAccount<span class="escape">`代</span>表当前登录的用户,我不怪你.因为它是如此方便.</span><br></pre></td></tr></table></figure></p>
+<p>class NewsFeedController:UIViewController {<br>  func didPullToRefresh(sender:AnyObject){<br>    Account.currentAccount.newsFeed.loadNewer()<br>  }<br>}<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">但<span class="keyword">*</span><span class="keyword">*</span>账户并不是单例<span class="keyword">*</span><span class="keyword">*</span>,用户可以注销账户(我理解是,你要杀死上帝吗?).很多app描述注销的体验通过一种特殊的类型账户.服务发展到同时支持多个账户.账户是不稳定的,它作为单例就是个谎言...  </span><br><span class="line">  </span><br><span class="line">但如果账户真的就是一个单例,那么就不会是问题了:</span><br></pre></td></tr></table></figure></p>
+<p>Account.currentAccount.networkAPI.validatePhoto(photo) {<br>  newPhoto, errorOrNil in<br>  guard errorOrNil == nil else { return }<br>  Account.currentAccount.networkAPI.updatePhoto(newPhoto)<br>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果那张请求的照片被缓慢的网路开了个玩笑花费了几分钟,并在这过程中用户切换了账户,会是什么情况?错误的账户得到了照片资料.  </span><br><span class="line">  </span><br><span class="line">单例是一个奇特的<span class="escape">`全</span>局变量<span class="escape">`.</span>有的时候/少数情况下,全局变量是必须的,但你应该尽量的避免它.单例是困难的,再去共享这个状态是很难很难的...</span><br></pre></td></tr></table></figure></p>
+<p>class HomeViewController:UIViewController {<br>  override func viewWillAppear(animated:Bool){<br>    super.viewWillAppear(animated)<br>    Analytics.sharedAnalytics.currentViewController = self<br>  }</p>
+<p>  func didTapLike(sender:AnyObject) {<br>    Analytics.sharedAnalytics.recordEvent(.TappedLike)<br>  }<br>}</p>
+<p>// An Alert Modal that can pop up any time<br>class IncomingMessagePrompt:UIViewController {<br>  override func viewWillAppear(animated:Bool){<br>    super.viewWillAppear(animated)<br>    Analytics.sharedAnalytics.currentViewController = self<br>  }</p>
+<p>  func didTapReply(sender:AnyObject) {<br>    Analytics.sharedAnalytics.recordEvent(.TappedReply)<br>  }<br>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">自定义容器视图控制器使得`viewWillAppear`难以预料.导航控制器自带边界手势:</span>如果你一开始利用<span class="escape">`s</span>wipe<span class="escape">`手</span>势返回,但是过程中改变了主意,取消返回手势,那么你会得到一个错误的<span class="escape">`v</span>iewWillAppear<span class="escape">`,</span>而且你打印的事件日志也是来自于错误的viewController.  </span><br><span class="line"><span class="label">这样更好:</span></span><br></pre></td></tr></table></figure></p>
+<p>func didTapReply(sender:AnyObject) {<br>  Analytics.sharedAnalytics.recordEvent(.TappedReply, fromViewController:self)<br>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">但真实的情况是你常常需要这种情况.也许你的分析团队发现了重复点击,却要求你只能记录一次.<span class="escape">`T</span>appedReply once per view controller instance.<span class="escape">`(</span>没看懂这句话...)</span><br></pre></td></tr></table></figure></p>
+<p>class IncomingMessagePrompt:UIViewController {<br>  lazy var analytics:Analytics = { Analytics(controller:self) }()<br>  func didTapReply(sender:AnyObject){<br>    analytics.recordEvent(.TappedReply)<br>  }<br>}<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在实际情况中,也许你想保持所有的分析请求在一个单一的队列去调试它们.也行单例状态是可以接受的,但请至少降低它的影响范围</span><br></pre></td></tr></table></figure></p>
+<p>Analytics(controller:self, queue:AnalyticsQueue.sharedQueue)<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">在我重构时弄出个非常有趣的<span class="string">bug:</span></span><br></pre></td></tr></table></figure></p>
+<p>class Account:NSObject {<br>  static sharedAccount = Account()<br>  var homeTimeline:Timeline()<br>  var preferences:AccountPreference<br>  init(){<br>      preferences = AccountPreference.loadFromDisk()<br>      homeTimeline = Timeline()<br>      super.init()<br>  }<br>}</p>
+<p>class Timeline:NSObject {<br>  init(){<br>    self.orderPreference = Account.sharedAccount.preferences.timelineOrder<br>    super.init()<br>  }<br>}<br><code>``  
+这段代码初始化失败,因为我们在初始化的过程中</code>Timeline`对象就去接受账户单例实例的赋值.可以想象到在更深的对象层中这种”情况”.  </p>
+<p>如果我们想要对<code>Timeline</code>做单元测试应该怎样呢?<br>如果任何一个人都可以获取明确关系的对象,那么所有的对象都会因隐藏的依赖关系变得纠结…  </p>
+<p>对于非常简单的app,你可能永远都不会遇到单例的问题.当你第一次建立app工程时,最好的做法似乎都有那么些小题大做.有人会告诉你,”你不会需要它的”.”你总是可以重构的”…  </p>
+<p>根据我的经验来看,相比第一时间把事情做对,这显然是非常难以偿还的技术债务.当你把自己限制在一个范围中,这时你的产品经理要求你迅速的改一个需求,there’s a lot of pressure to slap on just one hack.(实在是不知道怎么翻译这句话)  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/15/TheSinInSingleton/" data-id="cijnyi384001ytvyoeuw8iqe4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例/">单例</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-基于项目某处图片浏览需求引发的蛋疼" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/" class="article-date">
+  <time datetime="2015-11-11T08:32:41.000Z" itemprop="datePublished">2015-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: 基于项目某处图片浏览需求引发的XX<br>date: 2015-11-06 16:42:19<br>categories: Push/Pop/Present/Dismiss </p>
+<h2 id="tags_3A__u56FE_u7247_u6D4F_u89C8_Custom_push"><a href="#tags_3A__u56FE_u7247_u6D4F_u89C8_Custom_push" class="headerlink" title="tags: 图片浏览 Custom push"></a>tags: 图片浏览 Custom push</h2><p>一直以来都在想懂微信/新浪微博点击图片放大浏览的效果究竟是怎么样的,碰巧项目最近遇到一种类似的情况,就动手实践了下,在尝试了各种设置而出现的奇葩效果,暂时性的实现了一种还算丝滑过渡效果.<br>效果如下:最后一张是最终要的(如果有更好的实现方法,可以留言给我,强烈渴望中…)我把速度放了很慢,这样能够更清楚看清过渡过程<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_1.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_2.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_3.gif" alt=""><br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_4.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_5.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_final.gif" alt=""><br><strong><font color="red">“所以,所以,罪魁祸首就是,你拍的照片不管是竖屏还是横屏的都要在高200宽等屏幕宽的view上展示,这导致push前后UIImageView的<code>contentMode</code>样式不统一的悲剧”</font></strong><br>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/" data-id="cijnyi36z000atvyo75y2en56" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Animation/">Animation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CoreAnimation/">CoreAnimation</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Extension/">Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/">Swift</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/事件传递/">事件传递</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/第三方库/">第三方库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资料/">资料</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/About-Me/">About Me</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AutoLayout/">AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CATransition/">CATransition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Category-closure-objc-set-get/">Category closure objc_set/get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift和OC互调用/">Swift和OC互调用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Today/">Today</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hit-test/">hit-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imageView-性能优化/">imageView 性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-model/">json model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-request/">network request</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new-origin/">new origin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pop/">pop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tableview-cell/">tableview cell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基本概念/">基本概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宏-小技巧/">宏 小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略/">策略</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配-AutoLayout/">适配 AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-blog/">链接 blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/01/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/15/Moya/">Swift Moya</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

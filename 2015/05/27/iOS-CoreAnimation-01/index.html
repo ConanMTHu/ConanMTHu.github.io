@@ -1,15 +1,312 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS CoreAnimation(一)之UIKit封装的UIView动画 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Start我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于动画-Core Animation相关的知识做个梳理与总结.  
+Core Animation最大好处是可以帮助Mac或者iPhone的开发者减少代码量。因为如果你想用Core Image或者Open GL实现界面的动画特效，其实也是可以的，主要是非常麻烦。而用Core Animation可以极">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS CoreAnimation(一)之UIKit封装的UIView动画">
+<meta property="og:url" content="http://yoursite.com/2015/05/27/iOS-CoreAnimation-01/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Start我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于动画-Core Animation相关的知识做个梳理与总结.  
+Core Animation最大好处是可以帮助Mac或者iPhone的开发者减少代码量。因为如果你想用Core Image或者Open GL实现界面的动画特效，其实也是可以的，主要是非常麻烦。而用Core Animation可以极">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_0000.jpeg">
+<meta property="og:updated_time" content="2015-07-15T06:39:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS CoreAnimation(一)之UIKit封装的UIView动画">
+<meta name="twitter:description" content="Start我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于动画-Core Animation相关的知识做个梳理与总结.  
+Core Animation最大好处是可以帮助Mac或者iPhone的开发者减少代码量。因为如果你想用Core Image或者Open GL实现界面的动画特效，其实也是可以的，主要是非常麻烦。而用Core Animation可以极">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
 <body>
   <div id="container">
-    <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-    <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
-    <%- partial('_partial/after-footer') %>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS-CoreAnimation-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/27/iOS-CoreAnimation-01/" class="article-date">
+  <time datetime="2015-05-27T03:00:10.000Z" itemprop="datePublished">2015-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS CoreAnimation(一)之UIKit封装的UIView动画
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a><font color="IndianRed">Start</font></h1><p>我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于<code>动画-Core Animation</code>相关的知识做个梳理与总结.  </p>
+<p><code>Core Animation</code>最大好处是可以帮助Mac或者iPhone的开发者减少代码量。因为如果你想用Core Image或者Open GL实现界面的动画特效，其实也是可以的，主要是非常麻烦。而用Core Animation可以极大简化开发难度和减少代码量。</p>
+<p><strong>PS:只是对于基础用法和概念进行整理与说明,各种酷炫效果的Demo就靠大家自己去实现了^_^</strong>  </p>
+<p>整体的框架结构大致是:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_0000.jpeg" alt=""></p>
+<p><font color="red">第一章</font>先不介绍关键图层<code>CALayer</code>的知识,先来说说<code>UIKit</code>集成在UIView类中的动画API,在我们日常的开发中,UIKit动画API使用起来十分简单与方便,能满足大部分的基本的动画需求.(其实UIKit动画API的底层使用的也是Core Animation,有的时候在你面试的时候,面试官会问你,<code>UIView+animationBlock</code>的方式,是如何实现动画效果的)<br><a id="more"></a>  </p>
+<p><font color="IndianRed">普通形式</font><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 标记动画块开始</span></span><br><span class="line">        UIView.<span class="function"><span class="title">beginAnimations</span><span class="params">(nil, context: nil)</span></span></span><br><span class="line">        <span class="comment">// 设定动画的开始时间,默认为当前时间</span></span><br><span class="line">        <span class="comment">//UIView.setAnimationStartDate(&lt;#T##startDate: NSDate##NSDate#&gt;)</span></span><br><span class="line">        <span class="comment">// 设定动画的加速和减速方式,或者说是运动节奏...(乱翻的)</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationCurve</span><span class="params">(UIViewAnimationCurve.EaseInOut)</span></span></span><br><span class="line">        <span class="comment">// 设定动画延迟</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationDelay</span><span class="params">(<span class="number">0.5</span>)</span></span></span><br><span class="line">        <span class="comment">// 设定动画的时间长度</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationDuration</span><span class="params">(<span class="number">1.6</span>)</span></span></span><br><span class="line">        <span class="comment">// 设定动画的重复次数</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationRepeatCount</span><span class="params">(<span class="number">1</span>)</span></span></span><br><span class="line">        <span class="comment">// true设定表示动画每次重复执行的效果跟上一次相反,类似于翻转</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationRepeatAutoreverses</span><span class="params">(true)</span></span></span><br><span class="line">        <span class="comment">// 设置视图view的过渡效果,</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationTransition</span><span class="params">(UIViewAnimationTransition.CurlUp, forView: self.view, cache: true)</span></span></span><br><span class="line">        <span class="comment">// 设置代理</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationDelegate</span><span class="params">(self)</span></span></span><br><span class="line">        <span class="comment">// 动画即将开始的方法</span></span><br><span class="line">        <span class="comment">//UIView.setAnimationWillStartSelector(&lt;#T##selector: Selector##Selector#&gt;)</span></span><br><span class="line">        <span class="comment">//  动画结束后的回调方法</span></span><br><span class="line">        UIView.<span class="function"><span class="title">setAnimationDidStopSelector</span><span class="params">(Selector(<span class="string">"animationDisStop:finished:context:"</span>)</span></span>)</span><br><span class="line">        <span class="comment">// 举个栗子,交换self.view上的两个子视图</span></span><br><span class="line">        self<span class="class">.view</span><span class="class">.exchangeSubviewAtIndex</span>(<span class="number">0</span>, withSubviewAtIndex: <span class="number">1</span>)</span><br><span class="line">        <span class="comment">// 标记动画块结束</span></span><br><span class="line">        UIView.<span class="function"><span class="title">commitAnimations</span><span class="params">()</span></span></span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;Block形式&lt;/<span class="attribute">font</span>&gt;  </span><br><span class="line">`UIView.animateWithDuration`</span><br></pre></td></tr></table></figure></p>
+<pre><code>/**
+调用最多吧,也是最基本的,配合CALayer的各个属性(例:position)/仿射变换,实现各种动画
+
+:param: &lt;Tduration 动画执行时间
+:param: animations 动画执行内容,可以是透明度,移动,旋转,缩放
+:param: completion 动画执行完后执行的内容
+*/
+UIView.animateWithDuration(&lt;#T##duration: NSTimeInterval##NSTimeInterval#&gt;, animations: &lt;#T##() -&gt; Void#&gt;, completion: &lt;#T##((Bool) -&gt; Void)?##((Bool) -&gt; Void)?##(Bool) -&gt; Void#&gt;)
+/**
+延迟动画,还有一个options属性...好多
+
+:param: &lt;Tduration 动画执行时间
+:param: delay          延迟时间
+:param: options       一些动画效果的增强枚举
+:param: animations  同上
+:param: completion  同上
+*/
+UIView.animateWithDuration(&lt;#T##duration: NSTimeInterval##NSTimeInterval#&gt;, delay: &lt;#T##NSTimeInterval#&gt;, options: &lt;#T##UIViewAnimationOptions#&gt;, animations: &lt;#T##() -&gt; Void#&gt;, completion: &lt;#T##((Bool) -&gt; Void)?##((Bool) -&gt; Void)?##(Bool) -&gt; Void#&gt;)
+/**
+iOS7之后提供的弹簧化动画
+
+:param: &lt;Tduration                       动画执行时间
+:param: delay                                延迟时间
+:param: usingSpringWithDamping 弹性阻尼，随着阻尼值越来越接近0.0，动画的弹性效果会越来越明显
+:param: initialSpringVelocity         弹簧速率,弹性复位的速度
+:param: options                              一些动画效果的增强枚举
+:param: animations                         同上
+:param: completion                         同上
+*/
+UIView.animateWithDuration(&lt;#T##duration: NSTimeInterval##NSTimeInterval#&gt;, delay: &lt;#T##NSTimeInterval#&gt;, usingSpringWithDamping: &lt;#T##CGFloat#&gt;, initialSpringVelocity: &lt;#T##CGFloat#&gt;, options: &lt;#T##UIViewAnimationOptions#&gt;, animations: &lt;#T##() -&gt; Void#&gt;, completion: &lt;#T##((Bool) -&gt; Void)?##((Bool) -&gt; Void)?##(Bool) -&gt; Void#&gt;)
+</code></pre><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="autohotkey"><span class="escape">`U</span>IView.transitionWithView<span class="escape">`:</span>表示很少用</span></span><br></pre></td></tr></table></figure>
+<pre><code>/**
+:param: &lt;TfromView 要移除的view
+:param: toView     要添加的view
+:param: duration   动画执行时间
+:param: options    动画转场效果
+:param: completion 动画执行完后执行的内容
+*/
+UIView.transitionFromView(&lt;#T##fromView: UIView##UIView#&gt;, toView: &lt;#T##UIView#&gt;, duration: &lt;#T##NSTimeInterval#&gt;, options: &lt;#T##UIViewAnimationOptions#&gt;, completion: &lt;#T##((Bool) -&gt; Void)?##((Bool) -&gt; Void)?##(Bool) -&gt; Void#&gt;)
+/**
+:param: &lt;Tview     进行转场的view对象
+:param: duration   动画执行时间
+:param: options    动画转场效果
+:param: animations 动画执行内容
+:param: completion 动画执行完后执行的内容
+*/
+UIView.transitionWithView(&lt;#T##view: UIView##UIView#&gt;, duration: &lt;#T##NSTimeInterval#&gt;, options: &lt;#T##UIViewAnimationOptions#&gt;, animations: &lt;#T##() -&gt; Void#&gt;, completion: &lt;#T##((Bool) -&gt; Void)?##((Bool) -&gt; Void)?##(Bool) -&gt; Void#&gt;)
+</code></pre><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="autohotkey"><span class="escape">`U</span>IView.animateKeyframesWithDuration<span class="escape">`:</span>关键帧动画,用来消除各种<span class="escape">`U</span>IView.animateWithDuration<span class="escape">`的</span>嵌套</span></span><br></pre></td></tr></table></figure>
+<pre><code>// options这个参数我已经不想看了,不知道apple为什么不用UIViewAnimationOptions
+// 动画时间持续6.0秒
+UIView.animateKeyframesWithDuration(6.0, delay: 0.0, options: UIViewKeyframeAnimationOptions.CalculationModeLinear, animations: { () -&gt; Void in
+    // 第一帧,从0.0开始,持续2.0秒
+    UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 2.0, animations: { () -&gt; Void in
+        // 要执行的动画
+    })
+    // 第二帧,从2.0开始,持续2.0秒
+    UIView.addKeyframeWithRelativeStartTime(2.0, relativeDuration: 2.0, animations: { () -&gt; Void in
+        // 要执行的动画
+    })
+    // 第三帧,从4.0开始,持续2.0秒
+    UIView.addKeyframeWithRelativeStartTime(4.0, relativeDuration: 2.0, animations: { () -&gt; Void in
+        // 要执行的动画
+    })
+    }) { (_) -&gt; Void in
+        // 动画执行完之后执行的内容
+}
+</code></pre><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;N多种类的枚举&lt;/<span class="attribute">font</span>&gt;</span><br><span class="line">`UIViewAnimationCurve`:运动的节奏控制</span><br></pre></td></tr></table></figure>
+<p>// 由慢到快<br>UIViewAnimationCurve.EaseInOut<br>// 由慢到特别快<br>UIViewAnimationCurve.EaseIn<br>// 由快到慢<br>UIViewAnimationCurve.EaseOut<br>//匀速,默认<br>UIViewAnimationCurve.Linear<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="escape">`U</span>IViewAnimationTransition<span class="escape">`:</span>视图view的过渡效果</span><br></pre></td></tr></table></figure></p>
+<p>// 从左向右翻转,用新视图代替旧视图<br>UIViewAnimationTransition.FlipFromLeft<br>// 从右向左翻转,隐藏旧视图,显示新视图<br>UIViewAnimationTransition.FlipFromRight<br>// 类似翻页…<br>UIViewAnimationTransition.CurlUp<br>// 新视图从上向下盖住旧视图<br>UIViewAnimationTransition.CurlDown<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="escape">`U</span>IViewAnimationOptions<span class="escape">`:</span>当前动画嵌套中的动画执行随时间的快慢种类（先快后慢等..）。动画要一直重复吗。如果我使用转场动画那么我用哪种转场效果。还有子动画嵌套在父动画中时我们如何对待父动画中的相同选项等等..</span><br></pre></td></tr></table></figure></p>
+<p>// 提交动画的时候布局子控件，表示子控件将和父控件一同动画。<br>UIViewAnimationOption.LayoutSubviews<br>// 动画时允许用户交流，比如触摸<br>UIViewAnimationOption.AllowUserInteraction<br>// 从当前状态开始动画<br>UIViewAnimationOption.BeginFromCurrentState<br>// 动画无限重复<br>UIViewAnimationOption.Repeat<br>// 执行动画回路,前提是设置动画无限重复<br>UIViewAnimationOption.Autoreverse<br>// 忽略外层动画嵌套的执行时间<br>UIViewAnimationOption.OverrideInheritedDuration<br>// 忽略外层动画嵌套的时间变化曲线<br>UIViewAnimationOption.OverrideInheritedCurve<br>// 通过改变属性和重绘实现动画效果，如果key没有提交动画将使用快照<br>UIViewAnimationOption.AllowAnimatedContent<br>// 用显隐的方式替代添加移除图层的动画效果<br>UIViewAnimationOption.ShowHideTransitionViews<br>// 忽略嵌套继承的选项<br>UIViewAnimationOption.OverrideInheritedOptions<br>// 慢-&gt;快-&gt;慢<br>UIViewAnimationOption.CurveEaseInOut<br>// 慢-&gt;快<br>UIViewAnimationOption.CurveEaseIn<br>// 快-&gt;慢<br>UIViewAnimationOption.CurveEaseOut<br>// 匀速<br>UIViewAnimationOption.CurveLinear<br>// 无转场动画<br>UIViewAnimationOption.TransitionNone<br>// 转场从左翻转<br>UIViewAnimationOption.TransitionFlipFromLeft<br>// 转场从右翻转<br>UIViewAnimationOption.TransitionFlipFromRight<br>// 上卷转场<br>UIViewAnimationOption.TransitionCurlUp<br>// 下卷转场<br>UIViewAnimationOption.TransitionCurlDown<br>// 转场交叉消失<br>UIViewAnimationOption.TransitionCrossDissolve<br>// 转场从上翻转<br>UIViewAnimationOption.TransitionFlipFromTop<br>// 转场从下翻转<br>UIViewAnimationOption.TransitionFlipFromBottom<br>```  </p>
+<p><font color="IndianRed">End</font><br>栗子LZ在这里就不举了,实在是太多了…<br>推荐一些资料:  </p>
+<blockquote>
+<p><a href="http://zsisme.gitbooks.io/ios-/content/index.html" target="_blank" rel="external">iOS Core Animation: Advanced Techniques</a><br><a href="/">iOS Animations by Tutorials</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/05/27/iOS-CoreAnimation-01/" data-id="cijnyi37r001ftvyouvsi2c3q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/29/iOS-CoreAnimation-02/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS CoreAnimation(二)之CATransition
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/25/iOS-hitTest/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS hitTest-点击事件分发分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Animation/">Animation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CoreAnimation/">CoreAnimation</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Extension/">Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/">Swift</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/事件传递/">事件传递</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/第三方库/">第三方库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资料/">资料</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/About-Me/">About Me</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AutoLayout/">AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CATransition/">CATransition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Category-closure-objc-set-get/">Category closure objc_set/get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift和OC互调用/">Swift和OC互调用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Today/">Today</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hit-test/">hit-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imageView-性能优化/">imageView 性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-model/">json model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-request/">network request</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new-origin/">new origin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pop/">pop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tableview-cell/">tableview cell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基本概念/">基本概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宏-小技巧/">宏 小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略/">策略</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配-AutoLayout/">适配 AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-blog/">链接 blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/01/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/15/Moya/">Swift Moya</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

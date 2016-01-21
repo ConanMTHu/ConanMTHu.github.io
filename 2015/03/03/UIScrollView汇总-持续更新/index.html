@@ -1,15 +1,228 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: UIScrollView汇总(持续更新)date: 2014-12-12 15:47:19categories: UI
+tags: UIScrollViewUIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2015/03/03/UIScrollView汇总-持续更新/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: UIScrollView汇总(持续更新)date: 2014-12-12 15:47:19categories: UI
+tags: UIScrollViewUIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
+<meta property="og:image" content="http://hmtphoto.qiniudn.com/UIScrollView.png">
+<meta property="og:updated_time" content="2015-04-14T07:08:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="title: UIScrollView汇总(持续更新)date: 2014-12-12 15:47:19categories: UI
+tags: UIScrollViewUIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
 <body>
   <div id="container">
-    <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-    <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
-    <%- partial('_partial/after-footer') %>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-UIScrollView汇总-持续更新" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/03/UIScrollView汇总-持续更新/" class="article-date">
+  <time datetime="2015-03-03T02:20:41.000Z" itemprop="datePublished">2015-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: UIScrollView汇总(持续更新)<br>date: 2014-12-12 15:47:19<br>categories: UI</p>
+<h2 id="tags_3A_UIScrollView"><a href="#tags_3A_UIScrollView" class="headerlink" title="tags: UIScrollView"></a>tags: UIScrollView</h2><p><code>UIScrollView</code>是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)<br><img src="http://hmtphoto.qiniudn.com/UIScrollView.png" alt=""><br><a id="more"></a>  </p>
+<h3 id="u57FA_u672C_u7528_u6CD5"><a href="#u57FA_u672C_u7528_u6CD5" class="headerlink" title="基本用法"></a><font color="IndianRed">基本用法</font></h3><p><a href="http://blog.csdn.net/hmt20130412/article/details/21546551" target="_blank" rel="external">可直接参考我CSDN的博文(我就不搬过来了)</a>  </p>
+<h3 id="u6211_u9047_u5230_u7684_u95EE_u9898"><a href="#u6211_u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="我遇到的问题"></a><font color="IndianRed">我遇到的问题</font></h3><ul>
+<li>某种情况下,在<code>UIScrollView</code>上添加子控件,尤其是VC,<code>UIScrollView</code>的<code>contentSize</code>被归于0  </li>
+<li>最近一个项目,<code>UIScrollView</code>上放了5个VC(类似网易新闻),VC上放置2个<code>UILabel</code>,再用autolayout进行约束,结果-&gt;在iOS7系统~iPhone5 iPhone6上没问题,在iOS8系统~iPhone5上没问题,却在iOS8系统~iPhone6上出现了约束错误….随后不加scrollview进行验证,没有任何问题…<br><strong>@解决@:</strong>  <pre><code>-(void)viewDidLayoutSubviews {
+        [super viewDidLayoutSubviews];
+        // 重新设置UIScrollView的代码  
+}
+</code></pre><code>viewDidLayoutSubviews</code>的作用:view已经布局其Subviews。比如view的bounds改变了(例如状态栏从不显示到显示，视图方向变化)，已经调整Subviews的位置，在调整完成之后要做的一些工作就可以在该方法中实现.  </li>
+</ul>
+<h3 id="u5176_u4ED6_u95EE_u9898"><a href="#u5176_u4ED6_u95EE_u9898" class="headerlink" title="其他问题"></a><font color="IndianRed">其他问题</font></h3><p><a href="/wing.com/cn/practice-in-uiscrollview/">UIScrollView代理方法详解以及lay load </a><br><a href="http://lijianfei.sinaapp.com/?p=215" target="_blank" rel="external">iOS8 – button在scrollView上，scrollView滑动不灵敏</a><br><a href="http://objclub.com/?p=52" target="_blank" rel="external">UIScrollView中使用AutoLayout的问题</a><br><a href="http://www.thinkcart.net/ios-uiscrollview-autolayout-408.html" target="_blank" rel="external">关于uiscrollview的autolayout自动布局的问题</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/03/UIScrollView汇总-持续更新/" data-id="cijnyi37z001ttvyooqx6k9yg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Swift AVFoundation 二维码扫描和生成
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Swift 宏替换与代码标识</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Animation/">Animation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CoreAnimation/">CoreAnimation</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Extension/">Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/">Swift</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/事件传递/">事件传递</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/第三方库/">第三方库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资料/">资料</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/About-Me/">About Me</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AutoLayout/">AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CATransition/">CATransition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Category-closure-objc-set-get/">Category closure objc_set/get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift和OC互调用/">Swift和OC互调用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Today/">Today</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hit-test/">hit-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imageView-性能优化/">imageView 性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-model/">json model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-request/">network request</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new-origin/">new origin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pop/">pop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tableview-cell/">tableview cell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基本概念/">基本概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宏-小技巧/">宏 小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略/">策略</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配-AutoLayout/">适配 AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-blog/">链接 blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/01/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/15/Moya/">Swift Moya</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

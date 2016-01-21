@@ -1,15 +1,984 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
 <body>
   <div id="container">
-    <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-    <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
-    <%- partial('_partial/after-footer') %>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-iOS-CoreAnimation-三-之CAAnimation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" class="article-date">
+  <time datetime="2015-10-30T10:00:23.000Z" itemprop="datePublished">2015-10-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: iOS CoreAnimation(三)之CAAnimation<br>date: 2015-6-03 15:39:33<br>categories: CoreAnimation </p>
+<h2 id="tags_3A_CAAnimation_CAMediaTiming"><a href="#tags_3A_CAAnimation_CAMediaTiming" class="headerlink" title="tags: CAAnimation CAMediaTiming"></a>tags: CAAnimation CAMediaTiming</h2><p>原定第三篇直接介绍<code>CAPropertyAnimation</code>的两个子类,想想还是回过头来梳理一下<font color="#ce1f48"><code>CAAnimation</code></font>这个父类,比如<code>CABasicAnimation</code>属于他自己的只有3个property,其他都是继承来的.不过就算是<code>CAAnimation</code>,它自身的property还是用的不多,像我们定义动画常常设置的时间property<code>duration</code>,<code>beginTime</code>,<code>repeatCount</code>等都在协议<font color="#ce1f48"><code>CAMediaTiming</code></font>&gt;中…  </p>
+<h3 id="CAAnimation_Property"><a href="#CAAnimation_Property" class="headerlink" title="CAAnimation Property"></a><font color="#ce1f48">CAAnimation Property</font></h3><p><code>removedOnCompletion</code>:设置是否动画完成后，动画效果从设置的layer上移除。默认为YES<br><code>timingFunction</code>:用于变化起点和终点之间的插值计算,形象点说它决定了动画运行的节奏,比如是均匀变化(相同时间变化量相同)还是先快后慢,先慢后快还是先慢再快再慢.(类似于第一章最后介绍的那些枚举)LZ数学略渣,这里引用一段话(<a href="http://geeklu.com/2012/09/animation-in-ios/" target="_blank" rel="external">http://geeklu.com/2012/09/animation-in-ios/</a>)<br><strong>时间函数是使用的一段函数来描述的,横座标是时间t取值范围是0.0-1.0,纵座标是变化量x(t)也是取值范围也是0.0-1.0 假设有一个动画,duration是8秒,变化值的起点是a终点是b(假设是透明度),那么在4秒处的值是多少呢？ 可以通过计算为 a + x(4/8) <em> (b-a), 为什么这么计算呢？讲实现的时间映射到单位值的时候4秒相对于总时间8秒就是0.5然后可以得到0.5的时候单位变化量是 x(0.5), x(0.5)/1 = 实际变化量/(b-a), 其中b-a为总变化量,所以实际变化量就是x(0.5) </em> (b-a) ,最后4秒时的值就是 a + x(0.5) * (b-a),所以计算的本质是映射.<br>Timing Function对应的类是<font color="#ce1f48"><code>CAMediaTimingFunction</code></font>,它提供了两种获得时间函数的方式,一种是使用预定义的五种时间函数,一种是通过给点两个控制点得到一个时间函数</strong><br>系统给的最熟悉的就是<code>Linear</code>了,匀速…<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kCAMediaTimingFunctionLinear, </span><br><span class="line">kCAMediaTimingFunctionEaseIn, </span><br><span class="line">kCAMediaTimingFunctionEaseOut, </span><br><span class="line">kCAMediaTimingFunctionEaseInEaseOut, </span><br><span class="line">kCAMediaTimingFunctionDefault. </span><br><span class="line">```    </span><br><span class="line">自定义的则是下面2个方法:(贝塞尔曲线什么的,不太懂...)  </span><br><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>/* Creates a timing function modelled on a cubic Bezier curve. The end
+ * points of the curve are at (0,0) and (1,1), the two points &apos;c1&apos; and
+ * &apos;c2&apos; defined by the class instance are the control points. Thus the
+ * points defining the Bezier curve are: &apos;[(0,0), c1, c2, (1,1)]&apos; */
+
+public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
+
+/* &apos;idx&apos; is a value from 0 to 3 inclusive. */
+ public func getControlPointAtIndex(idx: Int, values ptr: UnsafeMutablePointer&lt;Float&gt;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;/br&gt;  </span><br><span class="line">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;CAMediaTiming Property&lt;/font&gt;    </span><br><span class="line"><span class="escape">`d</span>uration<span class="escape">`:</span>动画持续时间(最熟悉没有之一...),默认是<span class="number">0</span>,但这不意味着动画时长为<span class="number">0</span>秒,为<span class="number">0.25</span>  </span><br><span class="line"><span class="escape">`b</span>eginTime<span class="escape">`:</span>指定动画开始时间。从开始指定延迟几秒执行的话，请设置为「CACurrentMediaTime() + 秒数」的形式.  </span><br><span class="line"><span class="escape">`t</span>imeOffset<span class="escape">`:</span>我理解为时间的偏移量,比如一个duration为<span class="number">5</span>秒的动画,将timeOffset设置为<span class="number">2</span>,那么动画的运行是<span class="number">2</span>s-&gt;<span class="number">5</span>s-&gt;<span class="number">0</span>s-&gt;<span class="number">2</span>s  </span><br><span class="line"><span class="escape">`s</span>peed<span class="escape">`:</span>时间加速..设置duration为<span class="number">3</span>秒，但是speed为<span class="number">2</span>，动画快速的执行了<span class="number">1.5</span>秒,speed越大则说明时间流逝速度越快,动画也越快  </span><br><span class="line"><span class="escape">`r</span>epeatCount<span class="escape">`:</span>代表动画重复的迭代次数,默认为<span class="number">0</span>,也并不意味为<span class="number">0</span>次,而是<span class="number">1</span>次  </span><br><span class="line"><span class="escape">`r</span>epeatDuration<span class="escape">`:</span>动画的重复时间(间隔),如果它小于动画的duration，那么动画就会提前结束  </span><br><span class="line"><span class="escape">`a</span>utoreverses(Bool)<span class="escape">`:</span>动画结束时是否执行逆动画,可以产生从初始值到最终值，并反过来回到初始值的动画,也就是这意味着动画发生了两次  </span><br><span class="line"><span class="escape">`f</span>illMode<span class="escape">`:</span>一般与<span class="escape">`r</span>emovedOnCompletion<span class="escape">`(</span>必须设置为<span class="literal">false</span>)一起用</span><br></pre></td></tr></table></figure>
+<p>kCAFillModeRemoved  // 这个是默认值,也就是说当动画开始前和动画结束后,动画对layer都没有影响,动画结束后,layer会恢复到之前的状态<br>kCAFillModeForwards // 当动画结束后,layer会一直保持着动画最后的状态<br>kCAFillModeBackwards // 这个和kCAFillModeForwards是相对的,就是在动画开始前,你只要将动画加入了一个layer,layer便立即进入动画的初始状态并等待动画开始.你可以这样设定测试代码,将一个动画加入一个layer的时候延迟5秒执行.然后就会发现在动画没有开始的时候,只要动画被加入了layer,layer便处于动画初始状态<br>kCAFillModeBoth  // 理解了上面两个,这个就很好理解了,这个其实就是上面两个的合成.动画加入后开始之前,layer便处于动画初始状态,动画结束后layer保持动画最后的状态.<br>```  </p>
+<p><strong>参考链接:</strong><br><a href="http://ronnqvi.st/controlling-animation-timing/" target="_blank" rel="external">Controlling Animation Timing</a><br><a href="https://zsisme.gitbooks.io/ios-/content/chapter9/the-cAMediaTiming-protocol.html" target="_blank" rel="external">CAMediaTiming</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" data-id="cijnyi37l0018tvyo58219jk0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发过程中的知识点总结-续" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/22/iOS开发过程中的知识点总结-续/" class="article-date">
+  <time datetime="2015-10-22T03:24:15.000Z" itemprop="datePublished">2015-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/资料/">资料</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前在做项目的时候经常会遇到一些细小的知识点,不影响做项目的大方向,但确影响了很多细小的点..比如公式转换,汉字拼音,颜色转换等等,什么都涉及…上次写的还是在<code>CSDN</code>写blog时记录的:<a href="http://blog.csdn.net/hmt20130412/article/details/23975535" target="_blank" rel="external">iOS开发 容易犯错的知识点和不错的细小知识点(持续更新)</a>,现在换地方了,就不在接着原来的写了,重开一个,依旧持续更新,持续记录.  </p>
+<h3 id="35-_u5F53_u4F60_u5411_u9879_u76EE_u4E2D_u6DFB_u52A0_u4E00_u4E2A_u6587_u4EF6_u5939_u65F6_2C_u5F80_u5F80_u4F1A_u9762_u5BF9Create_groups_u548CCreate_folder_references_u7684_u9009_u62E9"><a href="#35-_u5F53_u4F60_u5411_u9879_u76EE_u4E2D_u6DFB_u52A0_u4E00_u4E2A_u6587_u4EF6_u5939_u65F6_2C_u5F80_u5F80_u4F1A_u9762_u5BF9Create_groups_u548CCreate_folder_references_u7684_u9009_u62E9" class="headerlink" title="35.当你向项目中添加一个文件夹时,往往会面对Create groups和Create folder references的选择"></a><font color="#ce1f48">35.当你向项目中添加一个文件夹时,往往会面对<code>Create groups</code>和<code>Create folder references</code>的选择</font></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">前者Create groups <span class="keyword">for</span> any added folders  : 给任一你添加的文件创建一个组groups</span><br><span class="line">后者Create folder references <span class="keyword">for</span> any added folders  :给任一你添加的文件创建一个文件夹folder</span><br><span class="line">两的区别是：前者的文件夹是黄色的；后者的文件夹是蓝色的</span><br><span class="line">如果有一个info.h文件需要引用：前者直接导入import <span class="string">"info.h"</span>就可能使用；后者你需要import <span class="string">"文件夹名字/info.h"</span>才可能使用，否则编译时找不到文件info.h。</span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;<span class="number">36.</span>Pointer is missing a nullability type specifier (__nonnull or __nullable)的解决方法:&lt;/font&gt;    </span></span><br><span class="line">首尾加入`NS_ASSUME_NONNULL_BEGIN`和`NS_ASSUME_NONNULL_END`  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;<span class="number">37.U</span>IButton文本对齐问题&lt;/font&gt;    </span></span><br><span class="line">这里使用`button.titleLabel.textAlignment = NSTextAlignmentLeft;` 这行代码是没有效果的，这只是让标签中的文本左对齐，但</span><br><span class="line">并没有改变标签在按钮中的对齐方式。  </span><br><span class="line">所以，我们首先要使用`button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;` 这行代码，把按钮的内容（控件）</span><br><span class="line">的对齐方式修改为水平左对齐，但是这们会紧紧靠着左边，不好看...  </span><br><span class="line">所以我们还可以修改属性：`button.titleEdgeInsets = UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>);`这行代码可以让按钮的内容（控件）距离左边<span class="number">10</span>个像素，这样就OK了  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;<span class="number">38.</span>获取window的方法之前都是直接`[UIApplication sharedApplication].keyWindow;`&lt;/font&gt;    </span></span><br><span class="line">之后导入bug tags的时候提醒用比较严谨的获取方法：</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>(UIWindow <em>)lastWindow<br>{<br>  NSArray </em>windows = [UIApplication sharedApplication].windows;<br>  for(UIWindow *window in [windows reverseObjectEnumerator]) {</p>
+<pre><code>if ([window isKindOfClass:[UIWindow class]] &amp;&amp;
+    CGRectEqualToRect(window.bounds, [UIScreen mainScreen].bounds))
+
+    return window;
+</code></pre><p>  }</p>
+<p>  return [UIApplication sharedApplication].keyWindow;<br>}</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span>  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>39.如果你觉得你开启太快,那么漂亮得LaunchImage还没怎么展示就跳过了.你可以在你的第一个加载页面中添加如下代码来延长LaunchImage的显示时间<span class="tag">&lt;/<span class="title">font</span>&gt;</span>  </span><br><span class="line">`NSThread.sleepForTimeInterval(3.0)//延长3秒`  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>40.关闭键盘的自动联想和首字母大写功能<span class="tag">&lt;/<span class="title">font</span>&gt;</span>  </span><br><span class="line">`[_userNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];`  </span><br><span class="line">`[_userNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];`  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>41.设置导航栏下方不显示内容(此时导航栏无透明度)<span class="tag">&lt;/<span class="title">font</span>&gt;</span>  </span><br><span class="line">`self.extendedLayoutIncludesOpaqueBars = YES;`  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>42.监测键盘通知时,发送多次的解决情况<span class="tag">&lt;/<span class="title">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>typedef NS_ENUM(NSInteger, KeyBoardAction) {<br>    KeyBoardActionShow = 0,<br>    KeyBoardActionHide = 1<br>}</p>
+<p>self.action = 0;<br>// Do any additional setup after loading the view, typically from a nib.<br>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:UIKeyboardWillShowNotification object:nil];<br>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hide) name:UIKeyboardWillHideNotification object:nil];</p>
+<ul>
+<li><p>(void)show {<br>  // 防止按home键退出后台再返回前台发送的多余通知<br>  if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {</p>
+<pre><code>return;
+</code></pre><p>  }<br>  if (_action == KeyBoardActionShow) {</p>
+<pre><code>NSLog(@&quot; name = %s&quot;,__FUNCTION__);
+_action = KeyBoardActionHide;
+</code></pre><p>  }<br>}</p>
+</li>
+<li><p>(void)hide {<br>  if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {</p>
+<pre><code>return;
+</code></pre><p>  }<br>  if (_action == KeyBoardActionHide) {</p>
+<pre><code>NSLog(@&quot; name = %s&quot;,__FUNCTION__);
+_action = KeyBoardActionShow;
+</code></pre><p>  }<br>}</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>43.http/https请求获取cookie的问题<span class="tag">&lt;/<span class="title">font</span>&gt;</span>  </span><br><span class="line">项目需要获取cookie,但是网上找的获取cookie的方法:</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>NSHTTPCookieStorage <em>cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];<br>for (NSHTTPCookie </em>cookie in [cookieJar cookies]) {<br>   NSLog(@”%@”, cookie);<br>}<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">无法获取完整的cookie,打印出来的只有一小部分....实际获取的方法是:  </span><br><span class="line">`<span class="built_in">NSString</span> *cookieString = [[request<span class="variable">.requestOperation</span><span class="variable">.response</span> allHeaderFields ] valueForKey:<span class="string">@"Set-Cookie"</span>];`  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">### <span class="title">&lt;font color="#ce1f48"&gt;</span>44.金融产品的金额形式变化<span class="title">&lt;/font&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>// 30000000 - &gt; 30,000,000</p>
+<ul>
+<li>(NSString <em>)addMarkToString {<br>  NSNumberFormatter</em> numberFormatter = [[NSNumberFormatter alloc] init];<br>  [numberFormatter setFormatterBehavior: NSNumberFormatterBehavior10_4];<br>  [numberFormatter setNumberStyle: NSNumberFormatterDecimalStyle];<br>  NSString *numberString = [numberFormatter stringFromNumber: [NSNumber numberWithInteger: self.intValue]];<br>  return numberString;<br>}</li>
+</ul>
+<p>+(NSString <em>)countNumAndChangeformat:(CGFloat)num<br>{<br>    NSNumberFormatter </em>numberFormatter = [[NSNumberFormatter alloc] init] ;<br>    [numberFormatter setPositiveFormat:@”###,##0.00;”];<br>    NSString *formattedNumberString = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:num]];<br>    return formattedNumberString;<br>}<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>44.iOS中使用blend改变图片颜色<span class="tag">&lt;/<span class="title">font</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>// UIImage Category</p>
+<ul>
+<li><p>(UIImage <em>) imageWithTintColor:(UIColor </em>)tintColor blendMode:(CGBlendMode)blendMode<br>{<br>  //We want to keep alpha, set opaque to NO; Use 0.0f for scale to use the scale factor of the device’s main screen.<br>  UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);<br>  [tintColor setFill];<br>  CGRect bounds = CGRectMake(0, 0, self.size.width, self.size.height);<br>  UIRectFill(bounds);</p>
+<p>  //Draw the tinted image in context<br>  [self drawInRect:bounds blendMode:blendMode alpha:1.0f];</p>
+<p>  if (blendMode != kCGBlendModeDestinationIn) {</p>
+<pre><code>[self drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
+</code></pre><p>  }</p>
+<p>  UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();<br>  UIGraphicsEndImageContext();</p>
+<p>  return tintedImage;<br>}</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">喵神有篇文章讲这个的-&gt;[<span class="link_label">iOS中使用blend改变图片颜色</span>](<span class="link_url">http://www.onevcat.com/2013/04/using-blending-in-ios/</span>)  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="header">### &lt;font color="#ce1f48"&gt;44.UIColor 转 UIImage&lt;/font&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  func createImageWithColor() -&gt; UIImage {</p>
+<pre><code>let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+UIGraphicsBeginImageContext(rect.size)
+let context = UIGraphicsGetCurrentContext()
+CGContextSetFillColorWithColor(context, self.CGColor)
+CGContextFillRect(context, rect)
+let theImage = UIGraphicsGetImageFromCurrentImageContext()
+return theImage
+</code></pre><p>  }</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>45.验证码button速写<span class="tag">&lt;/<span class="title">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>// UIButton Category</p>
+<ul>
+<li>(void)startTimeAtCodeButton {<br>  __block int timeout = 60; //倒计时时间<br>  dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);<br>  dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);<br>  dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行<br>  dispatch_source_set_event_handler(_timer, ^{<pre><code>if(timeout&lt;=0){ //倒计时结束，关闭
+    dispatch_source_cancel(_timer);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //设置界面的按钮显示 根据自己需求设置
+        [self setTitle:@&quot;发送验证码&quot; forState:UIControlStateNormal];
+        [self setTitleColor:k_Color_FF9331 forState:UIControlStateNormal];
+        self.contentMode = UIViewContentModeLeft;
+        self.userInteractionEnabled = YES;
+    });
+}else{
+    //            int minutes = timeout / 60;
+    int seconds = timeout % 61;
+    NSString *strTime = [NSString stringWithFormat:@&quot;%.2d&quot;, seconds];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //设置界面的按钮显示 根据自己需求设置
+        [self setTitle:[NSString stringWithFormat:@&quot;再次发送%@秒&quot;,strTime] forState:UIControlStateNormal];
+        [self setTitleColor:k_Color_cccccc forState:UIControlStateNormal];
+        self.contentMode = UIViewContentModeCenter;
+        self.userInteractionEnabled = NO;
+    });
+    timeout--;
+}
+</code></pre>  });<br>  dispatch_resume(_timer);<br>}<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br><span class="line">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>45.NSDate的各种转换<span class="tag">&lt;/<span class="title">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>//  时间戳转化为是刚刚、几分钟前、几小时前、几天前等(与当前时间相比)</p>
+<ul>
+<li>(NSString <em>)currentDateWithRerence:(NSTimeInterval)timeStamp {<br>  NSDate </em>confromTimesp = [NSDate dateWithTimeIntervalSince1970:timeStamp];<br>  return [[NSDate date] prettyDateWithReference:confromTimesp];<br>}</li>
+</ul>
+<p>//  时间转化为是刚刚、几分钟前、几小时前、几天前等(自定义时间相比)</p>
+<ul>
+<li><p>(NSString <em>)prettyDateWithReference:(NSDate </em>)reference {<br>  NSString *suffix = @”前”;</p>
+<p>  float different = [reference timeIntervalSinceDate:self];<br>  if (different &lt; 0) {</p>
+<pre><code>different = -different;
+suffix = @&quot;前&quot;;
+</code></pre><p>  }</p>
+<p>  // days = different / (24 <em> 60 </em> 60), take the floor value<br>  float dayDifferent = floor(different / 86400);</p>
+<p>  int days   = (int)dayDifferent;<br>  int weeks  = (int)ceil(dayDifferent / 7);<br>  int months = (int)ceil(dayDifferent / 30);<br>  int years  = (int)ceil(dayDifferent / 365);</p>
+<p>  // It belongs to today<br>  if (dayDifferent &lt;= 0) {</p>
+<pre><code>// lower than 60 seconds
+if (different &lt; 60) {
+    return @&quot;刚刚&quot;;
+}
+
+// lower than 120 seconds =&gt; one minute and lower than 60 seconds
+if (different &lt; 120) {
+    return [NSString stringWithFormat:@&quot;1分钟%@&quot;, suffix];
+}
+
+// lower than 60 minutes
+if (different &lt; 66 * 60) {
+    return [NSString stringWithFormat:@&quot;%d分钟%@&quot;, (int)floor(different / 60), suffix];
+}
+
+// lower than 60 * 2 minutes =&gt; one hour and lower than 60 minutes
+if (different &lt; 7200) {
+    return [NSString stringWithFormat:@&quot;1小时%@&quot;, suffix];
+}
+
+// lower than one day
+if (different &lt; 86400) {
+    return [NSString stringWithFormat:@&quot;%d小时%@&quot;, (int)floor(different / 3600), suffix];
+}
+</code></pre><p>  }<br>  // lower than one week<br>  else if (days &lt; 7) {</p>
+<pre><code>return [NSString stringWithFormat:@&quot;%d天%@%@&quot;, days, days == 1 ? @&quot;&quot; : @&quot;&quot;, suffix];
+</code></pre><p>  }<br>  // lager than one week but lower than a month<br>  else if (weeks &lt; 4) {</p>
+<pre><code>return [NSString stringWithFormat:@&quot;%d周%@%@&quot;, weeks, weeks == 1 ? @&quot;&quot; : @&quot;&quot;, suffix];
+</code></pre><p>  }<br>  // lager than a month and lower than a year<br>  else if (months &lt; 12) {</p>
+<pre><code>return [NSString stringWithFormat:@&quot;%d月%@%@&quot;, months, months == 1 ? @&quot;&quot; : @&quot;&quot;, suffix];
+</code></pre><p>  }<br>  // lager than a year<br>  else {  </p>
+<pre><code>return [NSString stringWithFormat:@&quot;%d年%@%@&quot;, years, years == 1 ? @&quot;&quot; : @&quot;&quot;, suffix];
+</code></pre><p>  }  </p>
+<p>  return self.description;<br>}</p>
+</li>
+</ul>
+<p>//  时间戳转化为当前时间</p>
+<ul>
+<li>(NSString <em>)timeIntervalToNSDate:(NSTimeInterval)time {<br>  //因为时差问题要加8小时 == 28800 sec<br>  NSDate </em>detaildate=[NSDate dateWithTimeIntervalSince1970:(time  )];<br>  //实例化一个NSDateFormatter对象<br>  NSDateFormatter <em>dateFormatter = [[NSDateFormatter alloc] init];<br>  //设定时间格式,这里可以设置成自己需要的格式<br>  [dateFormatter setDateFormat:@”yyyy-MM-dd”];<br>  NSString </em>currentDateStr = [dateFormatter stringFromDate: detaildate];<br>  return currentDateStr;<br>}<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="xml">### <span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span>46.tableView的分割线左边不到头的问题<span class="tag">&lt;/<span class="title">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>tableView.separatorInset = UIEdgeInsetsZero<br>tableView.layoutMargins = UIEdgeInsetsZero<br>    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {<br>        cell.separatorInset = UIEdgeInsetsZero<br>        cell.layoutMargins = UIEdgeInsetsZero<br>    }<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="cpp">  </span><br><span class="line"><span class="preprocessor">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;<span class="number">47.</span>实现UITableView Plain SectionView和table不停留一起滑动&lt;/font&gt;  </span></span><br><span class="line"> <span class="number">1</span>） 这个代码是通过scroll偏移量来监听和改变你的tableview的contentInset 可见很不好（试试就知道） X</span></span><br></pre></td></tr></table></figure></p>
+<p>   // 去掉UItableview headerview黏性(sticky)</p>
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat sectionHeaderHeight = 40;(你的section高度)
+    if (scrollView.contentOffset.y&lt;=sectionHeaderHeight&amp;&amp;scrollView.contentOffset.y&gt;=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    }
+    else if (scrollView.contentOffset.y&gt;=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
+</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2）和第一个没太大本质区别，在自定义headSectionView中重写setframe方法来重载table的section[<span class="link_label">TablePlainSectionView</span>](<span class="link_url">https://github.com/rongtian/TablePlainSectionView</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>(void)setFrame:(CGRect)frame{<br>  CGRect sectionRect = [self.tableView rectForSection:self.section];<br>  CGRect newFrame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(sectionRect), CGRectGetWidth(frame), CGRectGetHeight(frame)); [super setFrame:newFrame];<br>}<br>```  </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/22/iOS开发过程中的知识点总结-续/" data-id="cijnyi37g000ytvyovhejwrhe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小技巧/">小技巧</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-xctool-xcodebuild自动打包傻瓜式教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/" class="article-date">
+  <time datetime="2015-10-16T10:08:59.000Z" itemprop="datePublished">2015-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: xctool+xcodebuild自动打包傻瓜式教程<br>date: 2015-10-16 16:20:54<br>categories: 工具 </p>
+<h2 id="tags_3A_xctool"><a href="#tags_3A_xctool" class="headerlink" title="tags: xctool"></a>tags: xctool </h2><p>以前打包提测觉得没什么,<code>选证书-选profile-选xxx-选xxxxx</code>,但一天打N次包后就有那么点厌烦了…俗话说:不会”偷懒”的攻城狮不是好的攻城狮,我知道很久之前就已经有自动打包(貌似略土,那就自动化的持续集成?随意了…),那时是坏的懒性主导,正好昨天逛微博有篇文章讲<code>XCToool自动打包</code>的,就决定亲自做一下,折腾了1小时后,总算OK了…在此记录一下.<br>(PS:为什么叫傻瓜教程呢?因为LZ略蠢,shell命令也不太懂,查了很多资料+波波的教导,一步一步的才调好)    </p>
+<h2 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a><font color="IndianRed">安装</font></h2><p>xctool的<a href="https://github.com/facebook/xctool" target="_blank" rel="external">Github地址</a>,当然最好是通过<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">Homebrew</a>来安装,简单方便.<br><code>brew update</code><br><code>brew install xctool</code><br>等等就OK了.  </p>
+<h2 id="u76F4_u63A5_u53EF_u6267_u884C_u7684_u6587_u672C"><a href="#u76F4_u63A5_u53EF_u6267_u884C_u7684_u6587_u672C" class="headerlink" title="直接可执行的文本"></a><font color="IndianRed">直接可执行的文本</font></h2><pre><code>#!/bin/sh
+set -e
+cd `dirname $0`
+
+
+SCHEME_NAME=Wecube
+WORKSPACE_PATH=/Users/humingtao/Desktop/Wecube/Wecube.xcworkspace
+PROFILE_NAME=&apos;com.shuabao.wecube.production&apos;
+
+
+TIME_STAMP=`date &quot;+%Y%m%d%H&quot;`
+BUILD_TIME=$(date +%Y%m%d%H%M)
+ArchivePath=/Users/humingtao/Desktop/AutoIpa/ArchivePath/${SCHEME_NAME}.xcarchive
+PacketName=/Users/humingtao/Desktop/AutoIpa/ipa/${SCHEME_NAME}_${BUILD_TIME}.ipa
+
+
+# clean
+xctool -workspace ${WORKSPACE_PATH} -scheme ${SCHEME_NAME} clean
+
+#archive
+xctool -workspace ${WORKSPACE_PATH} -scheme ${SCHEME_NAME} archive -archivePath ${ArchivePath}
+
+#export
+xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportPath ${PacketName} -exportProvisioningProfile &quot;${PROFILE_NAME}&quot;
+</code></pre><p><code>第一行</code>:指次脚本使用/bin/sh来解释执行<br><code>第二行</code>:出错立刻终止<br><code>第三行</code>:cd 当前目录<br><code>第六行</code>:你工程的Scheme名,一般就是xcode终止运行按钮旁边的那个,还不知道的话自行谷歌..<br><code>第七行</code>:如果你的工程接入了cocoapods,那么后缀就是xcworkspace,否则就是常规后缀(路径我是绝对路径,这个梗后面说)<br><code>第八行</code>:profile…都懂吧?发布的配置概要文件,写上对应的名字就行了<br><code>第十二行</code>:通过时间来命令ipa包的名字<br><code>第十三行</code>:存放打包过程中生成的序列化文件的文件夹(AutoIpa是我在desktop上建立的文件夹,ArchivePath会自动创建)<br><code>第十四行</code>:最后生成的ipa文件所在路径(AutoIpa是我在desktop上建立的文件夹,ipa文件夹也要自己创建)<br><code>剩下的</code>:就是xcodebuild的命令,不需要懂,前面的参数填好就OK  </p>
+<h2 id="u6CE8_u610F"><a href="#u6CE8_u610F" class="headerlink" title="注意"></a><font color="IndianRed">注意</font></h2><ul>
+<li>LZ用的是绝对路径,因为我没有把脚本和生成ipa的文件夹直接放到工程里面…这个根据自身情况来弄,我喜欢什么都往桌面放…  </li>
+<li>文本的后缀名用.sh,直接扔终端回车就行,如果出现<code>Permission denied</code>,那么就修改一下文件权限:chmod 777 xxxx.sh 就行了  </li>
+</ul>
+<p>附上打包成功的图:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/xctool_success.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/" data-id="cijnyi371000btvyojnkyreih" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Star-Github-share" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/12/Star-Github-share/" class="article-date">
+  <time datetime="2015-10-12T09:11:02.000Z" itemprop="datePublished">2015-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/资料/">资料</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/12/Star-Github-share/">Star Github share</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="u76EE_u5F55"><a href="#u76EE_u5F55" class="headerlink" title="目录"></a><font color="IndianRed">目录</font></h2><ul>
+<li><a href="/#foreword">前言</a>  </li>
+<li><a href="/#all">总览/大集合</a>  </li>
+<li><a href="/#network">网络请求Network</a>  </li>
+<li><a href="/#datastore">数据存储</a>  </li>
+<li><a href="/#image_sync_downloap">图片异步下载缓存</a>    </li>
+<li><a href="/#json_model">json/HTML/XML&lt;-&gt;model</a>  </li>
+<li><a href="/#framework">框架</a>  </li>
+<li><a href="/#Functionalprogramming">Swift函数式编程</a>  </li>
+<li><a href="/#UI总览">UI总览</a>  </li>
+<li><a href="/#UIImagePickerController">UIImagePickerController/图片浏览</a>  </li>
+<li><a href="/#UIScrollView">UIScrollView</a>  </li>
+<li><a href="/#UILabel">UILabel</a>  </li>
+<li><a href="/#UIButton">UIButton</a>  </li>
+<li><a href="/#UITextField">UITextField</a>  </li>
+<li><a href="/#UIImage/UIImageView">UIImage/UIImageView</a>    </li>
+<li><a href="/#UITableView/UITableViewCell">UITableView/UITableViewCell</a>  </li>
+<li><a href="/#UICollectionView">UICollectionView</a>  </li>
+<li><a href="/#UITabBarViewController">UITabBarViewController</a>  </li>
+<li><a href="/#UINavigationBar">UINavigationBar</a>  </li>
+<li><a href="/#Left|Top_Menu">Left|Top_Menu</a></li>
+<li><a href="/#Push/Present">Push/Present</a>  </li>
+<li><a href="/#日历UI">日历UI</a>    </li>
+<li><a href="/#UIWebView">UIWebView</a>  </li>
+<li><a href="/#guide page">引导页/新手操作指示</a>  </li>
+<li><a href="/#UI other">UI other 不知到咋分类了</a>  </li>
+<li><a href="/#AutoLayout">AutoLayout</a>    </li>
+<li><a href="/#Pop-up/Pop-down">Pop-up/Pop-down View</a>  </li>
+<li><a href="/#refresh_up/down">下拉刷新和上拉加载</a>  </li>
+<li><a href="/#animation">Animation</a>  </li>
+<li><a href="/#chart_progress">图表/进度条/Loading</a>  </li>
+<li><a href="/#coretext">CoreText</a>  </li>
+<li><a href="/#Video">音频视频</a>  </li>
+<li><a href="/#IM">IM</a>  </li>
+<li><a href="/#GCD">GCD</a>    </li>
+<li><a href="/#String">String/CGFloat/Int/Double</a>    </li>
+<li><a href="/#Date">Date</a>  </li>
+<li><a href="/#categories">Categories</a>  </li>
+<li><a href="/#Tools">Tools</a>  </li>
+<li><a href="/#unit testing">Unit Testing</a></li>
+<li><a href="/#Reachability">网络状况监测</a>  </li>
+<li><a href="/#keychain">keychain</a>  </li>
+<li><a href="/#Xcode">Xcode 插件</a>  </li>
+<li><a href="/#mac">mac 插件</a>  </li>
+<li><a href="/#book">书籍</a>  </li>
+<li><a href="/#otherCompany">他人推荐</a>  </li>
+</ul>
+<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a><a id="foreword"></a><font color="IndianRed">前言</font></h2><p> Github可说是全球最大的IT”交友约会”网站,各种各样牛逼的<code>open source code</code>,star!star!star!LZ逛github也有些时候了,经常会出现一个困惑,就是star了新的,很多以前star的一想不起名字,就很难找到,要一页一页的翻…想想,如果你star超过了50多页,每一次不得找死…之前我是用<code>Chrome</code>的收藏夹功能来区分,一段时间努力后,就成了下面这个样子:<br> <img src="http://7qn7zn.com1.z0.glb.clouddn.com/chrome%20github.png" alt=""><br> 还是比较方便的,起码完成了分类,只是没能加上自己收藏时对链接的注释(这样查找更快了),昨天朋友推荐了<a href="https://app.astralapp.com/">Astral</a>,通过加标签的方式来实现分类,也很直观明了…那为什么LZ还要做这个整理呢?一是,能够分享出来;二是:可以自己无限的加入自己解释,更快的<code>天下Code,唯快不破</code>查找^_^!<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/10/12/Star-Github-share/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/12/Star-Github-share/" data-id="cijnyi38d002itvyobwzdxw16" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS-CoreAnimation-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/29/iOS-CoreAnimation-02/" class="article-date">
+  <time datetime="2015-05-29T02:36:41.000Z" itemprop="datePublished">2015-05-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这一章开始,来讲一下<code>CAAnimation</code>.我们做显式动画主要就是靠它/它的子类了.官方对它的描述是:CAAnimation is an abstract animation class. It provides the basic support for the CAMediaTiming and CAAction protocols. To animate Core Animation layers or Scene Kit objects, create instances of the concrete subclasses CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, or CATransition.<br>@结构图如下:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_004.png" alt="">  </p>
+<p>标题是<code>CATransition</code>,为什么先写它呢?因为我觉得它有点特殊,主要用来做VC页面切换之间的过渡动画,之前在code4app上一个展示什么立方体-水滴-镜头开关效果等动画就是拿它做的(当时觉得,哇,好炫,不过据说是私有的api,审核不一定能过)…个人感觉用它用的最少,而且iOS7之后苹果提供了自定义VC转场动画的API,已经能够很好的实现各种需求的动画效果.可以参照我之前的文章:<br><a href="http://blog.csdn.net/hmt20130412/article/details/39079905">iOS7新特性 ViewController转场切换(一) 以前总结和关键API介绍</a><br><a href="http://blog.csdn.net/hmt20130412/article/details/39080445">iOS7新特性 ViewController转场切换(二) 系统视图控制器容器的切换动画—push pop present dismis</a><br><a href="http://blog.csdn.net/hmt20130412/article/details/39119917"> iOS7新特性 ViewController转场切换(三) 自定义视图控制器容器的切换—非交互式</a><br>
+        
+          <p class="article-more-link">
+            <a href="/2015/05/29/iOS-CoreAnimation-02/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/05/29/iOS-CoreAnimation-02/" data-id="cijnyi37p001atvyo8cxslg06" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CATransition/">CATransition</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS-CoreAnimation-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/27/iOS-CoreAnimation-01/" class="article-date">
+  <time datetime="2015-05-27T03:00:10.000Z" itemprop="datePublished">2015-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a><font color="IndianRed">Start</font></h1><p>我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于<code>动画-Core Animation</code>相关的知识做个梳理与总结.  </p>
+<p><code>Core Animation</code>最大好处是可以帮助Mac或者iPhone的开发者减少代码量。因为如果你想用Core Image或者Open GL实现界面的动画特效，其实也是可以的，主要是非常麻烦。而用Core Animation可以极大简化开发难度和减少代码量。</p>
+<p><strong>PS:只是对于基础用法和概念进行整理与说明,各种酷炫效果的Demo就靠大家自己去实现了^_^</strong>  </p>
+<p>整体的框架结构大致是:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_0000.jpeg" alt=""></p>
+<p><font color="red">第一章</font>先不介绍关键图层<code>CALayer</code>的知识,先来说说<code>UIKit</code>集成在UIView类中的动画API,在我们日常的开发中,UIKit动画API使用起来十分简单与方便,能满足大部分的基本的动画需求.(其实UIKit动画API的底层使用的也是Core Animation,有的时候在你面试的时候,面试官会问你,<code>UIView+animationBlock</code>的方式,是如何实现动画效果的)<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/05/27/iOS-CoreAnimation-01/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/05/27/iOS-CoreAnimation-01/" data-id="cijnyi37r001ftvyouvsi2c3q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS-hitTest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/25/iOS-hitTest/" class="article-date">
+  <time datetime="2015-05-25T08:24:51.000Z" itemprop="datePublished">2015-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/事件传递/">事件传递</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近朋友问了我个点击事件处理的问题,自己从前也没怎么仔细想过,查过资料才明白是怎么一回事,遂做个小结.<br>写了个小Demo,地址是:<a href="https://github.com/ConanMTHu/HitTestDemo">点这里</a><br>先来看一张图:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_01.png" alt=""><br><code>0-1-2</code>代表了他们的层级关系,可见<code>button_1</code>被<code>view_1</code>盖住了,如何透过<code>view_1</code>实现对<code>button_1</code>的点击呢?<br>当时想的就是改<code>userInteractionEnabled = NO</code>(这个属性大家肯定不陌生,<code>UILabel</code>和<code>UIImageView</code>无法接收点击事件就是因为这个属性默认设置为了<code>NO</code>),类似还有<code>Hidden＝YES/alpha&lt;0.01等</code>,虽然可以实现预期点击,但是这样也影响了<code>view_1和他的子视图button_2(无法被点击)</code>.那改怎么做呢?搜了一下,<code>userInteractionEnabled = NO</code>等价于<code>使当前的hitTest：withEvent返回nil</code>,这是个啥?
+        
+          <p class="article-more-link">
+            <a href="/2015/05/25/iOS-hitTest/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/05/25/iOS-hitTest/" data-id="cijnyi37i0013tvyookifcpb7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hit-test/">hit-test</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AutolayoutDetail" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/14/AutolayoutDetail/" class="article-date">
+  <time datetime="2015-04-14T08:20:21.000Z" itemprop="datePublished">2015-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/第三方库/">第三方库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于<code>sb好还是纯代码好的争论</code>,可以参考下<a href="http://blog.devtang.com/blog/2015/03/22/ios-dev-controversy-2/" target="_blank" rel="external">巧大大的分析</a>.<br>说到UI适配布局,一般有两种方法:  </p>
+<ul>
+<li>frame,利用<code>[UIScreen mainScreen].bounds.size.width/height</code>,一个一个的算出对应frame,结果肯定是OK的,只是过程异常的痛苦,尤其像我这种语文老师教的数学的小学生.囧.  </li>
+<li>autolayout,相信肯定是主流布局,而且对于UI设计师给我的效果图,也是很方便我们直接拿来进行约束设值,无须其他任何计算.    </li>
+</ul>
+<p>这里主要介绍手写autolayout约束,由于系统提供的api写起来<code>又臭又长</code>,推荐一个不错的第三方.<br>OC版本对应的是<code>Masonry</code>,Swift版本对应的是<code>SnapKit</code>.当然还有其他优秀的autolayout相关第三方,会在结尾给出,感兴趣的朋友可以去研究下,LZ主要用<code>Masonry</code>(大爱这种链式语法)^_^!  </p>
+<p>#<font color="IndianRed">Masonry</font><br>Github地址是:<a href="https://github.com/SnapKit/Masonry" target="_blank" rel="external">Masonry</a><br>具体用法github上已经讲的很清楚了,可以下载Demo看看栗子的实现,总结一下我在使用过程中了解.  </p>
+<ul>
+<li><code>mas_makeConstraints</code>使用最多,做初始约束,只负责新增约束</li>
+<li><code>mas_updateConstraints</code>针对<code>make</code>中的约束做更新,一般不添加新约束,只是对于原约束数值的修改.  </li>
+<li><code>mas_remakeConstraints</code>清除之前所有的约束,采用里面设置的最新约束,常用于动画之后新位置的约束设定  </li>
+<li>优先级高<code>.priorityHigh</code>,优先级低<code>.priorityLow</code>,通常用于根据条件判断来设定优先响应哪种约束  </li>
+<li><code>multipliedBy(x)</code>= *x,<code>dividedBy(x)</code> = /x  </li>
+<li><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">        make.edges.mas_equalTo(UIEdgeInsetsMake(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="comment">// edges就是相当于top-left-bottom-right</span></span><br><span class="line">        <span class="comment">// top和left里的offset为正数</span></span><br><span class="line">        <span class="comment">// 那么为什么bottom和right里的offset是负数呢? 因为这里计算的是绝对的数值 计算的bottom需要小于sv的底部高度 所以要-10 同理用于right</span></span><br><span class="line">        <span class="comment">// 有意思的地方是and和with 其实这两个函数什么事情都没做,可以省略的</span></span><br><span class="line">        </span><br><span class="line">        /* 等价于</span><br><span class="line">         make.top.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(<span class="number">10</span>);</span><br><span class="line">         make.left.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(<span class="number">10</span>);</span><br><span class="line">         make.bottom.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(-<span class="number">10</span>);</span><br><span class="line">         make.right.equalTo(weakSelf.<span class="built_in">sv</span>).with.offset(-<span class="number">10</span>);</span><br><span class="line">         */</span><br><span class="line">```  </span><br><span class="line">&lt;!--more--&gt;  </span><br><span class="line">* `UIScrollView`是一个有点特殊的<span class="built_in">view</span>,对于在里面放其他<span class="built_in">view</span>,最好的做法是先放一个`containerView`设置`edges`相等,然后在此<span class="built_in">view</span>上添加subview.  </span><br><span class="line">* 模仿系统的UITabBarController的底部View,可以设定个数和间隔:</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>(void)simulateSystemTabBarWithButtonCount:(NSInteger)count withSpace:(CGFloat)space {<br>[self.view showPlaceHolder];<br>self.view.backgroundColor = [UIColor grayColor];<br>NSMutableArray *viewArray = [NSMutableArray arrayWithCapacity:10];</p>
+<p>for (int i = 0; i &lt; count; i++) {</p>
+<pre><code>UIView *view = [UIView new];
+view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
+                                  saturation:( arc4random() % 128 / 256.0 ) + 0.5
+                                  brightness:( arc4random() % 128 / 256.0 ) + 0.5
+                                       alpha:1];;
+[view showPlaceHolder];
+[self.view addSubview:view];
+[viewArray addObject:view];
+</code></pre><p>}<br>UIView *lastView = viewArray.lastObject;<br>for (int i = 0; i &lt; count; i++) {</p>
+<pre><code>UIView *view = (UIView *)viewArray[i];
+[view mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.bottom.equalTo(view.superview);
+    make.height.equalTo(@49);
+    make.width.equalTo(lastView);
+    if (i == 0) {
+        make.left.mas_equalTo(view.superview).offset(space);
+    } else {
+        UIView *frontView = (UIView *)viewArray[i-1];
+        make.left.equalTo(frontView.mas_right).offset(space);
+        (i == viewArray.count - 1) ? make.right.mas_equalTo(view.superview).offset(-space) : nil;
+    }
+}];
+</code></pre><p>}<br>}<br>```<br>以count = 4 和 space =0  为例子<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/338E3FB7-40B3-40C3-9208-BD6554E61960.png" alt="">  </p>
+</li>
+</ul>
+</li>
+<li>实现动画时,更新约束后调用<code>layoutIfNeeded</code>  </li>
+<li>最后,再次强调真的非常好用!!!  </li>
+</ul>
+<p>#<font color="IndianRed">SnapKit</font><br>Github地址:<a href="https://github.com/SnapKit/SnapKit" target="_blank" rel="external">SnapKit</a><br><strong>PS:目前只支持swift1.2版本,在最新的xcode7-swift2.0中会报错,我在推特上问了作者,他说最近略忙,暂时没空…囧…有兴趣的朋友可以自己改下让它支持2.0然后pull…我?还在研究中.</strong><br>这个就不过多举例了,基本就是跟<code>Masonry</code>一样,而且我在后面的Demo基本都是用了<code>Snapkit</code>来写(xcode7上我是拖控件…没办法,谁让还不支持2.0)<br>举个栗子-&gt;最常见的上下两个button:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/AUTOLAYOUTdeTAIL.png" alt="">  </p>
+<p>#<font color="IndianRed">其他资料</font>  </p>
+<ul>
+<li>autolayout其他第三方开源库  <blockquote>
+<p><a href="https://github.com/smileyborg/PureLayout" target="_blank" rel="external">PureLayout</a><br><a href="https://github.com/smileyborg/UIView-AutoLayout" target="_blank" rel="external">UIView-AutoLayout</a><br><a href="https://github.com/adad184/MMPlaceHolder" target="_blank" rel="external">MMPlaceHolder 这个是辅助工具 一个显示宽*高的插件</a><br><a href="https://github.com/robb/Cartography" target="_blank" rel="external">Cartography for swift</a>  </p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>博文  <blockquote>
+<p><a href="http://www.cocoachina.com/industry/20131012/7148.html" target="_blank" rel="external">先进的自动布局工具箱</a><br><a href="http://www.vienta.me/2014/12/07/AutoLayout-%E5%BF%98%E6%8E%89Frame-%E6%8B%A5%E6%8A%B1Constraint%EF%BC%88I%EF%BC%89/" target="_blank" rel="external">AutoLayout:忘掉Frame,拥抱Constraint</a><br><a href="https://www.zybuluo.com/MicroCai/note/73867#autolayout-基础" target="_blank" rel="external">Autolayout 基础</a><br><a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Introduction/Introduction.html" target="_blank" rel="external">Auto Layout Guide 官方</a><br><a href="http://adad184.com/2014/09/28/use-masonry-to-quick-solve-autolayout/" target="_blank" rel="external">Masonry介绍与使用实践(快速上手Autolayout)</a><br><a href="http://tutuge.me/2015/05/23/autolayout-example-with-masonry/" target="_blank" rel="external">有趣的Autolayout示例-Masonry实现</a><br><a href="http://onevcat.com/2012/09/autoayout/" target="_blank" rel="external">喵神的Autolayout介绍</a><br><a href="http://www.cocoachina.com/ios/20150104/10817.html" target="_blank" rel="external">如何在Objective-C中实现链式语法？</a>  </p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/04/14/AutolayoutDetail/" data-id="cijnyi38j002qtvyos19svjuk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AutoLayout/">AutoLayout</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-设计模式-二-之策略模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/01/设计模式-二-之策略模式/" class="article-date">
+  <time datetime="2015-04-01T00:41:23.000Z" itemprop="datePublished">2015-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="u521D_u5165_u6C5F_u6E56"><a href="#u521D_u5165_u6C5F_u6E56" class="headerlink" title="初入江湖"></a><font color="IndianRed">初入江湖</font></h1><p><strong>策略模式</strong>：定义一系列的算法,把每一个算法封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化.<br>0.0好吧,基本上所有介绍策略模式的基本都是这样的开头,详情概念可见<a href="http://baike.baidu.com/link?url=K31Rsj_er4saTaz4l0L69f6YxCMbVTnR9KO007RcP4ymkNGqhvABAtWb3o038qrgLOmVJJOxV08HZVh3HfRTGK" target="_blank" rel="external">策略模式百度百科</a>!博主最初用它,除了善用设计模式优化代码结构之外,最主要的就是消除万恶的<code>if else</code>或<code>switch case</code>(很讨厌<code>if else</code>…在写代码的时候能够用<code>? :</code>就用)<br>话不多说,先来张图(盗的,勿喷,^_^):<br><img src="http://hmtphoto.qiniudn.com/strategy_001.jpg" alt="">  </p>
+<h1 id="u5C0F_u8BD5_u624B_u5200"><a href="#u5C0F_u8BD5_u624B_u5200" class="headerlink" title="小试手刀"></a><font color="IndianRed">小试手刀</font></h1><p>我举得栗子概念是<a href="http://casatwy.com/iosying-yong-jia-gou-tan-viewceng-de-zu-zhi-he-diao-yong-fang-an.html" target="_blank" rel="external">iOS应用架构谈 view层的组织和调用方案</a>(<strong>强烈推荐此文,很长但是涉及到了很多知识点</strong>)中谈到的文件<code>聊天应用的消息发送模块</code>  </p>
+<ul>
+<li>定义一个<code>Context</code>类,里面有一个<code>RootStrategy</code>属性  <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">enum MessageSendStrategyType &#123;</span><br><span class="line">    case Text</span><br><span class="line">    case Image</span><br><span class="line">    case Voice</span><br><span class="line">    case Video</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="label">class StrategyContext:</span> NSObject &#123; </span><br><span class="line"><span class="label">    var strategy:</span> RootStrategy?</span><br><span class="line">    // oc 则是 [TextSendStrategy class]....</span><br><span class="line"><span class="label">    let strategyClassDic: [MessageSendStrategyType : AnyClass] = [MessageSendStrategyType.Text : TextSendStrategy.self, .Image : ImageStrategy.self, .Voice : VoiceStrategy.self, .Video :</span> VideoStrategy.self]<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line"><span class="label">//    let strategyStringDic: [MessageSendStrategyType : String] = [MessageSendStrategyType.Text :</span> <span class="string">"StrategyMode.TextSendStrategy"</span>, .Image : <span class="string">"StrategyMode.ImageStrategy"</span>, .Voice : <span class="string">"StrategyMode.VoiceStrategy"</span>, .Video : <span class="string">"StrategyMode.VideoStrategy"</span>]<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="label">    init(messageType :</span> MessageSendStrategyType) &#123;</span><br><span class="line"><span class="label">        let strategyClassClass:</span> AnyClass? = strategyClassDic[messageType]</span><br><span class="line">        strategy = (strategyClassClass! as! RootStrategy.Type)()</span><br><span class="line">        </span><br><span class="line"><span class="label">//        let strategyStringClass:</span> AnyClass! = NSClassFromString(strategyStringDic[messageType]!)</span><br><span class="line">//        self.strategy = (strategyStringClass as! RootStrategy.Type).new()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    func contextInterface() &#123;</span><br><span class="line">        strategy!.run()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"><span class="number">1</span>.定义一个<span class="escape">`M</span>essageSendStrategyType<span class="escape">`枚</span>举<span class="escape">`+</span><span class="escape">`反</span>射,解决内部/外部的<span class="escape">`s</span>witch case<span class="escape">`的</span>构建工厂(见工厂模式)判断  </span><br><span class="line"><span class="number">2</span>.给字典赋值的两种方式都行,但注意调用<span class="escape">`N</span>SClassFromString<span class="escape">`的</span>时候有坑,单纯的传<span class="escape">`类</span>名<span class="escape">`无</span>效,需要加上你的工程名,我的工程名是<span class="escape">`S</span>trategyMode<span class="escape">`,</span>那就必须是<span class="escape">`N</span>SClassFromString(StrategyMode.xxxx)<span class="escape">`才</span>行!!!  </span><br><span class="line"><span class="number">3</span>.调用<span class="escape">`n</span>ew()<span class="escape">`和</span><span class="escape">`(</span>)<span class="escape">`初</span>始化是不一样的,后面会给出说明  </span><br><span class="line"> &lt;!--more--&gt;  </span><br><span class="line">  </span><br><span class="line">- 接着定义<span class="escape">`R</span>ootStrategy<span class="escape">`,</span>也就是所有<span class="escape">`算</span>法<span class="escape">`的</span>父类/公共接口</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>@objc protocol SendFunctionDelegate: NSObjectProtocol {<br>    func strategyMsg()<br>    optional func sendReadyData()<br>    optional func uploadRequest(name: String?) -&gt; String?<br>    optional func uploadResource(id: String?, data: NSData?) -&gt; String?<br>    optional func otherMethod_A()<br>    optional func otherMethod_B()<br>}</p>
+<p>class RootStrategy: NSObject{</p>
+<pre><code>var delegate: SendFunctionDelegate?
+required  override init() {
+}
+/**
+*   多态的体现,父类的这个方法必须要子类去覆重,可以不写在接口,直接定义为父类的方法
+*   不过这里通过IOP,定义这类方法为`required`必须实现的
+*   这里通过接口方式而不是全部多态(好纠结,我表示运用的不熟练吧,反正我自己也没能完全说服自己)
+*   总感觉试验失败了,囧!!!
+*/
+// 被我改来改去,达到所谓的消除父类的空方法....
+func run() {
+    self.delegate!.strategyMsg()
+}
+</code></pre><p>//    如果不实现strategyMsg(),就会报错,无法调用<br>//    func run() {<br>//        delegate!.strategyMsg()<br>//    }<br>}</p>
+<p>/** 喵神的tip里面说到了 为什么要添加这样一个初始化方法</p>
+<ul>
+<li>单单是这样还是无法通过编译,编译器提示我们如果想要构建一个 Self 类型的对象的话,需要有 required 关键字修饰的初始化方 法,这是因为 Swift 必须保证 当前类和其子类都能响应这个 init 方法</li>
+<li>required 要求必须要实现,但又因为init()是默认的构造器,子类会默认实现并且默认调用,required的关键就是会强制调用默认构造器<br>*/</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>不过,如果你在Context中的初始化是用了<code>new()</code>就不需要实现下面方法</li>
+<li>官方文档: This method is a combination of alloc and init. Like alloc, it initializes the isa instance variable of the new object so it points to the class data structure. It then invokes the init method to complete the initialization process.</li>
+<li><p>所以,不需要你强制,子类也一定会做<code>init()</code>操作<br>*/<br>//    required override init() {<br>//<br>//    }</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS:这里也踩了很多坑<span class="attribute">...</span>一直在试验我前面提到文章里面说的<span class="string">`接口代替继承`</span>,貌似没成功,swift中对于<span class="string">`protocol`</span>和oc中有那么点不一样<span class="attribute">...</span>反正写乱了<span class="attribute">...</span>还是直接把方法直接写父类吧<span class="attribute">...</span>  </span><br><span class="line">  </span><br><span class="line">  - 然后就是<span class="string">`Strategy`</span>的具体实现了,如<span class="string">`TextSendStrategy`</span> <span class="string">`ImageStrategy`</span>  <span class="string">`VoiceStrategy`</span>  <span class="string">`VideoStrategy`</span>,暂举<span class="number">2</span>个栗子:</span><br></pre></td></tr></table></figure>
+<p>// 文本<br>class TextSendStrategy: RootStrategy,SendFunctionDelegate {<br>required  init() {</p>
+<pre><code>super.init()
+self.delegate = self
+</code></pre><p>}</p>
+<p>func strategyMsg() {</p>
+<pre><code>sendReadyData()
+</code></pre><p>}</p>
+<p>func sendReadyData() {</p>
+<pre><code>println(&quot;文本消息,直接发送&quot;)
+</code></pre><p>}<br>}</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>// 图片<br>class ImageStrategy: RootStrategy,SendFunctionDelegate {</p>
+<p>required  init() {</p>
+<pre><code>super.init()
+self.delegate = self
+</code></pre><p>}</p>
+<p> func strategyMsg() {</p>
+<pre><code>let id = uploadRequest(&quot;123456&quot;)
+let url = uploadResource(id, data: nil)
+sendReadyData()
+</code></pre><p>}</p>
+<p>func uploadRequest(name: String?) -&gt; String? {</p>
+<pre><code>println(&quot;ID申请好了&quot;)
+return &quot;ID&quot;
+</code></pre><p>}</p>
+<p>func uploadResource(id: String?, data: NSData?) -&gt; String? {</p>
+<pre><code>println(&quot;URL也得到了&quot;)
+return &quot;URL&quot;
+</code></pre><p>}</p>
+<p>func  sendReadyData() {</p>
+<pre><code>println(&quot;可以发送图片了&quot;)
+</code></pre><p>}<br>}</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="code"> </span></span><br><span class="line"><span class="code"> </span></span><br><span class="line"><span class="bullet">- </span>最后调用</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>override func viewDidLoad() {<br>        super.viewDidLoad()<br>        // Do any additional setup after loading the view, typically from a nib.<br>        // video,text,voice,image随便传,要什么传什么<br>        let context = StrategyContext(messageType: .Image)<br>        context.contextInterface()</p>
+<pre><code>}
+</code></pre><p>```  </p>
+<h1 id="u5C0F_u529F_u544A_u6210"><a href="#u5C0F_u529F_u544A_u6210" class="headerlink" title="小功告成"></a><font color="IndianRed">小功告成</font></h1><p>一个简单的策略模式Demo,基本就这样完成了.这样,是不是,即使存在各种类型的数据发送判断,也没有出现一个<code>if else</code>或<code>switch case</code>呀!<br>LZ最近的两个项目里面都用到了:<br>一是.文件传送,接受来自底层返回的各种类型数据,需要对应各自的数据处理方法<br>二是.网络请求,同栗子….</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/04/01/设计模式-二-之策略模式/" data-id="cijnyi36h0000tvyo590pq0qg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/策略/">策略</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS面试题总结与感想" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/21/iOS面试题总结与感想/" class="article-date">
+  <time datetime="2015-03-21T10:15:21.000Z" itemprop="datePublished">2015-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u9898"><a href="#u9898" class="headerlink" title="题"></a><font color="IndianRed">题</font></h3><p>必须先吐槽一下,找工作面试确实是个累人的活呀,所以—&gt;<code>跳槽有风险,选择需谨慎</code>.LZ我为什么要换工作呢?就不在这里说明了…直接进入正题,这周的面试基本每天从早面到晚,面试表都填吐了…大小公司都有,列举下这段时间常见的面试题和一些个人理解.PS:LZ我水平有限,不好的地方,大家轻喷^_^!(因为完全是靠记忆,列举顺序纯凭感觉0.0)  </p>
+<ol>
+<li><code>@property</code>中的assign,retain,copy,nonatomic的意思分别是什么? (解释略…你懂的)</li>
+<li><code>weak</code>和<code>assign</code>的区别,<code>strong</code>和<code>retain</code>的区别,<code>copy</code>和<code>retain</code>的区别?<br><code>assign</code>适用于非对象类型,<code>weak</code>弱引用在引用计数为0的时候会将对象置为nil.<br>其实从这个也可以引申到内存管理的一系列问题.面试官会让你讲讲<code>MRC</code>和<code>ARC</code>的理解,随即也引申出<code>Block</code>的内存机制,为啥推荐<code>Block</code>用<code>copy</code>,<code>Block</code>会存在哪些内存问题?循环引用?<br>推荐一个文章,讲的蛮不错的,里面也有对<code>Block</code>的链接引用-&gt;<a href="http://www.cocoachina.com/ios/20150206/11121.html#0-qzone-1-7097-d020d2d2a4e8d1a374a433f596ad1440">传送门,请点击我</a></li>
+<li>依旧是内存管理,<code>release</code>和<code>autorelease</code>的含义?这里尤其要强调下<code>autorelease</code>,它引申出<code>自动释放池</code>,也能引申出<code>Run loop</code>!<br>参考下这两个链接:<a href="http://blog.csdn.net/yanfangjin/article/details/7545673">参考1号</a>@<a href="http://stackoverflow.com/questions/5766839/end-of-run-loop-autorelease-pool-recovery">参考2号</a>(<font color="red">PS:有的链接可能需要翻墙,但是作为一个开发人员来说,    拥有VPN进行google还是必备的吧!</font>)</li>
+<li>OC语言的动态性指什么?有没有了解过<code>objective-c runtime</code>的相关问题?它包括那些含义?<br>依旧给出一些不错的文章链接:<a href="http://southpeak.github.io/blog/2014/10/25/objective-c-runtime-yun-xing-shi-zhi-lei-yu-dui-xiang/">Number1</a>@<a href="http://blog.codingcoder.com/dig-into-objc/">Number2</a>@<a href="http://chun.tips/">Number3</a></li>
+<li>使用过<code>Core Graphic</code> <code>Core Animation</code> <code>Quartz Core</code>等常用框架吗?在什么条件下会用到?能够实现什么功能?一般这种问题,都是涉及到你自定义UI控件的能力,以及能够实现炫丽动画效果的能力.(含义很广,大家自行找资料,还是推荐个0.0-&gt;<a href="http://zsisme.gitbooks.io/ios-/content/index.html">讲Core Animation的</a>)</li>
+<li>iOS中多线程有哪几种?各自之间有什么区别?这个问题,毋庸置疑,必问!!!<br><code>NSThread</code>:貌似基本没到过…囧….可以去了解下….<br><code>NSOperation</code>:据说是用在处理复杂的情况下…经常被问到与<code>GCD</code>的不同,LZ略纠结每次都不知道怎么回答,只能说一个处理复杂情况一个处理简单情况…也没用到过…不过你研究下<code>AFNetworking</code>的源码,可以发现,它的核心类是继承<code>NSOperation</code>的…<br><code>GCD</code>:常用…这个可以看看我的博客,里面很多它的介绍! <a href="http://blog.csdn.net/hmt20130412/article/category/2206439">点这里</a></li>
+<li>数据存储这一块,你常用哪一种?什么是<code>序列化</code>?<code>sqlite</code>是直接用它还是用封装了它的第三方库?<code>sqlite</code>和<code>core data</code>的区别?<br>LZ碰到的基本都是问<code>sqlite</code>和<code>core data</code>的区别…从什么方面来决定一个项目采用哪种方式来做存储…个人觉得没有必要区分谁好谁坏…都去了解掌握肯定是有好处的…网上有很多讲两个之间的区别,但是就算你知道区别,如果两个都用不好也是白搭.唯有一解-&gt;<code>学!学!学</code>
+        
+          <p class="article-more-link">
+            <a href="/2015/03/21/iOS面试题总结与感想/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/21/iOS面试题总结与感想/" data-id="cijnyi37c000ttvyo7ek2c4m1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Animation/">Animation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CoreAnimation/">CoreAnimation</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Extension/">Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/">Swift</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/事件传递/">事件传递</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/第三方库/">第三方库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资料/">资料</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/About-Me/">About Me</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AutoLayout/">AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CATransition/">CATransition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Category-closure-objc-set-get/">Category closure objc_set/get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift和OC互调用/">Swift和OC互调用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Today/">Today</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hit-test/">hit-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imageView-性能优化/">imageView 性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-model/">json model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-request/">network request</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new-origin/">new origin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pop/">pop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tableview-cell/">tableview cell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基本概念/">基本概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宏-小技巧/">宏 小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略/">策略</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配-AutoLayout/">适配 AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-blog/">链接 blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/01/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/15/Moya/">Swift Moya</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

@@ -1,15 +1,230 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
+tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
+tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+<meta property="og:updated_time" content="2015-10-30T10:00:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
+tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
 <body>
   <div id="container">
-    <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-    <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
-    <%- partial('_partial/after-footer') %>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS-CoreAnimation-三-之CAAnimation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" class="article-date">
+  <time datetime="2015-10-30T10:00:23.000Z" itemprop="datePublished">2015-10-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: iOS CoreAnimation(三)之CAAnimation<br>date: 2015-6-03 15:39:33<br>categories: CoreAnimation </p>
+<h2 id="tags_3A_CAAnimation_CAMediaTiming"><a href="#tags_3A_CAAnimation_CAMediaTiming" class="headerlink" title="tags: CAAnimation CAMediaTiming"></a>tags: CAAnimation CAMediaTiming</h2><p>原定第三篇直接介绍<code>CAPropertyAnimation</code>的两个子类,想想还是回过头来梳理一下<font color="#ce1f48"><code>CAAnimation</code></font>这个父类,比如<code>CABasicAnimation</code>属于他自己的只有3个property,其他都是继承来的.不过就算是<code>CAAnimation</code>,它自身的property还是用的不多,像我们定义动画常常设置的时间property<code>duration</code>,<code>beginTime</code>,<code>repeatCount</code>等都在协议<font color="#ce1f48"><code>CAMediaTiming</code></font>&gt;中…  </p>
+<h3 id="CAAnimation_Property"><a href="#CAAnimation_Property" class="headerlink" title="CAAnimation Property"></a><font color="#ce1f48">CAAnimation Property</font></h3><p><code>removedOnCompletion</code>:设置是否动画完成后，动画效果从设置的layer上移除。默认为YES<br><code>timingFunction</code>:用于变化起点和终点之间的插值计算,形象点说它决定了动画运行的节奏,比如是均匀变化(相同时间变化量相同)还是先快后慢,先慢后快还是先慢再快再慢.(类似于第一章最后介绍的那些枚举)LZ数学略渣,这里引用一段话(<a href="http://geeklu.com/2012/09/animation-in-ios/" target="_blank" rel="external">http://geeklu.com/2012/09/animation-in-ios/</a>)<br><strong>时间函数是使用的一段函数来描述的,横座标是时间t取值范围是0.0-1.0,纵座标是变化量x(t)也是取值范围也是0.0-1.0 假设有一个动画,duration是8秒,变化值的起点是a终点是b(假设是透明度),那么在4秒处的值是多少呢？ 可以通过计算为 a + x(4/8) <em> (b-a), 为什么这么计算呢？讲实现的时间映射到单位值的时候4秒相对于总时间8秒就是0.5然后可以得到0.5的时候单位变化量是 x(0.5), x(0.5)/1 = 实际变化量/(b-a), 其中b-a为总变化量,所以实际变化量就是x(0.5) </em> (b-a) ,最后4秒时的值就是 a + x(0.5) * (b-a),所以计算的本质是映射.<br>Timing Function对应的类是<font color="#ce1f48"><code>CAMediaTimingFunction</code></font>,它提供了两种获得时间函数的方式,一种是使用预定义的五种时间函数,一种是通过给点两个控制点得到一个时间函数</strong><br>系统给的最熟悉的就是<code>Linear</code>了,匀速…<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kCAMediaTimingFunctionLinear, </span><br><span class="line">kCAMediaTimingFunctionEaseIn, </span><br><span class="line">kCAMediaTimingFunctionEaseOut, </span><br><span class="line">kCAMediaTimingFunctionEaseInEaseOut, </span><br><span class="line">kCAMediaTimingFunctionDefault. </span><br><span class="line">```    </span><br><span class="line">自定义的则是下面2个方法:(贝塞尔曲线什么的,不太懂...)  </span><br><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>/* Creates a timing function modelled on a cubic Bezier curve. The end
+ * points of the curve are at (0,0) and (1,1), the two points &apos;c1&apos; and
+ * &apos;c2&apos; defined by the class instance are the control points. Thus the
+ * points defining the Bezier curve are: &apos;[(0,0), c1, c2, (1,1)]&apos; */
+
+public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
+
+/* &apos;idx&apos; is a value from 0 to 3 inclusive. */
+ public func getControlPointAtIndex(idx: Int, values ptr: UnsafeMutablePointer&lt;Float&gt;)
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;/br&gt;  </span><br><span class="line">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;CAMediaTiming Property&lt;/font&gt;    </span><br><span class="line"><span class="escape">`d</span>uration<span class="escape">`:</span>动画持续时间(最熟悉没有之一...),默认是<span class="number">0</span>,但这不意味着动画时长为<span class="number">0</span>秒,为<span class="number">0.25</span>  </span><br><span class="line"><span class="escape">`b</span>eginTime<span class="escape">`:</span>指定动画开始时间。从开始指定延迟几秒执行的话，请设置为「CACurrentMediaTime() + 秒数」的形式.  </span><br><span class="line"><span class="escape">`t</span>imeOffset<span class="escape">`:</span>我理解为时间的偏移量,比如一个duration为<span class="number">5</span>秒的动画,将timeOffset设置为<span class="number">2</span>,那么动画的运行是<span class="number">2</span>s-&gt;<span class="number">5</span>s-&gt;<span class="number">0</span>s-&gt;<span class="number">2</span>s  </span><br><span class="line"><span class="escape">`s</span>peed<span class="escape">`:</span>时间加速..设置duration为<span class="number">3</span>秒，但是speed为<span class="number">2</span>，动画快速的执行了<span class="number">1.5</span>秒,speed越大则说明时间流逝速度越快,动画也越快  </span><br><span class="line"><span class="escape">`r</span>epeatCount<span class="escape">`:</span>代表动画重复的迭代次数,默认为<span class="number">0</span>,也并不意味为<span class="number">0</span>次,而是<span class="number">1</span>次  </span><br><span class="line"><span class="escape">`r</span>epeatDuration<span class="escape">`:</span>动画的重复时间(间隔),如果它小于动画的duration，那么动画就会提前结束  </span><br><span class="line"><span class="escape">`a</span>utoreverses(Bool)<span class="escape">`:</span>动画结束时是否执行逆动画,可以产生从初始值到最终值，并反过来回到初始值的动画,也就是这意味着动画发生了两次  </span><br><span class="line"><span class="escape">`f</span>illMode<span class="escape">`:</span>一般与<span class="escape">`r</span>emovedOnCompletion<span class="escape">`(</span>必须设置为<span class="literal">false</span>)一起用</span><br></pre></td></tr></table></figure>
+<p>kCAFillModeRemoved  // 这个是默认值,也就是说当动画开始前和动画结束后,动画对layer都没有影响,动画结束后,layer会恢复到之前的状态<br>kCAFillModeForwards // 当动画结束后,layer会一直保持着动画最后的状态<br>kCAFillModeBackwards // 这个和kCAFillModeForwards是相对的,就是在动画开始前,你只要将动画加入了一个layer,layer便立即进入动画的初始状态并等待动画开始.你可以这样设定测试代码,将一个动画加入一个layer的时候延迟5秒执行.然后就会发现在动画没有开始的时候,只要动画被加入了layer,layer便处于动画初始状态<br>kCAFillModeBoth  // 理解了上面两个,这个就很好理解了,这个其实就是上面两个的合成.动画加入后开始之前,layer便处于动画初始状态,动画结束后layer保持动画最后的状态.<br>```  </p>
+<p><strong>参考链接:</strong><br><a href="http://ronnqvi.st/controlling-animation-timing/" target="_blank" rel="external">Controlling Animation Timing</a><br><a href="https://zsisme.gitbooks.io/ios-/content/chapter9/the-cAMediaTiming-protocol.html" target="_blank" rel="external">CAMediaTiming</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" data-id="cijnyi37l0018tvyo58219jk0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/22/iOS开发过程中的知识点总结-续/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS开发过程中的知识点总结(续)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Animation/">Animation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CoreAnimation/">CoreAnimation</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Extension/">Extension</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/">Swift</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/事件传递/">事件传递</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/第三方库/">第三方库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资料/">资料</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/About-Me/">About Me</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AutoLayout/">AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CATransition/">CATransition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Category-closure-objc-set-get/">Category closure objc_set/get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift和OC互调用/">Swift和OC互调用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Today/">Today</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hit-test/">hit-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imageView-性能优化/">imageView 性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-model/">json model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-request/">network request</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new-origin/">new origin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pop/">pop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protocol-MVVM-Mixins-Traits-composition/">protocol MVVM Mixins Traits composition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tableview-cell/">tableview cell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基本概念/">基本概念</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础动画-UIKit封装/">基础动画 UIKit封装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宏-小技巧/">宏 小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略/">策略</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配-AutoLayout/">适配 AutoLayout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-blog/">链接 blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接-github-Demo/">链接 github Demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/01/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/15/Moya/">Swift Moya</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>
