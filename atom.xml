@@ -3,9 +3,9 @@
   <title><![CDATA[胡明涛的技术博客]]></title>
   <subtitle><![CDATA[迷糊小书童]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://www.hmttommy.com/"/>
+  <link href="http://hmttommy.com/"/>
   <updated>2016-01-21T05:52:15.000Z</updated>
-  <id>http://www.hmttommy.com/</id>
+  <id>http://hmttommy.com/</id>
   
   <author>
     <name><![CDATA[Tommy@胡明涛]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol]]></title>
-    <link href="http://www.hmttommy.com/2016/01/14/protocolMVVM/"/>
-    <id>http://www.hmttommy.com/2016/01/14/protocolMVVM/</id>
+    <link href="http://hmttommy.com/2016/01/14/protocolMVVM/"/>
+    <id>http://hmttommy.com/2016/01/14/protocolMVVM/</id>
     <published>2016-01-14T02:03:22.000Z</published>
     <updated>2016-01-21T05:52:15.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u5F15"><a href="#u5F15" class="headerlink" title="引"></a><font color="IndianRed">引</font></h2><p>记得从大学学编程开始,对于软件编程听的最多的就是<code>面向对象编程(Object Oriented Programming，OOP)</code>了,它的三大特征:封装,继承,多态.而Swift倡导的<code>面向协议编程(Protocol-oriented programming,POP)</code>是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个<code>protocol</code>)  </p>
@@ -181,16 +181,16 @@ func tapAction() {
     
     </summary>
     
-      <category term="protocol MVVM Mixins Traits composition" scheme="http://www.hmttommy.com/tags/protocol-MVVM-Mixins-Traits-composition/"/>
+      <category term="protocol MVVM Mixins Traits composition" scheme="http://hmttommy.com/tags/protocol-MVVM-Mixins-Traits-composition/"/>
     
-      <category term="Swift" scheme="http://www.hmttommy.com/categories/Swift/"/>
+      <category term="Swift" scheme="http://hmttommy.com/categories/Swift/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[UIScrollView展示图片的三次升级]]></title>
-    <link href="http://www.hmttommy.com/2015/12/21/UIScrollViewAndUIImageView/"/>
-    <id>http://www.hmttommy.com/2015/12/21/UIScrollViewAndUIImageView/</id>
+    <link href="http://hmttommy.com/2015/12/21/UIScrollViewAndUIImageView/"/>
+    <id>http://hmttommy.com/2015/12/21/UIScrollViewAndUIImageView/</id>
     <published>2015-12-21T10:50:45.000Z</published>
     <updated>2016-01-21T03:57:15.000Z</updated>
     <content type="html"><![CDATA[<p>特殊情况来需求了,还在填坑中!…….</p>
@@ -200,16 +200,16 @@ func tapAction() {
 ]]>
     </summary>
     
-      <category term="imageView 性能优化" scheme="http://www.hmttommy.com/tags/imageView-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="imageView 性能优化" scheme="http://hmttommy.com/tags/imageView-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
-      <category term="Swift" scheme="http://www.hmttommy.com/categories/Swift/"/>
+      <category term="Swift" scheme="http://hmttommy.com/categories/Swift/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Swift Moya]]></title>
-    <link href="http://www.hmttommy.com/2015/12/15/Moya/"/>
-    <id>http://www.hmttommy.com/2015/12/15/Moya/</id>
+    <link href="http://hmttommy.com/2015/12/15/Moya/"/>
+    <id>http://hmttommy.com/2015/12/15/Moya/</id>
     <published>2015-12-15T06:42:49.000Z</published>
     <updated>2015-12-21T06:50:45.000Z</updated>
     <content type="html"><![CDATA[<p>网络层这一块用<a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="external">Alamofire</a>,如同于在oc中用<a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">AFNetworking</a>.但是,如果你直接使用的话,会使得各种网络请求操作分布很凌乱,所以我选择了巧神封装的<a href="https://github.com/yuantiku/YTKNetwork" target="_blank" rel="external">YTKNetwork</a>,很好用,有兴趣的可以看一下.当然你也可以自己组织封装.<br>这段代码就是LZ项目中的网络请求:<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">NSDictionary *parameterDic = @&#123;kPageSizeKey:</span>@<span class="string">"10"</span>,kCurPageKey:@<span class="string">"1"</span>,kLastIDKey:@<span class="string">"0"</span>&#125;<span class="comment">;</span></span><br><span class="line"><span class="label">[[WCRequestDataManager sharedRequestDataManager] requestDataForNetWorkWithDataHandleType:</span>WCProductListDataHandleType</span><br><span class="line"><span class="label">    parameterDic:</span>parameterDic</span><br><span class="line"><span class="label">    completed:</span>^(WCProductResultModel *resultModel) &#123;&#125;</span><br><span class="line"><span class="label">    failure:</span>^(NSString *msg) &#123;&#125;</span><br><span class="line">]<span class="comment">;</span></span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"> + <span class="escape">`p</span>arameterDic<span class="escape">`就</span>是请求所需的参数,如果没有直接传入<span class="escape">`n</span>il<span class="escape">` </span> </span><br><span class="line"> + <span class="escape">`W</span>CProductListDataHandleType<span class="escape">`是</span>枚举类型,你可以理解为它对应了<span class="escape">`产</span>品列表<span class="escape">`网</span>络请求的<span class="escape">`m</span>ethod(GET/POST)<span class="escape">`,</span><span class="escape">`U</span>RL<span class="escape">`等</span>等  </span><br><span class="line"> + <span class="escape">`c</span>ompleted<span class="escape">`和</span><span class="escape">`f</span>ailure<span class="escape">`2</span>个block分别对应请求<span class="escape">`成</span>功<span class="escape">`和</span><span class="escape">`失</span>败<span class="escape">`两</span>种情况,并返回页面需要的model和失败的信息  </span><br><span class="line"> + 数据解析直接在对应的<span class="escape">`R</span>equestHandle<span class="escape">`中</span>,保证返回对应的model-&gt;<span class="escape">`W</span>CProductResultModel<span class="escape">` </span> </span><br><span class="line">  </span><br><span class="line"><span class="label">那么Swift中推荐一下[Moya](https:</span>//github.com/Moya/Moya),这是一个基于<span class="escape">`A</span>lamofire<span class="escape">`的</span>更高层网络请求封装抽象层.  </span><br><span class="line"><span class="label">**整个Demo可以在这里下载到:[MoyaTest](https:</span>//github.com/ConanMTHu/MoyaTest)**  </span><br><span class="line"><span class="label">可以对比一下直接用`Alamofire`和用`Moya`请求样式:</span></span><br></pre></td></tr></table></figure></p>
@@ -349,16 +349,16 @@ successClosure(result: model)
     <![CDATA[<p>网络层这一块用<a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="external">Alamofire</a>,如同于在oc中用<a href="https://github.com/]]>
     </summary>
     
-      <category term="network request" scheme="http://www.hmttommy.com/tags/network-request/"/>
+      <category term="network request" scheme="http://hmttommy.com/tags/network-request/"/>
     
-      <category term="Swift" scheme="http://www.hmttommy.com/categories/Swift/"/>
+      <category term="Swift" scheme="http://hmttommy.com/categories/Swift/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Swift Closure与AnyObject在Extension中的转换]]></title>
-    <link href="http://www.hmttommy.com/2015/12/11/AddCategoryProperty/"/>
-    <id>http://www.hmttommy.com/2015/12/11/AddCategoryProperty/</id>
+    <link href="http://hmttommy.com/2015/12/11/AddCategoryProperty/"/>
+    <id>http://hmttommy.com/2015/12/11/AddCategoryProperty/</id>
     <published>2015-12-11T10:10:14.000Z</published>
     <updated>2015-12-11T12:25:59.000Z</updated>
     <content type="html"><![CDATA[<p>LZ个人很喜欢用<code>blcok</code>,<code>RAC</code>中也是各种的block调用,比如对UIButton的点击事件<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">xxxButton</span>.<span class="atom">rac_command</span> = [[<span class="name">RACCommand</span> <span class="atom">alloc</span>] <span class="atom">initWithSignalBlock</span>:^<span class="name">RACSignal</span> *(<span class="name">UIButton</span> *<span class="atom">button</span>) &#123;</span><br><span class="line">                // 事件处理</span><br><span class="line">                <span class="atom">return</span> [<span class="name">RACSignal</span> <span class="atom">empty</span>];</span><br><span class="line">            &#125;];</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">`  </span><br><span class="line">block的形式能够让代码更加的紧凑,让事件的响应处理紧跟属性对象的设置.  </span><br><span class="line"></span><br><span class="line">不用RAC的话,我们通常采取`</span><span class="name">Category</span><span class="string">`的方式来实现:</span></span><br></pre></td></tr></table></figure></p>
@@ -393,16 +393,16 @@ btn.handleControlEvent(.TouchUpInside) {
     <![CDATA[<p>LZ个人很喜欢用<code>blcok</code>,<code>RAC</code>中也是各种的block调用,比如对UIButton的点击事件<br><figure class="highlight prolog"><table><tr><td class="gutte]]>
     </summary>
     
-      <category term="Category closure objc_set/get" scheme="http://www.hmttommy.com/tags/Category-closure-objc-set-get/"/>
+      <category term="Category closure objc_set/get" scheme="http://hmttommy.com/tags/Category-closure-objc-set-get/"/>
     
-      <category term="Swift" scheme="http://www.hmttommy.com/categories/Swift/"/>
+      <category term="Swift" scheme="http://hmttommy.com/categories/Swift/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[SwiftyJson + ObjectMapper + Argo]]></title>
-    <link href="http://www.hmttommy.com/2015/11/29/swiftjson/"/>
-    <id>http://www.hmttommy.com/2015/11/29/swiftjson/</id>
+    <link href="http://hmttommy.com/2015/11/29/swiftjson/"/>
+    <id>http://hmttommy.com/2015/11/29/swiftjson/</id>
     <published>2015-11-28T17:27:37.000Z</published>
     <updated>2016-01-13T07:11:30.000Z</updated>
     <content type="html"><![CDATA[<p>学习Swift一段时间后,接下来的方法就是找个项目来练手了,于是LZ就决定空余时间用Swift重写目前的整个项目.鉴于UI需求变幻莫测,1.0后没多久又来的2.0…还是先从稳定的<code>数据层</code>和<code>网络层</code>着手.^_^<br><code>json &lt;-&gt; model</code>这一块选了3个第三方库,如标题,分析一下它们各自的用法和总结.    </p>
@@ -476,16 +476,16 @@ public func mapArray(JSONArray: [[String : AnyObject]]) -&gt; [N]? {
     <![CDATA[<p>学习Swift一段时间后,接下来的方法就是找个项目来练手了,于是LZ就决定空余时间用Swift重写目前的整个项目.鉴于UI需求变幻莫测,1.0后没多久又来的2.0…还是先从稳定的<code>数据层</code>和<code>网络层</code>着手.^_^<br><code]]>
     </summary>
     
-      <category term="json model" scheme="http://www.hmttommy.com/tags/json-model/"/>
+      <category term="json model" scheme="http://hmttommy.com/tags/json-model/"/>
     
-      <category term="Swift" scheme="http://www.hmttommy.com/categories/Swift/"/>
+      <category term="Swift" scheme="http://hmttommy.com/categories/Swift/"/>
     
   </entry>
   
   <entry>
     <title></title>
-    <link href="http://www.hmttommy.com/2015/11/28/iOS-CoreAnimation-04/"/>
-    <id>http://www.hmttommy.com/2015/11/28/iOS-CoreAnimation-04/</id>
+    <link href="http://hmttommy.com/2015/11/28/iOS-CoreAnimation-04/"/>
+    <id>http://hmttommy.com/2015/11/28/iOS-CoreAnimation-04/</id>
     <published>2015-11-28T03:41:08.000Z</published>
     <updated>2015-11-28T03:41:08.000Z</updated>
     <content type="html"><![CDATA[<p>title: iOS CoreAnimation(四)之CAPropertyAnimation<br>date: 2015-11-04 14:31:26<br>categories: CoreAnimation </p>
@@ -577,8 +577,8 @@ redView.layer.addAnimation(animationTest, forKey: nil)
   
   <entry>
     <title><![CDATA[Facebook POP使用介绍]]></title>
-    <link href="http://www.hmttommy.com/2015/11/26/facebookpop/"/>
-    <id>http://www.hmttommy.com/2015/11/26/facebookpop/</id>
+    <link href="http://hmttommy.com/2015/11/26/facebookpop/"/>
+    <id>http://hmttommy.com/2015/11/26/facebookpop/</id>
     <published>2015-11-26T03:14:23.000Z</published>
     <updated>2015-11-27T04:16:07.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5951_u673A"><a href="#u5951_u673A" class="headerlink" title="契机"></a><font color="IndianRed">契机</font></h3><p>项目最近加了个需求,统计所得收益的金额(LZ做的app金融属性很强)要像余额宝一样带跳动效果.网上找到篇文章可以实现<a href="http://www.tuicool.com/articles/uARRrq" target="_blank" rel="external">这里</a>,不过感觉很麻烦,再查了一下说<a href="https://github.com/facebook/pop" target="_blank" rel="external">POP</a>可以实现,顺便来介绍下,虽然已经出来很久了…so-&gt;上Demo<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">        let numberJumpAnimation = POPBasicAnimation()</span><br><span class="line">        numberJumpAnimation.fromValue = <span class="number">0</span></span><br><span class="line">        numberJumpAnimation.toValue = <span class="number">267493.32</span></span><br><span class="line">        numberJumpAnimation.duration = <span class="number">2.0</span></span><br><span class="line"><span class="label">        numberLabel.pop_addAnimation(numberJumpAnimation, forKey:</span> <span class="string">"numberJumpAnimation"</span>)</span><br><span class="line">        </span><br><span class="line">        let prop = POPMutableAnimatableProperty()</span><br><span class="line">        prop.name = <span class="string">"jump number"</span></span><br><span class="line"><span class="label">        prop.writeBlock = &#123; (obj:AnyObject!,values:</span>UnsafePointer&lt;CGFloat&gt;) -&gt; Void in</span><br><span class="line">            let label = obj as! UILabel</span><br><span class="line">            label.text = String(round(values[<span class="number">0</span>]*<span class="number">100</span>)/<span class="number">100</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        prop.threshold = <span class="number">0.01</span><span class="comment">;</span></span><br><span class="line">        numberJumpAnimation.property = prop</span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"><span class="label">效果如下:</span>  </span><br><span class="line"><span class="label">&lt;center&gt;![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/numberjump.gif)&lt;/center&gt;    </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">### &lt;font color=<span class="string">"IndianRed"</span>&gt;Facebook出品 必属精品&lt;/font&gt;  </span><br><span class="line"><span class="escape">`F</span>acebook POP<span class="escape">`是</span>基于<span class="escape">`C</span>ADisplayLink<span class="escape">`实</span>现的独立于Core Animation之外的动画引擎.<span class="escape">`P</span>OP<span class="escape">`在</span>使用上和Core Animation很相似,都涉及Animation对象以及Animation的载体的概念,&lt;font color=<span class="string">"#ce1f48"</span>&gt;不同的是Core Animation的载体只能是<span class="escape">`C</span>ALayer<span class="escape">`,</span>而<span class="escape">`P</span>OP<span class="escape">` </span>可以是任意基于<span class="escape">`N</span>SObject<span class="escape">`的</span>对象.&lt;/font&gt;  </span><br><span class="line"><span class="escape">`P</span>OP<span class="escape">`支</span>持<span class="number">4</span>种类型:</span><br></pre></td></tr></table></figure></p>
@@ -616,16 +616,16 @@ numberLabel.pop_addAnimation(decayAnimation, forKey: &quot;decayAnimation&quot;)
     <![CDATA[<h3 id="u5951_u673A"><a href="#u5951_u673A" class="headerlink" title="契机"></a><font color="IndianRed">契机</font></h3><p>项目最近加了个需求,统计所得收益的金额(L]]>
     </summary>
     
-      <category term="pop" scheme="http://www.hmttommy.com/tags/pop/"/>
+      <category term="pop" scheme="http://hmttommy.com/tags/pop/"/>
     
-      <category term="Animation" scheme="http://www.hmttommy.com/categories/Animation/"/>
+      <category term="Animation" scheme="http://hmttommy.com/categories/Animation/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[设计模式(三)之单例模式(译)]]></title>
-    <link href="http://www.hmttommy.com/2015/11/15/TheSinInSingleton/"/>
-    <id>http://www.hmttommy.com/2015/11/15/TheSinInSingleton/</id>
+    <link href="http://hmttommy.com/2015/11/15/TheSinInSingleton/"/>
+    <id>http://hmttommy.com/2015/11/15/TheSinInSingleton/</id>
     <published>2015-11-15T06:59:53.000Z</published>
     <updated>2015-11-26T03:13:41.000Z</updated>
     <content type="html"><![CDATA[<p>想来总结单例模式,但它可能是我们最早接触却也是随知识增长而变得最嫌弃的设计模式了.(据说去面试的时候,面试官问你用到过什么设计模式,如果你只答单例,会被鄙视)<br>看到一遍文章,讲的很不错,就拿来翻译一下(个人英语略挫,不要嫌弃…)<br>@列出单例的写法:<br>oc版<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+ (instancetype)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> once;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">id</span> sharedInstance;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;once, ^&#123;</span><br><span class="line">        sharedInstance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> sharedInstance;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line">Swift版</span><br></pre></td></tr></table></figure></p>
@@ -653,16 +653,16 @@ numberLabel.pop_addAnimation(decayAnimation, forKey: &quot;decayAnimation&quot;)
     <![CDATA[<p>想来总结单例模式,但它可能是我们最早接触却也是随知识增长而变得最嫌弃的设计模式了.(据说去面试的时候,面试官问你用到过什么设计模式,如果你只答单例,会被鄙视)<br>看到一遍文章,讲的很不错,就拿来翻译一下(个人英语略挫,不要嫌弃…)<br>@列出单例的写法:<br>oc版]]>
     </summary>
     
-      <category term="单例" scheme="http://www.hmttommy.com/tags/%E5%8D%95%E4%BE%8B/"/>
+      <category term="单例" scheme="http://hmttommy.com/tags/%E5%8D%95%E4%BE%8B/"/>
     
-      <category term="设计模式" scheme="http://www.hmttommy.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://hmttommy.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title></title>
-    <link href="http://www.hmttommy.com/2015/11/11/%E5%9F%BA%E4%BA%8E%E9%A1%B9%E7%9B%AE%E6%9F%90%E5%A4%84%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E9%9C%80%E6%B1%82%E5%BC%95%E5%8F%91%E7%9A%84%E8%9B%8B%E7%96%BC/"/>
-    <id>http://www.hmttommy.com/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/</id>
+    <link href="http://hmttommy.com/2015/11/11/%E5%9F%BA%E4%BA%8E%E9%A1%B9%E7%9B%AE%E6%9F%90%E5%A4%84%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E9%9C%80%E6%B1%82%E5%BC%95%E5%8F%91%E7%9A%84%E8%9B%8B%E7%96%BC/"/>
+    <id>http://hmttommy.com/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/</id>
     <published>2015-11-11T08:32:41.000Z</published>
     <updated>2015-11-11T08:32:41.000Z</updated>
     <content type="html"><![CDATA[<p>title: 基于项目某处图片浏览需求引发的XX<br>date: 2015-11-06 16:42:19<br>categories: Push/Pop/Present/Dismiss </p>
@@ -796,7 +796,7 @@ extension CustomModalTransition: UINavigationControllerDelegate {
         }
     }
 }
-</code></pre><p>PS:对于Custom转场不了解的,可以去看一下<a href="http://www.hmttommy.com/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a>的前半部分  </p>
+</code></pre><p>PS:对于Custom转场不了解的,可以去看一下<a href="http://www.hmttommy.com/2015/05/29/iOS-CoreAnimation-02/" target="_blank" rel="external">iOS CoreAnimation(二)之CATransition</a>的前半部分  </p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>title: 基于项目某处图片浏览需求引发的XX<br>date: 2015-11-06 16:42:19<br>categories: Push/Pop/Present/Dismiss </p>
@@ -808,8 +808,8 @@ extension CustomModalTransition: UINavigationControllerDelegate {
   
   <entry>
     <title></title>
-    <link href="http://www.hmttommy.com/2015/10/30/iOS-CoreAnimation-%E4%B8%89-%E4%B9%8BCAAnimation/"/>
-    <id>http://www.hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/</id>
+    <link href="http://hmttommy.com/2015/10/30/iOS-CoreAnimation-%E4%B8%89-%E4%B9%8BCAAnimation/"/>
+    <id>http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/</id>
     <published>2015-10-30T10:00:23.000Z</published>
     <updated>2015-10-30T10:00:23.000Z</updated>
     <content type="html"><![CDATA[<p>title: iOS CoreAnimation(三)之CAAnimation<br>date: 2015-6-03 15:39:33<br>categories: CoreAnimation </p>
@@ -837,8 +837,8 @@ public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
   
   <entry>
     <title><![CDATA[iOS开发过程中的知识点总结(续)]]></title>
-    <link href="http://www.hmttommy.com/2015/10/22/iOS%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E7%BB%AD/"/>
-    <id>http://www.hmttommy.com/2015/10/22/iOS开发过程中的知识点总结-续/</id>
+    <link href="http://hmttommy.com/2015/10/22/iOS%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E7%BB%AD/"/>
+    <id>http://hmttommy.com/2015/10/22/iOS开发过程中的知识点总结-续/</id>
     <published>2015-10-22T03:24:15.000Z</published>
     <updated>2015-10-26T06:48:53.000Z</updated>
     <content type="html"><![CDATA[<p>之前在做项目的时候经常会遇到一些细小的知识点,不影响做项目的大方向,但确影响了很多细小的点..比如公式转换,汉字拼音,颜色转换等等,什么都涉及…上次写的还是在<code>CSDN</code>写blog时记录的:<a href="http://blog.csdn.net/hmt20130412/article/details/23975535" target="_blank" rel="external">iOS开发 容易犯错的知识点和不错的细小知识点(持续更新)</a>,现在换地方了,就不在接着原来的写了,重开一个,依旧持续更新,持续记录.  </p>
@@ -1004,16 +1004,16 @@ if (different &lt; 86400) {
     <![CDATA[<p>之前在做项目的时候经常会遇到一些细小的知识点,不影响做项目的大方向,但确影响了很多细小的点..比如公式转换,汉字拼音,颜色转换等等,什么都涉及…上次写的还是在<code>CSDN</code>写blog时记录的:<a href="http://blog.csdn.net/h]]>
     </summary>
     
-      <category term="小技巧" scheme="http://www.hmttommy.com/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+      <category term="小技巧" scheme="http://hmttommy.com/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
     
-      <category term="资料" scheme="http://www.hmttommy.com/categories/%E8%B5%84%E6%96%99/"/>
+      <category term="资料" scheme="http://hmttommy.com/categories/%E8%B5%84%E6%96%99/"/>
     
   </entry>
   
   <entry>
     <title></title>
-    <link href="http://www.hmttommy.com/2015/10/16/xctool-xcodebuild%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%82%BB%E7%93%9C%E5%BC%8F%E6%95%99%E7%A8%8B/"/>
-    <id>http://www.hmttommy.com/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/</id>
+    <link href="http://hmttommy.com/2015/10/16/xctool-xcodebuild%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%82%BB%E7%93%9C%E5%BC%8F%E6%95%99%E7%A8%8B/"/>
+    <id>http://hmttommy.com/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/</id>
     <published>2015-10-16T10:08:59.000Z</published>
     <updated>2015-10-16T10:08:59.000Z</updated>
     <content type="html"><![CDATA[<p>title: xctool+xcodebuild自动打包傻瓜式教程<br>date: 2015-10-16 16:20:54<br>categories: 工具 </p>
@@ -1059,8 +1059,8 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
   
   <entry>
     <title><![CDATA[Star Github share]]></title>
-    <link href="http://www.hmttommy.com/2015/10/12/Star-Github-share/"/>
-    <id>http://www.hmttommy.com/2015/10/12/Star-Github-share/</id>
+    <link href="http://hmttommy.com/2015/10/12/Star-Github-share/"/>
+    <id>http://hmttommy.com/2015/10/12/Star-Github-share/</id>
     <published>2015-10-12T09:11:02.000Z</published>
     <updated>2016-01-20T01:32:42.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u76EE_u5F55"><a href="#u76EE_u5F55" class="headerlink" title="目录"></a><font color="IndianRed">目录</font></h2><ul>
@@ -1283,7 +1283,7 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
 <li><a href="https://github.com/lovels/LBTagView" target="_blank" rel="external">LBTagView</a> (添加标签视图)  </li>
 </ul>
 <h2 id="AutoLayout"><a href="#AutoLayout" class="headerlink" title="AutoLayout"></a><a id="AutoLayout"></a><font color="IndianRed">AutoLayout</font></h2><ul>
-<li><a href="http://www.hmttommy.com/2015/04/14/AutolayoutDetail/">AutoLayout优秀的开源库</a> (可以参考LZ之前写的这篇文章)  </li>
+<li><a href="http://www.hmttommy.com/2015/04/14/AutolayoutDetail/" target="_blank" rel="external">AutoLayout优秀的开源库</a> (可以参考LZ之前写的这篇文章)  </li>
 <li><a href="https://github.com/mamaral/Neon" target="_blank" rel="external">Neon</a>  </li>
 <li><a href="https://github.com/forkingdog/FDStackView" target="_blank" rel="external">FDStackView</a> (这个项目通过巧妙的方式用自己的一套实现在非 iOS 9 中替换了 UIStackView 的链接和实现，让我们可以在低至 iOS 6 的系统上使用UIStackView，并且保持和最新的 iOS 9 上同样的用法和语法)  </li>
 <li><a href="https://github.com/zekunyan/AutolayoutExampleWithMasonry" target="_blank" rel="external">AutolayoutExampleWithMasonry</a> (有一系列的文章来讲明使用)        </li>
@@ -1494,16 +1494,16 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
     
     </summary>
     
-      <category term="链接 github Demo" scheme="http://www.hmttommy.com/tags/%E9%93%BE%E6%8E%A5-github-Demo/"/>
+      <category term="链接 github Demo" scheme="http://hmttommy.com/tags/%E9%93%BE%E6%8E%A5-github-Demo/"/>
     
-      <category term="资料" scheme="http://www.hmttommy.com/categories/%E8%B5%84%E6%96%99/"/>
+      <category term="资料" scheme="http://hmttommy.com/categories/%E8%B5%84%E6%96%99/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[iOS CoreAnimation(二)之CATransition]]></title>
-    <link href="http://www.hmttommy.com/2015/05/29/iOS-CoreAnimation-02/"/>
-    <id>http://www.hmttommy.com/2015/05/29/iOS-CoreAnimation-02/</id>
+    <link href="http://hmttommy.com/2015/05/29/iOS-CoreAnimation-02/"/>
+    <id>http://hmttommy.com/2015/05/29/iOS-CoreAnimation-02/</id>
     <published>2015-05-29T02:36:41.000Z</published>
     <updated>2015-07-15T08:34:49.000Z</updated>
     <content type="html"><![CDATA[<p>这一章开始,来讲一下<code>CAAnimation</code>.我们做显式动画主要就是靠它/它的子类了.官方对它的描述是:CAAnimation is an abstract animation class. It provides the basic support for the CAMediaTiming and CAAction protocols. To animate Core Animation layers or Scene Kit objects, create instances of the concrete subclasses CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, or CATransition.<br>@结构图如下:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/coreAni_004.png" alt="">  </p>
@@ -1521,16 +1521,16 @@ xcodebuild -exportArchive -exportFormat IPA -archivePath ${ArchivePath} -exportP
     
     </summary>
     
-      <category term="CATransition" scheme="http://www.hmttommy.com/tags/CATransition/"/>
+      <category term="CATransition" scheme="http://hmttommy.com/tags/CATransition/"/>
     
-      <category term="CoreAnimation" scheme="http://www.hmttommy.com/categories/CoreAnimation/"/>
+      <category term="CoreAnimation" scheme="http://hmttommy.com/categories/CoreAnimation/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[iOS CoreAnimation(一)之UIKit封装的UIView动画]]></title>
-    <link href="http://www.hmttommy.com/2015/05/27/iOS-CoreAnimation-01/"/>
-    <id>http://www.hmttommy.com/2015/05/27/iOS-CoreAnimation-01/</id>
+    <link href="http://hmttommy.com/2015/05/27/iOS-CoreAnimation-01/"/>
+    <id>http://hmttommy.com/2015/05/27/iOS-CoreAnimation-01/</id>
     <published>2015-05-27T03:00:10.000Z</published>
     <updated>2015-07-15T06:39:24.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a><font color="IndianRed">Start</font></h1><p>我们开发App的时候,经常要用到各种动画来实现炫丽效果,本人也十分的喜欢研究动画,所以打算对于<code>动画-Core Animation</code>相关的知识做个梳理与总结.  </p>
@@ -1623,16 +1623,16 @@ UIView.animateKeyframesWithDuration(6.0, delay: 0.0, options: UIViewKeyframeAnim
     
     </summary>
     
-      <category term="基础动画 UIKit封装" scheme="http://www.hmttommy.com/tags/%E5%9F%BA%E7%A1%80%E5%8A%A8%E7%94%BB-UIKit%E5%B0%81%E8%A3%85/"/>
+      <category term="基础动画 UIKit封装" scheme="http://hmttommy.com/tags/%E5%9F%BA%E7%A1%80%E5%8A%A8%E7%94%BB-UIKit%E5%B0%81%E8%A3%85/"/>
     
-      <category term="CoreAnimation" scheme="http://www.hmttommy.com/categories/CoreAnimation/"/>
+      <category term="CoreAnimation" scheme="http://hmttommy.com/categories/CoreAnimation/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[iOS hitTest-点击事件分发分析]]></title>
-    <link href="http://www.hmttommy.com/2015/05/25/iOS-hitTest/"/>
-    <id>http://www.hmttommy.com/2015/05/25/iOS-hitTest/</id>
+    <link href="http://hmttommy.com/2015/05/25/iOS-hitTest/"/>
+    <id>http://hmttommy.com/2015/05/25/iOS-hitTest/</id>
     <published>2015-05-25T08:24:51.000Z</published>
     <updated>2015-07-13T13:25:29.000Z</updated>
     <content type="html"><![CDATA[<p>最近朋友问了我个点击事件处理的问题,自己从前也没怎么仔细想过,查过资料才明白是怎么一回事,遂做个小结.<br>写了个小Demo,地址是:<a href="https://github.com/ConanMTHu/HitTestDemo" target="_blank" rel="external">点这里</a><br>先来看一张图:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_01.png" alt=""><br><code>0-1-2</code>代表了他们的层级关系,可见<code>button_1</code>被<code>view_1</code>盖住了,如何透过<code>view_1</code>实现对<code>button_1</code>的点击呢?<br>当时想的就是改<code>userInteractionEnabled = NO</code>(这个属性大家肯定不陌生,<code>UILabel</code>和<code>UIImageView</code>无法接收点击事件就是因为这个属性默认设置为了<code>NO</code>),类似还有<code>Hidden＝YES/alpha&lt;0.01等</code>,虽然可以实现预期点击,但是这样也影响了<code>view_1和他的子视图button_2(无法被点击)</code>.那改怎么做呢?搜了一下,<code>userInteractionEnabled = NO</code>等价于<code>使当前的hitTest：withEvent返回nil</code>,这是个啥? <a id="more"></a> ok,先来看一下<a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html#//apple_ref/doc/uid/TP40009541-CH4-SW4" target="_blank" rel="external">官方文档</a>中对于<code>The Responder Chain Follows a Specific Delivery Path</code>的解释:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_02.png" alt=""><br>那么,UIView是如何判定这个事件是否是自己应该处理的呢？iOS系统检测到一个触摸操作时会打包一个UIEvent对象，并放入Application的队列，Application从队列中取出事件后交给UIWindow来处理，UIWindow会使用hitTest:withEvent:方法来递归的寻找操作初始点所在的view，这个过程成为<code>hit-test view</code>.<br>继续看文档中的说明:<br>The hitTest:withEvent: method returns the hit test view for a given CGPoint and UIEvent. The hitTest:withEvent: method begins by calling the pointInside:withEvent: method on itself. If the point passed into hitTest:withEvent: is inside the bounds of the view, pointInside:withEvent: returns YES. Then, the method recursively calls hitTest:withEvent: on every subview that returns YES.<br>If the point passed into hitTest:withEvent: is not inside the bounds of the view, the first call to the pointInside:withEvent: method returns NO, the point is ignored, and hitTest:withEvent: returns nil. If a subview returns NO, that whole branch of the view hierarchy is ignored, because if the touch did not occur in that subview, it also did not occur in any of that subview’s subviews. This means that any point in a subview that is outside of its superview can’t receive touch events because the touch point has to be within the bounds of the superview and the subview. This can occur if the subview’s clipsToBounds property is set to NO.<br><strong>翻译下,差不多就是:</strong><br>1.首先调用当前视图的pointInside:withEvent:方法判断触摸点是否在当前视图内;<br>2.若pointInside:withEvent:方法返回NO,说明触摸点不在当前视图内,则当前视图的hitTest:withEvent:返回nil.<br>3.若pointInside:withEvent:方法返回YES,说明触摸点在当前视图内,则遍历当前视图的所有子视图(subviews),调用子视图的hitTest:withEvent:方法重复前面的步骤,子视图的遍历顺序是从top到bottom,即从subviews数组的末尾向前遍历,直到有子视图的hitTest:withEvent:方法返回非空对象或者全部子视图遍历完毕.<br>4.若第一次有子视图的hitTest:withEvent:方法返回非空对象,则当前视图的hitTest:withEvent:方法就返回此对象,处理结束;<br>5.若所有子视图的hitTest:withEvent:方法都返回nil,则当前视图的hitTest:withEvent:方法返回当前视图自身(self).  </p>
@@ -1651,16 +1651,16 @@ UIView.animateKeyframesWithDuration(6.0, delay: 0.0, options: UIViewKeyframeAnim
     
     </summary>
     
-      <category term="hit-test" scheme="http://www.hmttommy.com/tags/hit-test/"/>
+      <category term="hit-test" scheme="http://hmttommy.com/tags/hit-test/"/>
     
-      <category term="事件传递" scheme="http://www.hmttommy.com/categories/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92/"/>
+      <category term="事件传递" scheme="http://hmttommy.com/categories/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Autolayout优秀的第三方开源库]]></title>
-    <link href="http://www.hmttommy.com/2015/04/14/AutolayoutDetail/"/>
-    <id>http://www.hmttommy.com/2015/04/14/AutolayoutDetail/</id>
+    <link href="http://hmttommy.com/2015/04/14/AutolayoutDetail/"/>
+    <id>http://hmttommy.com/2015/04/14/AutolayoutDetail/</id>
     <published>2015-04-14T08:20:21.000Z</published>
     <updated>2015-08-15T13:07:58.000Z</updated>
     <content type="html"><![CDATA[<p>最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于<code>sb好还是纯代码好的争论</code>,可以参考下<a href="http://blog.devtang.com/blog/2015/03/22/ios-dev-controversy-2/" target="_blank" rel="external">巧大大的分析</a>.<br>说到UI适配布局,一般有两种方法:  </p>
@@ -1728,16 +1728,16 @@ view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
     <![CDATA[<p>最近项目开始用纯代码布局整个UI框架, 对于前一段很长时间都是xib+storyboard狂拖控件约束的我来说,每天写的代码量剧增…对于<code>sb好还是纯代码好的争论</code>,可以参考下<a href="http://blog.devtang.com/blog/]]>
     </summary>
     
-      <category term="AutoLayout" scheme="http://www.hmttommy.com/tags/AutoLayout/"/>
+      <category term="AutoLayout" scheme="http://hmttommy.com/tags/AutoLayout/"/>
     
-      <category term="第三方库" scheme="http://www.hmttommy.com/categories/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/"/>
+      <category term="第三方库" scheme="http://hmttommy.com/categories/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[设计模式(二)之策略模式]]></title>
-    <link href="http://www.hmttommy.com/2015/04/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%8C-%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://www.hmttommy.com/2015/04/01/设计模式-二-之策略模式/</id>
+    <link href="http://hmttommy.com/2015/04/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%8C-%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://hmttommy.com/2015/04/01/设计模式-二-之策略模式/</id>
     <published>2015-04-01T00:41:23.000Z</published>
     <updated>2015-05-27T06:03:44.000Z</updated>
     <content type="html"><![CDATA[<h1 id="u521D_u5165_u6C5F_u6E56"><a href="#u521D_u5165_u6C5F_u6E56" class="headerlink" title="初入江湖"></a><font color="IndianRed">初入江湖</font></h1><p><strong>策略模式</strong>：定义一系列的算法,把每一个算法封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化.<br>0.0好吧,基本上所有介绍策略模式的基本都是这样的开头,详情概念可见<a href="http://baike.baidu.com/link?url=K31Rsj_er4saTaz4l0L69f6YxCMbVTnR9KO007RcP4ymkNGqhvABAtWb3o038qrgLOmVJJOxV08HZVh3HfRTGK" target="_blank" rel="external">策略模式百度百科</a>!博主最初用它,除了善用设计模式优化代码结构之外,最主要的就是消除万恶的<code>if else</code>或<code>switch case</code>(很讨厌<code>if else</code>…在写代码的时候能够用<code>? :</code>就用)<br>话不多说,先来张图(盗的,勿喷,^_^):<br><img src="http://hmtphoto.qiniudn.com/strategy_001.jpg" alt="">  </p>
@@ -1817,16 +1817,16 @@ return &quot;URL&quot;
     <![CDATA[<h1 id="u521D_u5165_u6C5F_u6E56"><a href="#u521D_u5165_u6C5F_u6E56" class="headerlink" title="初入江湖"></a><font color="IndianRed">初入江湖</font><]]>
     </summary>
     
-      <category term="策略" scheme="http://www.hmttommy.com/tags/%E7%AD%96%E7%95%A5/"/>
+      <category term="策略" scheme="http://hmttommy.com/tags/%E7%AD%96%E7%95%A5/"/>
     
-      <category term="设计模式" scheme="http://www.hmttommy.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://hmttommy.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[iOS面试题总结与感想]]></title>
-    <link href="http://www.hmttommy.com/2015/03/21/iOS%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93%E4%B8%8E%E6%84%9F%E6%83%B3/"/>
-    <id>http://www.hmttommy.com/2015/03/21/iOS面试题总结与感想/</id>
+    <link href="http://hmttommy.com/2015/03/21/iOS%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93%E4%B8%8E%E6%84%9F%E6%83%B3/"/>
+    <id>http://hmttommy.com/2015/03/21/iOS面试题总结与感想/</id>
     <published>2015-03-21T10:15:21.000Z</published>
     <updated>2015-03-21T15:36:12.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u9898"><a href="#u9898" class="headerlink" title="题"></a><font color="IndianRed">题</font></h3><p>必须先吐槽一下,找工作面试确实是个累人的活呀,所以—&gt;<code>跳槽有风险,选择需谨慎</code>.LZ我为什么要换工作呢?就不在这里说明了…直接进入正题,这周的面试基本每天从早面到晚,面试表都填吐了…大小公司都有,列举下这段时间常见的面试题和一些个人理解.PS:LZ我水平有限,不好的地方,大家轻喷^_^!(因为完全是靠记忆,列举顺序纯凭感觉0.0)  </p>
@@ -1845,7 +1845,7 @@ return &quot;URL&quot;
 <li>你知道哪些<code>设计模式</code>?实际项目中运用到了吗?(LZ我只回答了,<code>单例-策略-观察者-工厂-代理</code>(其实我觉得代理不能算进去))</li>
 <li><code>MVC</code>是什么?你能画出它们之间的关系图吗?(对的,画图)</li>
 <li>你的<code>C++</code>如何?<code>算法和数据结构</code>呢?(这个都是泪呀)-&gt;依旧是补!补!补!</li>
-<li><code>Autolayout</code>的理解…使用的怎么样?<a href="http://www.hmttommy.com/2014/12/05/AutoLayout/">可以看看我的这篇…虽然没详细讲Autolayout</a>…大家可以多搜搜…这就是涉及到你写代码是<code>纯代码</code>还是<code>storyboard</code>了…建立两种都必须掌握.</li>
+<li><code>Autolayout</code>的理解…使用的怎么样?<a href="http://www.hmttommy.com/2014/12/05/AutoLayout/" target="_blank" rel="external">可以看看我的这篇…虽然没详细讲Autolayout</a>…大家可以多搜搜…这就是涉及到你写代码是<code>纯代码</code>还是<code>storyboard</code>了…建立两种都必须掌握.</li>
 <li>有没有学习<code>Swift</code>?这个,LZ建议,毕竟苹果给你开发的框架库没变,可以拿它写写Demo保持认识度,要不然,你只看不写,过一段时间又把它忘记了,就白看了…亲身体会…起码我现在能用<code>swift</code>来写写一些Demo就用它来写写….工作肯定还是用OC啦,不过也有的公司说已经完全用<code>swift</code>来开发了,只能说,毕竟还只是很少数的…</li>
 <li>目前暂时想到这些…如果还有,再更新!0.0  </li>
 </ol>
@@ -1873,16 +1873,16 @@ return &quot;URL&quot;
     
     </summary>
     
-      <category term="面试题" scheme="http://www.hmttommy.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <category term="面试题" scheme="http://hmttommy.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
-      <category term="随笔" scheme="http://www.hmttommy.com/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://hmttommy.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Swift AVFoundation 二维码扫描和生成]]></title>
-    <link href="http://www.hmttommy.com/2015/03/16/Swift-AVFoundation-%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E6%8F%8F%E5%92%8C%E7%94%9F%E6%88%90/"/>
-    <id>http://www.hmttommy.com/2015/03/16/Swift-AVFoundation-二维码扫描和生成/</id>
+    <link href="http://hmttommy.com/2015/03/16/Swift-AVFoundation-%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E6%8F%8F%E5%92%8C%E7%94%9F%E6%88%90/"/>
+    <id>http://hmttommy.com/2015/03/16/Swift-AVFoundation-二维码扫描和生成/</id>
     <published>2015-03-16T00:46:28.000Z</published>
     <updated>2015-06-26T06:51:32.000Z</updated>
     <content type="html"><![CDATA[<p>项目终于不需要支持iOS6了(泪崩),在二维码扫描这一块,能够完全的放弃<code>ZXing</code>库,改用系统的<code>AVFoundation</code>了,拿<code>swift</code>写了个Demo,效果如下:<br><strong>github地址:<a href="https://github.com/ConanMTHu/QRCodeByAVFoundation" target="_blank" rel="external">点这里</a></strong><br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/qrcode_1.PNG" alt="">  </p>
@@ -1963,9 +1963,9 @@ private func createQRForString(qrString: String?, qrImageName: String?) -&gt; UI
     <![CDATA[<p>项目终于不需要支持iOS6了(泪崩),在二维码扫描这一块,能够完全的放弃<code>ZXing</code>库,改用系统的<code>AVFoundation</code>了,拿<code>swift</code>写了个Demo,效果如下:<br><strong>githu]]>
     </summary>
     
-      <category term="AVFoundation 二维码" scheme="http://www.hmttommy.com/tags/AVFoundation-%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
+      <category term="AVFoundation 二维码" scheme="http://hmttommy.com/tags/AVFoundation-%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
     
-      <category term="Swift" scheme="http://www.hmttommy.com/categories/Swift/"/>
+      <category term="Swift" scheme="http://hmttommy.com/categories/Swift/"/>
     
   </entry>
   
