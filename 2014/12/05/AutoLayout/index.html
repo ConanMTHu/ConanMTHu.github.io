@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/autolayoutGif.gif">
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/Demo2.png">
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/Demo1.png">
-<meta property="og:updated_time" content="2015-06-24T08:23:18.000Z">
+<meta property="og:updated_time" content="2016-01-22T03:40:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS8 AutoLayout与Size Class 自悟">
 <meta name="twitter:description" content="前言iOS8和iPhone6发布已经过去蛮久了,广大的果粉终于迎来了大屏iPhone,再也不用纠结为大屏买三星舍苹果了…但是对于iOS开发人员来说,迎来了和Android开发开发一样的问题–&amp;gt;各种屏幕的适配(是不是可以要求加工资的节奏).对于适配,网传各种有关Size Class的论点,前段时间太忙,一直没去研究,套用+总的话,苹果在适配方面提供的方法做的比安卓好太多了.自己实测之后,确实很">
@@ -284,8 +284,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a><font color="IndianRed">前言</font></h3><p>iOS8和iPhone6发布已经过去蛮久了,广大的果粉终于迎来了大屏iPhone,再也不用纠结为大屏买三星舍苹果了…但是对于iOS开发人员来说,迎来了和Android开发开发一样的问题–&gt;各种屏幕的适配(是不是可以要求加工资的节奏).对于适配,网传各种有关Size Class的论点,前段时间太忙,一直没去研究,套用+总的话,苹果在适配方面提供的方法做的比安卓好太多了.自己实测之后,确实很方便0.0(不过,还是想说,适配的核心始终是<b style="background-color:SeaShell"><font color="#FF0000">AutoLayout</font></b>)<br><img src="http://hmtphoto.qiniudn.com/屏幕快照 2014-12-05 上午10.36.12.png" alt=""><br><a id="more"></a>  </p>
-<p>###<font color="IndianRed">概念初探</font><br>iOS8之前,公司在开发项目时,先做的iPhone版,然后要求开发iPad版本,其实内容是完全一样的,只是UI变化了,但是我们就需要建立2个工程来分别对应实现.iOS8推出的Size Class,可以让我们在一个工程的storyboard中进行所有尺寸屏幕的适配,不仅是iPhone 4s-5/5s-6-6 Plus,还包括iPad界面.<font color="#FF0000"><strong>它引入了一种新的概念,抛弃传统意义上我们适配时所谓的具体宽高尺寸,把屏幕的宽和高分别分成两种情况:Compact-紧凑, Regular-正常(Any-任意,其实就是这2种的组合,所以我没分成3种情况)</strong></font>.搭配起来是3*3,也就是无论如何变化,加起来也就9种,如上图.  </p>
+        <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a><font color="IndianRed">前言</font></h2><p>iOS8和iPhone6发布已经过去蛮久了,广大的果粉终于迎来了大屏iPhone,再也不用纠结为大屏买三星舍苹果了…但是对于iOS开发人员来说,迎来了和Android开发开发一样的问题–&gt;各种屏幕的适配(是不是可以要求加工资的节奏).对于适配,网传各种有关Size Class的论点,前段时间太忙,一直没去研究,套用+总的话,苹果在适配方面提供的方法做的比安卓好太多了.自己实测之后,确实很方便0.0(不过,还是想说,适配的核心始终是<b style="background-color:SeaShell"><font color="#FF0000">AutoLayout</font></b>)<br><img src="http://hmtphoto.qiniudn.com/屏幕快照 2014-12-05 上午10.36.12.png" alt=""><br><a id="more"></a><br><br></p>
+<h2 id="u6982_u5FF5_u521D_u63A2"><a href="#u6982_u5FF5_u521D_u63A2" class="headerlink" title="概念初探"></a><font color="IndianRed">概念初探</font></h2><p>iOS8之前,公司在开发项目时,先做的iPhone版,然后要求开发iPad版本,其实内容是完全一样的,只是UI变化了,但是我们就需要建立2个工程来分别对应实现.iOS8推出的Size Class,可以让我们在一个工程的storyboard中进行所有尺寸屏幕的适配,不仅是iPhone 4s-5/5s-6-6 Plus,还包括iPad界面.<font color="#FF0000"><strong>它引入了一种新的概念,抛弃传统意义上我们适配时所谓的具体宽高尺寸,把屏幕的宽和高分别分成两种情况:Compact-紧凑, Regular-正常(Any-任意,其实就是这2种的组合,所以我没分成3种情况)</strong></font>.搭配起来是3*3,也就是无论如何变化,加起来也就9种,如上图.  </p>
 <ol>
 <li><p>实际应用中,这<code>Compact</code>,<code>Any</code>,<code>Regular</code>如何运用呢?<br><strong>w:Any h:Any</strong> 是我们刚建立工程时候默认选择的,算是一切描述的父类.其他的种类描述都是在此基础上变化的,比如:如果width设为Any，height设置为Regular，那么在该状态下的界面元素在只要height为Regular，无论width是Regular还是Compact的状态中都会存在.于是:<br><code>w:Compact h:Compact - (w:Any h:Compact , w:Compact h:Any , w:Any h:Any)</code><br><code>w:Regular h:Compact - (w:Any h:Compact , w:Regular h:Any , w:Any h:Any)</code><br><code>w:Compact h:Regular - (w:Any h:Regular , w:Compact h:Any , w:Any h:Any)</code><br><code>w:Regular h:Regular - (w:Any h:Regular , w:Regular h:Any , w:Any h:Any)</code>  </p>
 </li>
@@ -298,9 +298,8 @@
 <li>如果项目不支持横屏显示,使用<code>w:Compact h:Regular</code>(或者直接取消使用Size Class) </li>
 <li>如果项目支持横屏显示,使用<code>w:Compact h:Regular</code>+<code>w:Any h:Compact</code>  </li>
 <li>对于一些公有的约束(任意组合中都适用),一般放在<code>w:Any h:Any</code>中设置  </li>
-<li>iPad同理<br><strong>所以,我觉得Size Class最大的帮助是,解决横屏适配和iPhone iPad共享一个设计板…(个人意见)</strong>  </li>
+<li>iPad同理<br><strong>所以,我觉得Size Class最大的帮助是,解决横屏适配和iPhone iPad共享一个设计板…(个人意见)</strong><br><br>  <h2 id="u8BD5_u9A8C_u53CD_u9988_u4E00"><a href="#u8BD5_u9A8C_u53CD_u9988_u4E00" class="headerlink" title="试验反馈一"></a><font color="IndianRed">试验反馈一</font></h2></li>
 </ul>
-<p>###<font color="IndianRed">试验反馈一</font>  </p>
 <ol>
 <li><p>首先,先建立一个工程,展开如下页面<br><img src="http://hmtphoto.qiniudn.com/0.png" alt=""><br><strong>PS:</strong>这是iOS8的新特性,真的用到项目里需要等放弃兼容iOS7 。。。显然,目前还是不行的  </p>
 </li>
@@ -310,22 +309,22 @@
 </li>
 <li><p>继续在<code>Compact Any</code>情况下,来看看横屏状态下的变化<br><img src="http://hmtphoto.qiniudn.com/AutoLayout-3.png" alt="">  </p>
 </li>
-<li><p>最后切换到<code>Regular Any</code>下,完成6 Plus 的横屏显示<br><img src="http://hmtphoto.qiniudn.com/AutoLayout-4_1.png" alt="">  </p>
+<li><p>最后切换到<code>Regular Any</code>下,完成6 Plus 的横屏显示<br><img src="http://hmtphoto.qiniudn.com/AutoLayout-4_1.png" alt=""><br><br> </p>
+<h2 id="u8BD5_u9A8C_u53CD_u9988_u4E8C"><a href="#u8BD5_u9A8C_u53CD_u9988_u4E8C" class="headerlink" title="试验反馈二"></a><font color="IndianRed">试验反馈二</font></h2><p><strong>试验一里面,验证了一下概念中所列举的各个屏幕适用的组合,接下来,算是Size Class 解决横屏的妙用</strong><br><img src="http://hmtphoto.qiniudn.com/size_class__1_1.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/size_class__2.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/屏幕快照 2014-11-07 下午4.48.50.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/屏幕快照 2014-11-07 上午11.44.56.png" alt=""><br><strong>PS:</strong>运用于,横屏适配,重新排版竖屏时候的UI布局  </p>
 </li>
 </ol>
-<p>###<font color="IndianRed">试验反馈二</font><br><strong>试验一里面,验证了一下概念中所列举的各个屏幕适用的组合,接下来,算是Size Class 解决横屏的妙用</strong><br><img src="http://hmtphoto.qiniudn.com/size_class__1_1.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/size_class__2.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/屏幕快照 2014-11-07 下午4.48.50.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/屏幕快照 2014-11-07 上午11.44.56.png" alt=""><br><strong>PS:</strong>运用于,横屏适配,重新排版竖屏时候的UI布局  </p>
-<p><strong>除了改动不同组合下约束,也能改动控件在不同组合下是否显示</strong><br><img src="http://hmtphoto.qiniudn.com/installed_1.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/installed_2.png" alt="">  </p>
-<p>###<font color="IndianRed">试验反馈三</font><br><strong>AutoLayout这里不给具体如何设置,因为不知道如何写,感觉还是大家多动手去写,去试,最有效了</strong><br>下面给出AutoLayout设置的图解<br><img src="http://hmtphoto.qiniudn.com/auto1.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/layout2.png" alt=""><br>简答测试Demo结果图:<br><img src="http://hmtphoto.qiniudn.com/适配所有不横屏的iPhone.png" alt=""><br>如果不横屏,也可以直接取消Size Classes(图不一样,不同时间写的…囧)<br><img src="http://hmtphoto.qiniudn.com/不使用Size Class.png" alt="">  </p>
-<p>###<font color="IndianRed">最终Demo</font><br><strong>Demo的Github地址:<a href="https://github.com/ConanMTHu/Size-Classes-Demo/tree/master" target="_blank" rel="external">点这里</a></strong><br><img src="http://hmtphoto.qiniudn.com/autolayoutGif.gif" alt=""><br><img src="http://hmtphoto.qiniudn.com/Demo2.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/Demo1.png" alt="">  </p>
-<p>###<font color="IndianRed">总结</font><br>直接说以后都应该使用storyboard＋autolayout感觉是不负责的说法，但是深入思考autolayout是很有必要的!<br>如下情况使用autolayout会有帮助:  </p>
+<p><strong>除了改动不同组合下约束,也能改动控件在不同组合下是否显示</strong><br><img src="http://hmtphoto.qiniudn.com/installed_1.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/installed_2.png" alt=""><br><br>   </p>
+<h2 id="u8BD5_u9A8C_u53CD_u9988_u4E09"><a href="#u8BD5_u9A8C_u53CD_u9988_u4E09" class="headerlink" title="试验反馈三"></a><font color="IndianRed">试验反馈三</font></h2><p><strong>AutoLayout这里不给具体如何设置,因为不知道如何写,感觉还是大家多动手去写,去试,最有效了</strong><br>下面给出AutoLayout设置的图解<br><img src="http://hmtphoto.qiniudn.com/auto1.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/layout2.png" alt=""><br>简答测试Demo结果图:<br><img src="http://hmtphoto.qiniudn.com/适配所有不横屏的iPhone.png" alt=""><br>如果不横屏,也可以直接取消Size Classes(图不一样,不同时间写的…囧)<br><img src="http://hmtphoto.qiniudn.com/不使用Size Class.png" alt=""><br><br></p>
+<h2 id="u6700_u7EC8Demo"><a href="#u6700_u7EC8Demo" class="headerlink" title="最终Demo"></a><font color="IndianRed">最终Demo</font></h2><p><strong>Demo的Github地址:<a href="https://github.com/ConanMTHu/Size-Classes-Demo/tree/master" target="_blank" rel="external">点这里</a></strong><br><img src="http://hmtphoto.qiniudn.com/autolayoutGif.gif" alt=""><br><img src="http://hmtphoto.qiniudn.com/Demo2.png" alt=""><br><img src="http://hmtphoto.qiniudn.com/Demo1.png" alt=""><br><br>  </p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a><font color="IndianRed">总结</font></h2><p>直接说以后都应该使用storyboard＋autolayout感觉是不负责的说法，但是深入思考autolayout是很有必要的!<br>如下情况使用autolayout会有帮助:  </p>
 <ul>
 <li>当需要展示的内容很多并且尺寸不固定;  </li>
 <li>程序需支持屏幕旋转（主要是iPad程序，iPhone程序横屏的场景有点非主流,也不排除..手游..);  </li>
 <li>程序通用于iPhone和iPad(最重要的吧).  </li>
 </ul>
 <p>但storyboard中使用autolayout有利有弊，好处当然是可视化，实现简单功能很节省时间，但也有弊端，例如不小心移动一个控件就会让弄乱那些约束或者控件一多加上自定义的XXXXXXXX  </p>
-<p>###<font color="IndianRed">参考资料</font>  </p>
-<blockquote>
+<p><br> </p>
+<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a><font color="IndianRed">参考资料</font></h2><blockquote>
 <p><a href="http://blog.callmewhy.com/2014/09/12/learn-ios8-size-class/" target="_blank" rel="external">初探 iOS8 中的 Size Class</a><br><a href="http://www.devtalking.com/articles/adaptive-layout-for-iphone6-1/" target="_blank" rel="external">为iPhone6设计自适应布局(一)</a><br><a href="http://www.devtalking.com/articles/adaptive-layout-for-iphone6-2/" target="_blank" rel="external">为iPhone6设计自适应布局(二）</a><br><a href="http://blog.csdn.net/liangliang103377/article/details/40080071" target="_blank" rel="external">关于自动布局（Autolayout）</a><br><a href="http://onevcat.com/2014/07/ios-ui-unique/" target="_blank" rel="external">WWDC 2014 Session笔记 - iOS界面开发的大一统</a><br><a href="http://joywii.github.io/blog/2014/09/24/ios8-size-classesde-li-jie-yu-shi-yong/" target="_blank" rel="external">iOS8 Size Classes的理解与使用</a><br><a href="http://chun.tips/blog/2014/10/27/wei-iphone6she-ji-zi-gua-ying-bu-ju-(chun-dai-ma-shi-xian-" target="_blank" rel="external">为iPhone6设计自适应布局（纯代码实现）</a>/)<br><a href="http://blog.csdn.net/ysy441088327/article/details/12558097" target="_blank" rel="external"> Auto Layout 进阶</a><br><a href="http://www.cocoachina.com/ios/20141015/9919.html" target="_blank" rel="external">Size Classes with Xcode 6(ImageAsset)</a></p>
 </blockquote>
 
@@ -339,7 +338,7 @@
         <p><span>本文标题:</span><a href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2014年12月05日 - 09时53分</p>
-        <p><span>最后更新:</span>2015年06月24日 - 16时23分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 11时40分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2014/12/05/AutoLayout/" title="iOS8 AutoLayout与Size Class 自悟">http://hmttommy.com/2014/12/05/AutoLayout/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2014/12/05/AutoLayout/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -375,7 +374,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u5FF5_u521D_u63A2"><span class="toc-number">2.</span> <span class="toc-text">概念初探</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BD5_u9A8C_u53CD_u9988_u4E00"><span class="toc-number">3.</span> <span class="toc-text">试验反馈一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BD5_u9A8C_u53CD_u9988_u4E8C"><span class="toc-number">4.</span> <span class="toc-text">试验反馈二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BD5_u9A8C_u53CD_u9988_u4E09"><span class="toc-number">5.</span> <span class="toc-text">试验反馈三</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6700_u7EC8Demo"><span class="toc-number">6.</span> <span class="toc-text">最终Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u8D44_u6599"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
