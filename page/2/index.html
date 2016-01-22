@@ -877,80 +877,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>项目终于不需要支持iOS6了(泪崩),在二维码扫描这一块,能够完全的放弃<code>ZXing</code>库,改用系统的<code>AVFoundation</code>了,拿<code>swift</code>写了个Demo,效果如下:<br><strong>github地址:<a href="https://github.com/ConanMTHu/QRCodeByAVFoundation" target="_blank" rel="external">点这里</a></strong><br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/qrcode_1.PNG" alt="">  </p>
-<p>有关<code>AVFoundation</code>和<code>Core Image</code>(滤镜等),可以先看看<strong>objc.io</strong>第21期和第23期的有关介绍.  </p>
-<p>#<font color="IndianRed">初始化视频捕捉</font><br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 初始化视频捕获</span></span><br><span class="line">    private func initCapture() &#123;</span><br><span class="line">        <span class="comment">// 代表抽象的硬件设备,这里传入video</span></span><br><span class="line">        let captureDevice = <span class="built_in">AVCaptureDevice</span><span class="variable">.defaultDeviceWithMediaType</span>(<span class="built_in">AVMediaTypeVideo</span>)</span><br><span class="line">        var error: <span class="built_in">NSError</span>?</span><br><span class="line">        <span class="comment">// 输入流</span></span><br><span class="line">        var captureInput = <span class="built_in">AVCaptureDeviceInput</span><span class="variable">.deviceInputWithDevice</span>(captureDevice, error: &amp;error) as? <span class="built_in">AVCaptureDeviceInput</span></span><br><span class="line">        <span class="keyword">if</span> (error != <span class="literal">nil</span> &amp;&amp; captureInput == <span class="literal">nil</span>) &#123;</span><br><span class="line">            let errorAlert = <span class="built_in">UIAlertController</span>(title: <span class="string">"提醒"</span>, message: <span class="string">"请在iPhone的\"设置-隐私-相机\"选项中,允许XXX访问您的相机"</span>, preferredStyle: <span class="variable">.Alert</span>)</span><br><span class="line">            errorAlert<span class="variable">.addAction</span>(<span class="built_in">UIAlertAction</span>(title: <span class="string">"确定"</span>, style: <span class="built_in">UIAlertActionStyle</span><span class="variable">.Default</span>, handler: <span class="literal">nil</span>))</span><br><span class="line">            <span class="keyword">self</span><span class="variable">.presentViewController</span>(errorAlert, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// input和output的桥梁,它协调着intput到output的数据传输.(见字意,session-会话)</span></span><br><span class="line">            captureSession = <span class="built_in">AVCaptureSession</span>()</span><br><span class="line">            captureSession!<span class="variable">.addInput</span>(captureInput)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 输出流</span></span><br><span class="line">            let captureMetadataOutput = <span class="built_in">AVCaptureMetadataOutput</span>()</span><br><span class="line">            <span class="comment">// 限制扫描区域http://blog.csdn.net/lc_obj/article/details/41549469</span></span><br><span class="line">            captureMetadataOutput<span class="variable">.rectOfInterest</span> = <span class="built_in">CGRectMake</span>(<span class="number">128.0</span>/ScreenWH<span class="variable">.screenHeight</span>, (ScreenWH<span class="variable">.screenWidth</span> - <span class="number">280.0</span>)/ScreenWH<span class="variable">.screenWidth</span> * <span class="number">2.0</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenHeight</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenWidth</span>)</span><br><span class="line">            captureSession!<span class="variable">.addOutput</span>(captureMetadataOutput)</span><br><span class="line">            <span class="comment">// 添加的队列按规定必须是串行</span></span><br><span class="line">            captureMetadataOutput<span class="variable">.setMetadataObjectsDelegate</span>(<span class="keyword">self</span>, queue: dispatch_get_main_queue())</span><br><span class="line">            <span class="comment">// 指定信息类型,QRCode,你懂的</span></span><br><span class="line">            captureMetadataOutput<span class="variable">.metadataObjectTypes</span> = [<span class="built_in">AVMetadataObjectTypeQRCode</span>]</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 用这个预览图层和图像信息捕获会话(session)来显示视频</span></span><br><span class="line">            videoPreviewLayer = <span class="built_in">AVCaptureVideoPreviewLayer</span>(session: captureSession!)</span><br><span class="line">            videoPreviewLayer!<span class="variable">.videoGravity</span> = <span class="built_in">AVLayerVideoGravityResizeAspectFill</span></span><br><span class="line">            videoPreviewLayer!<span class="variable">.frame</span> = view<span class="variable">.bounds</span></span><br><span class="line">            view<span class="variable">.layer</span><span class="variable">.addSublayer</span>(videoPreviewLayer!)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line">**PS:LZ用了下微信和新浪微博的扫一扫,发现那个扫描框是忽悠人的,也就是你没拿它对准二维码,只要二维码进入手机摄像头范围,就能够解码成功....囧**  </span><br><span class="line">所以LZ在代码中做了一个扫描区域的限制(感觉蛮无聊的)  </span><br><span class="line">&lt;!--more--&gt;   </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">#<span class="title">&lt;font color="IndianRed"&gt;</span>实现代理解码<span class="title">&lt;/font&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<pre><code>// MARK: - AVCaptureMetadataOutputObjectsDelegate
-func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
-    if metadataObjects == nil || metadataObjects.count == 0 {
-        captureView!.frame = CGRectZero
-        return
-    }
-    // 刷取出来的数据
-    for metadataObject in metadataObjects {
-        if metadataObject.type == AVMetadataObjectTypeQRCode {
-            let metadata = metadataObject as! AVMetadataMachineReadableCodeObject
-            // 元数据对象就会被转化成图层的坐标
-            let codeCoord = videoPreviewLayer!.transformedMetadataObjectForMetadataObject(metadata) as! AVMetadataMachineReadableCodeObject
-            captureView!.frame = codeCoord.bounds
-            if metadata.stringValue != nil {
-                println(&quot;\(metadata.stringValue)&quot;)
-                self.captureSession!.stopRunning()
-                let successAlert = UIAlertController(title:&quot;提示&quot;, message:&quot;是否打开&quot; + metadata.stringValue, preferredStyle: .Alert)
-                successAlert.addAction(UIAlertAction(title:&quot;取消&quot;, style: .Default, handler: { (_) -&gt; Void in
-                    self.stopCapture()
-                }))
-                successAlert.addAction(UIAlertAction(title:&quot;确定&quot;, style: .Default, handler: { (_) -&gt; Void in
-                    if metadata.stringValue.lowercaseString.hasPrefix(&quot;http&quot;) {
-                        UIApplication.sharedApplication().openURL(NSURL(string: metadata.stringValue)!)
-                        self.navigationController!.popViewControllerAnimated(true)
-                    }
-                }))
-                self.presentViewController(successAlert, animated: true, completion: nil)
-            }
-        }
-    }
-}
-</code></pre><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">数据转换`<span class="built_in">AVMetadataMachineReadableCodeObject</span>`对应二维码.  </span><br><span class="line">   </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">#<span class="title">&lt;font color="IndianRed"&gt;</span>生成二维码<span class="title">&lt;/font&gt;</span></span></span><br></pre></td></tr></table></figure>
-<pre><code>// MARK: - Private Methods
-private func createQRForString(qrString: String?, qrImageName: String?) -&gt; UIImage?{
-    if let sureQRString = qrString {
-        let stringData = sureQRString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        // 创建一个二维码的滤镜
-        let qrFilter = CIFilter(name: &quot;CIQRCodeGenerator&quot;)
-        qrFilter.setValue(stringData, forKey: &quot;inputMessage&quot;)
-        qrFilter.setValue(&quot;H&quot;, forKey: &quot;inputCorrectionLevel&quot;)
-        let qrCIImage = qrFilter.outputImage
-        // 创建一个颜色滤镜,黑白色
-        let colorFilter = CIFilter(name: &quot;CIFalseColor&quot;)
-        colorFilter.setDefaults()
-        colorFilter.setValue(qrCIImage, forKey: &quot;inputImage&quot;)
-        colorFilter.setValue(CIColor(red: 0, green: 0, blue: 0), forKey: &quot;inputColor0&quot;)
-        colorFilter.setValue(CIColor(red: 1, green: 1, blue: 1), forKey: &quot;inputColor1&quot;)
-        // 返回二维码image
-        let codeImage = UIImage(CIImage: colorFilter.outputImage.imageByApplyingTransform(CGAffineTransformMakeScale(5, 5)))
-        // 通常,二维码都是定制的,中间都会放想要表达意思的图片
-        if let iconImage = UIImage(named: qrImageName!) {
-            let rect = CGRectMake(0, 0, codeImage!.size.width, codeImage!.size.height)
-            UIGraphicsBeginImageContext(rect.size)
-
-            codeImage!.drawInRect(rect)
-            let avatarSize = CGSizeMake(rect.size.width * 0.25, rect.size.height * 0.25)
-            let x = (rect.width - avatarSize.width) * 0.5
-            let y = (rect.height - avatarSize.height) * 0.5
-            iconImage.drawInRect(CGRectMake(x, y, avatarSize.width, avatarSize.height))
-            let resultImage = UIGraphicsGetImageFromCurrentImageContext()
-
-            UIGraphicsEndImageContext()
-            return resultImage
-        }
-        return codeImage
-    }
-    return nil
-}
-</code></pre><p>```<br>如图<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/qrcode_2.PNG" alt="">  </p>
-<p><strong>结尾:<code>AVFoundation</code>这个框架特别的强大,也可以用它来写自定义相机,拍照和录制视频等</strong></p>
-
+              <p>项目终于不需要支持iOS6了(泪崩),在二维码扫描这一块,能够完全的放弃<code>ZXing</code>库,改用系统的<code>AVFoundation</code>了,拿<code>swift</code>写了个Demo,效果如下:<br><strong>github地址:<a href="https://github.com/ConanMTHu/QRCodeByAVFoundation">点这里</a></strong><br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/qrcode_1.PNG" alt="">  </p>
+<p>有关<code>AVFoundation</code>和<code>Core Image</code>(滤镜等),可以先看看<strong>objc.io</strong>第21期和第23期的有关介绍.<br><br></p>
+<h2 id="u521D_u59CB_u5316_u89C6_u9891_u6355_u6349"><a href="#u521D_u59CB_u5316_u89C6_u9891_u6355_u6349" class="headerlink" title="初始化视频捕捉"></a><font color="IndianRed">初始化视频捕捉</font></h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化视频捕获</span></span><br><span class="line">private func initCapture() &#123;</span><br><span class="line">    <span class="comment">// 代表抽象的硬件设备,这里传入video</span></span><br><span class="line">    let captureDevice = <span class="built_in">AVCaptureDevice</span><span class="variable">.defaultDeviceWithMediaType</span>(<span class="built_in">AVMediaTypeVideo</span>)</span><br><span class="line">    var error: <span class="built_in">NSError</span>?</span><br><span class="line">    <span class="comment">// 输入流</span></span><br><span class="line">    var captureInput = <span class="built_in">AVCaptureDeviceInput</span><span class="variable">.deviceInputWithDevice</span>(captureDevice, error: &amp;error) as? <span class="built_in">AVCaptureDeviceInput</span></span><br><span class="line">    <span class="keyword">if</span> (error != <span class="literal">nil</span> &amp;&amp; captureInput == <span class="literal">nil</span>) &#123;</span><br><span class="line">        let errorAlert = <span class="built_in">UIAlertController</span>(title: <span class="string">"提醒"</span>, message: <span class="string">"请在iPhone的\"设置-隐私-相机\"选项中,允许XXX访问您的相机"</span>, preferredStyle: <span class="variable">.Alert</span>)</span><br><span class="line">        errorAlert<span class="variable">.addAction</span>(<span class="built_in">UIAlertAction</span>(title: <span class="string">"确定"</span>, style: <span class="built_in">UIAlertActionStyle</span><span class="variable">.Default</span>, handler: <span class="literal">nil</span>))</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.presentViewController</span>(errorAlert, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// input和output的桥梁,它协调着intput到output的数据传输.(见字意,session-会话)</span></span><br><span class="line">        captureSession = <span class="built_in">AVCaptureSession</span>()</span><br><span class="line">        captureSession!<span class="variable">.addInput</span>(captureInput)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 输出流</span></span><br><span class="line">        let captureMetadataOutput = <span class="built_in">AVCaptureMetadataOutput</span>()</span><br><span class="line">        <span class="comment">// 限制扫描区域http://blog.csdn.net/lc_obj/article/details/41549469</span></span><br><span class="line">        captureMetadataOutput<span class="variable">.rectOfInterest</span> = <span class="built_in">CGRectMake</span>(<span class="number">128.0</span>/ScreenWH<span class="variable">.screenHeight</span>, (ScreenWH<span class="variable">.screenWidth</span> - <span class="number">280.0</span>)/ScreenWH<span class="variable">.screenWidth</span> * <span class="number">2.0</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenHeight</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenWidth</span>)</span><br><span class="line">        captureSession!<span class="variable">.addOutput</span>(captureMetadataOutput)</span><br><span class="line">        <span class="comment">// 添加的队列按规定必须是串行</span></span><br><span class="line">        captureMetadataOutput<span class="variable">.setMetadataObjectsDelegate</span>(<span class="keyword">self</span>, queue: dispatch_get_main_queue())</span><br><span class="line">        <span class="comment">// 指定信息类型,QRCode,你懂的</span></span><br><span class="line">        captureMetadataOutput<span class="variable">.metadataObjectTypes</span> = [<span class="built_in">AVMetadataObjectTypeQRCode</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 用这个预览图层和图像信息捕获会话(session)来显示视频</span></span><br><span class="line">        videoPreviewLayer = <span class="built_in">AVCaptureVideoPreviewLayer</span>(session: captureSession!)</span><br><span class="line">        videoPreviewLayer!<span class="variable">.videoGravity</span> = <span class="built_in">AVLayerVideoGravityResizeAspectFill</span></span><br><span class="line">        videoPreviewLayer!<span class="variable">.frame</span> = view<span class="variable">.bounds</span></span><br><span class="line">        view<span class="variable">.layer</span><span class="variable">.addSublayer</span>(videoPreviewLayer!)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>PS:LZ用了下微信和新浪微博的扫一扫,发现那个扫描框是忽悠人的,也就是你没拿它对准二维码,只要二维码进入手机摄像头范围,就能够解码成功….囧</strong><br>所以LZ在代码中做了一个扫描区域的限制(感觉蛮无聊的)<br>
+          
       
     </div>
     
@@ -967,6 +898,10 @@ private func createQRForString(qrString: String?, qrImageName: String?) -&gt; UI
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
