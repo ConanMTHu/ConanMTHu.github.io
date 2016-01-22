@@ -5,19 +5,34 @@
   
   <title>胡明涛的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
-tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+  <meta name="description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories:
+
+CoreAnimationtags:
+CAAnimation CAMediaTiming
+
+
+原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="胡明涛的技术博客">
-<meta property="og:url" content="http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/index.html">
+<meta property="og:url" content="http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/index.html">
 <meta property="og:site_name" content="胡明涛的技术博客">
-<meta property="og:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
-tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
-<meta property="og:updated_time" content="2015-10-30T10:00:23.000Z">
+<meta property="og:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories:
+
+CoreAnimationtags:
+CAAnimation CAMediaTiming
+
+
+原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimat">
+<meta property="og:updated_time" content="2016-01-22T02:05:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="胡明涛的技术博客">
-<meta name="twitter:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories: CoreAnimation 
-tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimatio">
+<meta name="twitter:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories:
+
+CoreAnimationtags:
+CAAnimation CAMediaTiming
+
+
+原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimat">
   
     <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
   
@@ -226,8 +241,8 @@ tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的
       <div class="body-wrap"><article id="post-iOS-CoreAnimation-三-之CAAnimation" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" class="article-date">
-      <time datetime="2015-10-30T10:00:23.000Z" itemprop="datePublished">2015-10-30</time>
+      <a href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/" class="article-date">
+      <time datetime="2016-01-22T02:05:08.000Z" itemprop="datePublished">2016-01-22</time>
 </a>
     </div>
   
@@ -239,21 +254,21 @@ tags: CAAnimation CAMediaTiming原定第三篇直接介绍CAPropertyAnimation的
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>title: iOS CoreAnimation(三)之CAAnimation<br>date: 2015-6-03 15:39:33<br>categories: CoreAnimation </p>
-<h2 id="tags_3A_CAAnimation_CAMediaTiming"><a href="#tags_3A_CAAnimation_CAMediaTiming" class="headerlink" title="tags: CAAnimation CAMediaTiming"></a>tags: CAAnimation CAMediaTiming</h2><p>原定第三篇直接介绍<code>CAPropertyAnimation</code>的两个子类,想想还是回过头来梳理一下<font color="#ce1f48"><code>CAAnimation</code></font>这个父类,比如<code>CABasicAnimation</code>属于他自己的只有3个property,其他都是继承来的.不过就算是<code>CAAnimation</code>,它自身的property还是用的不多,像我们定义动画常常设置的时间property<code>duration</code>,<code>beginTime</code>,<code>repeatCount</code>等都在协议<font color="#ce1f48"><code>CAMediaTiming</code></font>&gt;中…  </p>
-<h3 id="CAAnimation_Property"><a href="#CAAnimation_Property" class="headerlink" title="CAAnimation Property"></a><font color="#ce1f48">CAAnimation Property</font></h3><p><code>removedOnCompletion</code>:设置是否动画完成后，动画效果从设置的layer上移除。默认为YES<br><code>timingFunction</code>:用于变化起点和终点之间的插值计算,形象点说它决定了动画运行的节奏,比如是均匀变化(相同时间变化量相同)还是先快后慢,先慢后快还是先慢再快再慢.(类似于第一章最后介绍的那些枚举)LZ数学略渣,这里引用一段话(<a href="http://geeklu.com/2012/09/animation-in-ios/" target="_blank" rel="external">http://geeklu.com/2012/09/animation-in-ios/</a>)<br><strong>时间函数是使用的一段函数来描述的,横座标是时间t取值范围是0.0-1.0,纵座标是变化量x(t)也是取值范围也是0.0-1.0 假设有一个动画,duration是8秒,变化值的起点是a终点是b(假设是透明度),那么在4秒处的值是多少呢？ 可以通过计算为 a + x(4/8) <em> (b-a), 为什么这么计算呢？讲实现的时间映射到单位值的时候4秒相对于总时间8秒就是0.5然后可以得到0.5的时候单位变化量是 x(0.5), x(0.5)/1 = 实际变化量/(b-a), 其中b-a为总变化量,所以实际变化量就是x(0.5) </em> (b-a) ,最后4秒时的值就是 a + x(0.5) * (b-a),所以计算的本质是映射.<br>Timing Function对应的类是<font color="#ce1f48"><code>CAMediaTimingFunction</code></font>,它提供了两种获得时间函数的方式,一种是使用预定义的五种时间函数,一种是通过给点两个控制点得到一个时间函数</strong><br>系统给的最熟悉的就是<code>Linear</code>了,匀速…<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kCAMediaTimingFunctionLinear, </span><br><span class="line">kCAMediaTimingFunctionEaseIn, </span><br><span class="line">kCAMediaTimingFunctionEaseOut, </span><br><span class="line">kCAMediaTimingFunctionEaseInEaseOut, </span><br><span class="line">kCAMediaTimingFunctionDefault. </span><br><span class="line">```    </span><br><span class="line">自定义的则是下面2个方法:(贝塞尔曲线什么的,不太懂...)  </span><br><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure></p>
-<pre><code>/* Creates a timing function modelled on a cubic Bezier curve. The end
- * points of the curve are at (0,0) and (1,1), the two points &apos;c1&apos; and
- * &apos;c2&apos; defined by the class instance are the control points. Thus the
- * points defining the Bezier curve are: &apos;[(0,0), c1, c2, (1,1)]&apos; */
-
-public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
-
-/* &apos;idx&apos; is a value from 0 to 3 inclusive. */
- public func getControlPointAtIndex(idx: Int, values ptr: UnsafeMutablePointer&lt;Float&gt;)
-</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;/br&gt;  </span><br><span class="line">### &lt;font color=<span class="string">"#ce1f48"</span>&gt;CAMediaTiming Property&lt;/font&gt;    </span><br><span class="line"><span class="escape">`d</span>uration<span class="escape">`:</span>动画持续时间(最熟悉没有之一...),默认是<span class="number">0</span>,但这不意味着动画时长为<span class="number">0</span>秒,为<span class="number">0.25</span>  </span><br><span class="line"><span class="escape">`b</span>eginTime<span class="escape">`:</span>指定动画开始时间。从开始指定延迟几秒执行的话，请设置为「CACurrentMediaTime() + 秒数」的形式.  </span><br><span class="line"><span class="escape">`t</span>imeOffset<span class="escape">`:</span>我理解为时间的偏移量,比如一个duration为<span class="number">5</span>秒的动画,将timeOffset设置为<span class="number">2</span>,那么动画的运行是<span class="number">2</span>s-&gt;<span class="number">5</span>s-&gt;<span class="number">0</span>s-&gt;<span class="number">2</span>s  </span><br><span class="line"><span class="escape">`s</span>peed<span class="escape">`:</span>时间加速..设置duration为<span class="number">3</span>秒，但是speed为<span class="number">2</span>，动画快速的执行了<span class="number">1.5</span>秒,speed越大则说明时间流逝速度越快,动画也越快  </span><br><span class="line"><span class="escape">`r</span>epeatCount<span class="escape">`:</span>代表动画重复的迭代次数,默认为<span class="number">0</span>,也并不意味为<span class="number">0</span>次,而是<span class="number">1</span>次  </span><br><span class="line"><span class="escape">`r</span>epeatDuration<span class="escape">`:</span>动画的重复时间(间隔),如果它小于动画的duration，那么动画就会提前结束  </span><br><span class="line"><span class="escape">`a</span>utoreverses(Bool)<span class="escape">`:</span>动画结束时是否执行逆动画,可以产生从初始值到最终值，并反过来回到初始值的动画,也就是这意味着动画发生了两次  </span><br><span class="line"><span class="escape">`f</span>illMode<span class="escape">`:</span>一般与<span class="escape">`r</span>emovedOnCompletion<span class="escape">`(</span>必须设置为<span class="literal">false</span>)一起用</span><br></pre></td></tr></table></figure>
-<p>kCAFillModeRemoved  // 这个是默认值,也就是说当动画开始前和动画结束后,动画对layer都没有影响,动画结束后,layer会恢复到之前的状态<br>kCAFillModeForwards // 当动画结束后,layer会一直保持着动画最后的状态<br>kCAFillModeBackwards // 这个和kCAFillModeForwards是相对的,就是在动画开始前,你只要将动画加入了一个layer,layer便立即进入动画的初始状态并等待动画开始.你可以这样设定测试代码,将一个动画加入一个layer的时候延迟5秒执行.然后就会发现在动画没有开始的时候,只要动画被加入了layer,layer便处于动画初始状态<br>kCAFillModeBoth  // 理解了上面两个,这个就很好理解了,这个其实就是上面两个的合成.动画加入后开始之前,layer便处于动画初始状态,动画结束后layer保持动画最后的状态.<br>```  </p>
-<p><strong>参考链接:</strong><br><a href="http://ronnqvi.st/controlling-animation-timing/" target="_blank" rel="external">Controlling Animation Timing</a><br><a href="https://zsisme.gitbooks.io/ios-/content/chapter9/the-cAMediaTiming-protocol.html" target="_blank" rel="external">CAMediaTiming</a>  </p>
+        <p>title: iOS CoreAnimation(三)之CAAnimation<br>date: 2015-6-03 15:39:33<br>categories:</p>
+<ul>
+<li>CoreAnimation<br>tags:</li>
+<li>CAAnimation CAMediaTiming</li>
+</ul>
+<hr>
+<p>原定第三篇直接介绍<code>CAPropertyAnimation</code>的两个子类,想想还是回过头来梳理一下<font color="#ce1f48"><code>CAAnimation</code></font>这个父类,比如<code>CABasicAnimation</code>属于他自己的只有3个property,其他都是继承来的.不过就算是<code>CAAnimation</code>,它自身的property还是用的不多,像我们定义动画常常设置的时间property<code>duration</code>,<code>beginTime</code>,<code>repeatCount</code>等都在协议<font color="#ce1f48"><code>CAMediaTiming</code></font>&gt;中…<br><br> </p>
+<h2 id="CAAnimation_Property"><a href="#CAAnimation_Property" class="headerlink" title="CAAnimation Property"></a><font color="#ce1f48">CAAnimation Property</font></h2><p><code>removedOnCompletion</code>:设置是否动画完成后，动画效果从设置的layer上移除。默认为YES<br><code>timingFunction</code>:用于变化起点和终点之间的插值计算,形象点说它决定了动画运行的节奏,比如是均匀变化(相同时间变化量相同)还是先快后慢,先慢后快还是先慢再快再慢.(类似于第一章最后介绍的那些枚举)LZ数学略渣,这里引用一段话(<a href="http://geeklu.com/2012/09/animation-in-ios/" target="_blank" rel="external">http://geeklu.com/2012/09/animation-in-ios/</a>)<br><strong>时间函数是使用的一段函数来描述的,横座标是时间t取值范围是0.0-1.0,纵座标是变化量x(t)也是取值范围也是0.0-1.0 假设有一个动画,duration是8秒,变化值的起点是a终点是b(假设是透明度),那么在4秒处的值是多少呢？ 可以通过计算为 a + x(4/8) <em> (b-a), 为什么这么计算呢？讲实现的时间映射到单位值的时候4秒相对于总时间8秒就是0.5然后可以得到0.5的时候单位变化量是 x(0.5), x(0.5)/1 = 实际变化量/(b-a), 其中b-a为总变化量,所以实际变化量就是x(0.5) </em> (b-a) ,最后4秒时的值就是 a + x(0.5) * (b-a),所以计算的本质是映射.<br>Timing Function对应的类是<font color="#ce1f48"><code>CAMediaTimingFunction</code></font>,它提供了两种获得时间函数的方式,一种是使用预定义的五种时间函数,一种是通过给点两个控制点得到一个时间函数</strong><br>系统给的最熟悉的就是<code>Linear</code>了,匀速…</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">k<span class="built_in">CAMediaTimingFunctionLinear</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionEaseIn</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionEaseOut</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionEaseInEaseOut</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionDefault</span>.</span><br></pre></td></tr></table></figure>
+<p>自定义的则是下面2个方法:(贝塞尔曲线什么的,不太懂…)<br><a id="more"></a></p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Creates a timing function modelled on a cubic Bezier curve. The end</span><br><span class="line"> * points of the curve are at (0,0) and (1,1), the two points 'c1' and</span><br><span class="line"> * 'c2' defined by the class instance are the control points. Thus the</span><br><span class="line"> * points defining the Bezier curve are: '[(0,0), c1, c2, (1,1)]' */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> init(controlPoints c1x: <span class="keyword">Float</span>, _ c1y: <span class="keyword">Float</span>, _ c2x: <span class="keyword">Float</span>, _ c2y: <span class="keyword">Float</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 'idx' is a value from 0 to 3 inclusive. */</span></span><br><span class="line"> <span class="keyword">public</span> func getControlPointAtIndex(idx: <span class="keyword">Int</span>, values ptr: UnsafeMutablePointer&lt;<span class="keyword">Float</span>&gt;)</span><br></pre></td></tr></table></figure>
+<p><br>  </p>
+<h2 id="CAMediaTiming_Property"><a href="#CAMediaTiming_Property" class="headerlink" title="CAMediaTiming Property"></a><font color="#ce1f48">CAMediaTiming Property</font></h2><p><code>duration</code>:动画持续时间(最熟悉没有之一…),默认是0,但这不意味着动画时长为0秒,为0.25<br><code>beginTime</code>:指定动画开始时间。从开始指定延迟几秒执行的话，请设置为「CACurrentMediaTime() + 秒数」的形式.<br><code>timeOffset</code>:我理解为时间的偏移量,比如一个duration为5秒的动画,将timeOffset设置为2,那么动画的运行是2s-&gt;5s-&gt;0s-&gt;2s<br><code>speed</code>:时间加速..设置duration为3秒，但是speed为2，动画快速的执行了1.5秒,speed越大则说明时间流逝速度越快,动画也越快<br><code>repeatCount</code>:代表动画重复的迭代次数,默认为0,也并不意味为0次,而是1次<br><code>repeatDuration</code>:动画的重复时间(间隔),如果它小于动画的duration，那么动画就会提前结束<br><code>autoreverses(Bool)</code>:动画结束时是否执行逆动画,可以产生从初始值到最终值，并反过来回到初始值的动画,也就是这意味着动画发生了两次<br><code>fillMode</code>:一般与<code>removedOnCompletion</code>(必须设置为false)一起用</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">k<span class="built_in">CAFillModeRemoved</span>  <span class="comment">// 这个是默认值,也就是说当动画开始前和动画结束后,动画对layer都没有影响,动画结束后,layer会恢复到之前的状态 </span></span><br><span class="line">k<span class="built_in">CAFillModeForwards</span> <span class="comment">// 当动画结束后,layer会一直保持着动画最后的状态 </span></span><br><span class="line">k<span class="built_in">CAFillModeBackwards</span> <span class="comment">// 这个和kCAFillModeForwards是相对的,就是在动画开始前,你只要将动画加入了一个layer,layer便立即进入动画的初始状态并等待动画开始.你可以这样设定测试代码,将一个动画加入一个layer的时候延迟5秒执行.然后就会发现在动画没有开始的时候,只要动画被加入了layer,layer便处于动画初始状态 </span></span><br><span class="line">k<span class="built_in">CAFillModeBoth</span>  <span class="comment">// 理解了上面两个,这个就很好理解了,这个其实就是上面两个的合成.动画加入后开始之前,layer便处于动画初始状态,动画结束后layer保持动画最后的状态.</span></span><br></pre></td></tr></table></figure>
+<h2 id="u53C2_u8003_u94FE_u63A5"><a href="#u53C2_u8003_u94FE_u63A5" class="headerlink" title="参考链接"></a><font color="#ce1f48">参考链接</font></h2><p><a href="http://ronnqvi.st/controlling-animation-timing/" target="_blank" rel="external">Controlling Animation Timing</a><br><a href="https://zsisme.gitbooks.io/ios-/content/chapter9/the-cAMediaTiming-protocol.html" target="_blank" rel="external">CAMediaTiming</a>  </p>
 
       
     </div>
@@ -262,13 +277,13 @@ public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/"></a></p>
+        <p><span>本文标题:</span><a href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/"></a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
-        <p><span>发布时间:</span>2015年10月30日 - 18时00分</p>
-        <p><span>最后更新:</span>2015年10月30日 - 18时00分</p>
+        <p><span>发布时间:</span>2016年01月22日 - 10时05分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 10时05分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" title="">http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/" title="">http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -281,16 +296,10 @@ public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/11/04/iOS-CoreAnimation-04/">
-                    iOS CoreAnimation(四)之CAPropertyAnimation
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/10/22/iOS开发过程中的知识点总结-续/">
-                    iOS开发过程中的知识点总结(续)
+                <a href="/2016/01/14/protocolMVVM/">
+                    Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol
                 </a>
             </div>
         
@@ -301,7 +310,7 @@ public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags_3A_CAAnimation_CAMediaTiming"><span class="toc-number">1.</span> <span class="toc-text">tags: CAAnimation CAMediaTiming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAAnimation_Property"><span class="toc-number">1.1.</span> <span class="toc-text">CAAnimation Property</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CAAnimation_Property"><span class="toc-number">1.</span> <span class="toc-text">CAAnimation Property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAMediaTiming_Property"><span class="toc-number">2.</span> <span class="toc-text">CAMediaTiming Property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u94FE_u63A5"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -365,7 +374,7 @@ public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
  
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/10/30/iOS-CoreAnimation-三-之CAAnimation/" data-title="" data-url="http://hmttommy.com/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/"></div>
+    <div class="ds-thread" data-thread-key="2016/01/22/iOS-CoreAnimation-三-之CAAnimation/" data-title="" data-url="http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -389,21 +398,19 @@ public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/11/04/iOS-CoreAnimation-04/" title="上一篇: iOS CoreAnimation(四)之CAPropertyAnimation">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/10/22/iOS开发过程中的知识点总结-续/" title="下一篇: iOS开发过程中的知识点总结(续)">
+            <a href="/2016/01/14/protocolMVVM/" title="下一篇: Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的XX</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/04/iOS-CoreAnimation-04/">iOS CoreAnimation(四)之CAPropertyAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/01/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的XX</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/04/iOS-CoreAnimation-04/">iOS CoreAnimation(四)之CAPropertyAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/01/hello-world/">Hello World</a></li></ul>
     <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
