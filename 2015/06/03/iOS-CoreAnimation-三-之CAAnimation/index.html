@@ -3,36 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>胡明涛的技术博客</title>
+  <title>iOS CoreAnimation(三)之CAAnimation | 胡明涛的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories:
-
-CoreAnimationtags:
-CAAnimation CAMediaTiming
-
-
-原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimat">
+  <meta name="description" content="原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimation属于他自己的只有3个property,其他都是继承来的.不过就算是CAAnimation,它自身的property还是用的不多,像我们定义动画常常设置的时间propertyduration,beginTime,repeatCount等都在协">
 <meta property="og:type" content="article">
-<meta property="og:title" content="胡明涛的技术博客">
-<meta property="og:url" content="http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/index.html">
+<meta property="og:title" content="iOS CoreAnimation(三)之CAAnimation">
+<meta property="og:url" content="http://hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/index.html">
 <meta property="og:site_name" content="胡明涛的技术博客">
-<meta property="og:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories:
-
-CoreAnimationtags:
-CAAnimation CAMediaTiming
-
-
-原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimat">
-<meta property="og:updated_time" content="2016-01-22T02:05:08.000Z">
+<meta property="og:description" content="原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimation属于他自己的只有3个property,其他都是继承来的.不过就算是CAAnimation,它自身的property还是用的不多,像我们定义动画常常设置的时间propertyduration,beginTime,repeatCount等都在协">
+<meta property="og:updated_time" content="2016-01-22T02:10:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="胡明涛的技术博客">
-<meta name="twitter:description" content="title: iOS CoreAnimation(三)之CAAnimationdate: 2015-6-03 15:39:33categories:
-
-CoreAnimationtags:
-CAAnimation CAMediaTiming
-
-
-原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimat">
+<meta name="twitter:title" content="iOS CoreAnimation(三)之CAAnimation">
+<meta name="twitter:description" content="原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimation属于他自己的只有3个property,其他都是继承来的.不过就算是CAAnimation,它自身的property还是用的不多,像我们定义动画常常设置的时间propertyduration,beginTime,repeatCount等都在协">
   
     <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
   
@@ -160,7 +142,7 @@ CAAnimation CAMediaTiming
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/Basic-KeyFrame/" style="font-size: 10px;">Basic KeyFrame</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/图片浏览-Custom-push/" style="font-size: 10px;">图片浏览 Custom push</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/Basic-KeyFrame/" style="font-size: 10px;">Basic KeyFrame</a> <a href="/tags/CAAnimation-CAMediaTiming/" style="font-size: 10px;">CAAnimation CAMediaTiming</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/图片浏览-Custom-push/" style="font-size: 10px;">图片浏览 Custom push</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
                     </div>
                 </section>
                 
@@ -241,8 +223,8 @@ CAAnimation CAMediaTiming
       <div class="body-wrap"><article id="post-iOS-CoreAnimation-三-之CAAnimation" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/" class="article-date">
-      <time datetime="2016-01-22T02:05:08.000Z" itemprop="datePublished">2016-01-22</time>
+      <a href="/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/" class="article-date">
+      <time datetime="2015-06-03T07:39:33.000Z" itemprop="datePublished">2015-06-03</time>
 </a>
     </div>
   
@@ -251,16 +233,36 @@ CAAnimation CAMediaTiming
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS CoreAnimation(三)之CAAnimation
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAAnimation-CAMediaTiming/">CAAnimation CAMediaTiming</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>title: iOS CoreAnimation(三)之CAAnimation<br>date: 2015-6-03 15:39:33<br>categories:</p>
-<ul>
-<li>CoreAnimation<br>tags:</li>
-<li>CAAnimation CAMediaTiming</li>
-</ul>
-<hr>
-<p>原定第三篇直接介绍<code>CAPropertyAnimation</code>的两个子类,想想还是回过头来梳理一下<font color="#ce1f48"><code>CAAnimation</code></font>这个父类,比如<code>CABasicAnimation</code>属于他自己的只有3个property,其他都是继承来的.不过就算是<code>CAAnimation</code>,它自身的property还是用的不多,像我们定义动画常常设置的时间property<code>duration</code>,<code>beginTime</code>,<code>repeatCount</code>等都在协议<font color="#ce1f48"><code>CAMediaTiming</code></font>&gt;中…<br><br> </p>
+        <p>原定第三篇直接介绍<code>CAPropertyAnimation</code>的两个子类,想想还是回过头来梳理一下<font color="#ce1f48"><code>CAAnimation</code></font>这个父类,比如<code>CABasicAnimation</code>属于他自己的只有3个property,其他都是继承来的.不过就算是<code>CAAnimation</code>,它自身的property还是用的不多,像我们定义动画常常设置的时间property<code>duration</code>,<code>beginTime</code>,<code>repeatCount</code>等都在协议<font color="#ce1f48"><code>CAMediaTiming</code></font>&gt;中…<br><br> </p>
 <h2 id="CAAnimation_Property"><a href="#CAAnimation_Property" class="headerlink" title="CAAnimation Property"></a><font color="#ce1f48">CAAnimation Property</font></h2><p><code>removedOnCompletion</code>:设置是否动画完成后，动画效果从设置的layer上移除。默认为YES<br><code>timingFunction</code>:用于变化起点和终点之间的插值计算,形象点说它决定了动画运行的节奏,比如是均匀变化(相同时间变化量相同)还是先快后慢,先慢后快还是先慢再快再慢.(类似于第一章最后介绍的那些枚举)LZ数学略渣,这里引用一段话(<a href="http://geeklu.com/2012/09/animation-in-ios/" target="_blank" rel="external">http://geeklu.com/2012/09/animation-in-ios/</a>)<br><strong>时间函数是使用的一段函数来描述的,横座标是时间t取值范围是0.0-1.0,纵座标是变化量x(t)也是取值范围也是0.0-1.0 假设有一个动画,duration是8秒,变化值的起点是a终点是b(假设是透明度),那么在4秒处的值是多少呢？ 可以通过计算为 a + x(4/8) <em> (b-a), 为什么这么计算呢？讲实现的时间映射到单位值的时候4秒相对于总时间8秒就是0.5然后可以得到0.5的时候单位变化量是 x(0.5), x(0.5)/1 = 实际变化量/(b-a), 其中b-a为总变化量,所以实际变化量就是x(0.5) </em> (b-a) ,最后4秒时的值就是 a + x(0.5) * (b-a),所以计算的本质是映射.<br>Timing Function对应的类是<font color="#ce1f48"><code>CAMediaTimingFunction</code></font>,它提供了两种获得时间函数的方式,一种是使用预定义的五种时间函数,一种是通过给点两个控制点得到一个时间函数</strong><br>系统给的最熟悉的就是<code>Linear</code>了,匀速…</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">k<span class="built_in">CAMediaTimingFunctionLinear</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionEaseIn</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionEaseOut</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionEaseInEaseOut</span>, </span><br><span class="line">k<span class="built_in">CAMediaTimingFunctionDefault</span>.</span><br></pre></td></tr></table></figure>
 <p>自定义的则是下面2个方法:(贝塞尔曲线什么的,不太懂…)<br><a id="more"></a></p>
@@ -277,13 +279,13 @@ CAAnimation CAMediaTiming
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/"></a></p>
+        <p><span>本文标题:</span><a href="/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/">iOS CoreAnimation(三)之CAAnimation</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
-        <p><span>发布时间:</span>2016年01月22日 - 10时05分</p>
-        <p><span>最后更新:</span>2016年01月22日 - 10时05分</p>
+        <p><span>发布时间:</span>2015年06月03日 - 15时39分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 10时10分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/" title="">http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/" title="iOS CoreAnimation(三)之CAAnimation">http://hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -296,10 +298,16 @@ CAAnimation CAMediaTiming
 
     <nav id="article-nav">
         
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/10/12/Star-Github-share/">
+                    Star Github share
+                </a>
+            </div>
+        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/01/14/protocolMVVM/">
-                    Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol
+                <a href="/2015/05/29/iOS-CoreAnimation-02/">
+                    iOS CoreAnimation(二)之CATransition
                 </a>
             </div>
         
@@ -374,7 +382,7 @@ CAAnimation CAMediaTiming
  
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/01/22/iOS-CoreAnimation-三-之CAAnimation/" data-title="" data-url="http://hmttommy.com/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/"></div>
+    <div class="ds-thread" data-thread-key="2015/06/03/iOS-CoreAnimation-三-之CAAnimation/" data-title="iOS CoreAnimation(三)之CAAnimation" data-url="http://hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -398,19 +406,21 @@ CAAnimation CAMediaTiming
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2015/10/12/Star-Github-share/" title="上一篇: Star Github share">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/01/14/protocolMVVM/" title="下一篇: Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
+            <a href="/2015/05/29/iOS-CoreAnimation-02/" title="下一篇: iOS CoreAnimation(二)之CATransition">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/22/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的XX</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/04/iOS-CoreAnimation-04/">iOS CoreAnimation(四)之CAPropertyAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/01/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的XX</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/04/iOS-CoreAnimation-04/">iOS CoreAnimation(四)之CAPropertyAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/">iOS CoreAnimation(三)之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/01/hello-world/">Hello World</a></li></ul>
     <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
