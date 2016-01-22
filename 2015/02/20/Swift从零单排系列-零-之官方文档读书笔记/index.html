@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://hmttommy.com/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/index.html">
 <meta property="og:site_name" content="胡明涛的技术博客">
 <meta property="og:description" content="前言读完《The Swift Programming Language》后,对于Swift有了个大致的了解,但是还是缺少实际操作,以至于很多特性和注意点都不太熟悉,遂一一拿出做个总结,加上Swift语法毕竟还不稳定,实时更新,实时掌握!注:基本概念和详细点请通读官方文档,第零篇以本人容易忽略的点为主,不是基础教学">
-<meta property="og:updated_time" content="2015-06-26T00:47:26.000Z">
+<meta property="og:updated_time" content="2016-01-22T03:22:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 官方文档读书笔记">
 <meta name="twitter:description" content="前言读完《The Swift Programming Language》后,对于Swift有了个大致的了解,但是还是缺少实际操作,以至于很多特性和注意点都不太熟悉,遂一一拿出做个总结,加上Swift语法毕竟还不稳定,实时更新,实时掌握!注:基本概念和详细点请通读官方文档,第零篇以本人容易忽略的点为主,不是基础教学">
@@ -262,40 +262,41 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a><font color="IndianRed">前言</font></h3><p>读完<code>《The Swift Programming Language》</code>后,对于Swift有了个大致的了解,但是还是缺少实际操作,以至于很多特性和注意点都不太熟悉,遂一一拿出做个总结,加上Swift语法毕竟还不稳定,实时更新,实时掌握!<br><strong>注:基本概念和详细点请通读官方文档,第零篇以本人容易忽略的点为主,不是基础教学</strong><br><a id="more"></a></p>
-<p>###<font color="IndianRed">基本类型</font>  </p>
+        <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a><font color="IndianRed">前言</font></h2><p>读完<code>《The Swift Programming Language》</code>后,对于Swift有了个大致的了解,但是还是缺少实际操作,以至于很多特性和注意点都不太熟悉,遂一一拿出做个总结,加上Swift语法毕竟还不稳定,实时更新,实时掌握!<br><strong>注:基本概念和详细点请通读官方文档,第零篇以本人容易忽略的点为主,不是基础教学</strong><br><a id="more"></a></p>
+<p><br></p>
+<p>##<font color="IndianRed">基本类型</font>  </p>
 <ul>
 <li>Swift不支持<code>布尔类型</code>和<code>非布尔类型</code>的值之间的隐士类型转换(p75-p76)  </li>
 <li>可选类型<code>Optionals</code>,值有或者无,格式:<code>x?</code>.无<code>nil</code>在Swift中并不是代表一个指针指向了一个不存在的对象而是代表任意类型的值的缺失情况.(p79)</li>
 <li>用<code>if</code>语句来判断一个可选是否有值(p80-p83)<br>　１.确定有值,用可选类型后面+<code>!</code>的方式强制解封使用可选类型的值<br>　２.可选绑定方式,判断并把值赋给一个常量或者变量.有值直接赋值并使用,没值<code>if</code>语句判断为假,不会赋值.  </li>
 <li><code>Array</code>和<code>Dictionary</code>(p124-p141)  </li>
-<li>待续……</li>
-</ul>
-<p>###<font color="IndianRed">控制流</font>  </p>
-<ul>
+<li>待续……<br><br><br>##<font color="IndianRed">控制流</font>  </li>
 <li><code>for-in</code>,其中<code>a...b</code>表示a到b并且包括b;<code>a..&lt;b</code>表示a到b但不包括b  </li>
 <li><code>_</code> 能够忽略具体的值,并且不提供循环遍历时对值的访问,表示我只需要<code>for</code>循环能够帮我执行正确的循环次数即可(p143-p145)  </li>
 <li>swift中的<code>switch</code>  不存在隐式的贯穿,每一个case分支都必须包含至少一条语句,这点不像C语言中可以同时匹配好几个条件.但如果确实需要,可以用关键字<code>fallthrough</code>实现.(p159)</li>
 <li><code>switch</code>中一个case也可以包含多个模式,用<code>逗号</code>分开  </li>
 <li>待续……</li>
 </ul>
-<p>###<font color="IndianRed">函数</font>  </p>
+<p><br>    </p>
+<p>##<font color="IndianRed">函数</font>  </p>
 <ul>
 <li><code>可变参数</code>可以用来传入不确定数量的输入参数,格式是在变量类型后面加入<code>...</code>(p189)<br>　１. 一个函数至多只能有一个可变参数<br>　２.可变参数必须要在参数列表的最后一个</li>
 <li><code>inout</code>标记输入输出参数,只针对于变量(p192)</li>
 <li>待续……</li>
 </ul>
-<p>###<font color="IndianRed">类和结构体</font>  </p>
+<p><br></p>
+<p>##<font color="IndianRed">类和结构体</font>  </p>
 <ul>
 <li><code>延迟属性</code>,用关键字<code>lazy</code>修饰,指第一次调用时才会计算其初始值的属性.使用情况             (p245):<br>　１.如果类实例构造结束前无法知道具体值的外部信息<br>　２.如果属性的值需要复杂或者大量计算时<br>　３.必须声明为<code>var</code></li>
-<li><p><code>计算属性</code>,必须声明为<code>var</code></p>
-<pre><code><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">       取值访问器get</span><br><span class="line">       <span class="built_in">var</span> 计算属性: <span class="keyword">Type</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> value</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="string">``</span><span class="string">`  </span><br><span class="line">      </span><br><span class="line">       `</span><span class="string">``</span>  </span><br><span class="line">       赋值访问器<span class="built_in">set</span>,默认参数为newValue  </span><br><span class="line">       <span class="built_in">var</span> 计算属性: <span class="keyword">Type</span> &#123;</span><br><span class="line">       <span class="built_in">set</span>&#123;&#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="string">``</span><span class="string">`                           </span><br><span class="line">+ `</span>类型属性<span class="string">`,类的类型属性必须用计算属性,指定默认值  </span><br><span class="line">+ `</span>属性观察器<span class="string">`有两种:`</span>willSet<span class="string">`(属性值改变前触发)和`</span>didSet<span class="string">`(属性值改变后触发)</span></span><br></pre></td></tr></table></figure>
-</code></pre><p> willSet{</p>
-<pre><code>//newValue为参数
-</code></pre><p> }<br> didSet{</p>
-<pre><code>//oldValue为参数
-</code></pre><p> }<br> ```  </p>
-</li>
+<li><code>计算属性</code>,必须声明为<code>var</code></li>
+</ul>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">取值访问器get</span><br><span class="line"><span class="built_in">var</span> 计算属性: <span class="keyword">Type</span> &#123;</span><br><span class="line"><span class="keyword">return</span> value</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">``</span><span class="string">`  </span><br><span class="line"></span><br><span class="line">`</span><span class="string">``</span>  </span><br><span class="line">赋值访问器<span class="built_in">set</span>,默认参数为newValue  </span><br><span class="line"><span class="built_in">var</span> 计算属性: <span class="keyword">Type</span> &#123;</span><br><span class="line"><span class="built_in">set</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>类型属性</code>,类的类型属性必须用计算属性,指定默认值  </li>
+<li><code>属性观察器</code>有两种:<code>willSet</code>(属性值改变前触发)和<code>didSet</code>(属性值改变后触发)</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">willSet</span>&#123;</span><br><span class="line">    <span class="comment">//newValue为参数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">didSet</span>&#123;</span><br><span class="line">    <span class="comment">//oldValue为参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
 <li><code>下标方法</code>,<code>subcript(参数) -&gt;返回值(get/set访问器)</code>(p275)   </li>
 <li><code>override</code>标记继承,<code>final</code>关键字来拒绝子类重写</li>
 <li><code>类</code>属于<code>引用类型</code>,<code>枚举和结构体</code>属于<code>值类型</code></li>
@@ -325,7 +326,7 @@
         <p><span>本文标题:</span><a href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2015年02月20日 - 09时33分</p>
-        <p><span>最后更新:</span>2015年06月26日 - 08时47分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 11时22分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/" title="Swift 官方文档读书笔记">http://hmttommy.com/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -361,7 +362,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
