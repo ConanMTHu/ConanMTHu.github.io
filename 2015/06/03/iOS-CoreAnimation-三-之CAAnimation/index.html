@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/index.html">
 <meta property="og:site_name" content="胡明涛的技术博客">
 <meta property="og:description" content="原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimation属于他自己的只有3个property,其他都是继承来的.不过就算是CAAnimation,它自身的property还是用的不多,像我们定义动画常常设置的时间propertyduration,beginTime,repeatCount等都在协">
-<meta property="og:updated_time" content="2016-01-22T02:10:08.000Z">
+<meta property="og:updated_time" content="2016-01-22T02:11:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS CoreAnimation(三)之CAAnimation">
 <meta name="twitter:description" content="原定第三篇直接介绍CAPropertyAnimation的两个子类,想想还是回过头来梳理一下CAAnimation这个父类,比如CABasicAnimation属于他自己的只有3个property,其他都是继承来的.不过就算是CAAnimation,它自身的property还是用的不多,像我们定义动画常常设置的时间propertyduration,beginTime,repeatCount等都在协">
@@ -270,6 +270,7 @@
 <p><br>  </p>
 <h2 id="CAMediaTiming_Property"><a href="#CAMediaTiming_Property" class="headerlink" title="CAMediaTiming Property"></a><font color="#ce1f48">CAMediaTiming Property</font></h2><p><code>duration</code>:动画持续时间(最熟悉没有之一…),默认是0,但这不意味着动画时长为0秒,为0.25<br><code>beginTime</code>:指定动画开始时间。从开始指定延迟几秒执行的话，请设置为「CACurrentMediaTime() + 秒数」的形式.<br><code>timeOffset</code>:我理解为时间的偏移量,比如一个duration为5秒的动画,将timeOffset设置为2,那么动画的运行是2s-&gt;5s-&gt;0s-&gt;2s<br><code>speed</code>:时间加速..设置duration为3秒，但是speed为2，动画快速的执行了1.5秒,speed越大则说明时间流逝速度越快,动画也越快<br><code>repeatCount</code>:代表动画重复的迭代次数,默认为0,也并不意味为0次,而是1次<br><code>repeatDuration</code>:动画的重复时间(间隔),如果它小于动画的duration，那么动画就会提前结束<br><code>autoreverses(Bool)</code>:动画结束时是否执行逆动画,可以产生从初始值到最终值，并反过来回到初始值的动画,也就是这意味着动画发生了两次<br><code>fillMode</code>:一般与<code>removedOnCompletion</code>(必须设置为false)一起用</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">k<span class="built_in">CAFillModeRemoved</span>  <span class="comment">// 这个是默认值,也就是说当动画开始前和动画结束后,动画对layer都没有影响,动画结束后,layer会恢复到之前的状态 </span></span><br><span class="line">k<span class="built_in">CAFillModeForwards</span> <span class="comment">// 当动画结束后,layer会一直保持着动画最后的状态 </span></span><br><span class="line">k<span class="built_in">CAFillModeBackwards</span> <span class="comment">// 这个和kCAFillModeForwards是相对的,就是在动画开始前,你只要将动画加入了一个layer,layer便立即进入动画的初始状态并等待动画开始.你可以这样设定测试代码,将一个动画加入一个layer的时候延迟5秒执行.然后就会发现在动画没有开始的时候,只要动画被加入了layer,layer便处于动画初始状态 </span></span><br><span class="line">k<span class="built_in">CAFillModeBoth</span>  <span class="comment">// 理解了上面两个,这个就很好理解了,这个其实就是上面两个的合成.动画加入后开始之前,layer便处于动画初始状态,动画结束后layer保持动画最后的状态.</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
 <h2 id="u53C2_u8003_u94FE_u63A5"><a href="#u53C2_u8003_u94FE_u63A5" class="headerlink" title="参考链接"></a><font color="#ce1f48">参考链接</font></h2><p><a href="http://ronnqvi.st/controlling-animation-timing/" target="_blank" rel="external">Controlling Animation Timing</a><br><a href="https://zsisme.gitbooks.io/ios-/content/chapter9/the-cAMediaTiming-protocol.html" target="_blank" rel="external">CAMediaTiming</a>  </p>
 
       
@@ -282,7 +283,7 @@
         <p><span>本文标题:</span><a href="/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/">iOS CoreAnimation(三)之CAAnimation</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2015年06月03日 - 15时39分</p>
-        <p><span>最后更新:</span>2016年01月22日 - 10时10分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 10时11分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/" title="iOS CoreAnimation(三)之CAAnimation">http://hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/06/03/iOS-CoreAnimation-三-之CAAnimation/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
