@@ -13,7 +13,7 @@
 <meta property="og:description" content="iOS8之前在iOS8之前,如果想在UITableView中展示可变高度的动态内容时候,我们需要手动的计算会发生变化控件的高度,如果你有多个动态的变化高度的控件, 那么你就需要计算多次…再统一相加起来,返回给cell的高度.具体实现实例参考我以前的博文UITableView详解(三)">
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/size cell.png">
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/size cell demo.png">
-<meta property="og:updated_time" content="2015-05-29T14:12:31.000Z">
+<meta property="og:updated_time" content="2016-01-22T03:29:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自适应Cell的两种方式">
 <meta name="twitter:description" content="iOS8之前在iOS8之前,如果想在UITableView中展示可变高度的动态内容时候,我们需要手动的计算会发生变化控件的高度,如果你有多个动态的变化高度的控件, 那么你就需要计算多次…再统一相加起来,返回给cell的高度.具体实现实例参考我以前的博文UITableView详解(三)">
@@ -264,24 +264,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="iOS8_u4E4B_u524D"><a href="#iOS8_u4E4B_u524D" class="headerlink" title="iOS8之前"></a><font color="IndianRed">iOS8之前</font></h3><p>在iOS8之前,如果想在<code>UITableView</code>中展示可变高度的动态内容时候,我们需要手动的计算会发生变化控件的高度,如果你有多个动态的变化高度的控件, 那么你就需要计算多次…再统一相加起来,返回给cell的高度.具体实现实例参考我以前的博文<a href="http://blog.csdn.net/hmt20130412/article/details/20991327" target="_blank" rel="external">UITableView详解(三)</a><br><a id="more"></a>  </p>
-<h3 id="iOS8_u4E4B_u540E"><a href="#iOS8_u4E4B_u540E" class="headerlink" title="iOS8之后"></a><font color="IndianRed">iOS8之后</font></h3><p>在iOS8中，苹果引入了<code>UITableView</code>的一项新功能–<code>Self Sizing Cells</code>,它的出现,能够让我们通过autolayout,很方便的展示动态控件的内容.主要代码:  </p>
-<pre><code>self.mainTableView.estimatedRowHeight = 20;
-</code></pre><pre><code>self.mainTableView.rowHeight = UITableViewAutomaticDimension;
-</code></pre><p>PS:当然,前提是你已经为会变化高度的控件进行了约束,如图:<br><img src="http://hmtphoto.qiniudn.com/size cell.png" alt="">  </p>
+        <h2 id="iOS8_u4E4B_u524D"><a href="#iOS8_u4E4B_u524D" class="headerlink" title="iOS8之前"></a><font color="IndianRed">iOS8之前</font></h2><p>在iOS8之前,如果想在<code>UITableView</code>中展示可变高度的动态内容时候,我们需要手动的计算会发生变化控件的高度,如果你有多个动态的变化高度的控件, 那么你就需要计算多次…再统一相加起来,返回给cell的高度.具体实现实例参考我以前的博文<a href="http://blog.csdn.net/hmt20130412/article/details/20991327" target="_blank" rel="external">UITableView详解(三)</a><br><a id="more"></a><br><br>  </p>
+<h2 id="iOS8_u4E4B_u540E"><a href="#iOS8_u4E4B_u540E" class="headerlink" title="iOS8之后"></a><font color="IndianRed">iOS8之后</font></h2><p>在iOS8中，苹果引入了<code>UITableView</code>的一项新功能–<code>Self Sizing Cells</code>,它的出现,能够让我们通过autolayout,很方便的展示动态控件的内容.主要代码:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.mainTableView</span><span class="variable">.estimatedRowHeight</span> = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">self</span><span class="variable">.mainTableView</span><span class="variable">.rowHeight</span> = <span class="built_in">UITableViewAutomaticDimension</span>;</span><br></pre></td></tr></table></figure>
+<p>PS:当然,前提是你已经为会变化高度的控件进行了约束,如图:<br><img src="http://hmtphoto.qiniudn.com/size cell.png" alt="">  </p>
 <p><strong>就是这么简单,相比8之前的方法,简直是减少了N堆代码</strong><br><strong>例子</strong>-&gt;</p>
-<pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    HMTTestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;SizeCell&quot; forIndexPath:indexPath];
-    cell.nameLabel.text = @&quot;HMT&quot;;
-    cell.nameLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-    cell.addressLabel.text = @&quot;50万能买什么？也许是80多个IPHONE6，也许是无数大餐。但为了帮助贫困孩子，上海市世界外国语中学的魏琮泰、杨行同学和上海市世界外国语小学的魏启泰同学却毫不犹豫地捐出了积攒10余年的50万压岁钱，用于设立市慈善基金会“青春之光爱心专项基金”，而现年14岁的魏琮泰也成为沪上年龄最小的慈善专项基金主任。三名学生&quot;;
-    cell.addressLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    return cell;
-}
-</code></pre><p><img src="http://hmtphoto.qiniudn.com/size cell demo.png" alt="">  </p>
-<h3 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a><font color="IndianRed">Warning</font></h3><p>据说iOS8下的<code>cell</code>略坑,下面收集了2个问题,大家可以参考一下,可能就是你最近遇到的噢!<br>1.<a href="https://github.com/KittenYang/KYSelfSizingPushFixCategory" target="_blank" rel="external">self size push之后的bug</a> PS:貌似iOS8已经修复了这个问题<br>2.<a href="https://github.com/forkingdog/UITableView-FDTemplateLayoutCell" target="_blank" rel="external">heightForRowAtIndexPath 在iOS8下重复计算问题</a></p>
-<h3 id="u5F3A_u70C8_u63A8_u8350"><a href="#u5F3A_u70C8_u63A8_u8350" class="headerlink" title="强烈推荐"></a><font color="IndianRed">强烈推荐</font></h3><p>尤其是<code>第一篇</code>和<code>第二篇</code>,两者结合可以解决UITableView能优化的极致,不过<code>CoreText绘制</code>LZ表示:smile:  </p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    HMTTestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@"SizeCell"</span> forIndexPath:indexPath];</span><br><span class="line">    cell<span class="variable">.nameLabel</span><span class="variable">.text</span> = <span class="string">@"HMT"</span>;</span><br><span class="line">    cell<span class="variable">.nameLabel</span><span class="variable">.font</span> = [<span class="built_in">UIFont</span> preferredFontForTextStyle:<span class="built_in">UIFontTextStyleHeadline</span>];</span><br><span class="line">    cell<span class="variable">.addressLabel</span><span class="variable">.text</span> = <span class="string">@"50万能买什么？也许是80多个IPHONE6，也许是无数大餐。但为了帮助贫困孩子，上海市世界外国语中学的魏琮泰、杨行同学和上海市世界外国语小学的魏启泰同学却毫不犹豫地捐出了积攒10余年的50万压岁钱，用于设立市慈善基金会“青春之光爱心专项基金”，而现年14岁的魏琮泰也成为沪上年龄最小的慈善专项基金主任。三名学生"</span>;</span><br><span class="line">    cell<span class="variable">.addressLabel</span><span class="variable">.font</span> = [<span class="built_in">UIFont</span> preferredFontForTextStyle:<span class="built_in">UIFontTextStyleBody</span>];</span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://hmtphoto.qiniudn.com/size cell demo.png" alt=""><br><br>  </p>
+<h2 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a><font color="IndianRed">Warning</font></h2><p>据说iOS8下的<code>cell</code>略坑,下面收集了2个问题,大家可以参考一下,可能就是你最近遇到的噢!<br>1.<a href="https://github.com/KittenYang/KYSelfSizingPushFixCategory" target="_blank" rel="external">self size push之后的bug</a> PS:貌似iOS8已经修复了这个问题<br>2.<a href="https://github.com/forkingdog/UITableView-FDTemplateLayoutCell" target="_blank" rel="external">heightForRowAtIndexPath 在iOS8下重复计算问题</a><br><br>  </p>
+<h2 id="u5F3A_u70C8_u63A8_u8350"><a href="#u5F3A_u70C8_u63A8_u8350" class="headerlink" title="强烈推荐"></a><font color="IndianRed">强烈推荐</font></h2><p>尤其是<code>第一篇</code>和<code>第二篇</code>,两者结合可以解决UITableView能优化的极致,不过<code>CoreText绘制</code>LZ表示:smile:  </p>
 <blockquote>
 <p><a href="http://blog.sunnyxx.com/2015/05/17/cell-height-calculation/" target="_blank" rel="external">优化UITableViewCell高度计算的那些事</a><br><a href="http://longxdragon.github.io/2015/05/26/UITableView%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7/" target="_blank" rel="external">UITableView优化技巧</a><br><a href="http://www.cocoachina.com/industry/20140210/7792.html" target="_blank" rel="external">UITableView 滚动流程性优化</a><br><a href="http://www.raywenderlich.com/73602/dynamic-table-view-cell-height-auto-layout" target="_blank" rel="external">Dynamic Table View Cell Height and Auto Layout</a><br><a href="http://www.raywenderlich.com/87975/dynamic-table-view-cell-height-ios-8-swift" target="_blank" rel="external">UITableView Tutorial: Dynamic Table View Cell Height</a><br><a href="http://www.ifun.cc/blog/2014/02/21/dong-tai-ji-suan-uitableviewcellgao-du-xiang-jie/" target="_blank" rel="external">动态计算UITableViewCell高度详解</a><br><a href="http://codingobjc.com/blog/2014/10/15/shi-yong-autolayoutshi-xian-uitableviewde-celldong-tai-bu-ju-he-ke-bian-xing-gao/" target="_blank" rel="external">使用Autolayout实现UITableView的Cell动态布局和高度动态改变</a>  </p>
 </blockquote>
@@ -296,7 +287,7 @@
         <p><span>本文标题:</span><a href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2014年12月08日 - 10时45分</p>
-        <p><span>最后更新:</span>2015年05月29日 - 22时12分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 11时29分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2014/12/08/自适应Cell的两种方式/" title="自适应Cell的两种方式">http://hmttommy.com/2014/12/08/自适应Cell的两种方式/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2014/12/08/自适应Cell的两种方式/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -332,7 +323,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS8_u4E4B_u524D"><span class="toc-number">1.</span> <span class="toc-text">iOS8之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS8_u4E4B_u540E"><span class="toc-number">2.</span> <span class="toc-text">iOS8之后</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Warning"><span class="toc-number">3.</span> <span class="toc-text">Warning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F3A_u70C8_u63A8_u8350"><span class="toc-number">4.</span> <span class="toc-text">强烈推荐</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS8_u4E4B_u524D"><span class="toc-number">1.</span> <span class="toc-text">iOS8之前</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS8_u4E4B_u540E"><span class="toc-number">2.</span> <span class="toc-text">iOS8之后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Warning"><span class="toc-number">3.</span> <span class="toc-text">Warning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F3A_u70C8_u63A8_u8350"><span class="toc-number">4.</span> <span class="toc-text">强烈推荐</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
