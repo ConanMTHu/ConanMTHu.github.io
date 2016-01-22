@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_01.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_02.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_003.png">
-<meta property="og:updated_time" content="2015-07-13T13:25:29.000Z">
+<meta property="og:updated_time" content="2016-01-22T02:48:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS hitTest-点击事件分发分析">
 <meta name="twitter:description" content="最近朋友问了我个点击事件处理的问题,自己从前也没怎么仔细想过,查过资料才明白是怎么一回事,遂做个小结.写了个小Demo,地址是:点这里先来看一张图:0-1-2代表了他们的层级关系,可见button_1被view_1盖住了,如何透过view_1实现对button_1的点击呢?当时想的就是改userInteractionEnabled = NO(这个属性大家肯定不陌生,UILabel和UIImageV">
@@ -266,15 +266,9 @@
       
           
         <p>最近朋友问了我个点击事件处理的问题,自己从前也没怎么仔细想过,查过资料才明白是怎么一回事,遂做个小结.<br>写了个小Demo,地址是:<a href="https://github.com/ConanMTHu/HitTestDemo" target="_blank" rel="external">点这里</a><br>先来看一张图:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_01.png" alt=""><br><code>0-1-2</code>代表了他们的层级关系,可见<code>button_1</code>被<code>view_1</code>盖住了,如何透过<code>view_1</code>实现对<code>button_1</code>的点击呢?<br>当时想的就是改<code>userInteractionEnabled = NO</code>(这个属性大家肯定不陌生,<code>UILabel</code>和<code>UIImageView</code>无法接收点击事件就是因为这个属性默认设置为了<code>NO</code>),类似还有<code>Hidden＝YES/alpha&lt;0.01等</code>,虽然可以实现预期点击,但是这样也影响了<code>view_1和他的子视图button_2(无法被点击)</code>.那改怎么做呢?搜了一下,<code>userInteractionEnabled = NO</code>等价于<code>使当前的hitTest：withEvent返回nil</code>,这是个啥? <a id="more"></a> ok,先来看一下<a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html#//apple_ref/doc/uid/TP40009541-CH4-SW4" target="_blank" rel="external">官方文档</a>中对于<code>The Responder Chain Follows a Specific Delivery Path</code>的解释:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_02.png" alt=""><br>那么,UIView是如何判定这个事件是否是自己应该处理的呢？iOS系统检测到一个触摸操作时会打包一个UIEvent对象，并放入Application的队列，Application从队列中取出事件后交给UIWindow来处理，UIWindow会使用hitTest:withEvent:方法来递归的寻找操作初始点所在的view，这个过程成为<code>hit-test view</code>.<br>继续看文档中的说明:<br>The hitTest:withEvent: method returns the hit test view for a given CGPoint and UIEvent. The hitTest:withEvent: method begins by calling the pointInside:withEvent: method on itself. If the point passed into hitTest:withEvent: is inside the bounds of the view, pointInside:withEvent: returns YES. Then, the method recursively calls hitTest:withEvent: on every subview that returns YES.<br>If the point passed into hitTest:withEvent: is not inside the bounds of the view, the first call to the pointInside:withEvent: method returns NO, the point is ignored, and hitTest:withEvent: returns nil. If a subview returns NO, that whole branch of the view hierarchy is ignored, because if the touch did not occur in that subview, it also did not occur in any of that subview’s subviews. This means that any point in a subview that is outside of its superview can’t receive touch events because the touch point has to be within the bounds of the superview and the subview. This can occur if the subview’s clipsToBounds property is set to NO.<br><strong>翻译下,差不多就是:</strong><br>1.首先调用当前视图的pointInside:withEvent:方法判断触摸点是否在当前视图内;<br>2.若pointInside:withEvent:方法返回NO,说明触摸点不在当前视图内,则当前视图的hitTest:withEvent:返回nil.<br>3.若pointInside:withEvent:方法返回YES,说明触摸点在当前视图内,则遍历当前视图的所有子视图(subviews),调用子视图的hitTest:withEvent:方法重复前面的步骤,子视图的遍历顺序是从top到bottom,即从subviews数组的末尾向前遍历,直到有子视图的hitTest:withEvent:方法返回非空对象或者全部子视图遍历完毕.<br>4.若第一次有子视图的hitTest:withEvent:方法返回非空对象,则当前视图的hitTest:withEvent:方法就返回此对象,处理结束;<br>5.若所有子视图的hitTest:withEvent:方法都返回nil,则当前视图的hitTest:withEvent:方法返回当前视图自身(self).  </p>
-<p>了解了流程,那么针对文章开头的需求,只需在<code>view_0</code>的hitTest方法里做判断，若touch point是在<code>button_1</code>上，则将<code>button_1</code>作为消息处理对象返回即可:  </p>
-<pre><code>override func hitTest(point: CGPoint, withEvent event: UIEvent?) -&gt; UIView? {
-    let btn_1_Point = button_1.convertPoint(point, fromView: self)
-    guard button_1.pointInside(btn_1_Point, withEvent: event) else {
-        return super.hitTest(point, withEvent: event)
-    }
-    return button_1
-}
-</code></pre><p>基本告一段落了,最后盗张图,MJ大神的,很直观的解释了:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_003.png" alt=""></p>
+<p>了解了流程,那么针对文章开头的需求,只需在<code>view_0</code>的hitTest方法里做判断，若touch point是在<code>button_1</code>上，则将<code>button_1</code>作为消息处理对象返回即可:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">hitTest</span><span class="params">(point: CGPoint, withEvent event: UIEvent?)</span></span> -&gt; <span class="type">UIView</span>? &#123;</span><br><span class="line">    <span class="keyword">let</span> btn_1_Point = button_1.convertPoint(point, fromView: <span class="keyword">self</span>)</span><br><span class="line">    <span class="keyword">guard</span> button_1.pointInside(btn_1_Point, withEvent: event) <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.hitTest(point, withEvent: event)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> button_1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基本告一段落了,最后盗张图,MJ大神的,很直观的解释了:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/hittest_003.png" alt=""></p>
 
       
     </div>
@@ -286,7 +280,7 @@
         <p><span>本文标题:</span><a href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2015年05月25日 - 16时24分</p>
-        <p><span>最后更新:</span>2015年07月13日 - 21时25分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 10时48分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/05/25/iOS-hitTest/" title="iOS hitTest-点击事件分发分析">http://hmttommy.com/2015/05/25/iOS-hitTest/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/05/25/iOS-hitTest/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
