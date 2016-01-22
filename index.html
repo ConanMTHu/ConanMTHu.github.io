@@ -144,7 +144,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/Basic-KeyFrame/" style="font-size: 10px;">Basic KeyFrame</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
                     </div>
                 </section>
                 
@@ -223,59 +223,6 @@
     </div>
 </nav>
       <div class="body-wrap">
-  
-    <article id="post-iOS-CoreAnimation-04" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/22/iOS-CoreAnimation-04/" class="article-date">
-      <time datetime="2016-01-22T01:38:19.000Z" itemprop="datePublished">2016-01-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>title: iOS CoreAnimation(四)之CAPropertyAnimation<br>date: 2015-11-04 14:31:26<br>categories: CoreAnimation </p>
-<h2 id="tags_3A_Basic_KeyFrame"><a href="#tags_3A_Basic_KeyFrame" class="headerlink" title="tags: Basic KeyFrame"></a>tags: Basic KeyFrame</h2><p><code>CAPropertyAnimation</code>作为属性动画的基类,并不能直接使用.通常我们操作的是它的两个子类<code>CABasicAnimation</code>和<code>CAKeyframeAnimation</code>.<br><br></p>
-<h3 id="CABasicAnimation"><a href="#CABasicAnimation" class="headerlink" title="CABasicAnimation"></a><font color="#ce1f48">CABasicAnimation</font></h3><ul>
-<li>基础动画,通过属性修改进行动画参数控制,只有初始状态和结束状态。它只有3个属性:<code>fromValue</code> <code>toValue</code> <code>ByValue</code>,其他全是继承的(参考上一篇).对于它这3个属性可以参考:<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CABasicAnimation_class/index.html#//apple_ref/doc/uid/TP40004496-CH1-SW4">官方文档</a></li>
-</ul>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从<span class="built_in">from</span>到<span class="built_in">to</span></span><br><span class="line">Both fromValue <span class="operator">and</span> toValue are non-nil. Interpolates between fromValue <span class="operator">and</span> toValue.<span class="comment"></span><br><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从from到from+by(可见byValue是相对值概念)</span></span><br><span class="line">fromValue <span class="operator">and</span> byValue are non-nil. Interpolates between fromValue <span class="operator">and</span> (fromValue + byValue).<span class="comment"></span><br><span class="line">// 剩下的大致相同...就不多解释了</span></span><br><span class="line">byValue <span class="operator">and</span> toValue are non-nil. Interpolates between (toValue - byValue) <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">fromValue is non-nil. Interpolates between fromValue <span class="operator">and</span> <span class="operator">the</span> current presentation <span class="built_in">value</span> <span class="operator">of</span> <span class="operator">the</span> property.</span><br><span class="line"></span><br><span class="line">toValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">byValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> that <span class="built_in">value</span> plus byValue.</span><br><span class="line"></span><br><span class="line">All properties are nil. Interpolates between <span class="operator">the</span> previous <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer.</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用<code>animationWithKeyPath:</code>方法进行实例化，并指定Layer(后面篇幅解释)的属性作为keyPath(关键路径)来注册.<br><font color="red">对于这个<code>keyPath</code>,<a href="https://developer.apple.com/library/prerelease/tvos/documentation/Cocoa/Conceptual/CoreAnimation_guide/Key-ValueCodingExtensions/Key-ValueCodingExtensions.html">Core Animation Programming Guide</a>中给出了一些常见的,你还可以写入path(xxx.fromValue = yyy.CGPath xxx.toValue = yyy.CGPath),layer的属性以及其子类的比如:strokeStart,locations(CAGradientLayer)…</font>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/22/iOS-CoreAnimation-04/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
   
     <article id="post-protocolMVVM" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -835,6 +782,77 @@ numberLabel.pop_addAnimation(decayAnimation, forKey: &quot;decayAnimation&quot;)
       
         <p class="article-more-link">
           <a  href="/2015/11/11/基于项目某处图片浏览需求引发的蛋疼/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-iOS-CoreAnimation-04" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/04/iOS-CoreAnimation-04/" class="article-date">
+      <time datetime="2015-11-04T06:31:26.000Z" itemprop="datePublished">2015-11-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/04/iOS-CoreAnimation-04/">iOS CoreAnimation(四)之CAPropertyAnimation</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><code>CAPropertyAnimation</code>作为属性动画的基类,并不能直接使用.通常我们操作的是它的两个子类<code>CABasicAnimation</code>和<code>CAKeyframeAnimation</code>.<br><br></p>
+<h3 id="CABasicAnimation"><a href="#CABasicAnimation" class="headerlink" title="CABasicAnimation"></a><font color="#ce1f48">CABasicAnimation</font></h3><ul>
+<li>基础动画,通过属性修改进行动画参数控制,只有初始状态和结束状态。它只有3个属性:<code>fromValue</code> <code>toValue</code> <code>ByValue</code>,其他全是继承的(参考上一篇).对于它这3个属性可以参考:<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CABasicAnimation_class/index.html#//apple_ref/doc/uid/TP40004496-CH1-SW4">官方文档</a></li>
+</ul>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从<span class="built_in">from</span>到<span class="built_in">to</span></span><br><span class="line">Both fromValue <span class="operator">and</span> toValue are non-nil. Interpolates between fromValue <span class="operator">and</span> toValue.<span class="comment"></span><br><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从from到from+by(可见byValue是相对值概念)</span></span><br><span class="line">fromValue <span class="operator">and</span> byValue are non-nil. Interpolates between fromValue <span class="operator">and</span> (fromValue + byValue).<span class="comment"></span><br><span class="line">// 剩下的大致相同...就不多解释了</span></span><br><span class="line">byValue <span class="operator">and</span> toValue are non-nil. Interpolates between (toValue - byValue) <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">fromValue is non-nil. Interpolates between fromValue <span class="operator">and</span> <span class="operator">the</span> current presentation <span class="built_in">value</span> <span class="operator">of</span> <span class="operator">the</span> property.</span><br><span class="line"></span><br><span class="line">toValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">byValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> that <span class="built_in">value</span> plus byValue.</span><br><span class="line"></span><br><span class="line">All properties are nil. Interpolates between <span class="operator">the</span> previous <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>animationWithKeyPath:</code>方法进行实例化，并指定Layer(后面篇幅解释)的属性作为keyPath(关键路径)来注册.<br><font color="red">对于这个<code>keyPath</code>,<a href="https://developer.apple.com/library/prerelease/tvos/documentation/Cocoa/Conceptual/CoreAnimation_guide/Key-ValueCodingExtensions/Key-ValueCodingExtensions.html">Core Animation Programming Guide</a>中给出了一些常见的,你还可以写入path(xxx.fromValue = yyy.CGPath xxx.toValue = yyy.CGPath),layer的属性以及其子类的比如:strokeStart,locations(CAGradientLayer)…</font>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/CoreAnimation/">CoreAnimation</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Basic-KeyFrame/">Basic KeyFrame</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/11/04/iOS-CoreAnimation-04/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
