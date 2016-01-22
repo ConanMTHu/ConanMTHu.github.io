@@ -251,47 +251,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="Swift_u4E2D_u7684_u201D_u5B8F_u201D"><a href="#Swift_u4E2D_u7684_u201D_u5B8F_u201D" class="headerlink" title="Swift中的”宏”"></a><font color="IndianRed">Swift中的”宏”</font></h3><p>写OC的时候常常会用到各种宏定义,但是<code>Swift</code>中貌似没有宏的这种定义,更多的是通过全局常量或者全局函数来实现这一效果.我们只需要建立一个文件(假设为<code>Macro.swift</code>),把想用的定义在里面,无须导入头文件什么的,就可以在全局用啦.  </p>
-<pre><code>import UIKit
-import Foundation
-
-/**
-*   替代oc中的#define,列举一些常用宏
-*/
-
-// 屏幕的物理宽度
-let kScreenWidth = UIScreen.mainScreen().bounds.size.width
-// 屏幕的物理高度
-let kScreenHeight = UIScreen.mainScreen().bounds.size.height
-
-/**
-*   除了一些简单的属性直接用常量表达,更推荐用全局函数来定义替代宏
-*/
-// 判断系统版本
-func kIS_IOS7() -&gt;Bool { return (UIDevice.currentDevice().systemVersion as NSString).doubleValue &gt;= 7.0 }
-func kIS_IOS8() -&gt; Bool { return (UIDevice.currentDevice().systemVersion as NSString).doubleValue &gt;= 8.0 }
-
-// RGBA的颜色设置
-func kRGBA (r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -&gt; UIColor {
-    return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
-}
-
-// App沙盒路径
-func kAppPath() -&gt; String! {
-    return NSHomeDirectory()
-}
-
-// Documents路径
-func kBundleDocumentPath() -&gt; String! {
-    return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as! String
-}
-
-// Caches路径
-func KCachesPath() -&gt; String! {
-    return NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first as! String
-}
-......待续,持续更新
-</code></pre>
+              <h2 id="Swift_u4E2D_u7684_u201D_u5B8F_u201D"><a href="#Swift_u4E2D_u7684_u201D_u5B8F_u201D" class="headerlink" title="Swift中的”宏”"></a><font color="IndianRed">Swift中的”宏”</font></h2><p>写OC的时候常常会用到各种宏定义,但是<code>Swift</code>中貌似没有宏的这种定义,更多的是通过全局常量或者全局函数来实现这一效果.我们只需要建立一个文件(假设为<code>Macro.swift</code>),把想用的定义在里面,无须导入头文件什么的,就可以在全局用啦.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">*   替代oc中的#define,列举一些常用宏</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 屏幕的物理宽度</span></span><br><span class="line"><span class="keyword">let</span> kScreenWidth = <span class="type">UIScreen</span>.mainScreen().bounds.size.width</span><br><span class="line"><span class="comment">// 屏幕的物理高度</span></span><br><span class="line"><span class="keyword">let</span> kScreenHeight = <span class="type">UIScreen</span>.mainScreen().bounds.size.height</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">*   除了一些简单的属性直接用常量表达,更推荐用全局函数来定义替代宏</span><br><span class="line">*/</span></span><br><span class="line"><span class="comment">// 判断系统版本</span></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">kIS_IOS7</span><span class="params">()</span></span> -&gt;<span class="type">Bool</span> &#123; <span class="keyword">return</span> (<span class="type">UIDevice</span>.currentDevice().systemVersion <span class="keyword">as</span> <span class="type">NSString</span>).doubleValue &gt;= <span class="number">7.0</span> &#125;</span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">kIS_IOS8</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span> &#123; <span class="keyword">return</span> (<span class="type">UIDevice</span>.currentDevice().systemVersion <span class="keyword">as</span> <span class="type">NSString</span>).doubleValue &gt;= <span class="number">8.0</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// RGBA的颜色设置</span></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">kRGBA</span> <span class="params">(r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat)</span></span> -&gt; <span class="type">UIColor</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">UIColor</span>(red: r/<span class="number">255.0</span>, green: g/<span class="number">255.0</span>, blue: b/<span class="number">255.0</span>, alpha: a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// App沙盒路径</span></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">kAppPath</span><span class="params">()</span></span> -&gt; <span class="type">String</span>! &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">NSHomeDirectory</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Documents路径</span></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">kBundleDocumentPath</span><span class="params">()</span></span> -&gt; <span class="type">String</span>! &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">NSSearchPathForDirectoriesInDomains</span>(.<span class="type">DocumentDirectory</span>, .<span class="type">UserDomainMask</span>, <span class="literal">true</span>).first <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Caches路径</span></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">KCachesPath</span><span class="params">()</span></span> -&gt; <span class="type">String</span>! &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">NSSearchPathForDirectoriesInDomains</span>(.<span class="type">CachesDirectory</span>, .<span class="type">UserDomainMask</span>, <span class="literal">true</span>).first <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line">......待续,持续更新</span><br></pre></td></tr></table></figure>
           
       
     </div>
