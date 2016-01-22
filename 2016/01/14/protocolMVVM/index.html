@@ -5,20 +5,23 @@
   
   <title>Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol | 胡明涛的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)WWDC:Protoco">
+  <meta name="description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)
+WWDC:Protoc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
 <meta property="og:url" content="http://hmttommy.com/2016/01/14/protocolMVVM/index.html">
 <meta property="og:site_name" content="胡明涛的技术博客">
-<meta property="og:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)WWDC:Protoco">
+<meta property="og:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)
+WWDC:Protoc">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/%E7%BB%A7%E6%89%BF%E7%9A%84%E9%94%99.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/zhuangtou.gif">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocol_zuhe.png">
 <meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/protocolppt.png">
-<meta property="og:updated_time" content="2016-01-21T11:39:20.000Z">
+<meta property="og:updated_time" content="2016-01-22T03:05:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">
-<meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)WWDC:Protoco">
+<meta name="twitter:description" content="引记得从大学学编程开始,对于软件编程听的最多的就是面向对象编程(Object Oriented Programming，OOP)了,它的三大特征:封装,继承,多态.而Swift倡导的面向协议编程(Protocol-oriented programming,POP)是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个protocol)
+WWDC:Protoc">
   
     <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
   
@@ -266,7 +269,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="u5F15"><a href="#u5F15" class="headerlink" title="引"></a><font color="IndianRed">引</font></h2><p>记得从大学学编程开始,对于软件编程听的最多的就是<code>面向对象编程(Object Oriented Programming，OOP)</code>了,它的三大特征:封装,继承,多态.而Swift倡导的<code>面向协议编程(Protocol-oriented programming,POP)</code>是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个<code>protocol</code>)<br><br><br><a href="https://developer.apple.com/videos/play/wwdc2015-408/" target="_blank" rel="external">WWDC:Protocol-Oriented Programming in Swift</a>开头<code>Classess Are Awesome</code>,指出OOP中的<code>Classes</code>提供了:数据的封装、访问控制、抽象化、命名空间等,但这些都是<code>Classes</code>才特有的属性吗?事实上,这些都是<code>类型(Type)</code>的所有属性,<code>Classes</code>只是<code>Type</code>的一种实现方法,在Swift中<code>I can do all that with structs and enums</code>(Swift的标准库组成:55个Protocols和102个Structs),这一点可以理解为封装性.而继承和多态,是<code>struct</code>和<code>enum</code>不具备的,它则是通过遵守<code>protocol</code>来实现.<br><br><br>但,这些是为了说明让我们放弃<code>OOP</code>吗?这是不可能的….想想<code>UIKit</code>….记得刚开始用Swift写项目时,总是告诫自己,不能只是机械的把<code>objc 翻译成 swift</code>.<font color="IndianRed">实际开发项目中,<code>ViewControl</code>和<code>View</code>基本都是使用系统的框架,通过继承来实现,无论如何的自定义,都是要围绕苹果的那一套来,OC与swift在这一块保持一致;但在<code>model</code>和<code>handle/viewModel/manager</code>这一块,更多的通过POP实现,后面会通过一个例子来说明.</font>(PS:在oc中,我们体会的是OOP/FRP(参考一下<code>RAC</code>),那Swift就是OOP/FRP(参考一下<code>RxSwift</code>)/POP;在oc中对于Protocols的理解更多的是<code>UIAppplicationDelegate,UITableViewDelegete,NSCopying,UITextFieldDelegate....</code>,而Swift中Protocols则被赋予了更多的功能和意义:”可定义属性,可组合,可继承,可扩展,支持泛型,支持类/结构体/枚举”).在<a href="http://www.cocoachina.com/swift/20150729/12824.html" target="_blank" rel="external">Swift面向协议编程初探</a>中,bz总结的一句话,非常nice:<br><code>面向对象编程和面向协议编程最明显的区别在于程序设计过程中对数据类型的抽取(抽象)上，面向对象编程使用类和继承的手段，数据类型是引用类型</code><br><code>面向协议编程使用的是遵守协议的手段，数据类型是值类型（Swift中的结构体或枚举)</code><br>PS:<code>值类型</code>和<code>引用类型</code>的区别这里不作详叙,可参考<a href="http://swift.gg/2015/08/14/friday-qa-2015-07-17-when-to-use-swift-structs-and-classes/" target="_blank" rel="external">Swift：什么时候使用结构体和类</a><br><br></p>
+        <h2 id="u5F15"><a href="#u5F15" class="headerlink" title="引"></a><font color="IndianRed">引</font></h2><p>记得从大学学编程开始,对于软件编程听的最多的就是<code>面向对象编程(Object Oriented Programming，OOP)</code>了,它的三大特征:封装,继承,多态.而Swift倡导的<code>面向协议编程(Protocol-oriented programming,POP)</code>是OOP的一个范例,我理解为”封装+协议*结构体+扩展”(Swift2.0开始,你可以扩展一个<code>protocol</code>)</p>
+<p><a href="https://developer.apple.com/videos/play/wwdc2015-408/" target="_blank" rel="external">WWDC:Protocol-Oriented Programming in Swift</a>开头<code>Classess Are Awesome</code>,指出OOP中的<code>Classes</code>提供了:数据的封装、访问控制、抽象化、命名空间等,但这些都是<code>Classes</code>才特有的属性吗?事实上,这些都是<code>类型(Type)</code>的所有属性,<code>Classes</code>只是<code>Type</code>的一种实现方法,在Swift中<code>I can do all that with structs and enums</code>(Swift的标准库组成:55个Protocols和102个Structs),这一点可以理解为封装性.而继承和多态,是<code>struct</code>和<code>enum</code>不具备的,它则是通过遵守<code>protocol</code>来实现.</p>
+<p>但,这些是为了说明让我们放弃<code>OOP</code>吗?这是不可能的….想想<code>UIKit</code>….记得刚开始用Swift写项目时,总是告诫自己,不能只是机械的把<code>objc 翻译成 swift</code>.<font color="IndianRed">实际开发项目中,<code>ViewControl</code>和<code>View</code>基本都是使用系统的框架,通过继承来实现,无论如何的自定义,都是要围绕苹果的那一套来,OC与swift在这一块保持一致;但在<code>model</code>和<code>handle/viewModel/manager</code>这一块,更多的通过POP实现,后面会通过一个例子来说明.</font>(PS:在oc中,我们体会的是OOP/FRP(参考一下<code>RAC</code>),那Swift就是OOP/FRP(参考一下<code>RxSwift</code>)/POP;在oc中对于Protocols的理解更多的是<code>UIAppplicationDelegate,UITableViewDelegete,NSCopying,UITextFieldDelegate....</code>,而Swift中Protocols则被赋予了更多的功能和意义:”可定义属性,可组合,可继承,可扩展,支持泛型,支持类/结构体/枚举”).在<a href="http://www.cocoachina.com/swift/20150729/12824.html" target="_blank" rel="external">Swift面向协议编程初探</a>中,bz总结的一句话,非常nice:<br><code>面向对象编程和面向协议编程最明显的区别在于程序设计过程中对数据类型的抽取(抽象)上，面向对象编程使用类和继承的手段，数据类型是引用类型</code><br><code>面向协议编程使用的是遵守协议的手段，数据类型是值类型（Swift中的结构体或枚举)</code><br>PS:<code>值类型</code>和<code>引用类型</code>的区别这里不作详叙,可参考<a href="http://swift.gg/2015/08/14/friday-qa-2015-07-17-when-to-use-swift-structs-and-classes/" target="_blank" rel="external">Swift：什么时候使用结构体和类</a><br><br></p>
 <h2 id="u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29"><a href="#u8BA8_u538C_u7684_u201D_u4E0A_u5E1D_u201D_28Inheritence_29" class="headerlink" title="讨厌的”上帝”(Inheritence)"></a><font color="IndianRed">讨厌的”上帝”(Inheritence)</font></h2><p><code>继承</code>带给我们最大的问题,可能就是常常会构造出所谓的<code>God类/super类</code>,带来的坏处也随之可见:</p>
 <ul>
 <li>一层一层一层的传递下去,它的任何行为都会影响它的所有小弟;  </li>
@@ -340,7 +345,7 @@
         <p><span>本文标题:</span><a href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2016年01月14日 - 10时03分</p>
-        <p><span>最后更新:</span>2016年01月21日 - 19时39分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 11时05分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/01/14/protocolMVVM/" title="Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol">http://hmttommy.com/2016/01/14/protocolMVVM/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2016/01/14/protocolMVVM/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
