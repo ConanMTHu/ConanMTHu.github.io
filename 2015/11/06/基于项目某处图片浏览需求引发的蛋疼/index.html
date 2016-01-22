@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于项目某处图片浏览需求引发的XX | 胡明涛的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一直以来都在想懂微信/新浪微博点击图片放大浏览的效果究竟是怎么样的,碰巧项目最近遇到一种类似的情况,就动手实践了下,在尝试了各种设置而出现的奇葩效果,暂时性的实现了一种还算丝滑过渡效果.效果如下:最后一张是最终要的(如果有更好的实现方法,可以留言给我,强烈渴望中…)我把速度放了很慢,这样能够更清楚看清过渡过程“所以,所以,罪魁祸首就是,你拍的照片不管是竖屏还是横屏的都要在高200宽等屏幕宽的vie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于项目某处图片浏览需求引发的XX">
+<meta property="og:url" content="http://hmttommy.com/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/index.html">
+<meta property="og:site_name" content="胡明涛的技术博客">
+<meta property="og:description" content="一直以来都在想懂微信/新浪微博点击图片放大浏览的效果究竟是怎么样的,碰巧项目最近遇到一种类似的情况,就动手实践了下,在尝试了各种设置而出现的奇葩效果,暂时性的实现了一种还算丝滑过渡效果.效果如下:最后一张是最终要的(如果有更好的实现方法,可以留言给我,强烈渴望中…)我把速度放了很慢,这样能够更清楚看清过渡过程“所以,所以,罪魁祸首就是,你拍的照片不管是竖屏还是横屏的都要在高200宽等屏幕宽的vie">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_1.gif">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_2.gif">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_3.gif">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_4.gif">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_5.gif">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_final.gif">
+<meta property="og:image" content="http://7qn7zn.com1.z0.glb.clouddn.com/uiimageview_contentMode.png">
+<meta property="og:updated_time" content="2016-01-22T02:01:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于项目某处图片浏览需求引发的XX">
+<meta name="twitter:description" content="一直以来都在想懂微信/新浪微博点击图片放大浏览的效果究竟是怎么样的,碰巧项目最近遇到一种类似的情况,就动手实践了下,在尝试了各种设置而出现的奇葩效果,暂时性的实现了一种还算丝滑过渡效果.效果如下:最后一张是最终要的(如果有更好的实现方法,可以留言给我,强烈渴望中…)我把速度放了很慢,这样能够更清楚看清过渡过程“所以,所以,罪魁祸首就是,你拍的照片不管是竖屏还是横屏的都要在高200宽等屏幕宽的vie">
+  
+    <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7qn7zn.com1.z0.glb.clouddn.com/海贼2.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tommy@迷糊小书童</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">talk is cheap, show me your code</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/AVFoundation-二维码/" style="font-size: 10px;">AVFoundation 二维码</a> <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/Basic-KeyFrame/" style="font-size: 10px;">Basic KeyFrame</a> <a href="/tags/CATransition/" style="font-size: 10px;">CATransition</a> <a href="/tags/Category-closure-objc-set-get/" style="font-size: 10px;">Category closure objc_set/get</a> <a href="/tags/Swift和OC互调用/" style="font-size: 10px;">Swift和OC互调用</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a> <a href="/tags/hit-test/" style="font-size: 10px;">hit-test</a> <a href="/tags/imageView-性能优化/" style="font-size: 10px;">imageView 性能优化</a> <a href="/tags/json-model/" style="font-size: 10px;">json model</a> <a href="/tags/network-request/" style="font-size: 10px;">network request</a> <a href="/tags/new-origin/" style="font-size: 10px;">new origin</a> <a href="/tags/pop/" style="font-size: 10px;">pop</a> <a href="/tags/protocol-MVVM-Mixins-Traits-composition/" style="font-size: 10px;">protocol MVVM Mixins Traits composition</a> <a href="/tags/tableview-cell/" style="font-size: 10px;">tableview cell</a> <a href="/tags/单例/" style="font-size: 10px;">单例</a> <a href="/tags/图片浏览-Custom-push/" style="font-size: 10px;">图片浏览 Custom push</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/基础动画-UIKit封装/" style="font-size: 10px;">基础动画 UIKit封装</a> <a href="/tags/宏-小技巧/" style="font-size: 10px;">宏 小技巧</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/策略/" style="font-size: 10px;">策略</a> <a href="/tags/适配-AutoLayout/" style="font-size: 10px;">适配 AutoLayout</a> <a href="/tags/链接-blog/" style="font-size: 10px;">链接 blog</a> <a href="/tags/链接-github-Demo/" style="font-size: 10px;">链接 github Demo</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">相信coding能够改变世界的IT爱好者</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tommy@迷糊小书童</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img lazy-src="http://7qn7zn.com1.z0.glb.clouddn.com/hmt.png" class="js-avatar">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tommy@迷糊小书童</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">talk is cheap, show me your code</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/tommyyaphetshu@163.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/3356618724/profile?rightmod=1&wvr=6&mod=personinfo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/ConanMTHu" title="GitHub"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://www.google.com/?hl=zh-cn&gws_rd=ssl" title="Google"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a></li>
+                            
+                                <li id="LinkedIn"><a class="LinkedIn" target="_blank" href="http://blog.csdn.net/hmt20130412" title="LinkedIn"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-基于项目某处图片浏览需求引发的蛋疼" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/" class="article-date">
+      <time datetime="2015-11-06T08:42:19.000Z" itemprop="datePublished">2015-11-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于项目某处图片浏览需求引发的XX
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Push-Pop-Present-Dismiss/">Push/Pop/Present/Dismiss</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片浏览-Custom-push/">图片浏览 Custom push</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>一直以来都在想懂微信/新浪微博点击图片放大浏览的效果究竟是怎么样的,碰巧项目最近遇到一种类似的情况,就动手实践了下,在尝试了各种设置而出现的奇葩效果,暂时性的实现了一种还算丝滑过渡效果.<br>效果如下:最后一张是最终要的(如果有更好的实现方法,可以留言给我,强烈渴望中…)我把速度放了很慢,这样能够更清楚看清过渡过程<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_1.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_2.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_3.gif" alt=""><br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_4.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_5.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/brown_photo_final.gif" alt=""><br><strong><font color="red">“所以,所以,罪魁祸首就是,你拍的照片不管是竖屏还是横屏的都要在高200宽等屏幕宽的view上展示,这导致push前后UIImageView的<code>contentMode</code>样式不统一的悲剧”</font></strong><br><a id="more"></a><br>不明白?好吧,我们一张一张来说明,在此之前再来看一张图,说明一下横竖拍照片展示样式的问题:<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/uiimageview_contentMode.png" alt=""><br>PS:这里统一讨论<code>W:375(屏幕宽,以iPhone6为例),H:375*0.66</code>的放大前UIImageView(以下写作frontIm)和<code>W:ScreenSize.width,H:ScreenSize.height</code>的放大后的UIImageView(以下写作backIm).  </p>
+<ul>
+<li>contentMode都设置为<code>.ScaleAspectFill</code>时:  <ul>
+<li>横拍照片和竖拍照片在frontIm中都可以饱满的展示;但是横拍照片在backIm中就会被拉伸(如图4),竖拍的也会被拉伸  </li>
+</ul>
+</li>
+<li>contentMode都设置为<code>.ScaleAspectFit</code>时:  <ul>
+<li>frontIm中横拍照片依旧能够饱满展示,但是竖拍照片就会如上图所示,显示在中间,旁边为空白(这样没有丢失精度);backIm中都正常显示(如图5和图6)  </li>
+</ul>
+</li>
+</ul>
+<p>再回过头来看看前面六张图:<br>1.展示的是一张竖拍图,在frontIm中contentMode为.ScaleAspectFill;在backIm中contentMode为.ScaleAspectFit(这个时候正常显示了,但是过程太难看了,原因就是contentMode不一致)<br>2.展示的是一张竖拍图,在frontIm中contentMode为.ScaleAspectFill;在backIm中contentMode为.ScaleAspectFit(这个时候backIm的宽高设置成和frontIm一样,所以转场过程显示的略平滑)<br>3.展示的是一张竖拍图,在frontIm和backIm中contentMode都为.ScaleAspectFill,并且它们的高度都被设置为<code>W:375 H:375*0.66</code>,这个时候转场平滑+图片没有异变,可是,竖拍的图片明显显示不全,被截了.<br>4.展示的是一张横拍图,在frontIm中contentMode为.ScaleAspectFill/.ScaleAspectFit(可见横拍图并不受影响);在backIm中contentMode为.ScaleAspectFill(被无情的拉伸了…)<br>5.同上,除了把backIm中contentMode改为.ScaleAspectFit,结果是ok的<br>6.最终所要的效果,在frontIm中contentMode为.ScaleAspectFill;在backIm中contentMode为.ScaleAspectFit,不同第一张的是在转场的过程中做了变化!前面已经提到了,如果contentMode设置的不一样,那么转场的过程就会出现跳变效果(很丑),所以针对这种情况在点击浏览它的时候重新生成一个图片作为转场的截图,把<code>contentMode设置为一样</code>,这样就ok了!  </p>
+<p>@代码如下:@</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TYBrownPhotoTransition</span>: <span class="title">NSObject</span>,<span class="title">UIViewControllerAnimatedTransitioning</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> snapImageView: <span class="type">UIImageView</span>?</span><br><span class="line">    <span class="keyword">var</span> popType: <span class="type">UINavigationControllerOperation</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(imageView: <span class="type">UIImageView</span>,popType: <span class="type">UINavigationControllerOperation</span>?) &#123;</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="keyword">self</span>.snapImageView = imageView</span><br><span class="line">        <span class="keyword">self</span>.popType = popType</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">transitionDuration</span><span class="params">(transitionContext: UIViewControllerContextTransitioning?)</span></span> -&gt; <span class="type">NSTimeInterval</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.3</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">animateTransition</span><span class="params">(transitionContext: UIViewControllerContextTransitioning)</span></span> &#123;</span><br><span class="line">        <span class="comment">//  放大</span></span><br><span class="line">        <span class="keyword">if</span> popType == .<span class="type">Push</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> fromVC = transitionContext.viewControllerForKey(<span class="type">UITransitionContextFromViewControllerKey</span>) <span class="keyword">as</span>! <span class="type">WCDetailDreamViewController</span></span><br><span class="line">            <span class="keyword">let</span> toVC = transitionContext.viewControllerForKey(<span class="type">UITransitionContextToViewControllerKey</span>) <span class="keyword">as</span>! <span class="type">WCBrownPhotoViewController</span></span><br><span class="line">            <span class="keyword">let</span> containerView = transitionContext.containerView()</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//  获取图片的截图</span></span><br><span class="line">            <span class="comment">//let snapshotHeadView = fromVC.headScrollView.snapshotViewAfterScreenUpdates(TyBool.False)</span></span><br><span class="line">            <span class="comment">//  类似于微信,假如9张图片的朋友圈信息,你点击每个图片浏览,它们都是从对应的位置出来放大,就是通过下面这个方法来获取的坐标</span></span><br><span class="line">            <span class="comment">//snapshotHeadView.frame =  containerView!.convertRect(fromVC.headScrollView.frame, fromView: fromVC.headScrollView.superview)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//  在点击图片的时候,生成imageView,然后传入转场动画中</span></span><br><span class="line">            <span class="keyword">let</span> testImageView = snapImageView!</span><br><span class="line">            fromVC.headScrollView.hidden = <span class="type">TyBool</span>.<span class="type">True</span></span><br><span class="line">            toVC.view.frame = transitionContext.finalFrameForViewController(toVC)</span><br><span class="line">            toVC.testImageView.hidden = <span class="type">TyBool</span>.<span class="type">True</span></span><br><span class="line">            containerView!.addSubview(toVC.view)</span><br><span class="line">            containerView!.addSubview(testImageView)</span><br><span class="line">            <span class="comment">//containerView!.addSubview(snapshotHeadView)</span></span><br><span class="line">            </span><br><span class="line">            <span class="type">UIView</span>.animateWithDuration(transitionDuration(transitionContext), animations: &#123; () -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">                toVC.view.alpha = <span class="number">1.0</span></span><br><span class="line">                <span class="comment">//let frame = containerView!.convertRect(toVC.testImageView.frame, fromView: toVC.view)</span></span><br><span class="line">                <span class="comment">//snapshotHeadView.frame = frame</span></span><br><span class="line">                testImageView.center = <span class="type">CGPointMake</span>(<span class="type">ScreenSize</span>.width/<span class="number">2</span>, <span class="type">ScreenSize</span>.height/<span class="number">2</span>)</span><br><span class="line">                testImageView.transform = <span class="type">CGAffineTransformMakeScale</span>(<span class="number">2.0</span>, <span class="number">2.0</span>)</span><br><span class="line">                &#125;) &#123; (<span class="number">_</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">                    toVC.testImageView.hidden = <span class="type">TyBool</span>.<span class="type">False</span></span><br><span class="line">                    fromVC.headScrollView.hidden = <span class="type">TyBool</span>.<span class="type">False</span></span><br><span class="line">                    <span class="comment">//  动画结束之后就可以移除掉作为转场的截图</span></span><br><span class="line">                    testImageView.removeFromSuperview()</span><br><span class="line">                    <span class="comment">//snapshotHeadView.removeFromSuperview()</span></span><br><span class="line">                    <span class="comment">//  别忘记这个了,告之转场结束</span></span><br><span class="line">                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//  缩小(暂不举例)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        headScrollView = &#123;</span><br><span class="line">            <span class="keyword">let</span> scrollView = <span class="type">WCHeadDearmDetailScrollView</span>(imageList: [<span class="string">"i_love_you.jpg"</span>,<span class="string">"h2"</span>,<span class="string">"h3"</span>,<span class="string">"h4"</span>], tapImageClosure: &#123;[<span class="keyword">weak</span> <span class="keyword">self</span>] image <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> weakSelf = <span class="keyword">self</span> &#123;</span><br><span class="line">                    weakSelf.tapImageView = <span class="type">UIImageView</span>.snapShowBigImageView(image)</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">let</span> brownPhotoVC = <span class="type">WCBrownPhotoViewController</span>()</span><br><span class="line">                    brownPhotoVC.imageTest = image</span><br><span class="line">                    weakSelf.navigationController!.pushViewController(brownPhotoVC, animated: <span class="literal">true</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UIImageView</span> </span>&#123;</span><br><span class="line">    <span class="comment">//  针对梦想详情界面的图片放大浏览</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">snapShowBigImageView</span>(<span class="title">image</span>:<span class="title">UIImage</span>) -&gt; <span class="title">UIImageView</span> </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> x = (<span class="type">ScreenSize</span>.width - <span class="type">ScreenSize</span>.width / <span class="number">2</span>) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">let</span> tapImageView = <span class="type">UIImageView</span>(frame: <span class="type">CGRectMake</span>(x, <span class="number">0</span>, <span class="type">ScreenSize</span>.width/<span class="number">2</span>, <span class="type">ScreenSize</span>.height/<span class="number">2</span>))</span><br><span class="line">        tapImageView.image = image</span><br><span class="line">        tapImageView.contentMode = .<span class="type">ScaleAspectFit</span></span><br><span class="line">        tapImageView.clipsToBounds = <span class="type">TyBool</span>.<span class="type">True</span></span><br><span class="line">        <span class="keyword">return</span> tapImageView</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        testImageView = &#123;</span><br><span class="line">            <span class="keyword">let</span> imageView = <span class="type">UIImageView</span>(frame: <span class="type">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="type">ScreenSize</span>.width, <span class="type">ScreenSize</span>.height))</span><br><span class="line">            imageView.image = imageTest!</span><br><span class="line">                <span class="comment">//UIImage(named: imageUrl!)</span></span><br><span class="line">            imageView.contentMode = .<span class="type">ScaleAspectFit</span></span><br><span class="line">            <span class="keyword">self</span>.view.addSubview(imageView)</span><br><span class="line">            imageView.userInteractionEnabled = <span class="type">TyBool</span>.<span class="type">True</span></span><br><span class="line">            <span class="keyword">let</span> tap = <span class="type">UITapGestureRecognizer</span>(target: <span class="keyword">self</span>, action: <span class="string">"test"</span>)</span><br><span class="line">            imageView.addGestureRecognizer(tap)</span><br><span class="line">            <span class="keyword">return</span> imageView</span><br><span class="line">        &#125;()</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: - CustomModal Transition</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">typealias</span> <span class="type">CustomModalTransition</span> = <span class="type">WCDetailDreamViewController</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CustomModalTransition</span>: <span class="title">UINavigationControllerDelegate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidAppear</span><span class="params">(animated: Bool)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidAppear(animated)</span><br><span class="line">        <span class="keyword">self</span>.navigationController!.delegate = <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewWillDisappear</span><span class="params">(animated: Bool)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewWillDisappear(animated)</span><br><span class="line">        <span class="keyword">self</span>.navigationController!.delegate = <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">navigationController</span><span class="params">(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController)</span></span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">        <span class="keyword">if</span> toVC.isKindOfClass(<span class="type">WCBrownPhotoViewController</span>.<span class="keyword">self</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="type">TYBrownPhotoTransition</span>(imageView: tapImageView, popType: .<span class="type">Push</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS:对于Custom转场不了解的,可以去看一下<a href="http://www.hmttommy.com/2015/05/29/iOS-CoreAnimation-02/" target="_blank" rel="external">iOS CoreAnimation(二)之CATransition</a>的前半部分  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的XX</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
+        <p><span>发布时间:</span>2015年11月06日 - 16时42分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 10时01分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/" title="基于项目某处图片浏览需求引发的XX">http://hmttommy.com/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/11/15/TheSinInSingleton/">
+                    设计模式(三)之单例模式(译)
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/11/04/iOS-CoreAnimation-04/">
+                    iOS CoreAnimation(四)之CAPropertyAnimation
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+ 
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/11/06/基于项目某处图片浏览需求引发的蛋疼/" data-title="基于项目某处图片浏览需求引发的XX" data-url="http://hmttommy.com/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"humingtao"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/11/15/TheSinInSingleton/" title="上一篇: 设计模式(三)之单例模式(译)">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/11/04/iOS-CoreAnimation-04/" title="下一篇: iOS CoreAnimation(四)之CAPropertyAnimation">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/protocolMVVM/">Swift 面向Protocol编程浅析:Inheritence-Composition-Protocol</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/21/UIScrollViewAndUIImageView/">UIScrollView展示图片的三次升级</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/15/Moya/">Swift Moya</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/AddCategoryProperty/">Swift Closure与AnyObject在Extension中的转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/26/facebookpop/">Facebook POP使用介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/15/TheSinInSingleton/">设计模式(三)之单例模式(译)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/基于项目某处图片浏览需求引发的蛋疼/">基于项目某处图片浏览需求引发的XX</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/04/iOS-CoreAnimation-04/">iOS CoreAnimation(四)之CAPropertyAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/30/iOS-CoreAnimation-三-之CAAnimation/">iOS-CoreAnimation-三-之CAAnimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/16/xctool-xcodebuild自动打包傻瓜式教程/">xctool-xcodebuild自动打包傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/12/Star-Github-share/">Star Github share</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/iOS-CoreAnimation-02/">iOS CoreAnimation(二)之CATransition</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/27/iOS-CoreAnimation-01/">iOS CoreAnimation(一)之UIKit封装的UIView动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/iOS-hitTest/">iOS hitTest-点击事件分发分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/14/AutolayoutDetail/">Autolayout优秀的第三方开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/设计模式-二-之策略模式/">设计模式(二)之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/03/UIScrollView汇总-持续更新/">UIScrollView汇总-持续更新</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/Swift从零单排系列-一-之宏替换与代码标识/">Swift 宏替换与代码标识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/19/2014终-2015新年寄语/">2014终,2015新年寄语</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/08/自适应Cell的两种方式/">自适应Cell的两种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/05/AutoLayout/">iOS8 AutoLayout与Size Class 自悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/04/blogData/">收藏的iOS技术网站汇总(持续更新ing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/02/new-start/">新的开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/01/hello-world/">Hello World</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Tommy@迷糊小书童
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        <div class="visit">
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_value_site_uv"></span>
+                </span>
+            </span>
+            <span id="busuanzi_container_page_pv" style='display:none'>
+                <span id="page-visit">, 本页阅读量: 
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+            </span>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72551550-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
