@@ -224,6 +224,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-iOS开发过程中的知识点总结-续" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/22/iOS开发过程中的知识点总结-续/" class="article-date">
+      <time datetime="2015-10-22T03:24:15.000Z" itemprop="datePublished">2015-10-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>之前在做项目的时候经常会遇到一些细小的知识点,不影响做项目的大方向,但确影响了很多细小的点..比如公式转换,汉字拼音,颜色转换等等,什么都涉及…上次写的还是在<code>CSDN</code>写blog时记录的:<a href="http://blog.csdn.net/hmt20130412/article/details/23975535">iOS开发 容易犯错的知识点和不错的细小知识点(持续更新)</a>,现在换地方了,就不在接着原来的写了,重开一个,依旧持续更新,持续记录.  </p>
+<h3 id="35-_u5F53_u4F60_u5411_u9879_u76EE_u4E2D_u6DFB_u52A0_u4E00_u4E2A_u6587_u4EF6_u5939_u65F6_2C_u5F80_u5F80_u4F1A_u9762_u5BF9Create_groups_u548CCreate_folder_references_u7684_u9009_u62E9"><a href="#35-_u5F53_u4F60_u5411_u9879_u76EE_u4E2D_u6DFB_u52A0_u4E00_u4E2A_u6587_u4EF6_u5939_u65F6_2C_u5F80_u5F80_u4F1A_u9762_u5BF9Create_groups_u548CCreate_folder_references_u7684_u9009_u62E9" class="headerlink" title="35.当你向项目中添加一个文件夹时,往往会面对Create groups和Create folder references的选择"></a>35.当你向项目中添加一个文件夹时,往往会面对<code>Create groups</code>和<code>Create folder references</code>的选择</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">前者<span class="operator"><span class="keyword">Create</span> <span class="keyword">groups</span> <span class="keyword">for</span> <span class="keyword">any</span> added folders  : 给任一你添加的文件创建一个组<span class="keyword">groups</span></span><br><span class="line">后者<span class="keyword">Create</span> folder <span class="keyword">references</span> <span class="keyword">for</span> <span class="keyword">any</span> added folders  :给任一你添加的文件创建一个文件夹folder</span><br><span class="line">两的区别是：前者的文件夹是黄色的；后者的文件夹是蓝色的</span><br><span class="line">如果有一个info.h文件需要引用：前者直接导入<span class="keyword">import</span> <span class="string">"info.h"</span>就可能使用；后者你需要<span class="keyword">import</span> <span class="string">"文件夹名字/info.h"</span>才可能使用，否则编译时找不到文件info.h。</span></span><br></pre></td></tr></table></figure>
+<h3 id="36-Pointer_is_missing_a_nullability_type_specifier__28nonnull_or_nullable_29_u7684_u89E3_u51B3_u65B9_u6CD5_3A"><a href="#36-Pointer_is_missing_a_nullability_type_specifier__28nonnull_or_nullable_29_u7684_u89E3_u51B3_u65B9_u6CD5_3A" class="headerlink" title="36.Pointer is missing a nullability type specifier (nonnull or nullable)的解决方法:"></a>36.Pointer is missing a nullability type specifier (<strong>nonnull or </strong>nullable)的解决方法:</h3><p>首尾加入<code>NS_ASSUME_NONNULL_BEGIN</code>和<code>NS_ASSUME_NONNULL_END</code></p>
+<h3 id="37-UIButton_u6587_u672C_u5BF9_u9F50_u95EE_u9898"><a href="#37-UIButton_u6587_u672C_u5BF9_u9F50_u95EE_u9898" class="headerlink" title="37.UIButton文本对齐问题"></a>37.UIButton文本对齐问题</h3><p>这里使用<code>button.titleLabel.textAlignment = NSTextAlignmentLeft;</code>这行代码是没有效果的,这只是让标签中的文本左对齐,但并没有改变标签在按钮中的对齐方式.<br>所以，我们首先要使用<code>button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;</code> 这行代码，把按钮的内容(控件)的对齐方式修改为水平左对齐，但是这们会紧紧靠着左边，不好看…<br>所以我们还可以修改属性：<code>button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);</code>这行代码可以让按钮的内容（控件）距离左边10个像素，这样就OK了  </p>
+<h3 id="38-_u83B7_u53D6window_u7684_u65B9_u6CD5_u4E4B_u524D_u90FD_u662F_u76F4_u63A5_5BUIApplication_sharedApplication_5D-keyWindow_3B"><a href="#38-_u83B7_u53D6window_u7684_u65B9_u6CD5_u4E4B_u524D_u90FD_u662F_u76F4_u63A5_5BUIApplication_sharedApplication_5D-keyWindow_3B" class="headerlink" title="38.获取window的方法之前都是直接[UIApplication sharedApplication].keyWindow;"></a>38.获取window的方法之前都是直接<code>[UIApplication sharedApplication].keyWindow;</code></h3><p>之后导入bug tags的时候提醒用比较严谨的获取方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIWindow</span> *)lastWindow</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSArray</span> *windows = [<span class="built_in">UIApplication</span> sharedApplication]<span class="variable">.windows</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">UIWindow</span> *window <span class="keyword">in</span> [windows reverseObjectEnumerator]) &#123;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span> ([window isKindOfClass:[<span class="built_in">UIWindow</span> class]] &amp;&amp;</span><br><span class="line">            <span class="built_in">CGRectEqualToRect</span>(window<span class="variable">.bounds</span>, [<span class="built_in">UIScreen</span> mainScreen]<span class="variable">.bounds</span>))</span><br><span class="line">             </span><br><span class="line">            <span class="keyword">return</span> window;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">UIApplication</span> sharedApplication]<span class="variable">.keyWindow</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/资料/">资料</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小技巧/">小技巧</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/10/22/iOS开发过程中的知识点总结-续/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-xctool-xcodebuild自动打包傻瓜式教程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -833,74 +903,6 @@
       
         <p class="article-more-link">
           <a  href="/2015/03/21/iOS面试题总结与感想/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Swift-AVFoundation-二维码扫描和生成" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/" class="article-date">
-      <time datetime="2015-03-16T00:46:28.000Z" itemprop="datePublished">2015-03-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/">Swift AVFoundation 二维码扫描和生成</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>项目终于不需要支持iOS6了(泪崩),在二维码扫描这一块,能够完全的放弃<code>ZXing</code>库,改用系统的<code>AVFoundation</code>了,拿<code>swift</code>写了个Demo,效果如下:<br><strong>github地址:<a href="https://github.com/ConanMTHu/QRCodeByAVFoundation">点这里</a></strong><br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/qrcode_1.PNG" alt="">  </p>
-<p>有关<code>AVFoundation</code>和<code>Core Image</code>(滤镜等),可以先看看<strong>objc.io</strong>第21期和第23期的有关介绍.<br><br></p>
-<h2 id="u521D_u59CB_u5316_u89C6_u9891_u6355_u6349"><a href="#u521D_u59CB_u5316_u89C6_u9891_u6355_u6349" class="headerlink" title="初始化视频捕捉"></a><font color="IndianRed">初始化视频捕捉</font></h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化视频捕获</span></span><br><span class="line">private func initCapture() &#123;</span><br><span class="line">    <span class="comment">// 代表抽象的硬件设备,这里传入video</span></span><br><span class="line">    let captureDevice = <span class="built_in">AVCaptureDevice</span><span class="variable">.defaultDeviceWithMediaType</span>(<span class="built_in">AVMediaTypeVideo</span>)</span><br><span class="line">    var error: <span class="built_in">NSError</span>?</span><br><span class="line">    <span class="comment">// 输入流</span></span><br><span class="line">    var captureInput = <span class="built_in">AVCaptureDeviceInput</span><span class="variable">.deviceInputWithDevice</span>(captureDevice, error: &amp;error) as? <span class="built_in">AVCaptureDeviceInput</span></span><br><span class="line">    <span class="keyword">if</span> (error != <span class="literal">nil</span> &amp;&amp; captureInput == <span class="literal">nil</span>) &#123;</span><br><span class="line">        let errorAlert = <span class="built_in">UIAlertController</span>(title: <span class="string">"提醒"</span>, message: <span class="string">"请在iPhone的\"设置-隐私-相机\"选项中,允许XXX访问您的相机"</span>, preferredStyle: <span class="variable">.Alert</span>)</span><br><span class="line">        errorAlert<span class="variable">.addAction</span>(<span class="built_in">UIAlertAction</span>(title: <span class="string">"确定"</span>, style: <span class="built_in">UIAlertActionStyle</span><span class="variable">.Default</span>, handler: <span class="literal">nil</span>))</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.presentViewController</span>(errorAlert, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// input和output的桥梁,它协调着intput到output的数据传输.(见字意,session-会话)</span></span><br><span class="line">        captureSession = <span class="built_in">AVCaptureSession</span>()</span><br><span class="line">        captureSession!<span class="variable">.addInput</span>(captureInput)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 输出流</span></span><br><span class="line">        let captureMetadataOutput = <span class="built_in">AVCaptureMetadataOutput</span>()</span><br><span class="line">        <span class="comment">// 限制扫描区域http://blog.csdn.net/lc_obj/article/details/41549469</span></span><br><span class="line">        captureMetadataOutput<span class="variable">.rectOfInterest</span> = <span class="built_in">CGRectMake</span>(<span class="number">128.0</span>/ScreenWH<span class="variable">.screenHeight</span>, (ScreenWH<span class="variable">.screenWidth</span> - <span class="number">280.0</span>)/ScreenWH<span class="variable">.screenWidth</span> * <span class="number">2.0</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenHeight</span>, <span class="number">280.0</span>/ScreenWH<span class="variable">.screenWidth</span>)</span><br><span class="line">        captureSession!<span class="variable">.addOutput</span>(captureMetadataOutput)</span><br><span class="line">        <span class="comment">// 添加的队列按规定必须是串行</span></span><br><span class="line">        captureMetadataOutput<span class="variable">.setMetadataObjectsDelegate</span>(<span class="keyword">self</span>, queue: dispatch_get_main_queue())</span><br><span class="line">        <span class="comment">// 指定信息类型,QRCode,你懂的</span></span><br><span class="line">        captureMetadataOutput<span class="variable">.metadataObjectTypes</span> = [<span class="built_in">AVMetadataObjectTypeQRCode</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 用这个预览图层和图像信息捕获会话(session)来显示视频</span></span><br><span class="line">        videoPreviewLayer = <span class="built_in">AVCaptureVideoPreviewLayer</span>(session: captureSession!)</span><br><span class="line">        videoPreviewLayer!<span class="variable">.videoGravity</span> = <span class="built_in">AVLayerVideoGravityResizeAspectFill</span></span><br><span class="line">        videoPreviewLayer!<span class="variable">.frame</span> = view<span class="variable">.bounds</span></span><br><span class="line">        view<span class="variable">.layer</span><span class="variable">.addSublayer</span>(videoPreviewLayer!)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>PS:LZ用了下微信和新浪微博的扫一扫,发现那个扫描框是忽悠人的,也就是你没拿它对准二维码,只要二维码进入手机摄像头范围,就能够解码成功….囧</strong><br>所以LZ在代码中做了一个扫描区域的限制(感觉蛮无聊的)<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Swift/">Swift</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AVFoundation-二维码/">AVFoundation 二维码</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/03/16/Swift-AVFoundation-二维码扫描和生成/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
