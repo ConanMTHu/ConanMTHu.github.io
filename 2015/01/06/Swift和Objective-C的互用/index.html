@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/swift-oc1_1.png">
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/swift_oc_2.png">
 <meta property="og:image" content="http://hmtphoto.qiniudn.com/oc_swift.png">
-<meta property="og:updated_time" content="2016-01-22T03:34:32.000Z">
+<meta property="og:updated_time" content="2016-01-22T03:36:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift和Objective-C的互用">
 <meta name="twitter:description" content="初亮相这个时候深感会P图也是极其重要的啊,想弄个他两缠绵的合图的!!!">
@@ -268,14 +268,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="u521D_u4EAE_u76F8"><a href="#u521D_u4EAE_u76F8" class="headerlink" title="初亮相"></a><font color="IndianRed">初亮相</font></h2><p><strong>这个时候深感会P图也是极其重要的啊,想弄个他两缠绵的合图的!!!</strong><br><img src="http://hmtphoto.qiniudn.com/swift.jpg" alt=""><img src="http://hmtphoto.qiniudn.com/objective-c.png" alt=""><br><a id="more"></a></p>
-<h2 id="Swift_u5DE5_u7A0B_u5BFC_u5165Objective-C"><a href="#Swift_u5DE5_u7A0B_u5BFC_u5165Objective-C" class="headerlink" title="Swift工程导入Objective-C"></a><font color="IndianRed">Swift工程导入Objective-C</font></h2><p><strong>个人感觉比<code>oc</code>导入<code>swift</code>更简单</strong><br>首先你建立一个swift的工程,然后新建一个OC文件,如果是第一次建立,会出现下面这个提示,点击Yes.<br><img src="http://hmtphoto.qiniudn.com/swift-oc.png" alt=""></p>
+        <h2 id="u521D_u4EAE_u76F8"><a href="#u521D_u4EAE_u76F8" class="headerlink" title="初亮相"></a><font color="IndianRed">初亮相</font></h2><p><code>这个时候深感会P图也是极其重要的啊,想弄个他两缠绵的合图的!!!</code><br><img src="http://hmtphoto.qiniudn.com/swift.jpg" alt=""><img src="http://hmtphoto.qiniudn.com/objective-c.png" alt=""><br><a id="more"></a></p>
+<h2 id="Swift_u5DE5_u7A0B_u5BFC_u5165Objective-C"><a href="#Swift_u5DE5_u7A0B_u5BFC_u5165Objective-C" class="headerlink" title="Swift工程导入Objective-C"></a><font color="IndianRed">Swift工程导入Objective-C</font></h2><p><code>个人感觉比</code>oc<code>导入</code>swift<code>更简单</code><br>首先你建立一个swift的工程,然后新建一个OC文件,如果是第一次建立,会出现下面这个提示,点击Yes.<br><img src="http://hmtphoto.qiniudn.com/swift-oc.png" alt=""></p>
 <p>Xocde就会在新建OC文件的同时新建一个<code>xxx-Bridging-Header.h</code>文件，<code>xxx</code>是你的项目名称(Product Module).你可以把这个文件理解为swift导入oc的桥梁.接下来就很简单了:<br><img src="http://hmtphoto.qiniudn.com/swift-oc1_1.png" alt=""><br>如上,在<code>xxx-Bridging-Header.h</code>处导入你要调用的头文件即可 (很简单吧)</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let oc = <span class="function"><span class="title">ObjectClass</span><span class="params">()</span></span></span><br><span class="line"> oc.<span class="function"><span class="title">sayHello</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>注:如果你在前面建立首个oc文件的时候,对于生成bridging header点了no或者不小心删掉了,再重新生成的时候,要注意下面这个情况</strong><br><img src="http://hmtphoto.qiniudn.com/swift_oc_2.png" alt=""></p>
 <h2 id="Objective-C_u5DE5_u7A0B_u5BFC_u5165Swift"><a href="#Objective-C_u5DE5_u7A0B_u5BFC_u5165Swift" class="headerlink" title="Objective-C工程导入Swift"></a><font color="IndianRed">Objective-C工程导入Swift</font></h2><p>配置方面,一步就行了!<br>在需要调用<code>swift</code>文件的地方,引用<code>#import &quot;xxx-Swift.h&quot;</code>(一定是这个格式,切记),同上,<code>xxx</code>是你的工程名.<br>注:这个.h文件你在XCode里面找不到的,是XCode自动帮你生成的,但是你可以command点进去查看.举个例子,我们创立两个继承NSObject的swift类(继承NSObject,不需要加<code>@objc</code>修饰,这之中的一些限制,再这里就不阐述了,随着深入swift学习会明白的),定义一个初始化方法和随便一个hello world函数(这里的写法,肯定是swift方式的啦),这个时候我们再来看看<code>xxx-Swift.h</code>文件<br><img src="http://hmtphoto.qiniudn.com/oc_swift.png" alt=""><br>那么在VC中直接调用:</p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="name">Test</span> *<span class="atom">test</span> = [[<span class="name">Test</span> <span class="atom">alloc</span>] <span class="atom">initWithName</span>:@<span class="string">"haha"</span>];</span><br><span class="line">[<span class="atom">test</span> <span class="atom">sayHello</span>];  </span><br><span class="line"><span class="name">OtherTest</span> *<span class="atom">otherTest</span> = [[<span class="name">OtherTest</span> <span class="atom">alloc</span>] <span class="atom">init</span>];</span><br><span class="line">[<span class="atom">otherTest</span> <span class="atom">sayOtherTest</span>];</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -286,7 +285,7 @@
         <p><span>本文标题:</span><a href="/2015/01/06/Swift和Objective-C的互用/">Swift和Objective-C的互用</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2015年01月06日 - 17时30分</p>
-        <p><span>最后更新:</span>2016年01月22日 - 11时34分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 11时36分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/01/06/Swift和Objective-C的互用/" title="Swift和Objective-C的互用">http://hmttommy.com/2015/01/06/Swift和Objective-C的互用/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/01/06/Swift和Objective-C的互用/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
