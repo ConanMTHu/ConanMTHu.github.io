@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://hmttommy.com/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/index.html">
 <meta property="og:site_name" content="胡明涛的技术博客">
 <meta property="og:description" content="前言读完《The Swift Programming Language》后,对于Swift有了个大致的了解,但是还是缺少实际操作,以至于很多特性和注意点都不太熟悉,遂一一拿出做个总结,加上Swift语法毕竟还不稳定,实时更新,实时掌握!注:基本概念和详细点请通读官方文档,第零篇以本人容易忽略的点为主,不是基础教学">
-<meta property="og:updated_time" content="2016-01-22T03:22:58.000Z">
+<meta property="og:updated_time" content="2016-01-22T03:24:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 官方文档读书笔记">
 <meta name="twitter:description" content="前言读完《The Swift Programming Language》后,对于Swift有了个大致的了解,但是还是缺少实际操作,以至于很多特性和注意点都不太熟悉,遂一一拿出做个总结,加上Swift语法毕竟还不稳定,实时更新,实时掌握!注:基本概念和详细点请通读官方文档,第零篇以本人容易忽略的点为主,不是基础教学">
@@ -264,13 +264,12 @@
           
         <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a><font color="IndianRed">前言</font></h2><p>读完<code>《The Swift Programming Language》</code>后,对于Swift有了个大致的了解,但是还是缺少实际操作,以至于很多特性和注意点都不太熟悉,遂一一拿出做个总结,加上Swift语法毕竟还不稳定,实时更新,实时掌握!<br><strong>注:基本概念和详细点请通读官方文档,第零篇以本人容易忽略的点为主,不是基础教学</strong><br><a id="more"></a></p>
 <p><br></p>
-<p>##<font color="IndianRed">基本类型</font>  </p>
-<ul>
+<h2 id="u57FA_u672C_u7C7B_u578B"><a href="#u57FA_u672C_u7C7B_u578B" class="headerlink" title="基本类型"></a><font color="IndianRed">基本类型</font></h2><ul>
 <li>Swift不支持<code>布尔类型</code>和<code>非布尔类型</code>的值之间的隐士类型转换(p75-p76)  </li>
 <li>可选类型<code>Optionals</code>,值有或者无,格式:<code>x?</code>.无<code>nil</code>在Swift中并不是代表一个指针指向了一个不存在的对象而是代表任意类型的值的缺失情况.(p79)</li>
 <li>用<code>if</code>语句来判断一个可选是否有值(p80-p83)<br>　１.确定有值,用可选类型后面+<code>!</code>的方式强制解封使用可选类型的值<br>　２.可选绑定方式,判断并把值赋给一个常量或者变量.有值直接赋值并使用,没值<code>if</code>语句判断为假,不会赋值.  </li>
 <li><code>Array</code>和<code>Dictionary</code>(p124-p141)  </li>
-<li>待续……<br><br><br>##<font color="IndianRed">控制流</font>  </li>
+<li>待续……<br><br>  <h2 id="u63A7_u5236_u6D41"><a href="#u63A7_u5236_u6D41" class="headerlink" title="控制流"></a><font color="IndianRed">控制流</font></h2></li>
 <li><code>for-in</code>,其中<code>a...b</code>表示a到b并且包括b;<code>a..&lt;b</code>表示a到b但不包括b  </li>
 <li><code>_</code> 能够忽略具体的值,并且不提供循环遍历时对值的访问,表示我只需要<code>for</code>循环能够帮我执行正确的循环次数即可(p143-p145)  </li>
 <li>swift中的<code>switch</code>  不存在隐式的贯穿,每一个case分支都必须包含至少一条语句,这点不像C语言中可以同时匹配好几个条件.但如果确实需要,可以用关键字<code>fallthrough</code>实现.(p159)</li>
@@ -278,15 +277,13 @@
 <li>待续……</li>
 </ul>
 <p><br>    </p>
-<p>##<font color="IndianRed">函数</font>  </p>
-<ul>
+<h2 id="u51FD_u6570"><a href="#u51FD_u6570" class="headerlink" title="函数"></a><font color="IndianRed">函数</font></h2><ul>
 <li><code>可变参数</code>可以用来传入不确定数量的输入参数,格式是在变量类型后面加入<code>...</code>(p189)<br>　１. 一个函数至多只能有一个可变参数<br>　２.可变参数必须要在参数列表的最后一个</li>
 <li><code>inout</code>标记输入输出参数,只针对于变量(p192)</li>
 <li>待续……</li>
 </ul>
 <p><br></p>
-<p>##<font color="IndianRed">类和结构体</font>  </p>
-<ul>
+<h2 id="u7C7B_u548C_u7ED3_u6784_u4F53"><a href="#u7C7B_u548C_u7ED3_u6784_u4F53" class="headerlink" title="类和结构体"></a><font color="IndianRed">类和结构体</font></h2><ul>
 <li><code>延迟属性</code>,用关键字<code>lazy</code>修饰,指第一次调用时才会计算其初始值的属性.使用情况             (p245):<br>　１.如果类实例构造结束前无法知道具体值的外部信息<br>　２.如果属性的值需要复杂或者大量计算时<br>　３.必须声明为<code>var</code></li>
 <li><code>计算属性</code>,必须声明为<code>var</code></li>
 </ul>
@@ -326,7 +323,7 @@
         <p><span>本文标题:</span><a href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/">Swift 官方文档读书笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2015年02月20日 - 09时33分</p>
-        <p><span>最后更新:</span>2016年01月22日 - 11时22分</p>
+        <p><span>最后更新:</span>2016年01月22日 - 11时24分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/" title="Swift 官方文档读书笔记">http://hmttommy.com/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/02/20/Swift从零单排系列-零-之官方文档读书笔记/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -362,7 +359,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u672C_u7C7B_u578B"><span class="toc-number">2.</span> <span class="toc-text">基本类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u63A7_u5236_u6D41"><span class="toc-number">3.</span> <span class="toc-text">控制流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u51FD_u6570"><span class="toc-number">4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u548C_u7ED3_u6784_u4F53"><span class="toc-number">5.</span> <span class="toc-text">类和结构体</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
