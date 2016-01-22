@@ -224,6 +224,59 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-iOS-CoreAnimation-04" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/22/iOS-CoreAnimation-04/" class="article-date">
+      <time datetime="2016-01-22T01:38:19.000Z" itemprop="datePublished">2016-01-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>title: iOS CoreAnimation(四)之CAPropertyAnimation<br>date: 2015-11-04 14:31:26<br>categories: CoreAnimation </p>
+<h2 id="tags_3A_Basic_KeyFrame"><a href="#tags_3A_Basic_KeyFrame" class="headerlink" title="tags: Basic KeyFrame"></a>tags: Basic KeyFrame</h2><p><code>CAPropertyAnimation</code>作为属性动画的基类,并不能直接使用.通常我们操作的是它的两个子类<code>CABasicAnimation</code>和<code>CAKeyframeAnimation</code>.<br><br></p>
+<h3 id="CABasicAnimation"><a href="#CABasicAnimation" class="headerlink" title="CABasicAnimation"></a><font color="#ce1f48">CABasicAnimation</font></h3><ul>
+<li>基础动画,通过属性修改进行动画参数控制,只有初始状态和结束状态。它只有3个属性:<code>fromValue</code> <code>toValue</code> <code>ByValue</code>,其他全是继承的(参考上一篇).对于它这3个属性可以参考:<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CABasicAnimation_class/index.html#//apple_ref/doc/uid/TP40004496-CH1-SW4">官方文档</a></li>
+</ul>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从<span class="built_in">from</span>到<span class="built_in">to</span></span><br><span class="line">Both fromValue <span class="operator">and</span> toValue are non-nil. Interpolates between fromValue <span class="operator">and</span> toValue.<span class="comment"></span><br><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从from到from+by(可见byValue是相对值概念)</span></span><br><span class="line">fromValue <span class="operator">and</span> byValue are non-nil. Interpolates between fromValue <span class="operator">and</span> (fromValue + byValue).<span class="comment"></span><br><span class="line">// 剩下的大致相同...就不多解释了</span></span><br><span class="line">byValue <span class="operator">and</span> toValue are non-nil. Interpolates between (toValue - byValue) <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">fromValue is non-nil. Interpolates between fromValue <span class="operator">and</span> <span class="operator">the</span> current presentation <span class="built_in">value</span> <span class="operator">of</span> <span class="operator">the</span> property.</span><br><span class="line"></span><br><span class="line">toValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">byValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> that <span class="built_in">value</span> plus byValue.</span><br><span class="line"></span><br><span class="line">All properties are nil. Interpolates between <span class="operator">the</span> previous <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>animationWithKeyPath:</code>方法进行实例化，并指定Layer(后面篇幅解释)的属性作为keyPath(关键路径)来注册.<br><font color="red">对于这个<code>keyPath</code>,<a href="https://developer.apple.com/library/prerelease/tvos/documentation/Cocoa/Conceptual/CoreAnimation_guide/Key-ValueCodingExtensions/Key-ValueCodingExtensions.html">Core Animation Programming Guide</a>中给出了一些常见的,你还可以写入path(xxx.fromValue = yyy.CGPath xxx.toValue = yyy.CGPath),layer的属性以及其子类的比如:strokeStart,locations(CAGradientLayer)…</font>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/22/iOS-CoreAnimation-04/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-protocolMVVM" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -566,126 +619,6 @@
         <p class="article-more-link">
           <a  href="/2015/11/29/swiftjson/#more">more >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS-CoreAnimation-04" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/28/iOS-CoreAnimation-04/" class="article-date">
-      <time datetime="2015-11-28T03:41:08.000Z" itemprop="datePublished">2015-11-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>title: iOS CoreAnimation(四)之CAPropertyAnimation<br>date: 2015-11-04 14:31:26<br>categories: CoreAnimation </p>
-<h2 id="tags_3A_Basic_KeyFrame"><a href="#tags_3A_Basic_KeyFrame" class="headerlink" title="tags: Basic KeyFrame"></a>tags: Basic KeyFrame</h2><p><code>CAPropertyAnimation</code>作为属性动画的基类,并不能直接使用.通常我们操作的是它的两个子类<code>CABasicAnimation</code>和<code>CAKeyframeAnimation</code>.    </p>
-<h3 id="CABasicAnimation"><a href="#CABasicAnimation" class="headerlink" title="CABasicAnimation"></a><font color="#ce1f48">CABasicAnimation</font></h3><ul>
-<li>基础动画,通过属性修改进行动画参数控制,只有初始状态和结束状态。它只有3个属性:<code>fromValue</code> <code>toValue</code> <code>ByValue</code>,其他全是继承的(参考上一篇).对于它这3个属性可以参考:<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CABasicAnimation_class/index.html#//apple_ref/doc/uid/TP40004496-CH1-SW4" target="_blank" rel="external">官方文档</a>  <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从<span class="built_in">from</span>到<span class="built_in">to</span></span><br><span class="line">Both fromValue <span class="operator">and</span> toValue are non-nil. Interpolates between fromValue <span class="operator">and</span> toValue.<span class="comment"></span><br><span class="line">// 如果fromValue和toValue不为nil,那么动画帧变化就是从from到from+by(可见byValue是相对值概念)</span></span><br><span class="line">fromValue <span class="operator">and</span> byValue are non-nil. Interpolates between fromValue <span class="operator">and</span> (fromValue + byValue).<span class="comment"></span><br><span class="line">// 剩下的大致相同...就不多解释了</span></span><br><span class="line">byValue <span class="operator">and</span> toValue are non-nil. Interpolates between (toValue - byValue) <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">fromValue is non-nil. Interpolates between fromValue <span class="operator">and</span> <span class="operator">the</span> current presentation <span class="built_in">value</span> <span class="operator">of</span> <span class="operator">the</span> property.</span><br><span class="line"></span><br><span class="line">toValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> toValue.</span><br><span class="line"></span><br><span class="line">byValue is non-nil. Interpolates between <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> that <span class="built_in">value</span> plus byValue.</span><br><span class="line"></span><br><span class="line">All properties are nil. Interpolates between <span class="operator">the</span> previous <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer <span class="operator">and</span> <span class="operator">the</span> current <span class="built_in">value</span> <span class="operator">of</span> keyPath <span class="operator">in</span> <span class="operator">the</span> target layer’s presentation layer.</span><br><span class="line">```  </span><br><span class="line">+ 使用`animationWithKeyPath:`方法进行实例化，并指定Layer(后面篇幅解释)的属性作为keyPath(关键路径)来注册.  </span><br><span class="line">&lt;font color=<span class="string">"red"</span>&gt;对于这个`keyPath`,[Core Animation Programming Guide](<span class="keyword">https</span>://developer.apple.com/library/prerelease/tvos/documentation/Cocoa/Conceptual/CoreAnimation_guide/Key-ValueCodingExtensions/Key-ValueCodingExtensions.html)中给出了一些常见的,你还可以写入path(xxx.fromValue = yyy.CGPath xxx.toValue = yyy.CGPath),layer的属性以及其子类的比如:strokeStart,locations(CAGradientLayer)...&lt;/font&gt;    </span><br><span class="line">&lt;!<span class="comment">--more--&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>rotation.x Set to an NSNumber object whose value is the rotation, in radians, in the x axis.<br>rotation.y Set to an NSNumber object whose value is the rotation, in radians, in the y axis.<br>rotation.z Set to an NSNumber object whose value is the rotation, in radians, in the z axis.<br>rotation Set to an NSNumber object whose value is the rotation, in radians, in the z axis. This field is identical to setting the rotation.z field.<br>scale.x Set to an NSNumber object whose value is the scale factor for the x axis.<br>scale.y Set to an NSNumber object whose value is the scale factor for the y axis.<br>scale.z Set to an NSNumber object whose value is the scale factor for the z axis.<br>scale Set to an NSNumber object whose value is the average of all three scale factors.<br>translation.x Set to an NSNumber object whose value is the translation factor along the x axis.<br>translation.y Set to an NSNumber object whose value is the translation factor along the y axis.<br>translation.z Set to an NSNumber object whose value is the translation factor along the z axis.<br>translation Set to an NSValue object containing an NSSize or CGSize data type. That data type indicates the amount to translate in the x and y axis<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对比这些keyPath不难发现,等价于第一章中<span class="type">UIView</span>封装的<span class="keyword">block</span>动画,不过要配以下方法:</span><br></pre></td></tr></table></figure></p>
-<p>public func CGAffineTransformMakeTranslation(tx: CGFloat, _ ty: CGFloat) -&gt; CGAffineTransform</p>
-<p>/<em> Return a transform which scales by `(sx, sy)’:<br>     t’ = [ sx 0 0 sy 0 0 ] </em>/</p>
-<p>public func CGAffineTransformMakeScale(sx: CGFloat, _ sy: CGFloat) -&gt; CGAffineTransform</p>
-<p>/<em> Return a transform which rotates by `angle’ radians:<br>     t’ = [ cos(angle) sin(angle) -sin(angle) cos(angle) 0 0 ] </em>/</p>
-<p>public func CGAffineTransformMakeRotation(angle: CGFloat) -&gt; CGAffineTransform</p>
-<p>/<em> Return true if `t’ is the identity transform, false otherwise. </em>/</p>
-<p>public func CGAffineTransformIsIdentity(t: CGAffineTransform) -&gt; Bool</p>
-<p>/<em> Translate <code>t&#39; by</code>(tx, ty)’ and return the result:<br>     t’ = [ 1 0 0 1 tx ty ] </em> t */</p>
-<p>public func CGAffineTransformTranslate(t: CGAffineTransform, <em> tx: CGFloat, </em> ty: CGFloat) -&gt; CGAffineTransform</p>
-<p>/<em> Scale <code>t&#39; by</code>(sx, sy)’ and return the result:<br>     t’ = [ sx 0 0 sy 0 0 ] </em> t */</p>
-<p>public func CGAffineTransformScale(t: CGAffineTransform, <em> sx: CGFloat, </em> sy: CGFloat) -&gt; CGAffineTransform</p>
-<p>/<em> Rotate <code>t&#39; by</code>angle’ radians and return the result:<br>     t’ =  [ cos(angle) sin(angle) -sin(angle) cos(angle) 0 0 ] </em> t */</p>
-<p>public func CGAffineTransformRotate(t: CGAffineTransform, _ angle: CGFloat) -&gt; CGAffineTransform<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="escape">`t</span>ranslation<span class="escape">`对</span>应<span class="escape">`平</span>行移动<span class="escape">`;</span><span class="escape">`s</span>cale<span class="escape">`对</span>应<span class="escape">`缩</span>放<span class="escape">`;</span><span class="escape">`r</span>otation<span class="escape">`对</span>应<span class="escape">`旋</span>转<span class="escape">`.</span>  </span><br><span class="line">&lt;font color=<span class="string">"#ce1f48"</span>&gt;至于<span class="escape">`C</span>GAffineTransformMakeTranslation<span class="escape">`和</span><span class="escape">`C</span>GAffineTransformTranslate<span class="escape">`的</span>区别:前者每次都是以最初位置的中心点为起始参照,每次都是以传入的transform为起始参照&lt;/font&gt;    </span><br><span class="line">**&lt;font color=<span class="string">"orange"</span>&gt;举个栗子&lt;/font&gt;**</span><br></pre></td></tr></table></figure></p>
-<pre><code>// 1.keyPath-translation
-let basicAnimation = CABasicAnimation(keyPath: &quot;transform.translation.x&quot;)
-basicAnimation.toValue = 200
-basicAnimation.duration = 2.0
-basicAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-basicAnimation.removedOnCompletion = false
-basicAnimation.fillMode = kCAFillModeForwards
-redView.layer.addAnimation(basicAnimation, forKey: nil)
-// 1.block
-UIView.animateWithDuration(2.0) { () -&gt; Void in
-    self.blueView.transform = CGAffineTransformMakeTranslation(200.0, 0.0)
-}
-
-// 2.keyPath-rotation
-let rotateAnimation = CABasicAnimation(keyPath: &quot;transform.rotation.y&quot;)// 绕y轴旋转
-rotateAnimation.duration = 5.0
-rotateAnimation.fromValue = 0.0
-rotateAnimation.toValue = M_PI
-redView.layer.addAnimation(rotateAnimation, forKey: nil)
-// 2.block
-UIView.animateWithDuration(5.0) { () -&gt; Void in
-    // 必须用带3D的方法,这样处于立体坐标系
-    self.blueView.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 0.0, -1.0, 0.0)
-    //CGAffineTransformMakeRotation(CGFloat(M_PI)) 平面旋转
-}
-
-// 3.keyPath-scale
-let scaleAnimation = CABasicAnimation(keyPath: &quot;transform.scale&quot;)
-scaleAnimation.duration = 1.0
-scaleAnimation.autoreverses = true
-scaleAnimation.fromValue = 1.0
-scaleAnimation.toValue = 2.0
-redView.layer.addAnimation(scaleAnimation, forKey: nil)
-// 3.block
-UIView.animateWithDuration(1.0, animations: { () -&gt; Void in
-    self.blueView.transform = CGAffineTransformMakeScale(2.0, 2.0)
-    }) { (_) -&gt; Void in
-        UIView.animateWithDuration(1.0, animations: { () -&gt; Void in
-            self.blueView.transform = CGAffineTransformMakeScale(1.0, 1.0)
-        })
-}
-</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"#ce1f48"</span>&gt;</span></span><span class="code">`CGAffineTransform是作用于View的主要为2D变换，而CATransform3D主要作用于Layer，为3D变换使用`</span><span class="xml"><span class="tag">&lt;/<span class="title">font</span>&gt;</span></span></span><br><span class="line">如图可见,是等价的,不过blcok形式虽然方便,功能却没keyPath形式强大,如果你操作复杂动画,还是用第一种方式比较好!    </span><br><span class="line">![<span class="link_label"></span>](<span class="link_url">http://7qn7zn.com1.z0.glb.clouddn.com/move_x.gif</span>)![<span class="link_label"></span>](<span class="link_url">http://7qn7zn.com1.z0.glb.clouddn.com/rotate_y.gif</span>)![](http://7qn7zn.com1.z0.glb.clouddn.com/scale.gif)  </span><br><span class="line">  </span><br><span class="line">这里提一下<span class="code">`CAAnimationGroup`</span>,它只有一个属性<span class="code">`public var animations: [CAAnimation]?`</span>,意思已经非常明了了,如果你想同时旋转+移动+缩放,就把上面3个animation放到这个数组中就可以了,就不加篇幅去具体介绍了...  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="header">### &lt;font color="#ce1f48"&gt;CAKeyframeAnimation&lt;/font&gt;  </span></span><br><span class="line">CABasicAnimation算是CAKeyFrameAnimation的特殊情况，即不考虑中间变换过程，只考虑起始点与目标点就可以了。而CAKeyFrameAnimation则更复杂一些，允许我们在起点与终点间自定义更多内容来达到我们的实际应用需求.最常见的就是虾米音乐点击音乐抛出一个🎵和淘宝点击一个物品自动抛入到购物车等(当初觉得好叼..知道真相的我眼泪掉下来).KeyFrame的意思是关键帧,举栗子可以理解为北斗七星之间连线,一共8个帧(指连成循环,第七星又连回第一星),改变每一帧对应状态,这样就不是单一的直线运动.  </span><br><span class="line">它的一些重要属性:  </span><br><span class="line"><span class="code">`values`</span>:存放整个动画过程中的关键帧点的数组,也就是动画路径    </span><br><span class="line"><span class="code">`path`</span>:同样是用于指定整个动画所经过的路径的,需要注意的是,values与path是互斥的,当values与path同时指定时,path会覆盖values,即values属性将被忽略(CGPath类型,可以去研究下CoreGraphics)  </span><br><span class="line"><span class="code">`keyTimes`</span>:动画时间数组,存放的是每一帧对应的时间,你没有显式地对keyTimes进行设置,则系统会默认每条子路径的时间为：ti=duration/(5-1)，即每条子路径的duration相等，都为duration的1\4.[0,0.1,0.5,1]对应的就是1-&gt;2:0.1 2-&gt;3:0.4 3-&gt;4:0.5  </span><br><span class="line"><span class="code">`timingFunctions`</span>:老熟人了,参见前面文章  </span><br><span class="line"><span class="code">`calculationMode`</span>:来设定关键帧中间的值是怎么被计算的(不太懂,参考下:[<span class="link_label">这里</span>](<span class="link_url">http://blog.csdn.net/smking/article/details/8424851</span>))</span><br></pre></td></tr></table></figure>
-<pre><code>kCAAnimationLinear // 默认值,表示当关键帧为座标点的时候,关键帧之间直接直线相连进行插值计算;
-kCAAnimationDiscrete // 离散的,就是不进行插值计算,所有关键帧直接逐个进行显示;
-kCAAnimationPaced // 使得动画均匀进行,而不是按keyTimes设置的或者按关键帧平分时间,此时keyTimes和timingFunctions无效;
-kCAAnimationCubic // 对关键帧为座标点的关键帧进行圆滑曲线相连后插值计算,对于曲线的形状还可以通过tensionValues,continuityValues,biasValues来进行调整自定义,这里的数学原理是Kochanek–Bartels spline,这里的主要目的是使得运行的轨迹变得圆滑;
-kCAAnimationCubicPaced // 看这个名字就知道和kCAAnimationCubic有一定联系,其实就是在kCAAnimationCubic的基础上使得动画运行变得均匀,就是系统时间内运动的距离相同,此时keyTimes以及timingFunctions也是无效的.
-</code></pre><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">`rotationMode`:Possible values are <span class="keyword">*</span>auto<span class="keyword">*</span> and <span class="keyword">*</span>autoReverse<span class="keyword">*</span>. Defaults to nil.我是这样理解,飞机按路径飞行(方向从左往右),如果你不设置rotationMode,那么飞机只会是永远和X轴平行,反之设置了,那么飞机头就会随路径变化而变化  </span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;font color="orange"&gt;</span>再举个栗子<span class="variable">&lt;/font&gt;</span><span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure>
-<pre><code>let animationTest = CAKeyframeAnimation(keyPath: &quot;position&quot;)
-let pathTest = CGPathCreateMutable()
-CGPathMoveToPoint(pathTest, nil, 20, 20)
-CGPathAddCurveToPoint(pathTest, nil, 160, 30, 220, 220, 240, 380) // 贝塞尔曲线,起始点+控制点
-animationTest.path = pathTest
-animationTest.duration = 10.0
-animationTest.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-animationTest.rotationMode = &quot;auto&quot;
-redView.layer.addAnimation(animationTest, forKey: nil)
-</code></pre><p><code>``  
-两种结果来说明</code>rotationMode<code>的效果.第一张为</code>auto`,第二张默认为nil<br><img src="http://7qn7zn.com1.z0.glb.clouddn.com/keyframe_auto.gif" alt=""><img src="http://7qn7zn.com1.z0.glb.clouddn.com/keyframe_no_auto.gif" alt=""><br>更多的动画效果就不一一展示了,大家去随便试验玩起来吧.  </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
       
       <div class="clearfix"></div>
     </div>
