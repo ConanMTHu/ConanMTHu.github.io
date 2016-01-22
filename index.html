@@ -382,139 +382,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>网络层这一块用<a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="external">Alamofire</a>,如同于在oc中用<a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">AFNetworking</a>.但是,如果你直接使用的话,会使得各种网络请求操作分布很凌乱,所以我选择了巧神封装的<a href="https://github.com/yuantiku/YTKNetwork" target="_blank" rel="external">YTKNetwork</a>,很好用,有兴趣的可以看一下.当然你也可以自己组织封装.<br>这段代码就是LZ项目中的网络请求:<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">NSDictionary *parameterDic = @&#123;kPageSizeKey:</span>@<span class="string">"10"</span>,kCurPageKey:@<span class="string">"1"</span>,kLastIDKey:@<span class="string">"0"</span>&#125;<span class="comment">;</span></span><br><span class="line"><span class="label">[[WCRequestDataManager sharedRequestDataManager] requestDataForNetWorkWithDataHandleType:</span>WCProductListDataHandleType</span><br><span class="line"><span class="label">    parameterDic:</span>parameterDic</span><br><span class="line"><span class="label">    completed:</span>^(WCProductResultModel *resultModel) &#123;&#125;</span><br><span class="line"><span class="label">    failure:</span>^(NSString *msg) &#123;&#125;</span><br><span class="line">]<span class="comment">;</span></span><br><span class="line"><span class="escape">``</span><span class="escape">` </span> </span><br><span class="line"> + <span class="escape">`p</span>arameterDic<span class="escape">`就</span>是请求所需的参数,如果没有直接传入<span class="escape">`n</span>il<span class="escape">` </span> </span><br><span class="line"> + <span class="escape">`W</span>CProductListDataHandleType<span class="escape">`是</span>枚举类型,你可以理解为它对应了<span class="escape">`产</span>品列表<span class="escape">`网</span>络请求的<span class="escape">`m</span>ethod(GET/POST)<span class="escape">`,</span><span class="escape">`U</span>RL<span class="escape">`等</span>等  </span><br><span class="line"> + <span class="escape">`c</span>ompleted<span class="escape">`和</span><span class="escape">`f</span>ailure<span class="escape">`2</span>个block分别对应请求<span class="escape">`成</span>功<span class="escape">`和</span><span class="escape">`失</span>败<span class="escape">`两</span>种情况,并返回页面需要的model和失败的信息  </span><br><span class="line"> + 数据解析直接在对应的<span class="escape">`R</span>equestHandle<span class="escape">`中</span>,保证返回对应的model-&gt;<span class="escape">`W</span>CProductResultModel<span class="escape">` </span> </span><br><span class="line">  </span><br><span class="line"><span class="label">那么Swift中推荐一下[Moya](https:</span>//github.com/Moya/Moya),这是一个基于<span class="escape">`A</span>lamofire<span class="escape">`的</span>更高层网络请求封装抽象层.  </span><br><span class="line"><span class="label">**整个Demo可以在这里下载到:[MoyaTest](https:</span>//github.com/ConanMTHu/MoyaTest)**  </span><br><span class="line"><span class="label">可以对比一下直接用`Alamofire`和用`Moya`请求样式:</span></span><br></pre></td></tr></table></figure></p>
-<pre><code>Alamofire.request(.GET, kRequestServerKey + &quot;services/creditor/product/list/page/2/0/0&quot;).responseJSON {
-    response in
-    if let value = response.result.value {
-        let result = Mapper&lt;CommonInfo&gt;().map(value)
-        let dataList = Mapper&lt;ProductModel&gt;().mapArray(result?.data?[&quot;result&quot;])
-        print(&quot;Alamofire = \(dataList?[0].productDesc)&quot;) // Alamofire = Optional(&quot;gfhgfgfhgshgdsfdshgfshfgh&quot;)
-    }
-}
-
-MoyaTest.sharedInstance.requestDataWithTarget(.productList(pageSize: 2, curpage: 0, lastID: 0), type: ProductModel.self, successClosure: { result in
-        let dataList = Mapper&lt;ProductModel&gt;().mapArray(result[&quot;result&quot;])
-        print(&quot;Moya = \(dataList?[0].productDesc)&quot;) // Moya = Optional(&quot;gfhgfgfhgshgdsfdshgfshfgh&quot;)
-    }) { errorMsg in
-        print(errorMsg)
-}
-</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">可见,第二种隐藏了<span class="escape">`u</span>rl<span class="escape">`,</span><span class="escape">`m</span>ethod<span class="escape">`,</span><span class="escape">`j</span>son解析<span class="escape">`等</span>参数/操作,抽象出了一层通用的请求方法.(按理说<span class="escape">`M</span>apper&lt;ProductModel&gt;().mapArray(result[<span class="string">"result"</span>])<span class="escape">`不</span>应该出现在回调的闭包中,返回的就应该是<span class="escape">`p</span>roductList<span class="escape">`请</span>求对应的model,否则<span class="escape">`t</span>ype<span class="escape">`这</span>个参数就没有意义了,这个梗会在下面说到)  </span><br><span class="line">  </span><br><span class="line">&lt;!--more--&gt;  </span><br><span class="line"><span class="label">看一下文档说明:</span>  </span><br><span class="line"><span class="label">![](http:</span>//<span class="number">7</span>qn7zn.com1.z0.glb.clouddn.com/屏幕快照<span class="var_expand">%202015-12-16%</span><span class="number">2020.33</span>.<span class="number">28</span>.png)  </span><br><span class="line"></span><br><span class="line">**&lt;font size=<span class="string">"5"</span> color=<span class="string">"IndianRed"</span>&gt;[Targets](https://github.com/Moya/Moya/blob/master/docs/Targets.md)&lt;/font&gt;**  </span><br><span class="line">---  </span><br><span class="line"><span class="label"> 使用`Moya`的第一步就是定义一个`Target`:</span>通常是指一些符合<span class="escape">`T</span>argetType protocol<span class="escape">`的</span><span class="escape">`e</span>num<span class="escape">`.</span>然,你请求的其余部分都只根据这个<span class="escape">`T</span>arget<span class="escape">`而</span>来.这个枚举用来定义你的<span class="escape">`网</span>络请求API<span class="escape">`的</span>行为<span class="escape">`a</span>ction<span class="escape">`.</span></span><br></pre></td></tr></table></figure>
-<p> public enum RequestApi {<br>    //  UserApi<br>    case login(loginName: String, password: String)<br>    case register //(userMobile: String, password: String, inviteCode: String, verifyCode: String)<br>    //case accountInfo</p>
-<pre><code>//  ProductApi
-case productList(pageSize: Int, curpage: Int, lastID: Int)
-</code></pre><p>//    case productDetail(id: Int)<br>}<br> <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+ </span>强烈推荐[<span class="link_label">Swift 中枚举高级用法及实践</span>](<span class="link_url">http://swift.gg/2015/11/20/advanced-practical-enum-examples/</span>)这篇文章,涵盖了枚举几乎所有的知识点.<span class="code">`enum`</span>在Swift中的作用,简直不要太牛!  </span><br><span class="line"><span class="bullet">+ </span>再推荐一个[<span class="link_label">用模式匹配解析 URL</span>](<span class="link_url">http://swift.gg/2015/09/15/urls-and-pattern-matching/#qrcode</span>),通过<span class="code">`关联值(Associated Value)`</span>来定义请求所需的参数(loginName和password也可以省略掉,但为了直观的说明,还是保留一下)</span><br></pre></td></tr></table></figure></p>
-<p> extension RequestApi: TargetType {<br>    public var baseURL: NSURL {<br>        return NSURL(string: “<a href="http://apptest.wecube.com:8080/taojinjia/&quot;)!" target="_blank" rel="external">http://apptest.wecube.com:8080/taojinjia/&quot;)!</a><br>    }</p>
-<pre><code>public var path: String {
-    switch self {
-        case .login(_,_):
-            return &quot;services/crane/sso/login/doLogin&quot;
-        case .register:
-            return &quot;services/crane/sso/login/register&quot;
-        case let .productList(pageSize, curpage, lastID):
-            return &quot;services/creditor/product/list/page/&quot;+String(pageSize)+&quot;/&quot;+String(curpage)+&quot;/&quot;+String(lastID)
-    }
-}
-
-public var method: Moya.Method {
-    switch self {
-        case .login(_,_), .register:
-            return .POST
-        case .productList(_,_,_):
-            return .GET
-    }
-}
-
-public var parameters: [String: AnyObject]? {
-    switch self {
-        case let .login(loginName, password):
-            return [&quot;loginName&quot;: loginName, &quot;userPassword&quot;: password]
-        default :
-            return nil
-    }
-}
-
-//  单元测试用
-public var sampleData: NSData {
-    return &quot;{}&quot;.dataUsingEncoding(NSUTF8StringEncoding)!
-}
-</code></pre><p>}<br> <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">定义的<span class="class"><span class="keyword">enum</span>实现`<span class="title">TargetType</span>`协议,完成一系列初始化设置:  </span></span><br><span class="line"> + &lt;font color=<span class="string">"IndianRed"</span>&gt;<span class="string">`baseURL`</span>&lt;<span class="regexp">/font&gt;:统一设置服务器地址,测试切换非常的方便,`YTKNetwork`中也是这样配置的.  </span><br><span class="line"> + &lt;font color="IndianRed"&gt;`path`&lt;/font</span>&gt;:每个请求需求对应的各自的请求路径</span><br></pre></td></tr></table></figure></p>
-<pre><code>参见源码,最终的url就是由baseURL和path拼接而来
-public final class func DefaultEndpointMapping(target: Target) -&gt; Endpoint&lt;Target&gt; {
-    let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
-    return Endpoint(URL: url, sampleResponseClosure: {.NetworkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
-}
-</code></pre> <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> + &lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;`method`&lt;/<span class="attribute">font</span>&gt;:不解释...请求方式  </span><br><span class="line"> + &lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;`parameters`&lt;/<span class="attribute">font</span>&gt;:需要的参数  </span><br><span class="line"> + &lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;`sampleData`&lt;/<span class="attribute">font</span>&gt;:方便于单元测试...暂时忽略  </span><br><span class="line">  </span><br><span class="line">**&lt;<span class="attribute">font</span> size=<span class="string">"5"</span> <span class="attribute">color</span>=<span class="string">"IndianRed"</span>&gt;[Providers](https:<span class="comment">//github.com/Moya/Moya/blob/master/docs/Providers.md)和[Endpoints](https://github.com/Moya/Moya/blob/master/docs/Endpoints.md)&lt;/font&gt;**  </span></span><br><span class="line">---  </span><br><span class="line">`provider`和`endpoints`是紧密相关的,放在一起讲更好点(名字都怪怪的,果然国外开发者取名都是讲究哇)</span><br></pre></td></tr></table></figure>
-<p>let requestProvider = RxMoyaProvider<requestapi>()<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最终的请求发起对象就是<span class="escape">`r</span>equestProvider<span class="escape">`,</span><span class="escape">`R</span>xMoyaProvider<span class="escape">`是</span><span class="escape">`M</span>oyaProvider<span class="escape">`的</span>子类,你需要在podfile中导入<span class="escape">`M</span>oya/RxSwift<span class="escape">`,</span>当然你也可以直接用<span class="escape">`M</span>oyaProvider<span class="escape">`来</span>完成初始化,<span class="escape">`R</span>xSwift<span class="escape">`目</span>前只是简单的了解了一下,具体用法这里暂时忽略,不影响请求的完成.  </span><br><span class="line"><span class="label">你可能发现,这跟`endpoints`并没什么关系,但是,看下源码:</span></span><br></pre></td></tr></table></figure></requestapi></p>
-<pre><code>/// Initializes a provider.
-public init(endpointClosure: EndpointClosure = MoyaProvider.DefaultEndpointMapping,
-    requestClosure: RequestClosure = MoyaProvider.DefaultRequestMapping,
-    stubClosure: StubClosure = MoyaProvider.NeverStub,
-    manager: Manager = Alamofire.Manager.sharedInstance,
-    plugins: [PluginType] = []) {
-
-        self.endpointClosure = endpointClosure
-        self.requestClosure = requestClosure
-        self.stubClosure = stubClosure
-        self.manager = manager
-        self.plugins = plugins
-}
-
-/// Mark: Defaults
-</code></pre><p>public extension MoyaProvider {</p>
-<pre><code>// These functions are default mappings to endpoings and requests.
-
-public final class func DefaultEndpointMapping(target: Target) -&gt; Endpoint&lt;Target&gt; {
-    let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
-    return Endpoint(URL: url, sampleResponseClosure: {.NetworkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
-}
-
-public final class func DefaultRequestMapping(endpoint: Endpoint&lt;Target&gt;, closure: NSURLRequest -&gt; Void) {
-    return closure(endpoint.urlRequest)
-}
-</code></pre><p>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> + <span class="escape">`i</span>nit<span class="escape">`的</span><span class="number">4</span>个参数都给了默认参数,且默认的endpoint<span class="escape">`D</span>efaultEndpointMapping<span class="escape">`如</span>同它的名字一样,<span class="string">"终结点"</span>匹配了网络请求要的因素.  </span><br><span class="line"> + 如果你的请求需要添加请求头,你也能够通过<span class="escape">`e</span>ndpointByAddingHTTPHeaderFields<span class="escape">`方</span>法来实现.  </span><br><span class="line"> + <span class="escape">`T</span>arget<span class="escape">`贯</span>穿了全局,在endpoint的配置中,也可以通过刷选不同的枚举值来设置不同情况.  </span><br><span class="line"> + 还有一些高级用法就自己去研究文档,LZ的英文实在是渣的可怕...  </span><br><span class="line">在上面的栗子中,选择了默认的初始化方法.  </span><br><span class="line">  </span><br><span class="line">**&lt;font size=<span class="string">"5"</span> color=<span class="string">"IndianRed"</span>&gt;Request&lt;/font&gt;**  </span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<p>import Foundation<br>import Moya<br>import RxSwift<br>import ObjectMapper<br>import SwiftyJSON</p>
-<p>typealias SuccessClosure = (result: AnyObject) -&gt; Void<br>//typealias SuccessClosure = (result: Mappable) -&gt; Void<br>typealias FailClosure = (errorMsg: String?) -&gt; Void</p>
-<p>enum RequestCode: String {<br>    case failError = “0”<br>    case success = “1”<br>}</p>
-<p>class MoyaTest {<br>    static let sharedInstance = MoyaTest()<br>    private init(){}</p>
-<pre><code>let requestProvider = RxMoyaProvider&lt;RequestApi&gt;()
-
-func requestDataWithTarget&lt;T: Mappable&gt;(target: RequestApi, type: T.Type , successClosure: SuccessClosure, failClosure: FailClosure) {
-    let _ = requestProvider.request(target).subscribe { (event) -&gt; Void in
-        switch event {
-        case .Next(let response):
-            let info = Mapper&lt;CommonInfo&gt;().map(JSON(data: response.data,options: .AllowFragments).object)
-            guard info?.code == RequestCode.success.rawValue else {
-                failClosure(errorMsg: info?.msg)
-                return
-            }
-            guard let data = info?.data else {
-                failClosure(errorMsg: &quot;数据为空&quot;)
-                return
-            }
-            successClosure(result: data)
-        case .Error(let error):
-            print(&quot;网络请求失败...\(error)&quot;)
-        default:
-            break
-        }
-    }
-}
-</code></pre><p>}<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最后的请求方法封装,如上面的栗子:  </span><br><span class="line"> + json的解析我用的<span class="code">`SwiftyJson`</span>和<span class="code">`ObjectMapper`</span>.<span class="code">`SwiftyJson`</span>主要是用来把data转为object(这里如果调用<span class="code">`JSON(response.data)`</span>会无法解析,要显式的加上参数<span class="code">`options`</span>,但其实<span class="code">`JSON(xxx)`</span>内部是默认实现了的,实在不明白为什么会解析失败...参数的解释参见[<span class="link_label">hit me</span>](<span class="link_url">http://www.cocoachina.com/bbs/read.php?tid=110907</span>)和[<span class="link_label">hit me too</span>](<span class="link_url">http://stackoverflow.com/questions/16961025/nsjsonserialization-nsjsonreadingallowfragments-reading</span>)),后面的转model用的就是<span class="code">`ObjectMapper`</span>.<span class="xml"><span class="tag">&lt;<span class="title">font</span> <span class="attribute">color</span>=<span class="value">"red"</span>&gt;</span></span>这里补上前面提到的:为什么没能够做到返回直接是请求数据对应的model,而多做了一步<span class="code">`let dataList = Mapper&lt;ProductModel&gt;().mapArray(result["result"])`</span><span class="xml"><span class="tag">&lt;/<span class="title">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p> // 服务器给的数据格式统一为<br>{<br>    “code” = “”,<br>    “data” =  {} 或 ({}),<br>    “msg” = “”<br>}<br> <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`data`对应的就是请求url返回的`model`或`[model]`,那么就是不是调用`successClosure(<span class="literal">result</span>: data)`了,而是</span><br></pre></td></tr></table></figure></p>
-<pre><code> //typealias SuccessClosure = (result: Mappable) -&gt; Void
- let model = Mapper&lt;T&gt;().map(data)
-successClosure(result: model)
-</code></pre><p> <code>``  
- 有的接口</code>data<code>对应的是包含了多个dic的数组,感觉解决方法就是再单独开一个数组的请求方法,调用</code>mapArray<code>,这里就不多加描述了,反正都一样的流程.  
- 而</code>productList<code>的url返回的</code>data<code>里面还包了一层</code>result<code>和</code>pageVO`,so…这就是一个特殊情况^_^!  </p>
+              <p>网络层这一块用<a href="https://github.com/Alamofire/Alamofire">Alamofire</a>,如同于在oc中用<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>.但是,如果你直接使用的话,会使得各种网络请求操作分布很凌乱,所以我选择了巧神封装的<a href="https://github.com/yuantiku/YTKNetwork">YTKNetwork</a>,很好用,有兴趣的可以看一下.当然你也可以自己组织封装.<br>这段代码就是LZ项目中的网络请求:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *parameterDic = @&#123;<span class="string">kPageSizeKey:</span>@<span class="string">"10"</span>,<span class="string">kCurPageKey:</span>@<span class="string">"1"</span>,<span class="string">kLastIDKey:</span>@<span class="string">"0"</span>&#125;;</span><br><span class="line">[[WCRequestDataManager sharedRequestDataManager] <span class="string">requestDataForNetWorkWithDataHandleType:</span>WCProductListDataHandleType</span><br><span class="line"><span class="label">    parameterDic:</span>parameterDic</span><br><span class="line"><span class="label">    completed:</span>^(WCProductResultModel *resultModel) &#123;&#125;</span><br><span class="line"><span class="label">    failure:</span>^(NSString *msg) &#123;&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>RxSwift</code>…学习中  </li>
+<li><code>parameterDic</code>就是请求所需的参数,如果没有直接传入<code>nil</code>  </li>
+<li><code>WCProductListDataHandleType</code>是枚举类型,你可以理解为它对应了<code>产品列表</code>网络请求的<code>method(GET/POST)</code>,<code>URL</code>等等  </li>
+<li><code>completed</code>和<code>failure</code>2个block分别对应请求<code>成功</code>和<code>失败</code>两种情况,并返回页面需要的model和失败的信息  </li>
+<li>数据解析直接在对应的<code>RequestHandle</code>中,保证返回对应的model-&gt;<code>WCProductResultModel</code>  </li>
 </ul>
-<p>ok!差不多<code>Moya</code>的基本使用就是这样啦,感觉还是非常方便实用的.  </p>
-<blockquote>
-<p><strong>参考资料</strong><br><a href="http://blog.callmewhy.com/2015/11/01/moya-rxswift-argo-lets-go/" target="_blank" rel="external">通过 Moya+RxSwift+Argo 完成网络请求</a><br><a href="https://github.com/ReactiveX/RxSwift" target="_blank" rel="external">RxSwift</a>  </p>
-</blockquote>
-
+<p>那么Swift中推荐一下<a href="https://github.com/Moya/Moya">Moya</a>,这是一个基于<code>Alamofire</code>的更高层网络请求封装抽象层.<br><strong>整个Demo可以在这里下载到:<a href="https://github.com/ConanMTHu/MoyaTest">MoyaTest</a></strong><br>可以对比一下直接用<code>Alamofire</code>和用<code>Moya</code>请求样式:</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Alamofire</span>.request(.<span class="type">GET</span>, kRequestServerKey + <span class="string">"services/creditor/product/list/page/2/0/0"</span>).responseJSON &#123;</span><br><span class="line">    response <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> value = response.<span class="literal">result</span>.value &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="literal">result</span> = <span class="type">Mapper</span>&lt;<span class="type">CommonInfo</span>&gt;().map(value)</span><br><span class="line">        <span class="keyword">let</span> dataList = <span class="type">Mapper</span>&lt;<span class="type">ProductModel</span>&gt;().mapArray(<span class="literal">result</span>?.data?[<span class="string">"result"</span>])</span><br><span class="line">        print(<span class="string">"Alamofire = \(dataList?[0].productDesc)"</span>) // <span class="type">Alamofire</span> = <span class="type">Optional</span>(<span class="string">"gfhgfgfhgshgdsfdshgfshfgh"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">MoyaTest</span>.sharedInstance.requestDataWithTarget(.productList(pageSize: <span class="number">2</span>, curpage: <span class="number">0</span>, lastID: <span class="number">0</span>), <span class="keyword">type</span>: <span class="type">ProductModel</span>.self, successClosure: &#123; <span class="literal">result</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">let</span> dataList = <span class="type">Mapper</span>&lt;<span class="type">ProductModel</span>&gt;().mapArray(<span class="literal">result</span>[<span class="string">"result"</span>])</span><br><span class="line">        print(<span class="string">"Moya = \(dataList?[0].productDesc)"</span>) // <span class="type">Moya</span> = <span class="type">Optional</span>(<span class="string">"gfhgfgfhgshgdsfdshgfshfgh"</span>)</span><br><span class="line">    &#125;) &#123; errorMsg <span class="keyword">in</span></span><br><span class="line">        print(errorMsg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见,第二种隐藏了<code>url</code>,<code>method</code>,<code>json解析</code>等参数/操作,抽象出了一层通用的请求方法.(按理说<code>Mapper&lt;ProductModel&gt;().mapArray(result[&quot;result&quot;])</code>不应该出现在回调的闭包中,返回的就应该是<code>productList</code>请求对应的model,否则<code>type</code>这个参数就没有意义了,这个梗会在下面说到)  </p>
+          
       
     </div>
     
@@ -531,6 +410,10 @@ successClosure(result: model)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network-request/">network request</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/15/Moya/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1196,7 +1079,7 @@ public init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
                 $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
             }
             else {
-                var backgroundnum = 3;
+                var backgroundnum = 5;
                 var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
                 $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
             }
