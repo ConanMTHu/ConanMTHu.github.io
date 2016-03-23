@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="胡明涛的技术博客">
 <meta property="og:description" content="之前在做项目的时候经常会遇到一些细小的知识点,不影响做项目的大方向,但确影响了很多细小的点..比如公式转换,汉字拼音,颜色转换等等,什么都涉及…上次写的还是在CSDN写blog时记录的:iOS开发 容易犯错的知识点和不错的细小知识点(持续更新),现在换地方了,就不在接着原来的写了,重开一个,依旧持续更新,持续记录.  
 35.当你向项目中添加一个文件夹时,往往会面对Create groups和Cr">
-<meta property="og:updated_time" content="2016-01-22T02:28:03.000Z">
+<meta property="og:updated_time" content="2016-03-23T07:55:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发过程中的知识点总结(续)">
 <meta name="twitter:description" content="之前在做项目的时候经常会遇到一些细小的知识点,不影响做项目的大方向,但确影响了很多细小的点..比如公式转换,汉字拼音,颜色转换等等,什么都涉及…上次写的还是在CSDN写blog时记录的:iOS开发 容易犯错的知识点和不错的细小知识点(持续更新),现在换地方了,就不在接着原来的写了,重开一个,依旧持续更新,持续记录.  
@@ -291,7 +291,34 @@
 <h3 id="50-_u5B9E_u73B0UITableView_Plain_SectionView_u548Ctable_u4E0D_u505C_u7559_u4E00_u8D77_u6ED1_u52A8"><a href="#50-_u5B9E_u73B0UITableView_Plain_SectionView_u548Ctable_u4E0D_u505C_u7559_u4E00_u8D77_u6ED1_u52A8" class="headerlink" title="50.实现UITableView Plain SectionView和table不停留一起滑动"></a>50.实现UITableView Plain SectionView和table不停留一起滑动</h3><p> 1） 这个代码是通过scroll偏移量来监听和改变你的tableview的contentInset 可见很不好（试试就知道） X </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 去掉UItableview headerview黏性(sticky)</span></span><br><span class="line"> - (<span class="keyword">void</span>)scrollViewDidScroll:(UIScrollView *)scrollView</span><br><span class="line"> &#123;</span><br><span class="line">     CGFloat sectionHeaderHeight = <span class="number">40</span>;(你的section高度)</span><br><span class="line">     <span class="keyword">if</span> (scrollView.contentOffset.y&lt;=sectionHeaderHeight&amp;&amp;scrollView.contentOffset.y&gt;=<span class="number">0</span>) &#123;</span><br><span class="line">         scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span> (scrollView.contentOffset.y&gt;=sectionHeaderHeight) &#123;</span><br><span class="line">         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>2）和第一个没太大本质区别，在自定义headSectionView中重写setframe方法来重载table的section<a href="https://github.com/rongtian/TablePlainSectionView" target="_blank" rel="external">TablePlainSectionView</a></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setFrame:(<span class="built_in">CGRect</span>)frame&#123;</span><br><span class="line">    <span class="built_in">CGRect</span> sectionRect = [<span class="keyword">self</span><span class="variable">.tableView</span> rectForSection:<span class="keyword">self</span><span class="variable">.section</span>];</span><br><span class="line">    <span class="built_in">CGRect</span> newFrame = <span class="built_in">CGRectMake</span>(<span class="built_in">CGRectGetMinX</span>(frame), <span class="built_in">CGRectGetMinY</span>(sectionRect), <span class="built_in">CGRectGetWidth</span>(frame), <span class="built_in">CGRectGetHeight</span>(frame)); [<span class="keyword">super</span> setFrame:newFrame];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setFrame:(<span class="built_in">CGRect</span>)frame&#123;</span><br><span class="line">    <span class="built_in">CGRect</span> sectionRect = [<span class="keyword">self</span><span class="variable">.tableView</span> rectForSection:<span class="keyword">self</span><span class="variable">.section</span>];</span><br><span class="line">    <span class="built_in">CGRect</span> newFrame = <span class="built_in">CGRectMake</span>(<span class="built_in">CGRectGetMinX</span>(frame), <span class="built_in">CGRectGetMinY</span>(sectionRect), <span class="built_in">CGRectGetWidth</span>(frame), <span class="built_in">CGRectGetHeight</span>(frame)); [<span class="keyword">super</span> setFrame:newFrame];</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor">### 51.Swift 沙盒路径集合</span></span><br></pre></td></tr></table></figure>
+<p>// MARK: - 沙盒路径集合<br>// <a href="http://stackoverflow.com/questions/32501627/stringbyappendingpathcomponent-is-unavailable" target="_blank" rel="external">http://stackoverflow.com/questions/32501627/stringbyappendingpathcomponent-is-unavailable</a><br>// <a href="http://stackoverflow.com/questions/32120581/stringbyappendingpathcomponent-is-unavailable" target="_blank" rel="external">http://stackoverflow.com/questions/32120581/stringbyappendingpathcomponent-is-unavailable</a><br>extension String {<br>    var lastPathComponent: String {<br>        return (self as NSString).lastPathComponent<br>    }</p>
+<pre><code>var pathExtension: String {
+    return (self as NSString).pathExtension
+}
+
+var stringByDeletingLastPathComponent: String {
+    return (self as NSString).stringByDeletingLastPathComponent
+}
+
+var stringByDeletingPathExtension: String {
+    return (self as NSString).stringByDeletingPathExtension
+}
+
+var pathComponents: [String] {
+    return (self as NSString).pathComponents
+}
+
+func stringByAppendingPathComponent(path: String) -&gt; String {
+    let nsSt = self as NSString
+    return nsSt.stringByAppendingPathComponent(path)
+}
+
+func stringByAppendingPathExtension(ext: String) -&gt; String? {
+    let nsSt = self as NSString
+    return nsSt.stringByAppendingPathExtension(ext)  
+}  
+</code></pre><p>}<br>```</p>
 
       
     </div>
@@ -303,7 +330,7 @@
         <p><span>本文标题:</span><a href="/2015/10/22/iOS开发过程中的知识点总结-续/">iOS开发过程中的知识点总结(续)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
         <p><span>发布时间:</span>2015年10月22日 - 11时24分</p>
-        <p><span>最后更新:</span>2016年01月22日 - 10时28分</p>
+        <p><span>最后更新:</span>2016年03月23日 - 15时55分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/10/22/iOS开发过程中的知识点总结-续/" title="iOS开发过程中的知识点总结(续)">http://hmttommy.com/2015/10/22/iOS开发过程中的知识点总结-续/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2015/10/22/iOS开发过程中的知识点总结-续/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
