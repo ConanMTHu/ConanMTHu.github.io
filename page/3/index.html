@@ -226,6 +226,79 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-iOS面试题总结与感想" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/21/iOS面试题总结与感想/" class="article-date">
+      <time datetime="2015-03-21T10:15:21.000Z" itemprop="datePublished">2015-03-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/21/iOS面试题总结与感想/">iOS面试题总结与感想</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="u9898"><a href="#u9898" class="headerlink" title="题"></a><font color="IndianRed">题</font></h2><p>必须先吐槽一下,找工作面试确实是个累人的活呀,所以—&gt;<code>跳槽有风险,选择需谨慎</code>.LZ我为什么要换工作呢?就不在这里说明了…直接进入正题,这周的面试基本每天从早面到晚,面试表都填吐了…大小公司都有,列举下这段时间常见的面试题和一些个人理解.PS:LZ我水平有限,不好的地方,大家轻喷^_^!(因为完全是靠记忆,列举顺序纯凭感觉0.0)<br><br></p>
+<ol>
+<li><code>@property</code>中的assign,retain,copy,nonatomic的意思分别是什么? (解释略…你懂的)</li>
+<li><code>weak</code>和<code>assign</code>的区别,<code>strong</code>和<code>retain</code>的区别,<code>copy</code>和<code>retain</code>的区别?<br><code>assign</code>适用于非对象类型,<code>weak</code>弱引用在引用计数为0的时候会将对象置为nil.<br>其实从这个也可以引申到内存管理的一系列问题.面试官会让你讲讲<code>MRC</code>和<code>ARC</code>的理解,随即也引申出<code>Block</code>的内存机制,为啥推荐<code>Block</code>用<code>copy</code>,<code>Block</code>会存在哪些内存问题?循环引用?<br>推荐一个文章,讲的蛮不错的,里面也有对<code>Block</code>的链接引用-&gt;<a href="http://www.cocoachina.com/ios/20150206/11121.html#0-qzone-1-7097-d020d2d2a4e8d1a374a433f596ad1440">传送门,请点击我</a></li>
+<li>依旧是内存管理,<code>release</code>和<code>autorelease</code>的含义?这里尤其要强调下<code>autorelease</code>,它引申出<code>自动释放池</code>,也能引申出<code>Run loop</code>!<br>参考下这两个链接:<a href="http://blog.csdn.net/yanfangjin/article/details/7545673">参考1号</a>@<a href="http://stackoverflow.com/questions/5766839/end-of-run-loop-autorelease-pool-recovery">参考2号</a>(<font color="red">PS:有的链接可能需要翻墙,但是作为一个开发人员来说,    拥有VPN进行google还是必备的吧!</font>)</li>
+<li>OC语言的动态性指什么?有没有了解过<code>objective-c runtime</code>的相关问题?它包括那些含义?<br>依旧给出一些不错的文章链接:<a href="http://southpeak.github.io/blog/2014/10/25/objective-c-runtime-yun-xing-shi-zhi-lei-yu-dui-xiang/">Number1</a>@<a href="http://blog.codingcoder.com/dig-into-objc/">Number2</a>@<a href="http://chun.tips/">Number3</a></li>
+<li>使用过<code>Core Graphic</code> <code>Core Animation</code> <code>Quartz Core</code>等常用框架吗?在什么条件下会用到?能够实现什么功能?一般这种问题,都是涉及到你自定义UI控件的能力,以及能够实现炫丽动画效果的能力.(含义很广,大家自行找资料,还是推荐个0.0-&gt;<a href="http://zsisme.gitbooks.io/ios-/content/index.html">讲Core Animation的</a>)</li>
+<li>iOS中多线程有哪几种?各自之间有什么区别?这个问题,毋庸置疑,必问!!!<br><code>NSThread</code>:貌似基本没到过…囧….可以去了解下….<br><code>NSOperation</code>:据说是用在处理复杂的情况下…经常被问到与<code>GCD</code>的不同,LZ略纠结每次都不知道怎么回答,只能说一个处理复杂情况一个处理简单情况…也没用到过…不过你研究下<code>AFNetworking</code>的源码,可以发现,它的核心类是继承<code>NSOperation</code>的…<br><code>GCD</code>:常用…这个可以看看我的博客,里面很多它的介绍! <a href="http://blog.csdn.net/hmt20130412/article/category/2206439">点这里</a></li>
+<li>数据存储这一块,你常用哪一种?什么是<code>序列化</code>?<code>sqlite</code>是直接用它还是用封装了它的第三方库?<code>sqlite</code>和<code>core data</code>的区别?<br>LZ碰到的基本都是问<code>sqlite</code>和<code>core data</code>的区别…从什么方面来决定一个项目采用哪种方式来做存储…个人觉得没有必要区分谁好谁坏…都去了解掌握肯定是有好处的…网上有很多讲两个之间的区别,但是就算你知道区别,如果两个都用不好也是白搭.唯有一解-&gt;<code>学!学!学</code>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/21/iOS面试题总结与感想/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Swift-AVFoundation-二维码扫描和生成" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -802,71 +875,6 @@
       
         <p class="article-more-link">
           <a  href="/2014/12/04/blogData/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-widget" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/02/widget/" class="article-date">
-      <time datetime="2014-11-02T12:48:53.000Z" itemprop="datePublished">2014-11-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/02/widget/">iOS8 Today 实现Clips widget</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="App_Extension__u6982_u8FF0"><a href="#App_Extension__u6982_u8FF0" class="headerlink" title="App Extension 概述"></a><font color="IndianRed">App Extension 概述</font></h2><p>应用程序扩展是iOS8中引入的一个非常重要的新特性,扩展让app之间的数据交互成为可能.用户可以在app中使用其他应用提供的功能，而无需离开当前的应用.但是基于安全和性能的考虑，每一个扩展运行在一个单独的进程中,它拥有自己的bundle,bundle后缀名是”.appex””.(PS:当天听到最多的可能就是,不用越狱也能用第三方输入法了,搜狗和百度也第一时间推出了<em>Custom keyboard</em>)<br><img src="http://hmtphoto.qiniudn.com/24105542_vm1b.png" alt=""><br>iOS8上共有6个区域支持Extension,分别是Today、Share、Action、Photo Editing、Storage Provider、Custom keyboard几种，其中<b style="background-color:SeaShell"><font color="#FF0000">Today中的extension一般称为widget.</font></b><br><strong>这里主要介绍widget(其他脑补…键盘最容易…)</strong><br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Extension/">Extension</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Today/">Today</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2014/11/02/widget/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

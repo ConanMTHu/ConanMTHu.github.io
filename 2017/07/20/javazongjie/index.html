@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>UIScrollView汇总(持续更新) | 胡明涛的技术博客</title>
+  <title>javazongjie | 胡明涛的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
+  <meta name="description" content="blog IT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIScrollView汇总(持续更新)">
-<meta property="og:url" content="http://hmttommy.com/2014/12/12/UIScrollView汇总-持续更新/index.html">
+<meta property="og:title" content="javazongjie">
+<meta property="og:url" content="http://hmttommy.com/2017/07/20/javazongjie/index.html">
 <meta property="og:site_name" content="胡明涛的技术博客">
-<meta property="og:description" content="UIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
-<meta property="og:image" content="http://hmtphoto.qiniudn.com/UIScrollView.png">
-<meta property="og:updated_time" content="2016-01-22T03:02:19.000Z">
+<meta property="og:description" content="blog IT">
+<meta property="og:updated_time" content="2017-07-20T03:07:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIScrollView汇总(持续更新)">
-<meta name="twitter:description" content="UIScrollView是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)">
+<meta name="twitter:title" content="javazongjie">
+<meta name="twitter:description" content="blog IT">
   
     <link rel="alternative" href="/atom.xml" title="胡明涛的技术博客" type="application/atom+xml">
   
@@ -223,11 +222,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-UIScrollView汇总-持续更新" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-javazongjie" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/12/UIScrollView汇总-持续更新/" class="article-date">
-      <time datetime="2014-12-12T07:47:19.000Z" itemprop="datePublished">2014-12-12</time>
+      <a href="/2017/07/20/javazongjie/" class="article-date">
+      <time datetime="2017-07-20T03:07:17.000Z" itemprop="datePublished">2017-07-20</time>
 </a>
     </div>
   
@@ -240,7 +239,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      UIScrollView汇总(持续更新)
+      javazongjie
     </h1>
   
 
@@ -248,16 +247,8 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/UI/">UI</a>
-    </div>
-
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UIScrollView/">UIScrollView</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -265,16 +256,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><code>UIScrollView</code>是iOS开发中可谓是最常用的UI控件(它的两个子类,不多说了…)了,介于经常被它一些莫名的问题所困扰,遂做个总结!(盗图,莫骂我😢)<br><img src="http://hmtphoto.qiniudn.com/UIScrollView.png" alt=""><br><a id="more"></a>  </p>
-<h2 id="u57FA_u672C_u7528_u6CD5"><a href="#u57FA_u672C_u7528_u6CD5" class="headerlink" title="基本用法"></a><font color="IndianRed">基本用法</font></h2><p><a href="http://blog.csdn.net/hmt20130412/article/details/21546551" target="_blank" rel="external">可直接参考我CSDN的博文(我就不搬过来了)</a><br><br></p>
-<h2 id="u6211_u9047_u5230_u7684_u95EE_u9898"><a href="#u6211_u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="我遇到的问题"></a><font color="IndianRed">我遇到的问题</font></h2><ul>
-<li>某种情况下,在<code>UIScrollView</code>上添加子控件,尤其是VC,<code>UIScrollView</code>的<code>contentSize</code>被归于0  </li>
-<li>最近一个项目,<code>UIScrollView</code>上放了5个VC(类似网易新闻),VC上放置2个<code>UILabel</code>,再用autolayout进行约束,结果-&gt;在iOS7系统~iPhone5 iPhone6上没问题,在iOS8系统~iPhone5上没问题,却在iOS8系统~iPhone6上出现了约束错误….随后不加scrollview进行验证,没有任何问题…<br><strong>@解决@:</strong></li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">-</span>(void)<span class="tag">viewDidLayoutSubviews</span> &#123;</span><br><span class="line">        <span class="attr_selector">[super viewDidLayoutSubviews]</span>;</span><br><span class="line">        <span class="comment">// 重新设置UIScrollView的代码  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>viewDidLayoutSubviews</code>的作用:view已经布局其Subviews。比如view的bounds改变了(例如状态栏从不显示到显示，视图方向变化)，已经调整Subviews的位置，在调整完成之后要做的一些工作就可以在该方法中实现.<br><br></p>
-<h2 id="u5176_u4ED6_u95EE_u9898"><a href="#u5176_u4ED6_u95EE_u9898" class="headerlink" title="其他问题"></a><font color="IndianRed">其他问题</font></h2><p><a href="/wing.com/cn/practice-in-uiscrollview/">UIScrollView代理方法详解以及lay load </a><br><a href="http://lijianfei.sinaapp.com/?p=215" target="_blank" rel="external">iOS8 – button在scrollView上，scrollView滑动不灵敏</a><br><a href="http://objclub.com/?p=52" target="_blank" rel="external">UIScrollView中使用AutoLayout的问题</a><br><a href="http://www.thinkcart.net/ios-uiscrollview-autolayout-408.html" target="_blank" rel="external">关于uiscrollview的autolayout自动布局的问题</a></p>
-
+        
       
     </div>
     
@@ -282,13 +264,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2014/12/12/UIScrollView汇总-持续更新/">UIScrollView汇总(持续更新)</a></p>
+        <p><span>本文标题:</span><a href="/2017/07/20/javazongjie/">javazongjie</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tommy@迷糊小书童 的个人博客">Tommy@迷糊小书童</a></p>
-        <p><span>发布时间:</span>2014年12月12日 - 15时47分</p>
-        <p><span>最后更新:</span>2016年01月22日 - 11时02分</p>
+        <p><span>发布时间:</span>2017年07月20日 - 11时07分</p>
+        <p><span>最后更新:</span>2017年07月20日 - 11时07分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2014/12/12/UIScrollView汇总-持续更新/" title="UIScrollView汇总(持续更新)">http://hmttommy.com/2014/12/12/UIScrollView汇总-持续更新/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2014/12/12/UIScrollView汇总-持续更新/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/07/20/javazongjie/" title="javazongjie">http://hmttommy.com/2017/07/20/javazongjie/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hmttommy.com/2017/07/20/javazongjie/　　作者: Tommy@迷糊小书童" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -301,16 +283,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/01/06/Swift和Objective-C的互用/">
-                    Swift和Objective-C的互用
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2014/12/08/自适应Cell的两种方式/">
-                    自适应Cell的两种方式
+                <a href="/2017/03/20/ocprojecttemp/">
+                    项目模板(oc)
                 </a>
             </div>
         
@@ -321,7 +297,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u672C_u7528_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6211_u9047_u5230_u7684_u95EE_u9898"><span class="toc-number">2.</span> <span class="toc-text">我遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5176_u4ED6_u95EE_u9898"><span class="toc-number">3.</span> <span class="toc-text">其他问题</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -385,7 +361,7 @@
  
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2014/12/12/UIScrollView汇总-持续更新/" data-title="UIScrollView汇总(持续更新)" data-url="http://hmttommy.com/2014/12/12/UIScrollView汇总-持续更新/"></div>
+    <div class="ds-thread" data-thread-key="2017/07/20/javazongjie/" data-title="javazongjie" data-url="http://hmttommy.com/2017/07/20/javazongjie/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -409,15 +385,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/01/06/Swift和Objective-C的互用/" title="上一篇: Swift和Objective-C的互用">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2014/12/08/自适应Cell的两种方式/" title="下一篇: 自适应Cell的两种方式">
+            <a href="/2017/03/20/ocprojecttemp/" title="下一篇: 项目模板(oc)">
                 <i class="fa fa-angle-right"></i>
             </a>
         
